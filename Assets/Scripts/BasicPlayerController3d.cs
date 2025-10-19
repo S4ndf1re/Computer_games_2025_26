@@ -21,8 +21,8 @@ public class BasicPlayerController3d : MonoBehaviour
 
         Vector2 value = this.moveAction.ReadValue<Vector2>();
 
-        this.transform.position += forward * value.y * this.movementScale;
-        this.transform.position += right * value.x * this.movementScale;
+        this.transform.position += forward * value.y * this.movementScale * Time.deltaTime;
+        this.transform.position += right * value.x * this.movementScale * Time.deltaTime;
         
     }
 }
