@@ -367,13 +367,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eda980412d3e49d0aaf516de9074ad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tickloop
-  bpm: 10
-  tick_length: 100
+  bpm: 60
+  tick_length: 30
   repeat: 0
   finished: 0
   current_idx: 0
   current_time_seconds: 0
-  bpm_as_seconds: 0
+  second_for_beat: 0
 --- !u!4 &1585567505
 Transform:
   m_ObjectHideFlags: 0

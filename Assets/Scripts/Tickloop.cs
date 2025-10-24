@@ -14,7 +14,7 @@ public class Tickloop : MonoBehaviour
     public bool finished = false;
     public int current_idx = 0;
     public double current_time_seconds = 0.0;
-    public double bpm_as_seconds = 0.0;
+    public double second_for_beat = 0.0;
 
     private List<GameObject> gameObjects = new List<GameObject>();
     private List<List<GameObject>> ticks = new List<List<GameObject>>();
@@ -39,7 +39,7 @@ public class Tickloop : MonoBehaviour
         obj_delegate_mapping.Clear();
         current_idx = 0;
         current_time_seconds = 0.0;
-        bpm_as_seconds = BpmToSeconds(bpm);
+        second_for_beat = 1.0 / BpmToSeconds(bpm);
         finished = false;
 
         ticks = new List<List<GameObject>>();
@@ -55,20 +55,23 @@ public class Tickloop : MonoBehaviour
         this.current_time_seconds += Time.fixedDeltaTime;
 
         // This is a little buggy, because bpm_as_seconds cant be compared like this
-        while (this.current_time_seconds >= this.bpm_as_seconds)
+        while (this.current_time_seconds >= this.second_for_beat)
         {
 
-            // Trigger Event, since we crossed the tick mark. 
-            if (!this.finished && this.current_idx >= 0 && this.current_idx < this.ticks.Count)
+            if (!finished)
             {
-                foreach (var obj in this.ticks[this.current_idx])
+                // Trigger Event, since we crossed the tick mark. 
+                if (this.current_idx >= 0 && this.current_idx < this.ticks.Count)
                 {
-                    if (this.obj_delegate_mapping.ContainsKey(obj))
+                    foreach (var obj in this.ticks[this.current_idx])
                     {
-                        this.obj_delegate_mapping[obj].Invoke();
+                        if (this.obj_delegate_mapping.ContainsKey(obj))
+                        {
+                            this.obj_delegate_mapping[obj].Invoke();
+                        }
                     }
-                }
 
+                }
                 // Reset counters
                 if (this.repeat)
                 {
@@ -84,7 +87,7 @@ public class Tickloop : MonoBehaviour
                 }
             }
 
-            this.current_time_seconds -= this.bpm_as_seconds;
+            this.current_time_seconds -= this.second_for_beat;
 
         }
 
