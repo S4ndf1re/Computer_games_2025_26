@@ -22,7 +22,7 @@ public class TickloopBar : MonoBehaviour
             TickloopMeasure measure = Instantiate(tickloop_measure, bar_transform, false);
             RectTransform rect_transform = measure.GetComponent<RectTransform>();
             rect_transform.sizeDelta = new Vector2(4*20, 20);
-            measure.InstantiateBeats(Tickloop.beats_in_measure, measure.transform);
+            measure.InstantiateBeats(tickloop.beatsInMeasure, measure.transform);
             //measure.transform.SetParent(bar_transform, false);
             measures.Add(measure);
         }
@@ -41,8 +41,8 @@ public class TickloopBar : MonoBehaviour
     private void AnimateBar()
     {
         // Alle inaktiv
-        int current_measure = tickloop.current_idx / Tickloop.beats_in_measure;
-        int current_beat = tickloop.current_idx % Tickloop.beats_in_measure;
+        int current_measure = tickloop.currentIdx / tickloop.beatsInMeasure;
+        int current_beat = tickloop.currentIdx % tickloop.beatsInMeasure;
         // Debug.Log(current_measure);
         // Debug.Log(current_beat);
         measures[current_measure].HighlightBeat(current_beat);

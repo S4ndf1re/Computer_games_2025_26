@@ -9,20 +9,25 @@ public class Tickloop : MonoBehaviour
 {
     public delegate void OnTriggeredTick();
 
+
+    [SerializeField]
+    private int tickLength = 0;
+    public int currentIdx = 0;
+    [SerializeField]
+    private double currentTimeSeconds = 0.0;
+    [SerializeField]
+    private double secondsForBeats = 0.0;
+
     [Delayed]
     public int bpm = 0;
-
-    public int tickLength = 0;
-    public bool repeat = true;
-    public bool finished = false;
-    public int currentIdx = 0;
-    public double currentTimeSeconds = 0.0;
-    public double secondsForBeats = 0.0;
-
     [Delayed]
     public int beatsInMeasure = 4;
     [Delayed]
     public int numberOfBeats = 4;
+    [Delayed]
+    bool repeat = true;
+    [Delayed]
+    public bool finished = false;
 
     private List<GameObject> gameObjects = new List<GameObject>();
     private List<List<GameObject>> ticks = new List<List<GameObject>>();
