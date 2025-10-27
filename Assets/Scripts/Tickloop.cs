@@ -17,6 +17,7 @@ public class Tickloop : MonoBehaviour
     private double currentTimeSeconds = 0.0;
     [SerializeField]
     private double secondsForBeats = 0.0;
+    private List<OnTriggeredTick> uiTriggerTicks = new List<OnTriggeredTick>();
 
     [Delayed]
     public int bpm = 0;
@@ -29,9 +30,8 @@ public class Tickloop : MonoBehaviour
     [Delayed]
     public bool finished = false;
 
-    private List<GameObject> gameObjects = new List<GameObject>();
     private List<List<GameObject>> ticks = new List<List<GameObject>>();
-    private Dictionary<GameObject, OnTriggeredTick> obj_delegate_mapping = new Dictionary<GameObject, OnTriggeredTick>();
+    private Dictionary<GameObject, OnTriggeredTick> objDelegateMapping = new Dictionary<GameObject, OnTriggeredTick>();
 
 
 
@@ -48,9 +48,9 @@ public class Tickloop : MonoBehaviour
     void OnEnable()
     {
         tickLength = numberOfBeats * beatsInMeasure;
-        gameObjects.Clear();
         ticks.Clear();
-        obj_delegate_mapping.Clear();
+        objDelegateMapping.Clear();
+        uiTriggerTicks.Clear();
         currentIdx = 0;
         currentTimeSeconds = 0.0;
         secondsForBeats = 1.0 / BpmToBps(bpm);
@@ -82,10 +82,15 @@ public class Tickloop : MonoBehaviour
                 {
                     foreach (var obj in this.ticks[this.currentIdx])
                     {
-                        if (this.obj_delegate_mapping.ContainsKey(obj))
+                        if (this.objDelegateMapping.ContainsKey(obj))
                         {
-                            this.obj_delegate_mapping[obj].Invoke();
+                            this.objDelegateMapping[obj].Invoke();
                         }
+                    }
+
+                    foreach (var func in this.uiTriggerTicks)
+                    {
+                        func.Invoke();
                     }
 
                 }
@@ -125,7 +130,7 @@ public class Tickloop : MonoBehaviour
 
         if (added)
         {
-            this.obj_delegate_mapping.Add(obj, delegate_to_register);
+            this.objDelegateMapping.Add(obj, delegate_to_register);
         }
 
     }
@@ -137,9 +142,19 @@ public class Tickloop : MonoBehaviour
             this.ticks[i].Remove(obj);
         }
 
-        if (this.obj_delegate_mapping.ContainsKey(obj))
+        if (this.objDelegateMapping.ContainsKey(obj))
         {
-            var delegate_to_remove = this.obj_delegate_mapping[obj];
+            var delegate_to_remove = this.objDelegateMapping[obj];
         }
+    }
+
+    public void AddUiTickDelegate(OnTriggeredTick delegate_function)
+    {
+        this.uiTriggerTicks.Add(delegate_function);
+    }
+
+    public void RemoveUiTickDelegate(OnTriggeredTick delegate_function)
+    {
+        this.uiTriggerTicks.Remove(delegate_function);
     }
 }
