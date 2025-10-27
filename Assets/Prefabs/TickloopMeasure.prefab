@@ -75,7 +75,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8153bbe25cf85b44aa171db9c1c12be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DotBarAnimator
-  tickloopBeat: {fileID: 8161960378158031840, guid: e7648e68b77029745bdca8d4e0b661df, type: 3}
+  tickloopBeat: {fileID: 4459710115299355350, guid: e7648e68b77029745bdca8d4e0b661df, type: 3}
   beats: []
   active_color: {r: 0, g: 0, b: 0, a: 1}
   inactive_color: {r: 1, g: 1, b: 1, a: 1}
+  tickloop: {fileID: 0}
