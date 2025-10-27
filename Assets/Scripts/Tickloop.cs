@@ -8,10 +8,8 @@ using UnityEngine.Rendering.Universal.Internal;
 public class Tickloop : MonoBehaviour
 {
     public delegate void OnTriggeredTick();
-
-
-    [SerializeField]
-    private int tickLength = 0;
+    
+    public int tickLength = 0;
     public int currentIdx = 0;
     [SerializeField]
     private double currentTimeSeconds = 0.0;
@@ -24,7 +22,7 @@ public class Tickloop : MonoBehaviour
     [Delayed]
     public int beatsInMeasure = 4;
     [Delayed]
-    public int numberOfBeats = 4;
+    public int numberOfMeasures = 4;
     [Delayed]
     bool repeat = true;
     [Delayed]
@@ -47,7 +45,7 @@ public class Tickloop : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void OnEnable()
     {
-        tickLength = numberOfBeats * beatsInMeasure;
+        tickLength = numberOfMeasures * beatsInMeasure;
         ticks.Clear();
         objDelegateMapping.Clear();
         uiTriggerTicks.Clear();
