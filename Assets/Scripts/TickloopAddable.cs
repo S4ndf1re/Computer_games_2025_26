@@ -14,13 +14,13 @@ public class TickloopAddable : MonoBehaviour
     public int offset = 0;
     public Sprite icon;
 
-    public GameObject tickloopObject;
-    private Tickloop tickloop;
+    // public GameObject tickloopObject;
+    public Tickloop tickloop;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        tickloop = tickloopObject.GetComponent<Tickloop>();
+        // tickloop = tickloopObject.GetComponent<Tickloop>();
 
 
         if (every_nth > 0 && ticksToTrigger.Count == 0)
