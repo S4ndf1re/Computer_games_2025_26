@@ -21,6 +21,7 @@ public class Tickloop : MonoBehaviour
 
     [Delayed]
     public int beatsInMeasure = 4;
+    [Delayed]
     public int numberOfBeats = 4;
 
     private List<GameObject> gameObjects = new List<GameObject>();
@@ -29,7 +30,7 @@ public class Tickloop : MonoBehaviour
 
 
 
-    private double BpmToSeconds(int bpm_in_minutes)
+    private double BpmToBps(int bpm_in_minutes)
     {
         double bpm = (double)bpm_in_minutes;
 
@@ -47,7 +48,7 @@ public class Tickloop : MonoBehaviour
         obj_delegate_mapping.Clear();
         currentIdx = 0;
         currentTimeSeconds = 0.0;
-        secondsForBeats = 1.0 / BpmToSeconds(bpm);
+        secondsForBeats = 1.0 / BpmToBps(bpm);
         finished = false;
 
         ticks = new List<List<GameObject>>();
