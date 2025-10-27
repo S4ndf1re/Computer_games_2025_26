@@ -9,6 +9,13 @@ using Microsoft.Unity.VisualStudio.Editor;
 public class Tickloop : MonoBehaviour
 {
     public delegate void OnTriggeredTick();
+
+
+    public delegate void OnAddedGameObject(GameObject obj, List<int> tickIndices);
+    public delegate void OnRemoveGameObject(GameObject obj);
+
+    public event OnAddedGameObject onAddedGameObject;
+    public event OnRemoveGameObject onRemoveGameObject;
     
     public int tickLength = 0;
     public int currentIdx = 0;
@@ -116,10 +123,10 @@ public class Tickloop : MonoBehaviour
     }
 
 
-    public void AddToTickloop(GameObject obj, List<int> ticks_to_trigger, OnTriggeredTick delegate_to_register)
+    public void AddToTickloop(GameObject obj, List<int> ticksToTrigger, OnTriggeredTick delegateToRegister)
     {
         bool added = false;
-        foreach (int idx in ticks_to_trigger)
+        foreach (int idx in ticksToTrigger)
         {
             if (idx >= 0 && idx < this.ticks.Count)
             {
@@ -130,7 +137,8 @@ public class Tickloop : MonoBehaviour
 
         if (added)
         {
-            this.objDelegateMapping.Add(obj, delegate_to_register);
+            this.objDelegateMapping.Add(obj, delegateToRegister);
+            this.onAddedGameObject?.Invoke(obj, ticksToTrigger);
         }
 
     }
@@ -144,7 +152,8 @@ public class Tickloop : MonoBehaviour
 
         if (this.objDelegateMapping.ContainsKey(obj))
         {
-            var delegate_to_remove = this.objDelegateMapping[obj];
+            this.objDelegateMapping.Remove(obj);
+            this.onRemoveGameObject?.Invoke(obj);
         }
     }
 
