@@ -78,6 +78,8 @@ public class Tickloop : MonoBehaviour
                 // Trigger Event, since we crossed the tick mark. 
                 if (this.currentIdx >= 0 && this.currentIdx < this.ticks.Count)
                 {
+                    // Set tick to one more than actual tick. to represent tick change and start at 0
+                    this.currentIdx = (this.currentIdx + 1) % this.tickLength;
                     foreach (var obj in this.ticks[this.currentIdx])
                     {
                         if (this.objDelegateMapping.ContainsKey(obj))
@@ -90,6 +92,9 @@ public class Tickloop : MonoBehaviour
                     {
                         func.Invoke();
                     }
+
+                    // Undo change done previously
+                    this.currentIdx = (this.currentIdx - 1 + this.tickLength) % this.tickLength;
 
                 }
                 // Reset counters
