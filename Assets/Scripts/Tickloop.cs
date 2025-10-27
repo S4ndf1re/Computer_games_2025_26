@@ -20,9 +20,9 @@ public class Tickloop : MonoBehaviour
 
     [Delayed]
     public int bpm = 0;
-    [Delayed]
+    [Range(1, 6)]
     public int beatsInMeasure = 4;
-    [Delayed]
+    [Range(1, 6)]
     public int numberOfMeasures = 4;
     public bool repeat = true;
     public bool running = true;
