@@ -6,11 +6,13 @@ public class TickloopBar : MonoBehaviour
 {
     public List<TickloopMeasure> measures = new List<TickloopMeasure>();
     public TickloopMeasure tickloopMeasure;
+    public GameObject tickloopBeat;
     public float interval = 0.2f;
     private Tickloop tickloop;
     public GameObject tickloopObject;
 
-    private float timer;
+    public Color activeColor = Color.black;
+    public Color inactiveColor = Color.white;
 
     void Start()
     {
@@ -19,15 +21,17 @@ public class TickloopBar : MonoBehaviour
         // Alle Punkte inaktiv setzen
 
         float measureWidth = 0.0F;
+        RectTransform beatRect = tickloopBeat.GetComponent<RectTransform>();
         for (int i = 0; i < tickloop.numberOfMeasures; i++)
         {
             TickloopMeasure measure = Instantiate(tickloopMeasure, this.transform, false);
-
+            measure.active_color = this.activeColor;
+            measure.inactive_color = this.inactiveColor;
             HorizontalLayoutGroup measureHlg = measure.GetComponent<HorizontalLayoutGroup>(); 
-            measureWidth = tickloop.beatsInMeasure * 20 + (tickloop.beatsInMeasure - 1) * measureHlg.spacing;
+            measureWidth = tickloop.beatsInMeasure * beatRect.sizeDelta.x + (tickloop.beatsInMeasure - 1) * measureHlg.spacing;
 
             RectTransform measureRect = measure.GetComponent<RectTransform>();
-            measureRect.sizeDelta = new Vector2(measureWidth, 20);
+            measureRect.sizeDelta = new Vector2(measureWidth, beatRect.sizeDelta.y);
             measure.InstantiateBeats(tickloop.beatsInMeasure, measure.transform);
             //measure.transform.SetParent(bar_transform, false);
             measures.Add(measure);
