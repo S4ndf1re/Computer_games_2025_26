@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Rendering.Universal.Internal;
+using Microsoft.Unity.VisualStudio.Editor;
 
 
 public class Tickloop : MonoBehaviour
@@ -28,7 +29,6 @@ public class Tickloop : MonoBehaviour
 
     private List<List<GameObject>> ticks = new List<List<GameObject>>();
     private Dictionary<GameObject, OnTriggeredTick> objDelegateMapping = new Dictionary<GameObject, OnTriggeredTick>();
-
 
 
     private double BpmToBps(int bpm_in_minutes)
@@ -60,11 +60,11 @@ public class Tickloop : MonoBehaviour
     }
 
     // Use FixedUpdate instead of Update, since it is better for tick stability, when the updates are always the same spacing
-    void FixedUpdate()
+    void Update()
     {
         if (running)
         {
-            this.currentTimeSeconds += Time.fixedDeltaTime;
+            this.currentTimeSeconds += Time.deltaTime;
         }
 
 
