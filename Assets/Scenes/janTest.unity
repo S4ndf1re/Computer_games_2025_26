@@ -278,7 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   ticksToTrigger: 
-  every_nth: 4
+  every_nth: 2
   offset: 0
   icon: {fileID: 0}
   tickloop: {fileID: 1307575592}
@@ -536,7 +536,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1100, y: 600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -620,7 +620,7 @@ MonoBehaviour:
   currentIdx: 0
   currentTimeSeconds: 0
   secondsForBeats: 0
-  bpm: 60
+  bpm: 120
   beatsInMeasure: 4
   numberOfMeasures: 6
   repeat: 1
@@ -720,8 +720,8 @@ MonoBehaviour:
   tickloopBeat: {fileID: 7847520075527821637, guid: e7648e68b77029745bdca8d4e0b661df, type: 3}
   interval: 0.2
   tickloopObject: {fileID: 1307575591}
-  activeColor: {r: 0, g: 0, b: 0, a: 1}
-  inactiveColor: {r: 1, g: 1, b: 1, a: 1}
+  activeColor: {r: 0.8301887, g: 0.27711293, b: 0.2232111, a: 0.54509807}
+  inactiveColor: {r: 0.3254902, g: 0.45882353, b: 1, a: 0.54509807}
 --- !u!1 &1963551590
 GameObject:
   m_ObjectHideFlags: 0

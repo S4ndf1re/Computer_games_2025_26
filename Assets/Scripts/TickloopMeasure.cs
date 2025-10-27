@@ -28,7 +28,8 @@ public class TickloopMeasure : MonoBehaviour
             beat.active_color = this.active_color;
             beat.inactive_color = this.inactive_color;
             beat.tickloop = this.tickloop;
-            beats.Add(Instantiate(tickloopBeat, measure_transform));
+
+            beats.Add(beat);
         }
 
     }
