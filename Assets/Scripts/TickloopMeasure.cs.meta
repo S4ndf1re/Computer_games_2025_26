@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: c8153bbe25cf85b44aa171db9c1c12be
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - tickloopBeat: {fileID: 8161960378158031840, guid: e7648e68b77029745bdca8d4e0b661df, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -2,6 +2,7 @@ using UnityEngine;
 
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Rendering.Universal.Internal;
 
 
 public class Tickloop : MonoBehaviour
@@ -18,6 +19,7 @@ public class Tickloop : MonoBehaviour
     public int current_idx = 0;
     public double current_time_seconds = 0.0;
     public double second_for_beat = 0.0;
+    public const int beats_in_measure = 4;
 
     private List<GameObject> gameObjects = new List<GameObject>();
     private List<List<GameObject>> ticks = new List<List<GameObject>>();
