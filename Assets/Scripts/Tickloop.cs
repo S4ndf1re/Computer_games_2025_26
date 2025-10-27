@@ -23,10 +23,8 @@ public class Tickloop : MonoBehaviour
     public int beatsInMeasure = 4;
     [Delayed]
     public int numberOfMeasures = 4;
-    [Delayed]
-    bool repeat = true;
-    [Delayed]
-    public bool finished = false;
+    public bool repeat = true;
+    public bool running = true;
 
     private List<List<GameObject>> ticks = new List<List<GameObject>>();
     private Dictionary<GameObject, OnTriggeredTick> objDelegateMapping = new Dictionary<GameObject, OnTriggeredTick>();
@@ -49,10 +47,10 @@ public class Tickloop : MonoBehaviour
         ticks.Clear();
         objDelegateMapping.Clear();
         uiTriggerTicks.Clear();
-        currentIdx = 0;
+        // NOTE: Start at end, since current tick must start at 0 after the first tick is triggered
+        currentIdx = tickLength-1;
         currentTimeSeconds = 0.0;
         secondsForBeats = 1.0 / BpmToBps(bpm);
-        finished = false;
 
         ticks = new List<List<GameObject>>();
         for (int i = 0; i < tickLength; i++)
@@ -64,7 +62,10 @@ public class Tickloop : MonoBehaviour
     // Use FixedUpdate instead of Update, since it is better for tick stability, when the updates are always the same spacing
     void FixedUpdate()
     {
-        this.currentTimeSeconds += Time.fixedDeltaTime;
+        if (running)
+        {
+            this.currentTimeSeconds += Time.fixedDeltaTime;
+        }
 
 
         var last_idx = (this.currentIdx - 1 + this.tickLength) % this.tickLength;
@@ -73,7 +74,7 @@ public class Tickloop : MonoBehaviour
         while (this.currentTimeSeconds >= this.secondsForBeats)
         {
 
-            if (!finished)
+            if (running)
             {
                 // Trigger Event, since we crossed the tick mark. 
                 if (this.currentIdx >= 0 && this.currentIdx < this.ticks.Count)
@@ -97,17 +98,13 @@ public class Tickloop : MonoBehaviour
                     this.currentIdx = (this.currentIdx - 1 + this.tickLength) % this.tickLength;
 
                 }
-                // Reset counters
-                if (this.repeat)
+
+                this.currentIdx = (this.currentIdx + 1) % this.ticks.Count;
+                if(!this.repeat)
                 {
-                    this.currentIdx = (this.currentIdx + 1) % this.ticks.Count;
-                }
-                else
-                {
-                    this.currentIdx = this.currentIdx + 1;
-                    if (this.currentIdx >= this.ticks.Count)
+                    if (this.currentIdx >= this.tickLength-1)
                     {
-                        this.finished = true;
+                        this.running = false;
                     }
                 }
             }

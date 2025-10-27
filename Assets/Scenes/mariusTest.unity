@@ -460,10 +460,11 @@ MonoBehaviour:
   currentIdx: 0
   currentTimeSeconds: 0
   secondsForBeats: 0
-  bpm: 60
+  bpm: 360
   beatsInMeasure: 4
-  numberOfMeasures: 4
-  finished: 0
+  numberOfMeasures: 6
+  repeat: 1
+  running: 1
 --- !u!4 &1307575593
 Transform:
   m_ObjectHideFlags: 0
@@ -534,7 +535,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 10
+  m_Spacing: 20
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
