@@ -14,10 +14,13 @@ public class TickloopBar : MonoBehaviour
     public Color activeColor = Color.black;
     public Color inactiveColor = Color.white;
 
+    
+
     void Start()
     {
         tickloop = tickloopObject.GetComponent<Tickloop>();
         tickloop.uiTrigger += AnimateBar;
+        tickloop.onAddedGameObject += AddObject;
         // Alle Punkte inaktiv setzen
 
         float measureWidth = 0.0F;
@@ -27,6 +30,7 @@ public class TickloopBar : MonoBehaviour
             TickloopMeasure measure = Instantiate(tickloopMeasure, this.transform, false);
             measure.active_color = this.activeColor;
             measure.inactive_color = this.inactiveColor;
+            measure.tickloop = this.tickloop;
             HorizontalLayoutGroup measureHlg = measure.GetComponent<HorizontalLayoutGroup>(); 
             measureWidth = tickloop.beatsInMeasure * beatRect.sizeDelta.x + (tickloop.beatsInMeasure - 1) * measureHlg.spacing;
 
@@ -63,5 +67,10 @@ public class TickloopBar : MonoBehaviour
 
         measures[currentMeasure].HighlightBeat(currentBeat);
         measures[previousMeasure].UnhighlightBeat(previousBeat);
+    }
+
+    void AddObject(GameObject obj, List<int> tickIndices)
+    {
+        
     }
 }

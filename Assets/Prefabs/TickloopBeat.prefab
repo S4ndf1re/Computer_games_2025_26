@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3941588188107193648}
   - component: {fileID: 8161960378158031840}
   - component: {fileID: 8142037514807257774}
+  - component: {fileID: 4459710115299355350}
   m_Layer: 5
   m_Name: TickloopBeat
   m_TagString: Untagged
@@ -100,3 +101,18 @@ MonoBehaviour:
   m_Spacing: {x: 5, y: 5}
   m_Constraint: 1
   m_ConstraintCount: 2
+--- !u!114 &4459710115299355350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7847520075527821637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c84fb50bffc49a84d826103473c9e1f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TickloopBeat
+  active_color: {r: 0, g: 0, b: 0, a: 1}
+  inactive_color: {r: 1, g: 1, b: 1, a: 1}
+  image: {fileID: 0}
