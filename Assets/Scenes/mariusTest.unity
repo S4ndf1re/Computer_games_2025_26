@@ -456,13 +456,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eda980412d3e49d0aaf516de9074ad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tickloop
+  tickLength: 0
+  currentIdx: 0
+  currentTimeSeconds: 0
+  secondsForBeats: 0
   bpm: 60
-  tick_length: 16
-  repeat: 1
+  beatsInMeasure: 4
+  numberOfMeasures: 4
   finished: 0
-  current_idx: 0
-  current_time_seconds: 0
-  second_for_beat: 0
 --- !u!4 &1307575593
 Transform:
   m_ObjectHideFlags: 0
@@ -553,12 +554,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b11314f0a9e90e84c94ee822545c6889, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DotBarAnimator
-  bar_transform: {fileID: 0}
   measures: []
-  tickloop_measure: {fileID: 2204460214816957747, guid: 821ae8a6402ce1b48924c8269170b08c, type: 3}
+  tickloopMeasure: {fileID: 2204460214816957747, guid: 821ae8a6402ce1b48924c8269170b08c, type: 3}
   interval: 0.2
-  tickloop: {fileID: 0}
-  displayed_measures: 4
+  tickloopObject: {fileID: 1307575591}
 --- !u!1 &1963551590
 GameObject:
   m_ObjectHideFlags: 0
