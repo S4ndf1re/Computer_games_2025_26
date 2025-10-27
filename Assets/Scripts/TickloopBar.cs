@@ -14,26 +14,27 @@ public class TickloopBar : MonoBehaviour
     void Start()
     {
         tickloop = tickloopObject.GetComponent<Tickloop>();
+        tickloop.AddUiTickDelegate(AnimateBar);
         // Alle Punkte inaktiv setzen
-        for(int i = 0; i < tickloop.numberOfMeasures; i++)
+        for (int i = 0; i < tickloop.numberOfMeasures; i++)
         {
             TickloopMeasure measure = Instantiate(tickloopMeasure, this.transform, false);
             RectTransform rectTransform = measure.GetComponent<RectTransform>();
-            rectTransform.sizeDelta = new Vector2(4*20, 20);
+            rectTransform.sizeDelta = new Vector2(4 * 20, 20);
             measure.InstantiateBeats(tickloop.beatsInMeasure, measure.transform);
             //measure.transform.SetParent(bar_transform, false);
             measures.Add(measure);
         }
     }
 
+    void OnDisable()
+    {
+        tickloop.RemoveUiTickDelegate(AnimateBar);
+    }
+
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer >= interval)
-        {
-            timer = 0f;
-            AnimateBar();
-        }
+        
     }
 
     private void AnimateBar()
