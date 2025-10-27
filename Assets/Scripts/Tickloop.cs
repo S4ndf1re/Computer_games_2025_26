@@ -1,9 +1,6 @@
 using UnityEngine;
 
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.Rendering.Universal.Internal;
-using Microsoft.Unity.VisualStudio.Editor;
 
 
 public class Tickloop : MonoBehaviour
