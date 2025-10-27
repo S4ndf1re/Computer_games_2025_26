@@ -17,7 +17,7 @@ public class TickloopBar : MonoBehaviour
     void Start()
     {
         tickloop = tickloopObject.GetComponent<Tickloop>();
-        tickloop.AddUiTickDelegate(AnimateBar);
+        tickloop.uiTrigger += AnimateBar;
         // Alle Punkte inaktiv setzen
 
         float measureWidth = 0.0F;
@@ -44,7 +44,7 @@ public class TickloopBar : MonoBehaviour
 
     void OnDisable()
     {
-        tickloop.RemoveUiTickDelegate(AnimateBar);
+        tickloop.uiTrigger -= AnimateBar;
     }
 
     void Update()

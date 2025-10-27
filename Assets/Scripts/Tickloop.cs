@@ -16,6 +16,8 @@ public class Tickloop : MonoBehaviour
 
     public event OnAddedGameObject onAddedGameObject;
     public event OnRemoveGameObject onRemoveGameObject;
+
+    public event OnTriggeredTick uiTrigger;
     
     public int tickLength = 0;
     public int currentIdx = 0;
@@ -23,7 +25,6 @@ public class Tickloop : MonoBehaviour
     private double currentTimeSeconds = 0.0;
     [SerializeField]
     private double secondsForBeats = 0.0;
-    private List<OnTriggeredTick> uiTriggerTicks = new List<OnTriggeredTick>();
 
     [Delayed]
     public int bpm = 0;
@@ -53,7 +54,6 @@ public class Tickloop : MonoBehaviour
         tickLength = numberOfMeasures * beatsInMeasure;
         ticks.Clear();
         objDelegateMapping.Clear();
-        uiTriggerTicks.Clear();
         // NOTE: Start at end, since current tick must start at 0 after the first tick is triggered
         currentIdx = tickLength-1;
         currentTimeSeconds = 0.0;
@@ -96,10 +96,7 @@ public class Tickloop : MonoBehaviour
                         }
                     }
 
-                    foreach (var func in this.uiTriggerTicks)
-                    {
-                        func.Invoke();
-                    }
+                    uiTrigger?.Invoke();
 
                     // Undo change done previously
                     this.currentIdx = (this.currentIdx - 1 + this.tickLength) % this.tickLength;
@@ -155,15 +152,5 @@ public class Tickloop : MonoBehaviour
             this.objDelegateMapping.Remove(obj);
             this.onRemoveGameObject?.Invoke(obj);
         }
-    }
-
-    public void AddUiTickDelegate(OnTriggeredTick delegate_function)
-    {
-        this.uiTriggerTicks.Add(delegate_function);
-    }
-
-    public void RemoveUiTickDelegate(OnTriggeredTick delegate_function)
-    {
-        this.uiTriggerTicks.Remove(delegate_function);
     }
 }
