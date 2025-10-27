@@ -8,7 +8,10 @@ public class Tickloop : MonoBehaviour
 {
     public delegate void OnTriggeredTick();
 
+    [Delayed]
     public int bpm = 0;
+
+    [Delayed]
     public int tick_length = 0;
     public bool repeat = true;
     public bool finished = false;
@@ -32,7 +35,7 @@ public class Tickloop : MonoBehaviour
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void OnEnable()
     {
         gameObjects.Clear();
         ticks.Clear();
@@ -53,6 +56,9 @@ public class Tickloop : MonoBehaviour
     void FixedUpdate()
     {
         this.current_time_seconds += Time.fixedDeltaTime;
+
+
+        var last_idx = (this.current_idx - 1 + this.tick_length) % this.tick_length;
 
         // This is a little buggy, because bpm_as_seconds cant be compared like this
         while (this.current_time_seconds >= this.second_for_beat)
