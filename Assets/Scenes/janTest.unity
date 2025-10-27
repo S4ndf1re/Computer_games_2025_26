@@ -280,7 +280,7 @@ MonoBehaviour:
   ticksToTrigger: 
   every_nth: 2
   offset: 0
-  icon: {fileID: 0}
+  icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   tickloop: {fileID: 1307575592}
 --- !u!4 &703012456
 Transform:

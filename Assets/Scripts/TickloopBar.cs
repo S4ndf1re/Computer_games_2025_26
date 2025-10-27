@@ -14,13 +14,14 @@ public class TickloopBar : MonoBehaviour
     public Color activeColor = Color.black;
     public Color inactiveColor = Color.white;
 
-    
+
 
     void Start()
     {
         tickloop = tickloopObject.GetComponent<Tickloop>();
         tickloop.uiTrigger += AnimateBar;
         tickloop.onAddedGameObject += AddObject;
+        tickloop.onRemoveGameObject += RemoveObject;
         // Alle Punkte inaktiv setzen
 
         float measureWidth = 0.0F;
@@ -31,17 +32,16 @@ public class TickloopBar : MonoBehaviour
             measure.active_color = this.activeColor;
             measure.inactive_color = this.inactiveColor;
             measure.tickloop = this.tickloop;
-            HorizontalLayoutGroup measureHlg = measure.GetComponent<HorizontalLayoutGroup>(); 
+            HorizontalLayoutGroup measureHlg = measure.GetComponent<HorizontalLayoutGroup>();
             measureWidth = tickloop.beatsInMeasure * beatRect.sizeDelta.x + (tickloop.beatsInMeasure - 1) * measureHlg.spacing;
 
             RectTransform measureRect = measure.GetComponent<RectTransform>();
             measureRect.sizeDelta = new Vector2(measureWidth, beatRect.sizeDelta.y);
             measure.InstantiateBeats(tickloop.beatsInMeasure, measure.transform);
-            //measure.transform.SetParent(bar_transform, false);
             measures.Add(measure);
         }
 
-        HorizontalLayoutGroup barHlg = GetComponent<HorizontalLayoutGroup>(); 
+        HorizontalLayoutGroup barHlg = GetComponent<HorizontalLayoutGroup>();
         RectTransform barRect = GetComponent<RectTransform>();
         barRect.sizeDelta = new Vector2(measureWidth * tickloop.numberOfMeasures + barHlg.spacing * (tickloop.numberOfMeasures - 1), 100);
     }
@@ -49,21 +49,22 @@ public class TickloopBar : MonoBehaviour
     void OnDisable()
     {
         tickloop.uiTrigger -= AnimateBar;
+        tickloop.onAddedGameObject -= AddObject;
+        tickloop.onRemoveGameObject -= RemoveObject;
     }
 
-    void Update()
+
+    (int, int) IndexToBarAndBeat(int idx)
     {
-        
+        return (idx / tickloop.beatsInMeasure, idx % tickloop.beatsInMeasure);
     }
 
     private void AnimateBar()
     {
-        int currentMeasure = tickloop.currentIdx / tickloop.beatsInMeasure;
-        int currentBeat = tickloop.currentIdx % tickloop.beatsInMeasure;
-
         int previousIndex = (tickloop.currentIdx - 1 + tickloop.tickLength) % tickloop.tickLength;
-        int previousMeasure = previousIndex / tickloop.beatsInMeasure;
-        int previousBeat = previousIndex % tickloop.beatsInMeasure;
+
+        var (currentMeasure, currentBeat) = IndexToBarAndBeat(tickloop.currentIdx);
+        var (previousMeasure, previousBeat) = IndexToBarAndBeat(previousIndex);
 
         measures[currentMeasure].HighlightBeat(currentBeat);
         measures[previousMeasure].UnhighlightBeat(previousBeat);
@@ -71,6 +72,20 @@ public class TickloopBar : MonoBehaviour
 
     void AddObject(GameObject obj, List<int> tickIndices)
     {
-        
+        foreach (int idx in tickIndices)
+        {
+            var (measure, beat) = IndexToBarAndBeat(idx);
+            measures[measure].AddObject(obj, beat);
+        }
+
+    }
+
+    void RemoveObject(GameObject obj)
+    {
+        foreach (TickloopMeasure measure in measures)
+        {
+            measure.RemoveObject(obj);
+        }
+
     }
 }
