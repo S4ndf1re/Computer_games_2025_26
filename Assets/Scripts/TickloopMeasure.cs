@@ -6,7 +6,6 @@ public class TickloopMeasure : MonoBehaviour
 {
     public Image tickloopBeat;
     public List<Image> beats = new List<Image>();
-    private int number_of_beats;
     public Color active_color = Color.black;
     public Color inactive_color = Color.white;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -22,7 +21,6 @@ public class TickloopMeasure : MonoBehaviour
 
     public void InstantiateBeats(int number_of_beats, Transform measure_transform)
     {
-        this.number_of_beats = number_of_beats;
         for (int i = 0; i < number_of_beats; i++)
         {
             beats.Add(Instantiate(tickloopBeat, measure_transform));
