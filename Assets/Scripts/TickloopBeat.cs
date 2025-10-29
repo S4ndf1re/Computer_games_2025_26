@@ -41,10 +41,11 @@ public class TickloopBeat : MonoBehaviour
     public void AddObject(GameObject obj)
     {
 
-        if (obj.TryGetComponent(out TickloopAddable addable) && addable.icon != null)
+        if (obj.TryGetComponent(out TickloopAddable addable) && addable.icon != null && addable.color != null)
         {
             Image newImage = Instantiate(iconPrefab, transform, false);
             newImage.sprite = addable.icon;
+            newImage.color = addable.color;
 
             objToIconMapping.Add(obj, newImage);
         }

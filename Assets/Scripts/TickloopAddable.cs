@@ -13,6 +13,7 @@ public class TickloopAddable : MonoBehaviour
     public int every_nth = 0;
     public int offset = 0;
     public Sprite icon;
+    public Color color = Color.white;
 
     // public GameObject tickloopObject;
     public Tickloop tickloop;
@@ -39,12 +40,6 @@ public class TickloopAddable : MonoBehaviour
     void OnDisable()
     {
         this.tickloop.RemoveFromTickloop(gameObject);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     void Trigger()

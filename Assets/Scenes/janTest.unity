@@ -278,9 +278,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   ticksToTrigger: 
-  every_nth: 2
-  offset: 0
-  icon: {fileID: 21300000, guid: 443d79d7afdb77c4fa37bedd87b49eda, type: 3}
+  every_nth: 4
+  offset: 2
+  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   tickloop: {fileID: 1307575592}
 --- !u!4 &703012456
 Transform:
