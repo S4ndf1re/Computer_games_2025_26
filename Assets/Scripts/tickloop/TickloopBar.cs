@@ -8,8 +8,7 @@ public class TickloopBar : MonoBehaviour
     public TickloopMeasure tickloopMeasure;
     public GameObject tickloopBeat;
     public float interval = 0.2f;
-    private Tickloop tickloop;
-    public GameObject tickloopObject;
+    public Tickloop tickloop;
 
     public Color activeColor = Color.black;
     public Color inactiveColor = Color.white;
@@ -18,32 +17,24 @@ public class TickloopBar : MonoBehaviour
 
     void Start()
     {
-        tickloop = tickloopObject.GetComponent<Tickloop>();
         tickloop.uiTrigger += AnimateBar;
         tickloop.onAddedGameObject += AddObject;
         tickloop.onRemoveGameObject += RemoveObject;
         // Alle Punkte inaktiv setzen
 
-        float measureWidth = 0.0F;
-        RectTransform beatRect = tickloopBeat.GetComponent<RectTransform>();
+        Vector2 measureDelta = Vector2.zero;
         for (int i = 0; i < tickloop.numberOfMeasures; i++)
         {
             TickloopMeasure measure = Instantiate(tickloopMeasure, this.transform, false);
-            measure.active_color = this.activeColor;
-            measure.inactive_color = this.inactiveColor;
-            measure.tickloop = this.tickloop;
-            HorizontalLayoutGroup measureHlg = measure.GetComponent<HorizontalLayoutGroup>();
-            measureWidth = tickloop.beatsInMeasure * beatRect.sizeDelta.x + (tickloop.beatsInMeasure - 1) * measureHlg.spacing;
+            measure.Instantiate(tickloop.beatsInMeasure, measure.transform, this.activeColor, this.inactiveColor, this.tickloop);
+            measureDelta = measure.GetSizeDelta();
 
-            RectTransform measureRect = measure.GetComponent<RectTransform>();
-            measureRect.sizeDelta = new Vector2(measureWidth, beatRect.sizeDelta.y);
-            measure.InstantiateBeats(tickloop.beatsInMeasure, measure.transform);
             measures.Add(measure);
         }
 
         HorizontalLayoutGroup barHlg = GetComponent<HorizontalLayoutGroup>();
         RectTransform barRect = GetComponent<RectTransform>();
-        barRect.sizeDelta = new Vector2(measureWidth * tickloop.numberOfMeasures + barHlg.spacing * (tickloop.numberOfMeasures - 1), 100);
+        barRect.sizeDelta = new Vector2(measureDelta.x * tickloop.numberOfMeasures + barHlg.spacing * (tickloop.numberOfMeasures - 1), 100);
     }
 
     void OnDisable()

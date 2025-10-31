@@ -6,8 +6,8 @@ public class TickloopMeasure : MonoBehaviour
 {
     public TickloopBeat tickloopBeat;
     public List<TickloopBeat> beats = new List<TickloopBeat>();
-    public Color active_color = Color.black;
-    public Color inactive_color = Color.white;
+    public Color activeColor = Color.black;
+    public Color inactiveColor = Color.white;
     public Tickloop tickloop;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,19 +20,38 @@ public class TickloopMeasure : MonoBehaviour
 
     }
 
-    public void InstantiateBeats(int number_of_beats, Transform measure_transform)
+    public void Instantiate(int number_of_beats, Transform measure_transform, Color activeColor, Color inactiveColor, Tickloop loop)
     {
+        this.activeColor = activeColor;
+        this.inactiveColor = inactiveColor;
+        this.tickloop = loop;
+
+        Vector2 beatDelta = Vector2.zero;
         for (int i = 0; i < number_of_beats; i++)
         {
             TickloopBeat beat = Instantiate(tickloopBeat, measure_transform);
-            beat.active_color = this.active_color;
-            beat.inactive_color = this.inactive_color;
-            beat.tickloop = this.tickloop;
+            beat.Instantiate(this.activeColor, this.inactiveColor, this.tickloop);
+
+            beatDelta = beat.getRectDelta();
 
             beats.Add(beat);
         }
 
+        HorizontalLayoutGroup measureHlg = GetComponent<HorizontalLayoutGroup>();
+        var measureWidth = tickloop.beatsInMeasure * beatDelta.x + (tickloop.beatsInMeasure - 1) * measureHlg.spacing;
+
+        RectTransform measureRect = GetComponent<RectTransform>();
+        measureRect.sizeDelta = new Vector2(measureWidth, beatDelta.y);
     }
+
+
+    public Vector2 GetSizeDelta()
+    {
+        RectTransform measureRect = GetComponent<RectTransform>();
+
+        return measureRect.sizeDelta;
+    }
+
 
     public void HighlightBeat(int beat)
     {

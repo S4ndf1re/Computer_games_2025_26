@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class Tickloop : MonoBehaviour
 {
     public delegate void OnTriggeredTick();
+    public delegate void RequestRandomColor(Color color);
 
 
     public delegate void OnAddedGameObject(GameObject obj, List<int> tickIndices);
@@ -34,6 +35,7 @@ public class Tickloop : MonoBehaviour
 
     private List<List<GameObject>> ticks = new List<List<GameObject>>();
     private Dictionary<GameObject, OnTriggeredTick> objDelegateMapping = new Dictionary<GameObject, OnTriggeredTick>();
+    private ColorGenerator colorGenerator = new ColorGenerator();
 
 
     private double BpmToBps(int bpm_in_minutes)
@@ -117,7 +119,11 @@ public class Tickloop : MonoBehaviour
     }
 
 
-    public void AddToTickloop(GameObject obj, List<int> ticksToTrigger, OnTriggeredTick delegateToRegister)
+    /// <summary>
+    /// Add a game object to the tick loop using the specified ticks.
+    /// The game object may request a custom color using the optional RequestRandomColor delegate
+    /// </summary>
+    public void AddToTickloop(GameObject obj, List<int> ticksToTrigger, OnTriggeredTick delegateToRegister, RequestRandomColor colorRequestor = null)
     {
         bool added = false;
         foreach (int idx in ticksToTrigger)
@@ -131,6 +137,11 @@ public class Tickloop : MonoBehaviour
 
         if (added)
         {
+            if (colorRequestor != null)
+            {
+                // supply random color choosen from a color pallete to the entity
+                colorRequestor.Invoke(RequestColor());
+            }
             this.objDelegateMapping.Add(obj, delegateToRegister);
             this.onAddedGameObject?.Invoke(obj, ticksToTrigger);
         }
@@ -149,5 +160,12 @@ public class Tickloop : MonoBehaviour
             this.objDelegateMapping.Remove(obj);
             this.onRemoveGameObject?.Invoke(obj);
         }
+    }
+
+    public Color RequestColor()
+    {
+        var color = colorGenerator.NextColor();
+
+        return color ?? Color.white;
     }
 }

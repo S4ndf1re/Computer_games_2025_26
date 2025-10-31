@@ -5,8 +5,8 @@ using System.Collections.Generic;
 public class TickloopBeat : MonoBehaviour
 {
 
-    public Color active_color = Color.black;
-    public Color inactive_color = Color.white;
+    public Color activeColor = Color.black;
+    public Color inactiveColor = Color.white;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public Image image;
     public Tickloop tickloop;
@@ -22,25 +22,43 @@ public class TickloopBeat : MonoBehaviour
         objToIconMapping.Clear();
     }
 
+    public void Instantiate(Color activeColor, Color inactiveColor, Tickloop loop)
+    {
+        this.activeColor = activeColor;
+        this.inactiveColor = inactiveColor;
+        this.tickloop = loop;
+
+        var image = GetComponent<Image>();
+        image.color = inactiveColor;
+    }
+
     // Update is called once per frame
     void Update()
     {
 
     }
-    
+
+    public Vector2 getRectDelta()
+    {
+        RectTransform beatRect = GetComponent<RectTransform>();
+
+        return beatRect.sizeDelta;
+    }
+
     public void Highlight()
     {
-        this.image.color = active_color;
+        this.image.color = activeColor;
     }
-    
+
     public void Unhighlight()
     {
-        this.image.color = inactive_color;
+        this.image.color = inactiveColor;
     }
 
     public void AddObject(GameObject obj)
     {
 
+        Debug.Log("Adding to beat");
         if (obj.TryGetComponent(out TickloopAddable addable) && addable.icon != null && addable.color != null)
         {
             Image newImage = Instantiate(iconPrefab, transform, false);

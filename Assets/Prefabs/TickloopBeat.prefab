@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3254717, g: 0.4582232, b: 1, a: 0.54509807}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -94,10 +94,10 @@ MonoBehaviour:
     m_Right: 4
     m_Top: 4
     m_Bottom: 4
-  m_ChildAlignment: 4
+  m_ChildAlignment: 7
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 8, y: 8}
+  m_CellSize: {x: 13, y: 13}
   m_Spacing: {x: 5, y: 5}
   m_Constraint: 1
   m_ConstraintCount: 2
@@ -113,8 +113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c84fb50bffc49a84d826103473c9e1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TickloopBeat
-  active_color: {r: 0, g: 0, b: 0, a: 1}
-  inactive_color: {r: 1, g: 1, b: 1, a: 1}
+  activeColor: {r: 0, g: 0, b: 0, a: 1}
+  inactiveColor: {r: 1, g: 1, b: 1, a: 1}
   image: {fileID: 0}
   tickloop: {fileID: 0}
   iconPrefab: {fileID: 4266516526833173503, guid: 7274a400b43a04a84860a4535b62007d, type: 3}

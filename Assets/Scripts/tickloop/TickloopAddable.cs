@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using Microsoft.Unity.VisualStudio.Editor;
-using NUnit.Framework.Constraints;
 using UnityEngine;
 
 public class TickloopAddable : MonoBehaviour
@@ -14,6 +12,7 @@ public class TickloopAddable : MonoBehaviour
     public int offset = 0;
     public Sprite icon;
     public Color color = Color.white;
+    public bool requestColor = false;
 
     // public GameObject tickloopObject;
     public Tickloop tickloop;
@@ -33,7 +32,14 @@ public class TickloopAddable : MonoBehaviour
             }
         }
 
-        tickloop.AddToTickloop(gameObject, ticksToTrigger, Trigger);
+        if (!requestColor)
+        {
+            tickloop.AddToTickloop(gameObject, ticksToTrigger, Trigger);
+        }
+        else
+        {
+            tickloop.AddToTickloop(gameObject, ticksToTrigger, Trigger, ReceiveRandomColor);
+        }
     }
 
 
@@ -45,6 +51,10 @@ public class TickloopAddable : MonoBehaviour
     void Trigger()
     {
         triggeredByTickloop?.Invoke(this.tickloop);
-        Debug.Log(tickloop.currentIdx);
+    }
+
+    void ReceiveRandomColor(Color color)
+    {
+        this.color = color;
     }
 }
