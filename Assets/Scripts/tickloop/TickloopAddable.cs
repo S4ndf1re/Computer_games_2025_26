@@ -10,6 +10,7 @@ public class TickloopAddable : MonoBehaviour
     public List<int> ticksToTrigger = new List<int>();
     public int every_nth = 0;
     public int offset = 0;
+    public int repeat = 0;
     public Sprite icon;
     public Color color = Color.white;
     public bool requestColor = false;
@@ -28,7 +29,10 @@ public class TickloopAddable : MonoBehaviour
             ticksToTrigger.Clear();
             for (int i = offset; i < tickloop.tickLength; i += every_nth)
             {
-                ticksToTrigger.Add(i);
+                for (int j = 0; j < repeat; j++)
+                {
+                    ticksToTrigger.Add(i + j);
+                }
             }
         }
 
