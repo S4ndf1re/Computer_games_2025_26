@@ -15,7 +15,7 @@ public class Tickloop : MonoBehaviour
     public event OnRemoveGameObject onRemoveGameObject;
 
     public event OnTriggeredTick uiTrigger;
-    
+
     public int tickLength = 0;
     public int currentIdx = 0;
     [SerializeField]
@@ -80,7 +80,7 @@ public class Tickloop : MonoBehaviour
 
             if (running)
             {
-                // Trigger Event, since we crossed the tick mark. 
+                // Trigger Event, since we crossed the tick mark.
                 if (this.currentIdx >= 0 && this.currentIdx < this.ticks.Count)
                 {
                     // Set tick to one more than actual tick. to represent tick change and start at 0
