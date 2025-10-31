@@ -52,7 +52,7 @@ public class Tickloop : MonoBehaviour
         ticks.Clear();
         objDelegateMapping.Clear();
         // NOTE: Start at end, since current tick must start at 0 after the first tick is triggered
-        currentIdx = tickLength-1;
+        currentIdx = tickLength - 1;
         currentTimeSeconds = 0.0;
         secondsForBeats = 1.0 / BpmToBps(bpm);
 
@@ -101,9 +101,9 @@ public class Tickloop : MonoBehaviour
                 }
 
                 this.currentIdx = (this.currentIdx + 1) % this.ticks.Count;
-                if(!this.repeat)
+                if (!this.repeat)
                 {
-                    if (this.currentIdx >= this.tickLength-1)
+                    if (this.currentIdx >= this.tickLength - 1)
                     {
                         this.running = false;
                     }
