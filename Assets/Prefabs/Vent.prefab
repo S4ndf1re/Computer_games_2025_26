@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 516414008867216405}
   - component: {fileID: 2277240553190307339}
   - component: {fileID: 1414976075976804139}
+  - component: {fileID: 630476485212181793}
   m_Layer: 0
   m_Name: Vent
   m_TagString: Untagged
@@ -72,7 +73,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 0f9a68ad8aae92246843f01d9ec4d2d3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -258,6 +259,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActivateParticleSystemOnTrigger
   system: {fileID: 6575653729316032693}
+--- !u!114 &630476485212181793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4438516435154640703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 447d72fe1c99e47859742054079e9cc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColliderTickloopEnabler
+  onTimeSeconds: 0.5
+  toggleableCollider: {fileID: 6723051668844846171}
 --- !u!1 &5332620462517654699
 GameObject:
   m_ObjectHideFlags: 0
