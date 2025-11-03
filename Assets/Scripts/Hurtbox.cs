@@ -7,6 +7,7 @@ public class Hurtbox : MonoBehaviour
 
     public bool mustExit = true;
     public float delayTillNextHitSeconds = 0.0f;
+    public bool ignoreHits = false;
 
     private bool isIntersecting = false;
     private float intersectingSinceSeconds = 0.0f;
@@ -44,21 +45,28 @@ public class Hurtbox : MonoBehaviour
 
     public void StayTrigger(Hitbox box)
     {
-        if (mustExit && alreadyTriggered)
+        if (mustExit && alreadyTriggered || ignoreHits)
         {
             return;
         }
 
-        if (mustExit) {
+        if (mustExit)
+        {
             onHitTriggerEvent?.Invoke(box);
             alreadyTriggered = true;
-        } else {
-            if (!alreadyTriggered) {
+        }
+        else
+        {
+            if (!alreadyTriggered)
+            {
                 onHitTriggerEvent?.Invoke(box);
                 alreadyTriggered = true;
-            } else {
+            }
+            else
+            {
                 var delayTillNextHitLocal = delayTillNextHitSeconds;
-                if (delayTillNextHitLocal < 0.00000001) {
+                if (delayTillNextHitLocal < 0.00000001)
+                {
                     // Trigger exactly once
                     delayTillNextHitLocal = Mathf.Max(0.0000001f, delayTillNextHitSeconds);
                 }
