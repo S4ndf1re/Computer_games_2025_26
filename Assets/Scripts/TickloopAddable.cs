@@ -45,6 +45,6 @@ public class TickloopAddable : MonoBehaviour
     void Trigger()
     {
         triggeredByTickloop?.Invoke(this.tickloop);
-        Debug.Log(tickloop.currentIdx);
+        //Debug.Log(tickloop.currentIdx);
     }
 }

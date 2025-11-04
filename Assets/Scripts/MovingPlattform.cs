@@ -24,9 +24,9 @@ public class MovingPlatform : MonoBehaviour
         tickloopAddable.triggeredByTickloop += MoveTowardsNextWaypoint;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        elapsedTime += Time.deltaTime;
+        elapsedTime += Time.fixedDeltaTime;
         if (isMoving)
         {
             float timePercentage = elapsedTime / timeToNextWaypoint;
