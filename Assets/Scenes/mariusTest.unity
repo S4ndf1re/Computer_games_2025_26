@@ -222,8 +222,10 @@ MonoBehaviour:
   ticksToTrigger: 
   every_nth: 2
   offset: 1
+  repeat: 1
   icon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   color: {r: 1, g: 0, b: 1, a: 1}
+  requestColor: 0
   tickloop: {fileID: 1307575592}
 --- !u!135 &137086748
 SphereCollider:
@@ -534,8 +536,10 @@ MonoBehaviour:
   ticksToTrigger: 
   every_nth: 2
   offset: 1
+  repeat: 0
   icon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   color: {r: 1, g: 0, b: 1, a: 1}
+  requestColor: 0
   tickloop: {fileID: 1307575592}
 --- !u!114 &193597437
 MonoBehaviour:
@@ -823,8 +827,10 @@ MonoBehaviour:
   ticksToTrigger: 
   every_nth: 4
   offset: 0
+  repeat: 1
   icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  requestColor: 0
   tickloop: {fileID: 1307575592}
 --- !u!1 &415544843
 GameObject:
@@ -1912,7 +1918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eda980412d3e49d0aaf516de9074ad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tickloop
-  tickLength: 0
+  tickLength: 60
   currentIdx: 0
   currentTimeSeconds: 0
   secondsForBeats: 0
@@ -2126,7 +2132,7 @@ MonoBehaviour:
   tickloopMeasure: {fileID: 2204460214816957747, guid: 821ae8a6402ce1b48924c8269170b08c, type: 3}
   tickloopBeat: {fileID: 7847520075527821637, guid: e7648e68b77029745bdca8d4e0b661df, type: 3}
   interval: 0.2
-  tickloopObject: {fileID: 1307575591}
+  tickloop: {fileID: 1307575592}
   activeColor: {r: 0, g: 0, b: 0, a: 1}
   inactiveColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1457546792
@@ -2199,8 +2205,6 @@ MonoBehaviour:
   target: {fileID: 1153996432}
   attentionRadius: 50
   isIdling: 0
-  isMoving: 0
-  currentState: 0
 --- !u!114 &1504140064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2216,8 +2220,10 @@ MonoBehaviour:
   ticksToTrigger: 
   every_nth: 2
   offset: 1
+  repeat: 1
   icon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   color: {r: 1, g: 0, b: 1, a: 1}
+  requestColor: 0
   tickloop: {fileID: 1307575592}
 --- !u!195 &1504140065
 NavMeshAgent:
