@@ -24,13 +24,14 @@ public class RatBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (body != null && isMoving) {
+        if (body != null && isMoving)
+        {
             var diff = direction * speed * Time.deltaTime;
             body.transform.position += diff;
             distanceMoved += diff.magnitude;
 
-            if (distanceMoved >= distance) {
+            if (distanceMoved >= distance)
+            {
                 var distanceToTarget = distanceMoved - distance;
                 var inverseDirection = -direction.normalized;
 

@@ -505,7 +505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   player: {fileID: 868442171}
-  speed: 20
+  speed: 1000
   distance: 1
 --- !u!114 &1330123191
 MonoBehaviour:
@@ -714,13 +714,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1989886489}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -3.57, y: -0.3, z: 1.695}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.16, y: -0.3, z: -6.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1989886493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -852,11 +852,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 893671697235851523, guid: b885af25ff7aa475c8f981d62650a2a1, type: 3}
       propertyPath: delayTillNextHitSeconds
-      value: 1
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5519410678545478318, guid: b885af25ff7aa475c8f981d62650a2a1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.41392
+      value: -6.23
       objectReference: {fileID: 0}
     - target: {fileID: 5519410678545478318, guid: b885af25ff7aa475c8f981d62650a2a1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -864,7 +864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5519410678545478318, guid: b885af25ff7aa475c8f981d62650a2a1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.22307
+      value: -3.23
       objectReference: {fileID: 0}
     - target: {fileID: 5519410678545478318, guid: b885af25ff7aa475c8f981d62650a2a1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -898,6 +898,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6787786682406187499, guid: b885af25ff7aa475c8f981d62650a2a1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -925,7 +929,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1975703262726517580, guid: f0549748ef28f4d288bacb37b85ad21c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.05
+      value: -1.14
       objectReference: {fileID: 0}
     - target: {fileID: 1975703262726517580, guid: f0549748ef28f4d288bacb37b85ad21c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -970,6 +974,10 @@ PrefabInstance:
     - target: {fileID: 2455322928156059929, guid: f0549748ef28f4d288bacb37b85ad21c, type: 3}
       propertyPath: m_Name
       value: Rat
+      objectReference: {fileID: 0}
+    - target: {fileID: 2455322928156059929, guid: f0549748ef28f4d288bacb37b85ad21c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3123268949481493237, guid: f0549748ef28f4d288bacb37b85ad21c, type: 3}
       propertyPath: m_IsKinematic
