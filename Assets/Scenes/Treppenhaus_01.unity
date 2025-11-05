@@ -6742,7 +6742,7 @@ Light:
   serializedVersion: 11
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1.34
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -7967,7 +7967,7 @@ MonoBehaviour:
   MoveSpeed: 2
   SprintSpeed: 5.335
   CrouchSpeed: 1.5
-  CrouchSprintSpeed: 3
+  CrouchSprintSpeed: 10
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
   LandingAudioClip: {fileID: 8300000, guid: ff697d3070687ce4583faa0561a145a2, type: 3}

@@ -1,4 +1,6 @@
 ﻿<Solution>
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="Draco.Sample.SceneEncodeDecode.Editor.csproj" />
+  <Project Path="Draco.Sample.SceneEncodeDecode.csproj" />
 </Solution>
