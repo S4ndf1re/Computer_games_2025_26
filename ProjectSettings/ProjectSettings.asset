@@ -823,8 +823,12 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
+<<<<<<< HEAD
   scriptingDefineSymbols:
     Standalone: STARTER_ASSETS_PACKAGES_CHECKED
+=======
+  scriptingDefineSymbols: {}
+>>>>>>> 2e54bf353665410f42f893eef00adf61bd54e1ef
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
