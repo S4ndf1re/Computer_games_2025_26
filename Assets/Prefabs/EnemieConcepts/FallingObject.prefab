@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5610002826881125144}
   - component: {fileID: 9022729600987451140}
   - component: {fileID: 1778762130864651695}
+  - component: {fileID: 5502854989785896299}
   m_Layer: 0
   m_Name: FallingObject
   m_TagString: Untagged
@@ -168,6 +169,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   gravity: 20
+--- !u!114 &5502854989785896299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3418150181869781830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d72d4dd69e3a4b409e03054ce165b7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Hitbox
 --- !u!1 &7529220100597400838
 GameObject:
   m_ObjectHideFlags: 0
