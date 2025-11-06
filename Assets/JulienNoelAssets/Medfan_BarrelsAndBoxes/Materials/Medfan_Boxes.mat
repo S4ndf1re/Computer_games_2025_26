@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Medfan_Boxes
-  m_Shader: {fileID: 4800000, guid: 0f4122b9a743b744abe2fb6a0a88868b, type: 3}
+  m_Shader: {fileID: 4800000, guid: 44ca283c00c1f54498b3da4353c793bf, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -84,6 +84,7 @@ Material:
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
+    - _DitherIntensity: 0.1
     - _DstBlend: 0
     - _GlossMapScale: 0.892
     - _Glossiness: 0
@@ -93,6 +94,7 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
+    - _SnapIntensity: 0.005
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
