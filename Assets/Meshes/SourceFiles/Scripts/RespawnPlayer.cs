@@ -18,33 +18,49 @@ namespace StarterAssets
         public CinemachineCamera vCam;
 
         private ThirdPersonController _thirdPersonController;
+
         public AudioClip respawnSound;
 
+        // for getting the health
+        private Player _playerScript;
+        
 
         private void Start()
-{
-    // Save the starting position and rotation
-    _startingPosition = transform.position;
-    _startingRotation = transform.rotation;
+        {
+            // Save the starting position and rotation
+            _startingPosition = transform.position;
+            _startingRotation = transform.rotation;
 
-    // Get the CharacterController reference
-    _characterController = GetComponent<CharacterController>();
-    if (_characterController == null)
-    {
-        Debug.LogError("CharacterController component is required for RespawnPlayer script!");
-    }
+            // Get the CharacterController reference
+            _characterController = GetComponent<CharacterController>();
+            if (_characterController == null)
+            {
+                Debug.LogError("CharacterController component is required for RespawnPlayer script!");
+            }
 
-    // Get ThirdPersonController reference
-    _thirdPersonController = GetComponent<ThirdPersonController>();
-    if (_thirdPersonController == null)
-    {
-        Debug.LogError("ThirdPersonController component is required for RespawnPlayer!");
-    }
-}
+            // Get ThirdPersonController reference
+            _thirdPersonController = GetComponent<ThirdPersonController>();
+            if (_thirdPersonController == null)
+            {
+                Debug.LogError("ThirdPersonController component is required for RespawnPlayer!");
+            }
+
+            // Get the Player script
+            _playerScript = gameObject.GetComponentInParent<Player>();
+            if (_playerScript == null)
+            {
+                Debug.LogError("Player-Script is required for RespawnPlayer!");
+            }
+        }
 
         private void Update()
         {
             // Check if the player's Y position has fallen below the threshold
+            if (_playerScript.health < 0)
+            {
+                _playerScript.health = 3;
+                Respawn();
+            }
             if (transform.position.y < yThreshold)
             {
                 Respawn();

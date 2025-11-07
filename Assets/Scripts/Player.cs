@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
     {
         health -= 1;
         if (health < 1) {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 
