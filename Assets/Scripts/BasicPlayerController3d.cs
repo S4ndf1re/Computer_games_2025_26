@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class BasicPlayerController3d : MonoBehaviour
 {
+    
     public float movementScale;
     // 2. These variables are to hold the Action references
     InputAction moveAction;

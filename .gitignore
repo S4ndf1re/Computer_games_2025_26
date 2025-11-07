@@ -38,6 +38,9 @@
 # Zed Editor
 .zed/
 
+# .DS_Store
+.DS_Store
+
 # Gradle cache directory
 .gradle/
 
