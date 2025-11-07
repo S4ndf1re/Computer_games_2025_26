@@ -15,6 +15,8 @@ public class TickloopAddable : MonoBehaviour
     public Color color = Color.white;
     public bool requestColor = false;
 
+    public List<TickloopEnableCollider> enabledInColliders;
+
     // public GameObject tickloopObject;
     public Tickloop tickloop;
 
@@ -36,6 +38,35 @@ public class TickloopAddable : MonoBehaviour
             }
         }
 
+        if (enabledInColliders.Count == 0) {
+            AddToTickloop();
+        }
+
+
+        foreach(var enabler in enabledInColliders) {
+            enabler.enableEvent += AddToTickloop;
+            enabler.disableEvent += RemoveFromTickloop;
+        }
+    }
+
+
+    void OnDisable()
+    {
+        if(enabledInColliders.Count == 0) {
+            RemoveFromTickloop();
+        }
+
+        foreach(var enabler in enabledInColliders) {
+            enabler.enableEvent -= AddToTickloop;
+            enabler.disableEvent -= RemoveFromTickloop;
+        }
+    }
+
+    void RemoveFromTickloop() {
+        this.tickloop.RemoveFromTickloop(gameObject);
+    }
+
+    void AddToTickloop() {
         if (!requestColor)
         {
             tickloop.AddToTickloop(gameObject, ticksToTrigger, Trigger);
@@ -44,12 +75,6 @@ public class TickloopAddable : MonoBehaviour
         {
             tickloop.AddToTickloop(gameObject, ticksToTrigger, Trigger, ReceiveRandomColor);
         }
-    }
-
-
-    void OnDisable()
-    {
-        this.tickloop.RemoveFromTickloop(gameObject);
     }
 
     void Trigger()

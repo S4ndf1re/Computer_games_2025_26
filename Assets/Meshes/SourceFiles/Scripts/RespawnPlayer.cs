@@ -46,7 +46,7 @@ namespace StarterAssets
             }
 
             // Get the Player script
-            _playerScript = gameObject.GetComponentInParent<Player>();
+            _playerScript = gameObject.GetComponent<Player>();
             if (_playerScript == null)
             {
                 Debug.LogError("Player-Script is required for RespawnPlayer!");
