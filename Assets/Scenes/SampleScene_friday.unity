@@ -6944,7 +6944,7 @@ Transform:
   m_GameObject: {fileID: 1777534025}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 8.725254, y: -0.9818901, z: 1.3996887}
+  m_LocalPosition: {x: 8.37, y: -0.62, z: 2.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6979,6 +6979,8 @@ GameObject:
   - component: {fileID: 2053609281}
   - component: {fileID: 2053609280}
   - component: {fileID: 2053609279}
+  - component: {fileID: 2053609284}
+  - component: {fileID: 2053609285}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -7117,6 +7119,39 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2053609277}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2053609284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2053609277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d72d4dd69e3a4b409e03054ce165b7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Hitbox
+--- !u!135 &2053609285
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2053609277}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.6
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2121003450
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7457,7 +7492,7 @@ Transform:
   m_GameObject: {fileID: 8406042834898095177}
   serializedVersion: 2
   m_LocalRotation: {x: 0.094203606, y: -0.5725891, z: 0.066453345, w: 0.81169665}
-  m_LocalPosition: {x: 10.6374, y: 4.0317516, z: -3.7878056}
+  m_LocalPosition: {x: 10.6374, y: 4.0317516, z: -3.7878046}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7663,7 +7698,7 @@ Transform:
   m_GameObject: {fileID: 5279774711507988316}
   serializedVersion: 2
   m_LocalRotation: {x: 0.094203606, y: -0.5725891, z: 0.066453345, w: 0.81169665}
-  m_LocalPosition: {x: 10.6374, y: 4.0317516, z: -3.7878056}
+  m_LocalPosition: {x: 10.6374, y: 4.0317516, z: -3.7878046}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8004,7 +8039,7 @@ MonoBehaviour:
   SprintSpeed: 5.335
   CrouchSpeed: 1.5
   CrouchSprintSpeed: 10
-  RotationSmoothTime: 0.045
+  RotationSmoothTime: 0.015
   SpeedChangeRate: 10
   LandingAudioClip: {fileID: 8300000, guid: ff697d3070687ce4583faa0561a145a2, type: 3}
   FootstepAudioClips:

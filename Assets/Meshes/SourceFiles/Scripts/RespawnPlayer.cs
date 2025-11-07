@@ -7,7 +7,7 @@ namespace StarterAssets
     public class RespawnPlayer : MonoBehaviour
     {
         [Tooltip("The Y position threshold at which the player will respawn.")]
-        public float yThreshold = -5f; 
+        public float yThreshold = -5f;
 
         private Vector3 _startingPosition;
 
@@ -23,7 +23,7 @@ namespace StarterAssets
 
         // for getting the health
         private Player _playerScript;
-        
+
 
         private void Start()
         {
@@ -56,7 +56,7 @@ namespace StarterAssets
         private void Update()
         {
             // Check if the player's Y position has fallen below the threshold
-            if (_playerScript.health < 0)
+            if (_playerScript.health <= 0)
             {
                 _playerScript.health = 3;
                 Respawn();
