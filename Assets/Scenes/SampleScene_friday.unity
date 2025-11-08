@@ -8316,6 +8316,7 @@ MonoBehaviour:
   crawl: 0
   punch: 0
   push: 0
+  dash: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
@@ -8411,6 +8412,20 @@ MonoBehaviour:
   BottomClamp: -30
   CameraAngleOverride: 0
   LockCameraPosition: 1
+  CoyoteTime: 0.15
+  MaxJumpHoldTime: 0.35
+  HoldJumpGravityMultiplier: 0.3
+  DashSpeed: 4
+  DashDuration: 0.5
+  DashCooldown: 0.5
+  WallCheckDistance: 0.6
+  WallSlideSpeed: 2
+  WallJumpForce: 7
+  WallJumpAngle: {x: 1, y: 1.5}
+  WallLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  WallSlideMaxTime: 2
 --- !u!1 &9101605159679012043
 GameObject:
   m_ObjectHideFlags: 0
