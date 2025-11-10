@@ -11,9 +11,9 @@ public class TickloopAddable : MonoBehaviour
     public event PhasedOutTick phasedOutTickEvent;
 
     public List<int> ticksToTrigger = new List<int>();
-    public int every_nth = 0;
+    public int every_nth = 4;
     public int offset = 0;
-    public int repeat = 0;
+    public int repeat = 1;
     public Sprite icon;
     public Color color = Color.white;
     public bool requestColor = false;
