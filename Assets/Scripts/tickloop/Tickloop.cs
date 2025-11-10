@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class Tickloop : MonoBehaviour
 {
     public delegate void OnTriggeredTick();
+    public delegate void OnPhaseOutTick();
     public delegate void RequestRandomColor(Color color);
 
 
@@ -35,6 +36,7 @@ public class Tickloop : MonoBehaviour
 
     private List<List<GameObject>> ticks = new List<List<GameObject>>();
     private Dictionary<GameObject, OnTriggeredTick> objDelegateMapping = new Dictionary<GameObject, OnTriggeredTick>();
+    private Dictionary<GameObject, OnPhaseOutTick> objPhaseOutMapping = new Dictionary<GameObject, OnPhaseOutTick>();
     private ColorGenerator colorGenerator = new ColorGenerator();
 
 
@@ -53,6 +55,7 @@ public class Tickloop : MonoBehaviour
         tickLength = numberOfMeasures * beatsInMeasure;
         ticks.Clear();
         objDelegateMapping.Clear();
+        objPhaseOutMapping.Clear();
         // NOTE: Start at end, since current tick must start at 0 after the first tick is triggered
         currentIdx = tickLength - 1;
         currentTimeSeconds = 0.0;
@@ -85,6 +88,16 @@ public class Tickloop : MonoBehaviour
                 // Trigger Event, since we crossed the tick mark.
                 if (this.currentIdx >= 0 && this.currentIdx < this.ticks.Count)
                 {
+                    // Phase out the object mapping
+                    foreach (var obj in this.ticks[this.currentIdx])
+                    {
+                        if (this.objPhaseOutMapping.ContainsKey(obj))
+                        {
+                            this.objPhaseOutMapping[obj].Invoke();
+                        }
+                    }
+
+
                     // Set tick to one more than actual tick. to represent tick change and start at 0
                     this.currentIdx = (this.currentIdx + 1) % this.tickLength;
                     foreach (var obj in this.ticks[this.currentIdx])
@@ -123,7 +136,7 @@ public class Tickloop : MonoBehaviour
     /// Add a game object to the tick loop using the specified ticks.
     /// The game object may request a custom color using the optional RequestRandomColor delegate
     /// </summary>
-    public void AddToTickloop(GameObject obj, List<int> ticksToTrigger, OnTriggeredTick delegateToRegister, RequestRandomColor colorRequestor = null)
+    public void AddToTickloop(GameObject obj, List<int> ticksToTrigger, OnTriggeredTick delegateToRegister, OnPhaseOutTick onPhaseOutTick, RequestRandomColor colorRequestor = null)
     {
         bool added = false;
         foreach (int idx in ticksToTrigger)
@@ -143,6 +156,8 @@ public class Tickloop : MonoBehaviour
                 colorRequestor.Invoke(RequestColor());
             }
             this.objDelegateMapping.Add(obj, delegateToRegister);
+            this.objPhaseOutMapping.Add(obj, onPhaseOutTick);
+
             this.onAddedGameObject?.Invoke(obj, ticksToTrigger);
         }
 
@@ -158,6 +173,7 @@ public class Tickloop : MonoBehaviour
         if (this.objDelegateMapping.ContainsKey(obj))
         {
             this.objDelegateMapping.Remove(obj);
+            this.objPhaseOutMapping.Remove(obj);
             this.onRemoveGameObject?.Invoke(obj);
         }
     }

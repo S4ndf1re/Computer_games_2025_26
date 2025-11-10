@@ -7,6 +7,9 @@ public class TickloopAddable : MonoBehaviour
     public delegate void TriggeredByTickloop(Tickloop tickloop);
     public event TriggeredByTickloop triggeredByTickloop;
 
+    public delegate void PhasedOutTick();
+    public event PhasedOutTick phasedOutTickEvent;
+
     public List<int> ticksToTrigger = new List<int>();
     public int every_nth = 0;
     public int offset = 0;
@@ -69,17 +72,21 @@ public class TickloopAddable : MonoBehaviour
     void AddToTickloop() {
         if (!requestColor)
         {
-            tickloop.AddToTickloop(gameObject, ticksToTrigger, Trigger);
+            tickloop.AddToTickloop(gameObject, ticksToTrigger, Trigger, PhasedOut);
         }
         else
         {
-            tickloop.AddToTickloop(gameObject, ticksToTrigger, Trigger, ReceiveRandomColor);
+            tickloop.AddToTickloop(gameObject, ticksToTrigger, Trigger, PhasedOut, ReceiveRandomColor);
         }
     }
 
     void Trigger()
     {
         triggeredByTickloop?.Invoke(this.tickloop);
+    }
+
+    void PhasedOut() {
+        phasedOutTickEvent?.Invoke();
     }
 
     void ReceiveRandomColor(Color color)
