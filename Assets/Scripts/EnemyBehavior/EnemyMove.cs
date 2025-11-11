@@ -8,17 +8,29 @@ public abstract class EnemyMove : MonoBehaviour
     public float jumpHeight;
     public float jumpDistance;
     public float jumpSpeed;
+    public float moveDuration;
+
+    protected float playerSpeed = 5.0f;
+    //protected float jumpHeight = 1.5f;
+    protected float gravityValue = -35f;
+
+    protected CharacterController controller;
+    protected Vector3 playerVelocity;
+    protected bool groundedPlayer;
 
     public enum State
     {
-        walk,
-        jump
+        waitingForWalk,
+        walking,
+        waitingForJump,
+        jumping
     }
     public State nextState;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected virtual void Start()
     {
-        
+        controller = transform.parent.gameObject.GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -74,6 +86,19 @@ public abstract class EnemyMove : MonoBehaviour
             yield return null;
         }
         enemy.transform.position = end;
+        while (!Physics.Raycast(enemy.transform.position + Vector3.up * 0.1f, Vector3.down, out RaycastHit groundHit, 0.5f))
+        {
+
+            passedTime += Time.deltaTime;
+            Vector3 currentPosition = Vector3.Lerp(start, end, passedTime / totalDuration);
+            //x = passedTime / totalDuration 
+            //f(0,5) = a * x * (1-x) * jumpHeight = jumpheight -> a = 4
+            float x = passedTime / totalDuration;
+            currentPosition.y += 4 * x * (1 - x) * jumpHeight;
+            enemy.transform.position = currentPosition;
+            yield return null;
+        }
+
     }
     
     protected IEnumerator WalkCoroutine(GameObject enemy, Vector3 end)
