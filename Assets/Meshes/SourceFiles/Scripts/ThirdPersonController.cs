@@ -224,6 +224,10 @@ namespace StarterAssets
             _animIDCrawl = Animator.StringToHash("Crawl");
         }
 
+
+        /// <summary>
+        /// Checks whether a player is in contact with a ground layer.
+        /// </summary>
         private void GroundedCheck()
         {
             Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
@@ -233,6 +237,9 @@ namespace StarterAssets
                 _animator.SetBool(_animIDGrounded, Grounded);
         }
 
+        /// <summary>
+        /// Rotates Player Camera based on the mouse input around the player.
+        /// </summary>
         private void CameraRotation()
         {
             if (_input.look.sqrMagnitude >= _threshold && !LockCameraPosition)
@@ -247,25 +254,38 @@ namespace StarterAssets
             CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride, _cinemachineTargetYaw, 0.0f);
         }
 
+
+        /// <summary>
+        /// Handles general movement
+        /// </summary>
         private void Move()
         {
             float targetSpeed = MoveSpeed;
+
+            //sets speed based on input permutations
             if (_input.sprint && _isCrawling) targetSpeed = CrouchSprintSpeed;
             if (_input.sprint && !_isCrawling && Grounded) targetSpeed = SprintSpeed;
             if (!_input.sprint && _isCrawling) targetSpeed = CrouchSpeed;
             if (_input.move == Vector2.zero) targetSpeed = 0.0f;
 
+            //absolute speed scalar of 3D speed vector
             float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
             float speedOffset = 0.1f;
+
+            //if gamepad is active: use input magnitude. For Keyboard input this is set to 1.
             float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
 
+            // Smoothing the velocity change (Acceleration)
             if (currentHorizontalSpeed < targetSpeed - speedOffset || currentHorizontalSpeed > targetSpeed + speedOffset)
             {
-                _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude, Time.deltaTime * SpeedChangeRate);
+                //interpolates velocity smoothly
+                _speed = Mathf.Lerp(_speed, targetSpeed * inputMagnitude, Time.deltaTime * SpeedChangeRate);
+                //rounds speed to avoid floating point errors
                 _speed = Mathf.Round(_speed * 1000f) / 1000f;
             }
             else
             {
+                //if we are already at max speed we dont need to accelerate
                 _speed = targetSpeed;
             }
 
@@ -291,6 +311,9 @@ namespace StarterAssets
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void HandleDash()
         {
             // Nur in der Luft dashen
