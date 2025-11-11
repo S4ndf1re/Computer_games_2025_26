@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class EnemyFollow : EnemyMove
 {
@@ -14,17 +15,14 @@ public class EnemyFollow : EnemyMove
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log(controller.isGrounded);
         if (nextState == State.walking)
         {
             moveDuration += Time.deltaTime;
             playerVelocity.y += gravityValue * Time.deltaTime;
-            Vector3 move = new Vector3(1, 0, 0);
-            move = Vector3.ClampMagnitude(move, 1.0f);
             // Combine horizontal and vertical movement
-            Vector3 finalMove = (move * walkSpeed) + (playerVelocity.y * Vector3.up);
+            Vector3 finalMove = (currentMoveDirection * walkSpeed) + (playerVelocity.y * Vector3.up);
             controller.Move(finalMove * Time.deltaTime);
-            if (moveDuration >= walkSpeed / walkDistance && controller.isGrounded)
+            if (moveDuration >= walkSpeed / currentMoveDistance && controller.isGrounded)
             {
                 nextState = State.waitingForJump;
             }
@@ -33,9 +31,8 @@ public class EnemyFollow : EnemyMove
         {
             moveDuration += Time.deltaTime;
             playerVelocity.y += gravityValue * Time.deltaTime;
-            Vector3 move = new Vector3(1, 0, 0);
-            // Combine horizontal and vertical movement
-            Vector3 finalMove = (move * jumpSpeed) + (playerVelocity.y * Vector3.up);
+
+            Vector3 finalMove = (currentMoveDirection * currentMoveSpeed) + (playerVelocity.y * Vector3.up);
             controller.Move(finalMove * Time.deltaTime);
         }
 
@@ -60,6 +57,7 @@ public class EnemyFollow : EnemyMove
     }
     public override void Move(GameObject enemy, GameObject target)
     {
+        this.target = target; 
         switch (nextState)
         {
             case State.waitingForWalk:
@@ -67,6 +65,8 @@ public class EnemyFollow : EnemyMove
                 {
                     nextState = State.walking;
                     moveDuration = 0;
+                    currentMoveDirection = DetermineWalkDirection(controller.gameObject, target);
+                    currentMoveDistance = DetermineWalkDistance(controller.gameObject, target);
                     //StartCoroutine(WalkCoroutine(enemy, DetermineWalkPoint(enemy, target)));
                 }
                 break;
@@ -77,6 +77,9 @@ public class EnemyFollow : EnemyMove
                     playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
                     //StartCoroutine(JumpCoroutine(enemy, DetermineJumpPoint(enemy, target)));
                     moveDuration = 0;
+                    currentMoveDirection = DetermineWalkDirection(controller.gameObject, target);
+                    currentMoveDistance = DetermineJumpDistance(controller.gameObject, target);
+                    currentMoveSpeed = DetermineJumpSpeed(controller.gameObject, target);
                 }
 
                 break;

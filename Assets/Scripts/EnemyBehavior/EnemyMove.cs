@@ -16,7 +16,10 @@ public abstract class EnemyMove : MonoBehaviour
 
     protected CharacterController controller;
     protected Vector3 playerVelocity;
-    protected bool groundedPlayer;
+    protected GameObject target;
+    protected Vector3 currentMoveDirection;
+    protected float currentMoveSpeed;
+    protected float currentMoveDistance;
 
     public enum State
     {
@@ -43,7 +46,34 @@ public abstract class EnemyMove : MonoBehaviour
 
     protected Vector3 DetermineWalkPoint(GameObject enemy, GameObject target)
     {
+        Debug.Log(enemy.transform.position);
+        Debug.Log(target.transform.position);
         return enemy.transform.position + walkDistance * (target.transform.position - enemy.transform.position).normalized;
+    }
+
+    protected Vector3 DetermineWalkDirection(GameObject enemy, GameObject target)
+    {
+        Debug.Log(enemy.transform.position);
+        Debug.Log(target.transform.position);
+        return (target.transform.position - enemy.transform.position).normalized;
+    }
+
+    protected float DetermineJumpDistance(GameObject enemy, GameObject target)
+    {
+        float currentDistance = (target.transform.position - enemy.transform.position).magnitude;
+        return currentDistance < jumpDistance? currentDistance : jumpDistance;
+    }
+
+    protected float DetermineWalkDistance(GameObject enemy, GameObject target)
+    {
+        float currentDistance = (target.transform.position - enemy.transform.position).magnitude;
+        return currentDistance < walkDistance ? currentDistance : walkDistance;
+    }
+    
+    protected float DetermineJumpSpeed(GameObject enemy, GameObject target)
+    {
+        float currentDistance = (target.transform.position - enemy.transform.position).magnitude;
+        return currentDistance < jumpDistance? currentDistance/jumpDistance * jumpSpeed : jumpSpeed;
     }
     
     protected Vector3 DetermineWalkPoint(GameObject enemy, Vector3 target)
