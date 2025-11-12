@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyMoveHandler : MonoBehaviour
 {
     public CharacterController controller;
-    public List<IMove> moves;
+    public List<EnemyAct> moves;
     public int currentMoveIndex = 0;
     public GameObject target;
     public float gravity = -35f;

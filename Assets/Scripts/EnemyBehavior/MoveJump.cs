@@ -1,10 +1,9 @@
 using UnityEngine;
 
-public class MoveJump : MonoBehaviour, IMove
+public class MoveJump : EnemyAct
 {
-    private CharacterController enemy;
+    public CharacterController enemy;
     private Vector3 playerVelocity;
-    private GameObject target;
     public float gravity;
     public float jumpHeight;
     public float maxJumpDistance;
@@ -12,7 +11,6 @@ public class MoveJump : MonoBehaviour, IMove
     public float currentMoveDuration;
     private Vector3 currentMoveDirection;
     private float currentMoveSpeed;
-    private float currentMoveDistance;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,7 +24,7 @@ public class MoveJump : MonoBehaviour, IMove
 
     }
 
-    public bool Move()
+    public override bool Move()
     {
         currentMoveDuration += Time.deltaTime;
         playerVelocity.y += gravity * Time.deltaTime;
@@ -43,7 +41,7 @@ public class MoveJump : MonoBehaviour, IMove
         return false;
     }
 
-    public bool PrepareMove(CharacterController enemy, GameObject target, float currentGravity)
+    public override bool PrepareMove(CharacterController enemy, GameObject target, float currentGravity)
     {
 
         if (enemy.isGrounded)
@@ -53,7 +51,6 @@ public class MoveJump : MonoBehaviour, IMove
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
             currentMoveDuration = 0;
             currentMoveDirection = DetermineWalkDirection(enemy.gameObject, target);
-            currentMoveDistance = DetermineJumpDistance(enemy.gameObject, target);
             currentMoveSpeed = DetermineJumpSpeed(enemy.gameObject, target);
             return true;
         }

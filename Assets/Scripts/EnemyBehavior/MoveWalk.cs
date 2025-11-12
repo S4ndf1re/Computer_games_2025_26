@@ -1,11 +1,10 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class MoveWalk : MonoBehaviour, IMove
+public class MoveWalk : EnemyAct
 {
-    private CharacterController enemy;
+    public CharacterController enemy;
     private Vector3 playerVelocity;
-    private GameObject target;
     public float gravity;
     public float maxWalkDistance;
     public float maxWalkSpeed;
@@ -25,11 +24,10 @@ public class MoveWalk : MonoBehaviour, IMove
 
     }
     
-    public bool Move()
+    public override bool Move()
     {
         currentMoveDuration += Time.deltaTime;
         playerVelocity.y += gravity * Time.deltaTime;
-        // Combine horizontal and vertical movement
         Vector3 finalMove = (currentMoveDirection * maxWalkSpeed) + (playerVelocity.y * Vector3.up);
         enemy.Move(finalMove * Time.deltaTime);
         if (currentMoveDuration >= maxWalkSpeed / currentMoveDistance && enemy.isGrounded)
@@ -39,7 +37,7 @@ public class MoveWalk : MonoBehaviour, IMove
         return false;
     }
 
-    public bool PrepareMove(CharacterController enemy, GameObject target, float currentGravity)
+    public override bool PrepareMove(CharacterController enemy, GameObject target, float currentGravity)
     {
         if (enemy.isGrounded)
         {
