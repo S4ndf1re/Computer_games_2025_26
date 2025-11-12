@@ -136,7 +136,9 @@ namespace StarterAssets
         [Header("Double Jump Settings")]
         [SerializeField] private bool CanDoubleJump = true;
         [SerializeField] private float DoubleJumpHeight = 1.0f;
+        [SerializeField] private float DoubleJumpDelay = 0.15f;
 
+        private float _doubleJumpDelayTimer = 0f;
         private bool _hasDoubleJumped = false;
         private bool _isDashing = false;
         private float _dashEndTime = 0f;
@@ -214,6 +216,8 @@ namespace StarterAssets
             Push();
             Crawl();
             Move();
+
+            Debug.Log($"Jump: {_input.jump}");
         }
 
         private void LateUpdate()
@@ -368,31 +372,25 @@ namespace StarterAssets
         }
 
         /// <summary>
-        /// Allows the player to perform a second jump while airborne.
+        /// Allows the player to perform a second jump while airborne,
+        /// but only after a short delay following the initial jump.
         /// </summary>
         private void HandleDoubleJump()
         {
-            // checks if ability is unlocked
             if (!CanDoubleJump)
                 return;
 
-            // Resets if player touched the ground
-            if (Grounded)
-            {
-                _hasDoubleJumped = false;
+            if (_doubleJumpDelayTimer > 0f)
                 return;
-            }
 
-            // double jumps if input registers
-            Debug.Log($"Jump: {_input.jump}, HasDoubleJumped: {_hasDoubleJumped}, CanDoubleJump: {CanDoubleJump}, WallSliding: {_isWallSliding}, Grounded: {Grounded}");
-            if (_input.jump && !_hasDoubleJumped && !_isWallSliding)
+            if (!Grounded && !_isWallSliding && !_hasDoubleJumped && _input.jump)
             {
-                Debug.Log("DOUBLE JUMPED!");
-                _verticalVelocity = Mathf.Sqrt(DoubleJumpHeight * -2f * Gravity);
+                Debug.Log("DOUBLE JUMP!");
 
-                _hasDoubleJumped = true;
+                _verticalVelocity = Mathf.Sqrt(DoubleJumpHeight * -2f * Gravity);
                 _isHoldingJump = true;
                 _jumpHoldTimeCounter = 0f;
+                _hasDoubleJumped = true;
 
                 if (_hasAnimator)
                     _animator.SetBool(_animIDJump, true);
@@ -400,6 +398,7 @@ namespace StarterAssets
                 _input.jump = false;
             }
         }
+
 
         /// <summary>
         /// Handles the Wall Slide
@@ -440,9 +439,6 @@ namespace StarterAssets
             }
         }
 
-        /// <summary>
-        /// Handles Jumping and Falling
-        /// </summary>
         private void JumpAndGravity()
         {
             if (Grounded)
@@ -469,6 +465,9 @@ namespace StarterAssets
                     _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
                     _isHoldingJump = true;
                     _jumpHoldTimeCounter = 0f;
+
+                    // Starte den Double Jump Delay-Timer
+                    _doubleJumpDelayTimer = DoubleJumpDelay;
 
                     if (_hasAnimator)
                         _animator.SetBool(_animIDJump, true);
@@ -509,22 +508,15 @@ namespace StarterAssets
                     _isHoldingJump = true;
                     _jumpHoldTimeCounter = 0f;
 
-                    if (_hasAnimator)
-                        _animator.SetBool(_animIDJump, true);
-                }
-
-                // --- DOUBLE JUMP ---
-                if (_input.jump && !_hasDoubleJumped && !Grounded && !_isWallSliding && CanDoubleJump)
-                {
-                    Debug.Log("DOUBLE JUMP!");
-                    _verticalVelocity = Mathf.Sqrt(DoubleJumpHeight * -2f * Gravity);
-                    _isHoldingJump = true;
-                    _jumpHoldTimeCounter = 0f;
-                    _hasDoubleJumped = true;
+                    // Starte Delay nach Coyote-Sprung ebenfalls
+                    _doubleJumpDelayTimer = DoubleJumpDelay;
 
                     if (_hasAnimator)
                         _animator.SetBool(_animIDJump, true);
                 }
+
+                // --- Handle Double Jump ---
+                HandleDoubleJump();
 
                 // consume jump input after processing
                 _input.jump = false;
@@ -544,7 +536,12 @@ namespace StarterAssets
             // --- Apply Gravity ---
             if (!_isWallSliding && _verticalVelocity < _terminalVelocity)
                 _verticalVelocity += Gravity * Time.deltaTime;
+
+            // --- Timer für Double Jump Delay herunterzählen ---
+            if (_doubleJumpDelayTimer > 0f)
+                _doubleJumpDelayTimer -= Time.deltaTime;
         }
+
 
         /// <summary>
         /// Ability to zoom in and out

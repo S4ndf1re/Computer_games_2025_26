@@ -8458,7 +8458,7 @@ MonoBehaviour:
   CoyoteTime: 0.15
   MaxJumpHoldTime: 0.35
   HoldJumpGravityMultiplier: 0.3
-  CanDash: 0
+  CanDash: 1
   DashSpeed: 4
   DashDuration: 0.5
   DashCooldown: 0.5
@@ -8472,6 +8472,7 @@ MonoBehaviour:
   WallSlideMaxTime: 2
   CanDoubleJump: 1
   DoubleJumpHeight: 1
+  DoubleJumpDelay: 0.15
 --- !u!1 &9101605159679012043
 GameObject:
   m_ObjectHideFlags: 0
