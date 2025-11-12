@@ -6220,6 +6220,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3174366}
     m_Modifications:
+    - target: {fileID: -8623044143600018354, guid: 146abb17fb3b7ba4cac8320dd5bf8d65, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -6947825507008866529, guid: 146abb17fb3b7ba4cac8320dd5bf8d65, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -5465340121496193460, guid: 146abb17fb3b7ba4cac8320dd5bf8d65, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6260,9 +6268,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3584047487108588956, guid: 146abb17fb3b7ba4cac8320dd5bf8d65, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -660634576916540304, guid: 146abb17fb3b7ba4cac8320dd5bf8d65, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -437154562092758566, guid: 146abb17fb3b7ba4cac8320dd5bf8d65, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011099141426573727, guid: 146abb17fb3b7ba4cac8320dd5bf8d65, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808088976348414113, guid: 146abb17fb3b7ba4cac8320dd5bf8d65, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881867384806138876, guid: 146abb17fb3b7ba4cac8320dd5bf8d65, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3922785529507541629, guid: 146abb17fb3b7ba4cac8320dd5bf8d65, type: 3}
       propertyPath: m_Name
       value: 001_raum_treppenhaus_01_texturen
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922785529507541629, guid: 146abb17fb3b7ba4cac8320dd5bf8d65, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6048230293430809070, guid: 146abb17fb3b7ba4cac8320dd5bf8d65, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7978251554803081008, guid: 146abb17fb3b7ba4cac8320dd5bf8d65, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8401,7 +8445,6 @@ MonoBehaviour:
   Gravity: -15
   JumpTimeout: 0.3
   FallTimeout: 0.15
-  Grounded: 1
   GroundedOffset: -0.14
   GroundedRadius: 0.28
   GroundLayers:
@@ -8415,6 +8458,7 @@ MonoBehaviour:
   CoyoteTime: 0.15
   MaxJumpHoldTime: 0.35
   HoldJumpGravityMultiplier: 0.3
+  CanDash: 0
   DashSpeed: 4
   DashDuration: 0.5
   DashCooldown: 0.5
@@ -8426,6 +8470,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   WallSlideMaxTime: 2
+  CanDoubleJump: 1
+  DoubleJumpHeight: 1
 --- !u!1 &9101605159679012043
 GameObject:
   m_ObjectHideFlags: 0

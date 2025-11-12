@@ -15,61 +15,61 @@ namespace StarterAssets
     {
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
-        public float MoveSpeed = 2.0f;
+        [SerializeField] private float MoveSpeed = 2.0f;
 
         [Tooltip("Sprint speed of the character in m/s")]
-        public float SprintSpeed = 5.335f;
+        [SerializeField] private float SprintSpeed = 5.335f;
 
         [Tooltip("Crouched speed of the character in m/s")]
-        public float CrouchSpeed = 1.5f;
+        [SerializeField] private float CrouchSpeed = 1.5f;
 
         [Tooltip("Crouched sprint speed of the character in m/s")]
-        public float CrouchSprintSpeed = 3.0f;
+        [SerializeField] private float CrouchSprintSpeed = 3.0f;
 
         [Tooltip("How fast the character turns to face movement direction")]
         [Range(0.0f, 0.3f)]
-        public float RotationSmoothTime = 0.12f;
+        [SerializeField] private float RotationSmoothTime = 0.12f;
 
         [Tooltip("Acceleration and deceleration")]
-        public float SpeedChangeRate = 10.0f;
+        [SerializeField] private float SpeedChangeRate = 10.0f;
 
-        public AudioClip LandingAudioClip;
-        public AudioClip[] FootstepAudioClips;
-        [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
+        [SerializeField] private AudioClip LandingAudioClip;
+        [SerializeField] private AudioClip[] FootstepAudioClips;
+        [Range(0, 1)] [SerializeField] private float FootstepAudioVolume = 0.5f;
 
         [Space(10)]
         [Tooltip("The height the player can jump")]
-        public float JumpHeight = 1.2f;
+        [SerializeField] private float JumpHeight = 1.2f;
 
         [Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
-        public float Gravity = -15.0f;
+        [SerializeField] private float Gravity = -15.0f;
 
         [Space(10)]
         [Tooltip("Time required to pass before being able to jump again. Set to 0f to instantly jump again")]
-        public float JumpTimeout = 0.50f;
+        [SerializeField] private float JumpTimeout = 0.50f;
 
         [Tooltip("Time required to pass before entering the fall state. Useful for walking down stairs")]
-        public float FallTimeout = 0.15f;
+        [SerializeField] private float FallTimeout = 0.15f;
 
         [Header("Player Grounded")]
         [Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
-        public bool Grounded = true;
+        private bool Grounded = true;
 
         [Tooltip("Useful for rough ground")]
-        public float GroundedOffset = -0.14f;
+        [SerializeField] private float GroundedOffset = -0.14f;
 
         [Tooltip("The radius of the grounded check. Should match the radius of the CharacterController")]
-        public float GroundedRadius = 0.28f;
+        [SerializeField] private float GroundedRadius = 0.28f;
 
         [Tooltip("What layers the character uses as ground")]
-        public LayerMask GroundLayers;
+        [SerializeField] private LayerMask GroundLayers;
 
         [Header("Cinemachine")]
-        public GameObject CinemachineCameraTarget;
-        public float TopClamp = 70.0f;
-        public float BottomClamp = -30.0f;
-        public float CameraAngleOverride = 0.0f;
-        public bool LockCameraPosition = false;
+        [SerializeField] private GameObject CinemachineCameraTarget;
+        [SerializeField] private float TopClamp = 70.0f;
+        [SerializeField] private float BottomClamp = -30.0f;
+        [SerializeField] private float CameraAngleOverride = 0.0f;
+        [SerializeField] private bool LockCameraPosition = false;
 
         // cinemachine
         private float _cinemachineTargetYaw;
@@ -115,23 +115,29 @@ namespace StarterAssets
         // Erweiterte Movement-Fähigkeiten
         // -----------------------
         [Header("Advanced Movement Settings")]
-        public float CoyoteTime = 0.15f;
-        public float MaxJumpHoldTime = 0.35f;
-        public float HoldJumpGravityMultiplier = 0.3f;
+        [SerializeField] private float CoyoteTime = 0.15f;
+        [SerializeField] private float MaxJumpHoldTime = 0.35f;
+        [SerializeField] private float HoldJumpGravityMultiplier = 0.3f;
 
         [Header("Dash Settings")]
-        public float DashSpeed = 15f;
-        public float DashDuration = 0.2f;
-        public float DashCooldown = 0.5f;
+        [SerializeField] private bool CanDash = true;
+        [SerializeField] private float DashSpeed = 15f;
+        [SerializeField] private float DashDuration = 0.2f;
+        [SerializeField] private float DashCooldown = 0.5f;
 
         [Header("Wall Climb Settings")]
-        public float WallCheckDistance = 0.6f;
-        public float WallSlideSpeed = 2f;
-        public float WallJumpForce = 7f;
-        public Vector2 WallJumpAngle = new Vector2(1f, 1.5f);
-        public LayerMask WallLayer;
-        public float WallSlideMaxTime = 2f;
+        [SerializeField] private float WallCheckDistance = 0.6f;
+        [SerializeField] private float WallSlideSpeed = 2f;
+        [SerializeField] private float WallJumpForce = 7f;
+        [SerializeField] private Vector2 WallJumpAngle = new Vector2(1f, 1.5f);
+        [SerializeField] private LayerMask WallLayer;
+        [SerializeField] private float WallSlideMaxTime = 2f;
 
+        [Header("Double Jump Settings")]
+        [SerializeField] private bool CanDoubleJump = true;
+        [SerializeField] private float DoubleJumpHeight = 1.0f;
+
+        private bool _hasDoubleJumped = false;
         private bool _isDashing = false;
         private float _dashEndTime = 0f;
         private float _lastDashTime = -999f;
@@ -196,14 +202,17 @@ namespace StarterAssets
             if (_mouseWheelDelta != 0.0f)
                 Zoom(_mouseWheelDelta);
 
+            GroundedCheck();
+
             HandleDash();
             HandleWallSlide();
 
+            HandleDoubleJump();
             JumpAndGravity();
+            
             Punch();
             Push();
             Crawl();
-            GroundedCheck();
             Move();
         }
 
@@ -289,11 +298,14 @@ namespace StarterAssets
                 _speed = targetSpeed;
             }
 
+            // Smoothing the Animation Changes
             _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
             if (_animationBlend < 0.01f) _animationBlend = 0f;
 
+            // Gets direction of input 
             Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
 
+            // Rotates Character in input-Direction
             if (_input.move != Vector2.zero)
             {
                 _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + _mainCamera.transform.eulerAngles.y;
@@ -302,6 +314,8 @@ namespace StarterAssets
             }
 
             Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
+
+            // Updates position
             _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 
             if (_hasAnimator)
@@ -312,48 +326,84 @@ namespace StarterAssets
         }
 
         /// <summary>
-        /// 
+        /// Handles Dash-Ability
         /// </summary>
         private void HandleDash()
         {
-            // Nur in der Luft dashen
+            // Checks if ability is unlocked
+            if (!CanDash)
+                return;
+
+            // Only dash while in air
             if (Grounded)
                 return;
 
-            // Falls Dash aktiv ist: weiterbewegen
+            // If already dashing only update
             if (_isDashing)
             {
                 _controller.Move(_dashDirection * DashSpeed * Time.deltaTime);
 
-                // Beende Dash nach Ablauf der Zeit
+                // End Dash
                 if (Time.time >= _dashEndTime)
                     _isDashing = false;
 
                 return;
             }
 
-            // Dash starten, wenn Sprinttaste in der Luft gedrückt wird
+            // Start Dash when airborne and not already dashing
             if (_input.sprint && !_isDashing && Time.time - _lastDashTime >= DashCooldown)
             {
                 _lastDashTime = Time.time;
                 _isDashing = true;
                 _dashEndTime = Time.time + DashDuration;
 
-                // Dashrichtung = Blickrichtung des Models
                 _dashDirection = transform.forward.normalized;
-                _dashDirection.y = 0f; // Kein vertikaler Anteil
+                _dashDirection.y = 0f;
 
-                // Bewegung direkt einleiten
                 _controller.Move(_dashDirection * DashSpeed * 10f * Time.deltaTime);
 
                 if (_hasAnimator)
                     _animator.SetTrigger("Dash");
-
-                Debug.Log("[AIR DASH] Richtung: " + _dashDirection);
             }
         }
 
+        /// <summary>
+        /// Allows the player to perform a second jump while airborne.
+        /// </summary>
+        private void HandleDoubleJump()
+        {
+            // checks if ability is unlocked
+            if (!CanDoubleJump)
+                return;
 
+            // Resets if player touched the ground
+            if (Grounded)
+            {
+                _hasDoubleJumped = false;
+                return;
+            }
+
+            // double jumps if input registers
+            Debug.Log($"Jump: {_input.jump}, HasDoubleJumped: {_hasDoubleJumped}, CanDoubleJump: {CanDoubleJump}, WallSliding: {_isWallSliding}, Grounded: {Grounded}");
+            if (_input.jump && !_hasDoubleJumped && !_isWallSliding)
+            {
+                Debug.Log("DOUBLE JUMPED!");
+                _verticalVelocity = Mathf.Sqrt(DoubleJumpHeight * -2f * Gravity);
+
+                _hasDoubleJumped = true;
+                _isHoldingJump = true;
+                _jumpHoldTimeCounter = 0f;
+
+                if (_hasAnimator)
+                    _animator.SetBool(_animIDJump, true);
+
+                _input.jump = false;
+            }
+        }
+
+        /// <summary>
+        /// Handles the Wall Slide
+        /// </summary>
         private void HandleWallSlide()
         {
             RaycastHit hit;
@@ -390,6 +440,9 @@ namespace StarterAssets
             }
         }
 
+        /// <summary>
+        /// Handles Jumping and Falling
+        /// </summary>
         private void JumpAndGravity()
         {
             if (Grounded)
@@ -397,15 +450,20 @@ namespace StarterAssets
                 _lastGroundedTime = Time.time;
                 _fallTimeoutDelta = FallTimeout;
 
+                // Reset Double Jump when grounded
+                _hasDoubleJumped = false;
+
                 if (_hasAnimator)
                 {
                     _animator.SetBool(_animIDJump, false);
                     _animator.SetBool(_animIDFreeFall, false);
                 }
 
+                // Reset slight downward velocity
                 if (_verticalVelocity < 0.0f)
                     _verticalVelocity = -2f;
 
+                // Normal jump from ground
                 if (_input.jump && _jumpTimeoutDelta <= 0.0f)
                 {
                     _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
@@ -428,6 +486,7 @@ namespace StarterAssets
                 else if (_hasAnimator)
                     _animator.SetBool(_animIDFreeFall, true);
 
+                // --- Wall Jump ---
                 if (_input.jump && _isWallSliding)
                 {
                     _isWallSliding = false;
@@ -443,6 +502,7 @@ namespace StarterAssets
                     return;
                 }
 
+                // --- Coyote Time Jump ---
                 if (_input.jump && Time.time - _lastGroundedTime <= CoyoteTime)
                 {
                     _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
@@ -453,9 +513,24 @@ namespace StarterAssets
                         _animator.SetBool(_animIDJump, true);
                 }
 
+                // --- DOUBLE JUMP ---
+                if (_input.jump && !_hasDoubleJumped && !Grounded && !_isWallSliding && CanDoubleJump)
+                {
+                    Debug.Log("DOUBLE JUMP!");
+                    _verticalVelocity = Mathf.Sqrt(DoubleJumpHeight * -2f * Gravity);
+                    _isHoldingJump = true;
+                    _jumpHoldTimeCounter = 0f;
+                    _hasDoubleJumped = true;
+
+                    if (_hasAnimator)
+                        _animator.SetBool(_animIDJump, true);
+                }
+
+                // consume jump input after processing
                 _input.jump = false;
             }
 
+            // --- Variable Jump Height (Hold Jump) ---
             if (_isHoldingJump && _jumpHoldTimeCounter < MaxJumpHoldTime && _input.jump)
             {
                 _verticalVelocity += Gravity * HoldJumpGravityMultiplier * Time.deltaTime;
@@ -466,10 +541,14 @@ namespace StarterAssets
                 _isHoldingJump = false;
             }
 
+            // --- Apply Gravity ---
             if (!_isWallSliding && _verticalVelocity < _terminalVelocity)
                 _verticalVelocity += Gravity * Time.deltaTime;
         }
 
+        /// <summary>
+        /// Ability to zoom in and out
+        /// </summary>
         private void Zoom(float mouseWheelDelta)
         {
             if (_theCinemachineCamera == null) return;
@@ -477,6 +556,9 @@ namespace StarterAssets
             if (mouseWheelDelta < 0) _theCinemachineCamera.Lens.FieldOfView -= 1.0f;
         }
 
+        /// <summary>
+        /// Punch Animation
+        /// </summary>
         private void Punch()
         {
             if (_input.punch == false && _hasAnimator)
@@ -490,6 +572,9 @@ namespace StarterAssets
             }
         }
 
+        /// <summary>
+        /// Push Animation
+        /// </summary>
         private void Push()
         {
             if (_input.push == false && _hasAnimator)
@@ -503,6 +588,9 @@ namespace StarterAssets
             }
         }
 
+        /// <summary>
+        /// Crawl Animation
+        /// </summary>
         private void Crawl()
         {
             if (_input.crawl)
