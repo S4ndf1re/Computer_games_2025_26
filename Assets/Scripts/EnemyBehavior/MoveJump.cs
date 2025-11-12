@@ -1,5 +1,8 @@
 using UnityEngine;
 
+    /// <summary>
+    /// Class <c>MoveJump</c> defines a simple Jump in direction of a target. Can be used to control an enemy by adding it to its EnemyMoveHandler.
+    /// </summary>
 public class MoveJump : EnemyAct
 {
     public CharacterController enemy;
@@ -12,17 +15,6 @@ public class MoveJump : EnemyAct
     private Vector3 currentMoveDirection;
     private float currentMoveSpeed;
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public override bool Move()
     {
@@ -32,7 +24,7 @@ public class MoveJump : EnemyAct
         Vector3 finalMove = (currentMoveDirection * currentMoveSpeed) + (playerVelocity.y * Vector3.up);
         enemy.Move(finalMove * Time.deltaTime);
 
-
+        //jump ends when we land
         if (enemy.isGrounded && playerVelocity.y < 0)
         {
             playerVelocity.y = 0f;
@@ -43,7 +35,7 @@ public class MoveJump : EnemyAct
 
     public override bool PrepareMove(CharacterController enemy, GameObject target, float currentGravity)
     {
-
+        //only prepare when enemy is grounded
         if (enemy.isGrounded)
         {
             this.enemy = enemy;
@@ -61,13 +53,9 @@ public class MoveJump : EnemyAct
     {
         return (target.transform.position - enemy.transform.position).normalized;
     }
-
-    protected float DetermineJumpDistance(GameObject enemy, GameObject target)
-    {
-        float currentDistance = (target.transform.position - enemy.transform.position).magnitude;
-        return currentDistance < maxJumpDistance ? currentDistance : maxJumpDistance;
-    }
-    
+    /// <summary>
+    /// Determines the jumpspeed so that the enemy lands on the targets position even when the maxJumpdistance is bigger than the actual distance.
+    /// </summary>
     protected float DetermineJumpSpeed(GameObject enemy, GameObject target)
     {
         float currentDistance = (target.transform.position - enemy.transform.position).magnitude;

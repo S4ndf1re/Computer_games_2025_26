@@ -11,18 +11,6 @@ public class MoveWalk : EnemyAct
     public float currentMoveDuration;
     private Vector3 currentMoveDirection;
     private float currentMoveDistance;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     
     public override bool Move()
     {
@@ -57,6 +45,9 @@ public class MoveWalk : EnemyAct
         return (target.transform.position - enemy.transform.position).normalized;
     }
 
+    /// <summary>
+    /// Determines the walkDistance so that the enemy lands on the targets position even when the maxWalkDistance is bigger than the actual distance.
+    /// </summary>
     private float DetermineWalkDistance(CharacterController enemy, GameObject target)
     {
         float currentDistance = (target.transform.position - enemy.transform.position).magnitude;

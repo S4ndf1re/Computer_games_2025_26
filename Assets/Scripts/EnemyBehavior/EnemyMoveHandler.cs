@@ -14,13 +14,13 @@ public class EnemyMoveHandler : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        GetComponent<TickloopAddable>().triggeredByTickloop += Move;
+        GetComponent<TickloopAddable>().triggeredByTickloop += StartMove;
         controller = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {   //call current Moves Action
         if (currentlyMoving)
         {
             if (moves[currentMoveIndex].Move())
@@ -30,7 +30,7 @@ public class EnemyMoveHandler : MonoBehaviour
                 playerVelocity = Vector3.zero;
             }
         }
-
+        //if move finished, use gravity
         if (!currentlyMoving)
         {
             playerVelocity.y += gravity * Time.deltaTime;
@@ -38,8 +38,11 @@ public class EnemyMoveHandler : MonoBehaviour
             controller.Move(finalMove * Time.deltaTime);
         }
     }
-    
-    void Move(Tickloop tp)
+    /// <summary>
+    /// Prepares the next Move so that it can be executed in Update, and activate Moving.
+    /// </summary>
+    /// <param name="tp"></param>
+    void StartMove(Tickloop tp)
     {
         moves[currentMoveIndex].PrepareMove(controller, target, gravity);
         currentlyMoving = true;
