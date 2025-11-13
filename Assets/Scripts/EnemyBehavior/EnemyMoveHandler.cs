@@ -9,10 +9,12 @@ public class EnemyMoveHandler : MonoBehaviour
     public int currentMoveIndex = 0;
     public GameObject target;
     public float gravity = -35f;
+    public bool currentlyMoving;
     private Vector3 playerVelocity;
     public Hurtbox hurtbox;
+    public EnemyAct gettingHitMove;
+    public bool currentlyHitMoving;
 
-    public bool currentlyMoving;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,9 +41,20 @@ public class EnemyMoveHandler : MonoBehaviour
         //if move finished, use gravity
         if (!currentlyMoving)
         {
-            playerVelocity.y += gravity * Time.deltaTime;
-            Vector3 finalMove = playerVelocity.y * Vector3.up;
-            controller.Move(finalMove * Time.deltaTime);
+            if (currentlyHitMoving)
+            {
+                if (gettingHitMove.Move())
+                {
+                    currentlyHitMoving = false;
+                }
+            }
+            else
+            {
+                playerVelocity.y += gravity * Time.deltaTime;
+                Vector3 finalMove = playerVelocity.y * Vector3.up;
+                controller.Move(finalMove * Time.deltaTime);
+            }
+
         }
     }
     /// <summary>
@@ -50,17 +63,30 @@ public class EnemyMoveHandler : MonoBehaviour
     /// <param name="tp"></param>
     void StartMove(Tickloop tp)
     {
-        moves[currentMoveIndex].PrepareMove(controller, target, gravity);
-        currentlyMoving = true;
+        if (!currentlyHitMoving)
+        {
+            moves[currentMoveIndex].PrepareMove(controller, target, gravity);
+            currentlyMoving = true;
+        }
     }
 
+    /// <summary>
+    /// Notifies the action that the hurtBox was being hit and the behavior should change accordingly. If there was no current executed action, the standard gettingHitAction will be executed.
+    /// </summary>
+    /// <param name="tp"></param>
     void OnHit(Hitbox hitbox)
     {
         if (currentlyMoving)
         {
-            Debug.Log("WEEWOO");
             moves[currentMoveIndex].OnHit(hitbox);
         }
-
+        else
+        {
+            if (!currentlyHitMoving)
+            {
+                gettingHitMove.PrepareMove(controller, target, gravity);
+                currentlyHitMoving = true;
+            }
+        }
     }
 }

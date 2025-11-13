@@ -1,9 +1,9 @@
 using UnityEngine;
 
     /// <summary>
-    /// Class <c>MoveWalk</c> defines a simple Walk in direction of a target. Can be used to control an enemy by adding it to its EnemyMoveHandler.
+    /// Class <c>MoveKnockback</c> defines a simple Knockback away from a target. Can be used to control an enemy by adding it to its EnemyMoveHandler.
     /// </summary>
-public class MoveWalk : EnemyAct
+public class MoveKnockback : EnemyAct
 {
     public CharacterController enemy;
     private Vector3 playerVelocity;
@@ -13,7 +13,6 @@ public class MoveWalk : EnemyAct
     public float currentMoveDuration;
     private Vector3 currentMoveDirection;
     private float currentMoveDistance;
-
     public override bool Move()
     {
         currentMoveDuration += Time.deltaTime;
@@ -35,7 +34,7 @@ public class MoveWalk : EnemyAct
             this.enemy = enemy;
             currentMoveDuration = 0;
             currentMoveDirection = DetermineWalkDirection(enemy, target);
-            currentMoveDistance = DetermineWalkDistance(enemy, target);
+            currentMoveDistance = maxWalkDistance;
             return true;
         }
         return false;
@@ -44,17 +43,9 @@ public class MoveWalk : EnemyAct
 
     private Vector3 DetermineWalkDirection(CharacterController enemy, GameObject target)
     {
-        return (target.transform.position - enemy.transform.position).normalized;
+        return (enemy.transform.position - target.transform.position).normalized;
     }
 
-    /// <summary>
-    /// Determines the walkDistance so that the enemy lands on the targets position even when the maxWalkDistance is bigger than the actual distance.
-    /// </summary>
-    private float DetermineWalkDistance(CharacterController enemy, GameObject target)
-    {
-        float currentDistance = (target.transform.position - enemy.transform.position).magnitude;
-        return currentDistance < maxWalkDistance ? currentDistance : maxWalkDistance;
-    }
 
     public override void OnHit(Hitbox hitbox)
     {
