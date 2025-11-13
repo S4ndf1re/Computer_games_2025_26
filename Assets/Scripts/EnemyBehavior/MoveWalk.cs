@@ -53,4 +53,9 @@ public class MoveWalk : EnemyAct
         float currentDistance = (target.transform.position - enemy.transform.position).magnitude;
         return currentDistance < maxWalkDistance ? currentDistance : maxWalkDistance;
     }
+
+    public override void OnHit(Hitbox hitbox)
+    {
+        currentMoveDirection = (enemy.transform.position - hitbox.transform.position).normalized;
+    }
 }

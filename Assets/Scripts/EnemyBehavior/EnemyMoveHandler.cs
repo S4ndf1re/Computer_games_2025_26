@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyMoveHandler : MonoBehaviour
@@ -9,6 +10,7 @@ public class EnemyMoveHandler : MonoBehaviour
     public GameObject target;
     public float gravity = -35f;
     private Vector3 playerVelocity;
+    public Hurtbox hurtbox;
 
     public bool currentlyMoving;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -16,6 +18,10 @@ public class EnemyMoveHandler : MonoBehaviour
     {
         GetComponent<TickloopAddable>().triggeredByTickloop += StartMove;
         controller = GetComponent<CharacterController>();
+        if (hurtbox)
+        {
+            hurtbox.onHitTriggerEvent += OnHit;
+        }
     }
 
     // Update is called once per frame
@@ -46,5 +52,15 @@ public class EnemyMoveHandler : MonoBehaviour
     {
         moves[currentMoveIndex].PrepareMove(controller, target, gravity);
         currentlyMoving = true;
+    }
+
+    void OnHit(Hitbox hitbox)
+    {
+        if (currentlyMoving)
+        {
+            Debug.Log("WEEWOO");
+            moves[currentMoveIndex].OnHit(hitbox);
+        }
+
     }
 }

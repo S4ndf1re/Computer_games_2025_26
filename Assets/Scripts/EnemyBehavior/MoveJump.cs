@@ -14,6 +14,7 @@ public class MoveJump : EnemyAct
     public float currentMoveDuration;
     private Vector3 currentMoveDirection;
     private float currentMoveSpeed;
+
     
 
     public override bool Move()
@@ -60,5 +61,10 @@ public class MoveJump : EnemyAct
     {
         float currentDistance = (target.transform.position - enemy.transform.position).magnitude;
         return currentDistance < maxJumpDistance? currentDistance/maxJumpDistance * maxJumpSpeed : maxJumpSpeed;
+    }
+
+    public override void OnHit(Hitbox hitbox)
+    {
+        currentMoveDirection = (enemy.transform.position - hitbox.transform.position).normalized;
     }
 }

@@ -10,6 +10,12 @@ public abstract class EnemyAct : MonoBehaviour
     /// <returns> Returns true when the move is finished. </returns>
     /// </summary>
     abstract public bool Move();
+
+    /// <summary>
+    /// Redefines behavior of enemy after it was being hit.
+    /// </summary>
+    
+    abstract public void OnHit(Hitbox hitbox);
     /// <summary>
     /// Prepares the EnemyAct by instantiating all necessary variables for the Move. Called from EnemyMoveHandler when the Tickloop notifies it.
     /// <returns> Returns true when the move could be prepared so that it can be executed. </returns>

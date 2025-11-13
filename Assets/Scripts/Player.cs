@@ -4,6 +4,7 @@ public class Player : MonoBehaviour
 {
     public int health = 3;
     public Hurtbox hurtbox;
+    public bool isDestroyedOnDeath;
 
     void Start()
     {
@@ -32,8 +33,8 @@ public class Player : MonoBehaviour
     void OnHit(Hitbox box)
     {
         health -= 1;
-        if (health < 1) {
-            //Destroy(gameObject);
+        if (health < 1 && isDestroyedOnDeath){
+            Destroy(gameObject);
         }
     }
 
