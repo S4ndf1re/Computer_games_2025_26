@@ -10,7 +10,7 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         if (menuPanel != null)
-            menuPanel.SetActive(false); // Menü beim Start ausblenden
+            menuPanel.SetActive(false);
     }
 
     void Update()
@@ -29,7 +29,7 @@ public class MenuManager : MonoBehaviour
         if (menuPanel == null) return;
 
         menuPanel.SetActive(true);
-        Time.timeScale = 0f; // pausiert das Spiel
+        Time.timeScale = 0f;
         isPaused = true;
     }
 
@@ -38,7 +38,17 @@ public class MenuManager : MonoBehaviour
         if (menuPanel == null) return;
 
         menuPanel.SetActive(false);
-        Time.timeScale = 1f; // setzt das Spiel fort
+        Time.timeScale = 1f;
         isPaused = false;
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Spiel wird beendet...");
+        Application.Quit();
+
+    #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+    #endif
     }
 }

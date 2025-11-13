@@ -10,7 +10,7 @@ public class PauseMenuController : MonoBehaviour
         if (menuPanel != null)
         {
             menuPanel.SetActive(false);
-            Time.timeScale = 1f; // setzt das Spiel wieder fort (falls du Pausenmodus nutzt)
+            Time.timeScale = 1f;
         }
     }
 
@@ -19,7 +19,7 @@ public class PauseMenuController : MonoBehaviour
         if (menuPanel != null)
         {
             menuPanel.SetActive(true);
-            Time.timeScale = 0f; // pausiert das Spiel
+            Time.timeScale = 0f;
         }
     }
 }
