@@ -155,7 +155,6 @@ namespace StarterAssets
         private bool _isHoldingJump;
         private float _jumpHoldTimeCounter;
 
-
         private bool IsCurrentDeviceMouse
         {
             get
@@ -198,6 +197,7 @@ namespace StarterAssets
 
         private void Update()
         {
+
             _hasAnimator = TryGetComponent(out _animator);
 
             float _mouseWheelDelta = Input.mouseScrollDelta.y;
@@ -216,8 +216,6 @@ namespace StarterAssets
             Push();
             Crawl();
             Move();
-
-            Debug.Log($"Jump: {_input.jump}");
         }
 
         private void LateUpdate()
@@ -406,16 +404,15 @@ namespace StarterAssets
         private void HandleWallSlide()
         {
             RaycastHit hit;
-            bool wallHit =
-                Physics.Raycast(transform.position, transform.forward, out hit, WallCheckDistance, WallLayer) ||
-                Physics.Raycast(transform.position, -transform.forward, out hit, WallCheckDistance, WallLayer) ||
-                Physics.Raycast(transform.position, transform.right, out hit, WallCheckDistance, WallLayer) ||
-                Physics.Raycast(transform.position, -transform.right, out hit, WallCheckDistance, WallLayer);
 
+            bool forwardHit = Physics.Raycast(transform.position, transform.forward, out hit, WallCheckDistance, WallLayer);
+            bool backHit    = Physics.Raycast(transform.position, -transform.forward, out hit, WallCheckDistance, WallLayer);
+            bool rightHit   = Physics.Raycast(transform.position, transform.right, out hit, WallCheckDistance, WallLayer);
+            bool leftHit    = Physics.Raycast(transform.position, -transform.right, out hit, WallCheckDistance, WallLayer);
+
+            bool wallHit = forwardHit || backHit || rightHit || leftHit;
+            
             _isTouchingWall = wallHit;
-
-            if (wallHit)
-                _lastWallNormal = hit.normal;
 
             if (!Grounded && wallHit && _verticalVelocity < 0)
             {
@@ -425,7 +422,9 @@ namespace StarterAssets
                 _isWallSliding = true;
 
                 if (Time.time - _wallSlideStartTime > WallSlideMaxTime)
+                {
                     _isWallSliding = false;
+                }
             }
             else
             {
@@ -435,7 +434,6 @@ namespace StarterAssets
             if (_isWallSliding)
             {
                 _verticalVelocity = Mathf.Max(_verticalVelocity, -WallSlideSpeed);
-                _canWallJump = true;
             }
         }
 
