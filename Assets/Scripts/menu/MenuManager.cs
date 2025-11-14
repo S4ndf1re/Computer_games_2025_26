@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
-    [Header("Das Menü-Panel oder Canvas, das angezeigt werden soll")]
-    public GameObject menuPanel;
+    [Header("General Menu Panel")]
+    [SerializeField] public GameObject menuPanel;
+    [SerializeField] public GameObject settingsPanel;
 
     private bool isPaused = false;
 
@@ -26,7 +27,10 @@ public class MenuManager : MonoBehaviour
 
     public void PauseGame()
     {
-        if (menuPanel == null) return;
+        if (menuPanel == null) {
+            Debug.Log("MenuPanel is null");
+            return;
+        }
 
         menuPanel.SetActive(true);
         Time.timeScale = 0f;
@@ -35,8 +39,10 @@ public class MenuManager : MonoBehaviour
 
     public void ResumeGame()
     {
-        if (menuPanel == null) return;
-
+        if (menuPanel == null) {
+            Debug.Log("MenuPanel is null");
+            return;
+        }
         menuPanel.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
@@ -50,5 +56,11 @@ public class MenuManager : MonoBehaviour
     #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
     #endif
+    }
+
+    public void Settings()
+    {
+        menuPanel.SetActive(false);
+        settingsPanel.SetActive(true);
     }
 }
