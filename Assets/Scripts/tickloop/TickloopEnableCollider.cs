@@ -19,14 +19,12 @@ public class TickloopEnableCollider : MonoBehaviour
 
     void OnTriggerEnter(Collider other) {
         if (other.GetComponent<Player>() != null) {
-            Debug.Log("Registered Player Entering in Bounding box " + name);
             enableEvent?.Invoke();
         }
     }
 
     void OnTriggerExit(Collider other) {
         if (other.GetComponent<Player>() != null) {
-            Debug.Log("Registered Player Leaving in Bounding box " + name);
             disableEvent?.Invoke();
         }
     }

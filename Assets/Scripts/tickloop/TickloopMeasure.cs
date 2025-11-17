@@ -22,7 +22,6 @@ public class TickloopMeasure : MonoBehaviour
 
     public void Instantiate(int number_of_beats, Transform measure_transform, Color activeColor, Color inactiveColor, Tickloop loop)
     {
-        Debug.Log("Instantiating Measure");
         this.activeColor = activeColor;
         this.inactiveColor = inactiveColor;
         this.tickloop = loop;
@@ -66,15 +65,14 @@ public class TickloopMeasure : MonoBehaviour
 
     public void AddObject(TickloopAddable obj, int idx)
     {
-        Debug.Log("Adding to idx " + idx);
         this.beats[idx].AddObject(obj);
     }
 
     public void RemoveObject(TickloopAddable obj)
     {
-        for (var i = 0; i < this.beats.Count; i++) {
-            Debug.Log("Removing from idx " + i);
-            beats[i].RemoveObject(obj);
+        foreach (TickloopBeat beat in this.beats)
+        {
+            beat.RemoveObject(obj);
         }
     }
 }
