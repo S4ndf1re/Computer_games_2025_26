@@ -1,6 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The TickloopAddable allows a GameObject to be added to a tickloop instance. Simply add it to a GameObject as a component.
+/// It is required to contain an Image as a reference.
+/// Optionally, The color can be requested automatically using a random color provided by the Tickloop itself.
+///
+/// Using the fields every_nth, offset and repeat, a beat may be generated.
+/// Alternatively, manual ticks can be choosen by adding indices to the ticksToTrigger list. If at least one manual Tick is provided, the tick generation is disabled.
+/// </summary>
 public class TickloopAddable : MonoBehaviour
 {
 
@@ -10,17 +18,27 @@ public class TickloopAddable : MonoBehaviour
     public delegate void PhasedOutTick();
     public event PhasedOutTick phasedOutTickEvent;
 
+    [Header("Manual Tick Settings")]
     public List<int> ticksToTrigger = new List<int>();
+
+    [Header("Automatic Tick Generation")]
+    [Tooltip("Repeat every n ticks")]
     public int every_nth = 4;
+    [Tooltip("After the last tick (without repeat), apply an offset for the next beat. Starts at 0")]
     public int offset = 0;
+    [Tooltip("After a nth tick, repeat the tick r times without gaps")]
     public int repeat = 1;
+
+    [Header("Display Properties")]
     public Sprite icon;
     public Color color = Color.white;
+    [Tooltip("When true, request a random color from the tickloop")]
     public bool requestColor = false;
 
+    [Header("Collider Selection")]
     public List<TickloopEnableCollider> enabledInColliders;
 
-    // public GameObject tickloopObject;
+    [Header("Tickloop Selection")]
     public Tickloop tickloop;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

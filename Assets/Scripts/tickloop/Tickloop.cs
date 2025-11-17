@@ -18,6 +18,7 @@ public class Tickloop : MonoBehaviour
 
     public event OnTriggeredTick uiTrigger;
 
+    [Header("Debug Fields")]
     public int tickLength = 0;
     public int currentIdx = 0;
     [SerializeField]
@@ -25,6 +26,7 @@ public class Tickloop : MonoBehaviour
     [SerializeField]
     private double secondsForBeats = 0.0;
 
+    [Header("Configuration")]
     [Delayed]
     public int bpm = 0;
     [Range(1, 6)]
@@ -163,6 +165,9 @@ public class Tickloop : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Remove an TickloopAddable from the tickloop, deregistering it and removing it from the ui
+    /// </summary>
     public void RemoveFromTickloop(TickloopAddable obj)
     {
         for (int i = 0; i < this.ticks.Count; i++)
@@ -178,6 +183,9 @@ public class Tickloop : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Request a pseudo Random color from an internal color generator
+    /// </summary>
     public Color RequestColor()
     {
         var color = colorGenerator.NextColor();
