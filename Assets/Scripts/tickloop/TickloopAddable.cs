@@ -66,17 +66,17 @@ public class TickloopAddable : MonoBehaviour
     }
 
     void RemoveFromTickloop() {
-        this.tickloop.RemoveFromTickloop(gameObject);
+        this.tickloop.RemoveFromTickloop(this);
     }
 
     void AddToTickloop() {
         if (!requestColor)
         {
-            tickloop.AddToTickloop(gameObject, ticksToTrigger, Trigger, PhasedOut);
+            tickloop.AddToTickloop(this, ticksToTrigger, Trigger, PhasedOut);
         }
         else
         {
-            tickloop.AddToTickloop(gameObject, ticksToTrigger, Trigger, PhasedOut, ReceiveRandomColor);
+            tickloop.AddToTickloop(this, ticksToTrigger, Trigger, PhasedOut, ReceiveRandomColor);
         }
     }
 

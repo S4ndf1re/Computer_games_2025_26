@@ -14,7 +14,7 @@ public class TickloopBeat : MonoBehaviour
     public Image iconPrefab;
 
 
-    private Dictionary<GameObject, Image> objToIconMapping = new Dictionary<GameObject, Image>();
+    private Dictionary<int, Image> objToIconMapping = new Dictionary<int, Image>();
 
     void Start()
     {
@@ -24,6 +24,7 @@ public class TickloopBeat : MonoBehaviour
 
     public void Instantiate(Color activeColor, Color inactiveColor, Tickloop loop)
     {
+        Debug.Log("Instantiating Beat");
         this.activeColor = activeColor;
         this.inactiveColor = inactiveColor;
         this.tickloop = loop;
@@ -55,29 +56,37 @@ public class TickloopBeat : MonoBehaviour
         this.image.color = inactiveColor;
     }
 
-    public void AddObject(GameObject obj)
+    public void AddObject(TickloopAddable addable)
     {
 
-        Debug.Log("Adding to beat");
-        if (obj.TryGetComponent(out TickloopAddable addable) && addable.icon != null && addable.color != null)
+        Debug.Log("Trying to add " + addable.name + " in " + GetInstanceID());
+        if (addable.icon != null && addable.color != null)
         {
             Image newImage = Instantiate(iconPrefab, transform, false);
             newImage.sprite = addable.icon;
             newImage.color = addable.color;
 
-            objToIconMapping.Add(obj, newImage);
+            objToIconMapping.Add(addable.GetInstanceID(), newImage);
+            Debug.Log("Added " + addable.name + " " + addable.GetInstanceID() + " contains key: " + objToIconMapping.ContainsKey(addable.GetInstanceID()));
         }
 
     }
 
-    public void RemoveObject(GameObject obj)
+    public void RemoveObject(TickloopAddable addable)
     {
+        Debug.Log("Bar contains Key: " + objToIconMapping.ContainsKey(addable.GetInstanceID()) + " for " + addable.name + " " + addable.GetInstanceID() + " in " + GetInstanceID());
 
-        if (objToIconMapping.ContainsKey(obj))
+        foreach (var (k, _) in objToIconMapping)
         {
-            Image imgToRemove = objToIconMapping[obj];
+            Debug.Log(k);
+            Debug.Log(k == addable.GetInstanceID());
+        }
+
+        if (objToIconMapping.ContainsKey(addable.GetInstanceID()))
+        {
+            Image imgToRemove = objToIconMapping[addable.GetInstanceID()];
             Destroy(imgToRemove.gameObject);
-            objToIconMapping.Remove(obj);
+            objToIconMapping.Remove(addable.GetInstanceID());
         }
 
     }
