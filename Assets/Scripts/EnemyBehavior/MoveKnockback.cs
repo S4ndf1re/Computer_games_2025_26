@@ -13,13 +13,22 @@ public class MoveKnockback : EnemyAct
     public float currentMoveDuration;
     private Vector3 currentMoveDirection;
     private float currentMoveDistance;
+    public EnemyGroundCheck groundCheck;
+
+
+    void Start()
+    {
+        groundCheck = GetComponentInParent<EnemyGroundCheck>();
+        enemy = GetComponentInParent<CharacterController>();
+    }
+
     public override bool Move()
     {
         currentMoveDuration += Time.deltaTime;
         playerVelocity.y += gravity * Time.deltaTime;
         Vector3 finalMove = (currentMoveDirection * maxWalkSpeed) + (playerVelocity.y * Vector3.up);
         enemy.Move(finalMove * Time.deltaTime);
-        if (currentMoveDuration >= currentMoveDistance / maxWalkSpeed && enemy.isGrounded)
+        if (currentMoveDuration >= currentMoveDistance / maxWalkSpeed && groundCheck.isGrounded(enemy))
         {
             return true;
         }
@@ -28,7 +37,7 @@ public class MoveKnockback : EnemyAct
 
     public override bool PrepareMove(CharacterController enemy, GameObject target, float currentGravity)
     {
-        if (enemy.isGrounded)
+        if (groundCheck.isGrounded(enemy))
         {
             gravity = currentGravity;
             this.enemy = enemy;

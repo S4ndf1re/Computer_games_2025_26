@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyGroundCheck : MonoBehaviour
 {
     private int groundLayer;
+    private float groundOffset = 0.1f;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,7 +19,7 @@ public class EnemyGroundCheck : MonoBehaviour
 
     public bool isGrounded(CharacterController enemy)
     {
-        return Physics.CheckSphere(enemy.transform.position , enemy.radius, groundLayer, QueryTriggerInteraction.Ignore);
+        return Physics.CheckSphere(enemy.transform.position , enemy.radius + groundOffset, groundLayer, QueryTriggerInteraction.Ignore);
         
     }
 }

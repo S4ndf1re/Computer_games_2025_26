@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyMoveHandler : MonoBehaviour
 {
-    public CharacterController controller;
+    public CharacterController enemy;
     public List<EnemyAct> moves;
     public int currentMoveIndex = 0;
     public GameObject target;
@@ -12,18 +12,23 @@ public class EnemyMoveHandler : MonoBehaviour
     public bool currentlyMoving;
     private Vector3 playerVelocity;
     public Hurtbox hurtbox;
-    public EnemyAct gettingHitMove;
+    //public EnemyAct gettingHitMove;
+    public EnemyAct idleMove;
     public bool currentlyHitMoving;
+    public EnemyGroundCheck groundCheck;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        groundCheck = GetComponent<EnemyGroundCheck>();
         GetComponent<TickloopAddable>().triggeredByTickloop += StartMove;
-        controller = GetComponent<CharacterController>();
+        enemy = GetComponent<CharacterController>();
         if (hurtbox)
         {
             hurtbox.onHitTriggerEvent += OnHit;
         }
+        idleMove.PrepareMove(enemy, null, gravity);
     }
 
     // Update is called once per frame
@@ -36,24 +41,27 @@ public class EnemyMoveHandler : MonoBehaviour
                 currentMoveIndex = (currentMoveIndex + 1) % moves.Count;
                 currentlyMoving = false;
                 playerVelocity = Vector3.zero;
+                idleMove.PrepareMove(enemy, target, gravity);
             }
         }
         //if move finished, use gravity
         if (!currentlyMoving)
         {
-            if (currentlyHitMoving)
-            {
-                if (gettingHitMove.Move())
-                {
-                    currentlyHitMoving = false;
-                }
-            }
-            else
-            {
-                playerVelocity.y += gravity * Time.deltaTime;
-                Vector3 finalMove = playerVelocity.y * Vector3.up;
-                controller.Move(finalMove * Time.deltaTime);
-            }
+            // if (currentlyHitMoving)
+            // {
+            //     if (gettingHitMove.Move())
+            //     {
+            //         currentlyHitMoving = false;
+            //     }
+            // }
+            // else
+            // {
+            //     idleMove.Move();
+            //     // playerVelocity.y += gravity * Time.deltaTime;
+            //     // Vector3 finalMove = playerVelocity.y * Vector3.up;
+            //     // controller.Move(finalMove * Time.deltaTime);
+            // }
+            idleMove.Move();
 
         }
     }
@@ -65,7 +73,7 @@ public class EnemyMoveHandler : MonoBehaviour
     {
         if (!currentlyHitMoving)
         {
-            moves[currentMoveIndex].PrepareMove(controller, target, gravity);
+            moves[currentMoveIndex].PrepareMove(enemy, target, gravity);
             currentlyMoving = true;
         }
     }
@@ -82,11 +90,12 @@ public class EnemyMoveHandler : MonoBehaviour
         }
         else
         {
-            if (!currentlyHitMoving)
-            {
-                gettingHitMove.PrepareMove(controller, target, gravity);
-                currentlyHitMoving = true;
-            }
+            // if (!currentlyHitMoving)
+            // {
+            //     gettingHitMove.PrepareMove(enemy, target, gravity);
+            //     currentlyHitMoving = true;
+            // }
+            idleMove.OnHit(hitbox);
         }
     }
 }

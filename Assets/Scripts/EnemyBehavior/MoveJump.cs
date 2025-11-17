@@ -12,7 +12,7 @@ public class MoveJump : EnemyAct
     public float maxJumpDistance;
     public float maxJumpSpeed;
     public float currentMoveDuration;
-    private Vector3 currentMoveDirection;
+    public Vector3 currentMoveDirection;
     private float currentMoveSpeed;
     public EnemyGroundCheck groundCheck;
 
@@ -36,7 +36,6 @@ public class MoveJump : EnemyAct
         //jump ends when we land
         if (groundCheck.isGrounded(enemy) && playerVelocity.y < 0)
         {
-            Debug.Log(groundCheck.isGrounded(enemy));
             playerVelocity.y = 0f;
             return true;
         }
@@ -45,7 +44,6 @@ public class MoveJump : EnemyAct
 
     public override bool PrepareMove(CharacterController enemy, GameObject target, float currentGravity)
     {
-        Debug.Log(groundCheck.isGrounded(enemy));
         //only prepare when enemy is grounded
         if (groundCheck.isGrounded(enemy))
         {
