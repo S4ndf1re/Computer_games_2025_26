@@ -376,8 +376,6 @@ namespace StarterAssets
                 //rotation -= Mathf.PI;
                 // rotate to face input direction relative to camera position
                 //transform.rotation *= Quaternion.Euler(0, -90, 0);
-                Debug.Log("_targetRotation: " + _targetRotation.ToString());
-                Debug.Log("rotation: " + rotation.ToString());
                 transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
             }
 

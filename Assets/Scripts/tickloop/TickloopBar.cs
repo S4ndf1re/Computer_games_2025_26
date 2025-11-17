@@ -61,7 +61,7 @@ public class TickloopBar : MonoBehaviour
         measures[previousMeasure].UnhighlightBeat(previousBeat);
     }
 
-    void AddObject(GameObject obj, List<int> tickIndices)
+    void AddObject(TickloopAddable obj, List<int> tickIndices)
     {
         foreach (int idx in tickIndices)
         {
@@ -71,7 +71,7 @@ public class TickloopBar : MonoBehaviour
 
     }
 
-    void RemoveObject(GameObject obj)
+    void RemoveObject(TickloopAddable obj)
     {
         foreach (TickloopMeasure measure in measures)
         {

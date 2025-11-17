@@ -10,14 +10,15 @@ public class Tickloop : MonoBehaviour
     public delegate void RequestRandomColor(Color color);
 
 
-    public delegate void OnAddedGameObject(GameObject obj, List<int> tickIndices);
-    public delegate void OnRemoveGameObject(GameObject obj);
+    public delegate void OnAddedGameObject(TickloopAddable obj, List<int> tickIndices);
+    public delegate void OnRemoveGameObject(TickloopAddable obj);
 
     public event OnAddedGameObject onAddedGameObject;
     public event OnRemoveGameObject onRemoveGameObject;
 
     public event OnTriggeredTick uiTrigger;
 
+    [Header("Debug Fields")]
     public int tickLength = 0;
     public int currentIdx = 0;
     [SerializeField]
@@ -25,6 +26,7 @@ public class Tickloop : MonoBehaviour
     [SerializeField]
     private double secondsForBeats = 0.0;
 
+    [Header("Configuration")]
     [Delayed]
     public int bpm = 0;
     [Range(1, 6)]
@@ -34,9 +36,9 @@ public class Tickloop : MonoBehaviour
     public bool repeat = true;
     public bool running = true;
 
-    private List<List<GameObject>> ticks = new List<List<GameObject>>();
-    private Dictionary<GameObject, OnTriggeredTick> objDelegateMapping = new Dictionary<GameObject, OnTriggeredTick>();
-    private Dictionary<GameObject, OnPhaseOutTick> objPhaseOutMapping = new Dictionary<GameObject, OnPhaseOutTick>();
+    private List<List<TickloopAddable>> ticks = new List<List<TickloopAddable>>();
+    private Dictionary<TickloopAddable, OnTriggeredTick> objDelegateMapping = new Dictionary<TickloopAddable, OnTriggeredTick>();
+    private Dictionary<TickloopAddable, OnPhaseOutTick> objPhaseOutMapping = new Dictionary<TickloopAddable, OnPhaseOutTick>();
     private ColorGenerator colorGenerator = new ColorGenerator();
 
 
@@ -61,10 +63,10 @@ public class Tickloop : MonoBehaviour
         currentTimeSeconds = 0.0;
         secondsForBeats = 1.0 / BpmToBps(bpm);
 
-        ticks = new List<List<GameObject>>();
+        ticks = new List<List<TickloopAddable>>();
         for (int i = 0; i < tickLength; i++)
         {
-            ticks.Add(new List<GameObject>());
+            ticks.Add(new List<TickloopAddable>());
         }
     }
 
@@ -136,7 +138,7 @@ public class Tickloop : MonoBehaviour
     /// Add a game object to the tick loop using the specified ticks.
     /// The game object may request a custom color using the optional RequestRandomColor delegate
     /// </summary>
-    public void AddToTickloop(GameObject obj, List<int> ticksToTrigger, OnTriggeredTick delegateToRegister, OnPhaseOutTick onPhaseOutTick, RequestRandomColor colorRequestor = null)
+    public void AddToTickloop(TickloopAddable obj, List<int> ticksToTrigger, OnTriggeredTick delegateToRegister, OnPhaseOutTick onPhaseOutTick, RequestRandomColor colorRequestor = null)
     {
         bool added = false;
         foreach (int idx in ticksToTrigger)
@@ -163,7 +165,10 @@ public class Tickloop : MonoBehaviour
 
     }
 
-    public void RemoveFromTickloop(GameObject obj)
+    /// <summary>
+    /// Remove an TickloopAddable from the tickloop, deregistering it and removing it from the ui
+    /// </summary>
+    public void RemoveFromTickloop(TickloopAddable obj)
     {
         for (int i = 0; i < this.ticks.Count; i++)
         {
@@ -178,6 +183,9 @@ public class Tickloop : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Request a pseudo Random color from an internal color generator
+    /// </summary>
     public Color RequestColor()
     {
         var color = colorGenerator.NextColor();

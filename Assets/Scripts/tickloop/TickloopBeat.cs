@@ -14,7 +14,7 @@ public class TickloopBeat : MonoBehaviour
     public Image iconPrefab;
 
 
-    private Dictionary<GameObject, Image> objToIconMapping = new Dictionary<GameObject, Image>();
+    private Dictionary<TickloopAddable, Image> objToIconMapping = new Dictionary<TickloopAddable, Image>();
 
     void Start()
     {
@@ -55,29 +55,27 @@ public class TickloopBeat : MonoBehaviour
         this.image.color = inactiveColor;
     }
 
-    public void AddObject(GameObject obj)
+    public void AddObject(TickloopAddable addable)
     {
 
-        Debug.Log("Adding to beat");
-        if (obj.TryGetComponent(out TickloopAddable addable) && addable.icon != null && addable.color != null)
+        if (addable.icon != null && addable.color != null)
         {
             Image newImage = Instantiate(iconPrefab, transform, false);
             newImage.sprite = addable.icon;
             newImage.color = addable.color;
 
-            objToIconMapping.Add(obj, newImage);
+            objToIconMapping.Add(addable, newImage);
         }
 
     }
 
-    public void RemoveObject(GameObject obj)
+    public void RemoveObject(TickloopAddable addable)
     {
-
-        if (objToIconMapping.ContainsKey(obj))
+        if (objToIconMapping.ContainsKey(addable))
         {
-            Image imgToRemove = objToIconMapping[obj];
+            Image imgToRemove = objToIconMapping[addable];
             Destroy(imgToRemove.gameObject);
-            objToIconMapping.Remove(obj);
+            objToIconMapping.Remove(addable);
         }
 
     }

@@ -67,7 +67,7 @@ namespace StarterAssets
 		public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
-		} 
+		}
 
 		public void LookInput(Vector2 newLookDirection)
 		{
@@ -76,31 +76,26 @@ namespace StarterAssets
 
 		public void JumpInput(bool newJumpState)
 		{
-			Debug.Log("Input:Jump!!!");
 			jump = newJumpState;
 		}
 
 		public void SprintInput(bool newSprintState)
 		{
-			Debug.Log("Input:Sprint!!!");
 			sprint = newSprintState;
 		}
 
 		public void CrawlInput(bool newCrawlState)
 		{
-			Debug.Log("Input:Crawl!!!");
 			crawl = newCrawlState;
 		}
 
 		public void PunchInput(bool newPunchState)
 		{
-			Debug.Log("Input:Punch!!!");
 			punch = newPunchState;
 		}
 
 		public void PushInput(bool newPushState)
 		{
-			Debug.Log("Input:Push!!!");
 			push = newPushState;
 		}
 
@@ -114,5 +109,5 @@ namespace StarterAssets
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
 		}
 	}
-	
+
 }
