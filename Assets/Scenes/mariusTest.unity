@@ -150,8 +150,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MoveWalk
   enemy: {fileID: 0}
   gravity: -35
-  maxWalkDistance: 4
-  maxWalkSpeed: 2
+  maxWalkDistance: 6
+  maxWalkSpeed: 5
   currentMoveDuration: 0
 --- !u!4 &39501146
 Transform:
@@ -549,7 +549,7 @@ Transform:
   m_GameObject: {fileID: 222897073}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.79, y: -2.13, z: -9.38957}
+  m_LocalPosition: {x: -5.42, y: -2.13, z: -9.38957}
   m_LocalScale: {x: 3.5867853, y: 11.969317, z: 9.490348}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -716,6 +716,55 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &266559214
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 266559216}
+  - component: {fileID: 266559217}
+  m_Layer: 0
+  m_Name: MoveKnockback
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &266559216
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266559214}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.60929, y: -0.091283366, z: -0.008133411}
+  m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 338828880}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &266559217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266559214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8c31c5009747844b8d07b0461ecf42f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoveKnockback
+  enemy: {fileID: 338828873}
+  gravity: 0
+  maxWalkDistance: 3
+  maxWalkSpeed: 8
+  currentMoveDuration: 0
 --- !u!1 &272821881
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,7 +981,7 @@ MonoBehaviour:
   every_nth: 4
   offset: 3
   repeat: 1
-  icon: {fileID: 0}
+  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   color: {r: 1, g: 0, b: 1, a: 1}
   requestColor: 0
   enabledInColliders: []
@@ -981,8 +1030,10 @@ MonoBehaviour:
   currentMoveIndex: 0
   target: {fileID: 969695708}
   gravity: -35
-  hurtbox: {fileID: 0}
   currentlyMoving: 0
+  hurtbox: {fileID: 338828875}
+  gettingHitMove: {fileID: 266559217}
+  currentlyHitMoving: 0
 --- !u!114 &338828875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1010,7 +1061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c76989de26a12430e9aee1b881b0e094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  health: 3
+  health: 20
   hurtbox: {fileID: 338828875}
   isDestroyedOnDeath: 1
 --- !u!135 &338828877
@@ -1028,11 +1079,11 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.6
+  m_Radius: 0.55
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &338828878
 MeshRenderer:
@@ -1105,6 +1156,7 @@ Transform:
   m_Children:
   - {fileID: 559168496}
   - {fileID: 39501146}
+  - {fileID: 266559216}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &367443440
@@ -1597,9 +1649,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MoveJump
   enemy: {fileID: 0}
   gravity: -35
-  jumpHeight: 5
-  maxJumpDistance: 3
-  maxJumpSpeed: 3
+  jumpHeight: 6
+  maxJumpDistance: 6
+  maxJumpSpeed: 6
   currentMoveDuration: 0
 --- !u!4 &559168496
 Transform:
@@ -3195,7 +3247,7 @@ Transform:
   m_GameObject: {fileID: 1457546792}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 8, z: 0}
+  m_LocalPosition: {x: 0, y: 3.72, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3450,8 +3502,10 @@ MonoBehaviour:
   currentMoveIndex: 0
   target: {fileID: 2006270676}
   gravity: -35
-  hurtbox: {fileID: 0}
   currentlyMoving: 0
+  hurtbox: {fileID: 0}
+  gettingHitMove: {fileID: 0}
+  currentlyHitMoving: 0
 --- !u!135 &1663040755
 SphereCollider:
   m_ObjectHideFlags: 0
