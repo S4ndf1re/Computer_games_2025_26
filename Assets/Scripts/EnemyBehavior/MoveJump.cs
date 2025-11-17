@@ -14,11 +14,19 @@ public class MoveJump : EnemyAct
     public float currentMoveDuration;
     private Vector3 currentMoveDirection;
     private float currentMoveSpeed;
+    public EnemyGroundCheck groundCheck;
 
-    
+    void Start()
+    {
+        groundCheck = GetComponentInParent<EnemyGroundCheck>();
+        enemy = GetComponentInParent<CharacterController>();
+    }
+
+
 
     public override bool Move()
     {
+        
         currentMoveDuration += Time.deltaTime;
         playerVelocity.y += gravity * Time.deltaTime;
 
@@ -26,8 +34,9 @@ public class MoveJump : EnemyAct
         enemy.Move(finalMove * Time.deltaTime);
 
         //jump ends when we land
-        if (enemy.isGrounded && playerVelocity.y < 0)
+        if (groundCheck.isGrounded(enemy) && playerVelocity.y < 0)
         {
+            Debug.Log(groundCheck.isGrounded(enemy));
             playerVelocity.y = 0f;
             return true;
         }
@@ -36,8 +45,9 @@ public class MoveJump : EnemyAct
 
     public override bool PrepareMove(CharacterController enemy, GameObject target, float currentGravity)
     {
+        Debug.Log(groundCheck.isGrounded(enemy));
         //only prepare when enemy is grounded
-        if (enemy.isGrounded)
+        if (groundCheck.isGrounded(enemy))
         {
             this.enemy = enemy;
             gravity = currentGravity;
@@ -67,4 +77,6 @@ public class MoveJump : EnemyAct
     {
         currentMoveDirection = (enemy.transform.position - hitbox.transform.position).normalized;
     }
+
+
 }
