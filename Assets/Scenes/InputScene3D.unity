@@ -494,7 +494,8 @@ GameObject:
   - component: {fileID: 1022897474}
   - component: {fileID: 1022897482}
   - component: {fileID: 1022897480}
-  - component: {fileID: 1022897481}
+  - component: {fileID: 1022897484}
+  - component: {fileID: 1022897483}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -624,8 +625,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1022897481}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+      - m_Target: {fileID: 1022897483}
+        m_TargetAssemblyTypeName: VelocityPlayerController, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -652,8 +653,8 @@ MonoBehaviour:
     m_ActionName: 'Player3D/Crouch[/Keyboard/c]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1022897481}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+      - m_Target: {fileID: 1022897483}
+        m_TargetAssemblyTypeName: VelocityPlayerController, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 0
         m_Arguments:
@@ -676,8 +677,8 @@ MonoBehaviour:
     m_ActionName: 'Player3D/Next[/Keyboard/2]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1022897481}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+      - m_Target: {fileID: 1022897483}
+        m_TargetAssemblyTypeName: VelocityPlayerController, Assembly-CSharp
         m_MethodName: OnDash
         m_Mode: 0
         m_Arguments:
@@ -767,37 +768,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player3D
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1022897481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1022897471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0a0e535c1a90224aab37818e64f9123, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  moveSpeed: 5
-  jumpHeight: 1
-  gravity: -10
-  maxJumpTime: 0.3
-  holdJumpGravityMultiplier: 0.3
-  coyoteTime: 0.15
-  dashSpeed: 15
-  dashDuration: 0.2
-  dashCooldown: 0.5
-  wallCheckDistance: 0.6
-  wallSlideSpeed: 2
-  wallJumpForce: 7
-  wallJumpAngle: {x: 1, y: 1.5}
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  wallSlideMaxTime: 2
-  cameraTransform: {fileID: 179565250}
-  lookSensitivity: 2
 --- !u!143 &1022897482
 CharacterController:
   m_ObjectHideFlags: 0
@@ -823,6 +793,60 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1022897483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022897471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc3ef8496bc35460fb7c54ae1051f2c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VelocityPlayerController
+  moveSpeed: 5
+  airSpeed: 100
+  jumpHeight: 2
+  gravity: -9.81
+  maxJumpTime: 0.35
+  holdJumpGravityMultiplier: 0.3
+  coyoteTime: 0.15
+  dashSpeed: 15
+  dashDuration: 0.2
+  dashCooldown: 0.5
+  wallCheckDistance: 0.6
+  wallSlideSpeed: 2
+  wallJumpForce: 7
+  wallJumpAngle: {x: 1, y: 1.5}
+  inputLockAfterJump: 0.25
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  wallSlideMaxTime: 2
+  canWallJump: 0
+  cameraTransform: {fileID: 0}
+  lookSensitivity: 2
+--- !u!114 &1022897484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022897471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b165bf238d82e4d89981b79cfd34f792, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Velocity
+  velocity: {x: 0, y: 0, z: 0}
+  gravity: -9.81
+  maxGroundVelocity: {x: Infinity, y: Infinity, z: Infinity}
+  minGroundVelocity: {x: -Infinity, y: -Infinity, z: -Infinity}
+  maxAirVelocity: {x: 10, y: Infinity, z: 10}
+  minAirVelocity: {x: -10, y: -Infinity, z: -10}
+  characterController: {fileID: 0}
+  isGrounded: 0
 --- !u!1 &1862667463
 GameObject:
   m_ObjectHideFlags: 0
