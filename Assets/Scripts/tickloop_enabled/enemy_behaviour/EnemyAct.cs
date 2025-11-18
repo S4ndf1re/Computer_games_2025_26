@@ -20,6 +20,6 @@ public abstract class EnemyAct : MonoBehaviour
     /// Prepares the EnemyAct by instantiating all necessary variables for the Move. Called from EnemyMoveHandler when the Tickloop notifies it.
     /// <returns> Returns true when the move could be prepared so that it can be executed. </returns>
     /// </summary>
-    abstract public bool PrepareMove(CharacterController enemy, GameObject target, float currentGravity);
+    abstract public bool PrepareMove(GameObject target, float currentGravity);
 
 }

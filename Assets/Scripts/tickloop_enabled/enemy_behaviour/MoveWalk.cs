@@ -27,6 +27,7 @@ public class MoveWalk : EnemyAct
         playerVelocity.y += gravity * Time.deltaTime;
         Vector3 finalMove = (currentMoveDirection * maxWalkSpeed) + (playerVelocity.y * Vector3.up);
         enemy.Move(finalMove * Time.deltaTime);
+        //end if moved far enough and grounded
         if (currentMoveDuration >= currentMoveDistance / maxWalkSpeed && groundCheck.isGrounded(enemy))
         {
             return true;
@@ -34,12 +35,12 @@ public class MoveWalk : EnemyAct
         return false;
     }
 
-    public override bool PrepareMove(CharacterController enemy, GameObject target, float currentGravity)
+    public override bool PrepareMove(GameObject target, float currentGravity)
     {
+        //only perpare if enemy is grounded
         if (groundCheck.isGrounded(enemy))
         {
             gravity = currentGravity;
-            this.enemy = enemy;
             currentMoveDuration = 0;
             currentMoveDirection = DetermineWalkDirection(enemy, target);
             currentMoveDistance = DetermineWalkDistance(enemy, target);

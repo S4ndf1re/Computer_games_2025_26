@@ -42,12 +42,11 @@ public class MoveJump : EnemyAct
         return false;
     }
 
-    public override bool PrepareMove(CharacterController enemy, GameObject target, float currentGravity)
+    public override bool PrepareMove(GameObject target, float currentGravity)
     {
         //only prepare when enemy is grounded
         if (groundCheck.isGrounded(enemy))
         {
-            this.enemy = enemy;
             gravity = currentGravity;
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
             currentMoveDuration = 0;
