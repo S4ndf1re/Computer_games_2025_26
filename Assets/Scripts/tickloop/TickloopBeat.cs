@@ -19,7 +19,6 @@ public class TickloopBeat : MonoBehaviour
     void Start()
     {
         this.image = GetComponent<Image>();
-        objToIconMapping.Clear();
     }
 
     public void Instantiate(Color activeColor, Color inactiveColor, Tickloop loop)
