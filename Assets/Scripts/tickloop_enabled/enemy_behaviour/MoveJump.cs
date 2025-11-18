@@ -6,7 +6,7 @@ using UnityEngine;
 public class MoveJump : EnemyAct
 {
     public CharacterController enemy;
-    private Vector3 playerVelocity;
+    public Vector3 playerVelocity;
     public float gravity;
     public float jumpHeight;
     public float maxJumpDistance;
@@ -57,14 +57,14 @@ public class MoveJump : EnemyAct
         return false;
     }
     
-    protected Vector3 DetermineWalkDirection(GameObject enemy, GameObject target)
+    private Vector3 DetermineWalkDirection(GameObject enemy, GameObject target)
     {
         return (target.transform.position - enemy.transform.position).normalized;
     }
     /// <summary>
     /// Determines the jumpspeed so that the enemy lands on the targets position even when the maxJumpdistance is bigger than the actual distance.
     /// </summary>
-    protected float DetermineJumpSpeed(GameObject enemy, GameObject target)
+    private float DetermineJumpSpeed(GameObject enemy, GameObject target)
     {
         float currentDistance = (target.transform.position - enemy.transform.position).magnitude;
         return currentDistance < maxJumpDistance? currentDistance/maxJumpDistance * maxJumpSpeed : maxJumpSpeed;
