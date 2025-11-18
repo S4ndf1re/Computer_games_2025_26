@@ -101,6 +101,29 @@ public class Velocity : MonoBehaviour
         }
     }
 
+    public void SetInstant(Vector3 toAdd, bool withoutY ) {
+        if (inputLocked) {
+            return;
+        }
+        this.velocity.x = toAdd.x;
+        if (!withoutY) {
+            this.velocity.y += toAdd.y;
+        }
+        this.velocity.z = toAdd.z;
+        if (IsGrounded())
+        {
+            this.velocity.x = Mathf.Clamp(this.velocity.x, minGroundVelocity.x, maxGroundVelocity.x);
+            this.velocity.y = Mathf.Clamp(this.velocity.y, minGroundVelocity.y, maxGroundVelocity.y);
+            this.velocity.z = Mathf.Clamp(this.velocity.z, minGroundVelocity.z, maxGroundVelocity.z);
+        }
+        else
+        {
+            this.velocity.x = Mathf.Clamp(this.velocity.x, minAirVelocity.x, maxAirVelocity.x);
+            this.velocity.y = Mathf.Clamp(this.velocity.y, minAirVelocity.y, maxAirVelocity.y);
+            this.velocity.z = Mathf.Clamp(this.velocity.z, minAirVelocity.z, maxAirVelocity.z);
+        }
+    }
+
     public void SetY(float y)
     {
         if(IsGrounded()) {
