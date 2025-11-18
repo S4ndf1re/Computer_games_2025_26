@@ -58,9 +58,6 @@ namespace StarterAssets
         [Tooltip("Useful for rough ground")]
         [SerializeField] private float GroundedOffset = -0.14f;
 
-        [Tooltip("The radius of the grounded check. Should match the radius of the CharacterController")]
-        [SerializeField] private float GroundedRadius = 0.28f;
-
         [Tooltip("What layers the character uses as ground")]
         [SerializeField] private LayerMask GroundLayers;
 
@@ -242,7 +239,7 @@ namespace StarterAssets
         private void GroundedCheck()
         {
             Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
-            Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
+            Grounded = Physics.CheckSphere(spherePosition, _controller.radius, GroundLayers, QueryTriggerInteraction.Ignore);
 
             if (_hasAnimator)
                 _animator.SetBool(_animIDGrounded, Grounded);
@@ -636,7 +633,9 @@ namespace StarterAssets
         {
             Color color = Grounded ? new Color(0, 1, 0, 0.35f) : new Color(1, 0, 0, 0.35f);
             Gizmos.color = color;
-            Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
+            #if !UNITY_EDITOR
+                Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), _controller.radius);
+            #endif
         }
 
         private void OnFootstep(AnimationEvent animationEvent)
