@@ -10,14 +10,11 @@ public class MoveJump : EnemyAct
     public float gravity;
     public float jumpHeight;
     public float maxJumpDistance;
-    public float maxJumpSpeed;
     public float currentMoveDuration;
     public Vector3 currentMoveDirection;
     public float currentMoveSpeed;
     public EnemyGroundCheck groundCheck;
 
-    public Vector3 start;
-    public Vector3 end;
 
     void Start()
     {
@@ -39,8 +36,6 @@ public class MoveJump : EnemyAct
         //jump ends when we land
         if (groundCheck.isGrounded(enemy) && playerVelocity.y < 0)
         {
-            end = enemy.transform.position;
-            Debug.Log("end" + end);
             playerVelocity.y = 0f;
             return true;
         }
@@ -57,8 +52,6 @@ public class MoveJump : EnemyAct
             currentMoveDuration = 0;
             currentMoveDirection = DetermineJumpDirection(target);
             currentMoveSpeed = DetermineJumpSpeed(target);
-            start = enemy.transform.position;
-            Debug.Log("start" + start);
 
             return true;
         }
