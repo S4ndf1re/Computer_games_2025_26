@@ -153,6 +153,7 @@ MonoBehaviour:
   maxWalkDistance: 6
   maxWalkSpeed: 5
   currentMoveDuration: 0
+  groundCheck: {fileID: 0}
 --- !u!4 &39501146
 Transform:
   m_ObjectHideFlags: 0
@@ -765,6 +766,7 @@ MonoBehaviour:
   maxWalkDistance: 3
   maxWalkSpeed: 8
   currentMoveDuration: 0
+  groundCheck: {fileID: 0}
 --- !u!1 &322960283
 GameObject:
   m_ObjectHideFlags: 0
@@ -975,7 +977,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba609415c1b07554299987116e1e2b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMoveHandler
-  controller: {fileID: 338828873}
+  enemy: {fileID: 0}
   moves:
   - {fileID: 559168495}
   currentMoveIndex: 0
@@ -983,8 +985,9 @@ MonoBehaviour:
   gravity: -35
   currentlyMoving: 0
   hurtbox: {fileID: 338828875}
-  gettingHitMove: {fileID: 266559217}
+  idleMove: {fileID: 540732678}
   currentlyHitMoving: 0
+  groundCheck: {fileID: 338828881}
 --- !u!114 &338828875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1034,7 +1037,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.52
+  m_Radius: 0.6
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &338828878
 MeshRenderer:
@@ -1101,13 +1104,14 @@ Transform:
   m_GameObject: {fileID: 338828871}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.05, y: 1.34, z: -4.62}
+  m_LocalPosition: {x: 7.05, y: 3.76, z: -4.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 559168496}
   - {fileID: 39501146}
   - {fileID: 266559216}
+  - {fileID: 540732679}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &338828881
@@ -1581,6 +1585,58 @@ Transform:
   - {fileID: 971265378}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &540732677
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 540732679}
+  - component: {fileID: 540732678}
+  m_Layer: 0
+  m_Name: MoveIdle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &540732678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540732677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a5861b2180625e4282cc0c696045b11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoveIdle
+  enemy: {fileID: 0}
+  gravity: 0
+  maxWalkDistance: 3
+  maxWalkSpeed: 8
+  currentMoveDuration: 0
+  currentMoveDirection: {x: 0, y: 0, z: 0}
+  groundCheck: {fileID: 0}
+  wasHit: 0
+--- !u!4 &540732679
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540732677}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 338828880}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &559168494
 GameObject:
   m_ObjectHideFlags: 0
@@ -1616,6 +1672,7 @@ MonoBehaviour:
   maxJumpDistance: 6
   maxJumpSpeed: 6
   currentMoveDuration: 0
+  currentMoveDirection: {x: 0, y: 0, z: 0}
   groundCheck: {fileID: 0}
 --- !u!4 &559168496
 Transform:
