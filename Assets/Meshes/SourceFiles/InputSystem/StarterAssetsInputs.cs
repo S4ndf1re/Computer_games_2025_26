@@ -15,6 +15,7 @@ namespace StarterAssets
 		public bool crawl;
 		public bool punch;
 		public bool push;
+		public bool dash;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
