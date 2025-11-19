@@ -2,12 +2,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int health = 3;
+    public int startHealth = 3;
     public Hurtbox hurtbox;
     public bool isDestroyedOnDeath;
 
+    public int currentHealth = 3;
+
     void Start()
     {
+        currentHealth = startHealth;
         if (hurtbox != null)
         {
             hurtbox.onHitTriggerEvent += OnHit;
@@ -32,10 +35,19 @@ public class Player : MonoBehaviour
 
     void OnHit(Hitbox box)
     {
-        health -= 1;
-        if (health < 1 && isDestroyedOnDeath){
+        currentHealth -= 1;
+        if (currentHealth < 1 && isDestroyedOnDeath){
             Destroy(gameObject);
         }
+    }
+
+
+    public void Respawn() {
+        this.currentHealth = startHealth;
+    }
+
+    public int GetHealth() {
+        return this.currentHealth;
     }
 
 }

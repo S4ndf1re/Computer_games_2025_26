@@ -624,12 +624,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7614d929bcfbbb04099345ad9026230b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyFollow
-  walkDistance: 2
-  walkSpeed: 4
-  jumpHeight: 3
-  jumpDistance: 3
-  jumpSpeed: 4
-  nextState: 0
 --- !u!1 &487218974
 GameObject:
   m_ObjectHideFlags: 0
@@ -6993,12 +6987,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 431c53844bc7a5f4d8084a9f7994e98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyIdle
-  walkDistance: 2
-  walkSpeed: 1
-  jumpHeight: 0
-  jumpDistance: 0
-  jumpSpeed: 0
-  nextState: 0
 --- !u!1 &1582800755
 GameObject:
   m_ObjectHideFlags: 0
@@ -7415,11 +7403,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f624e63c82b336141a09f47922d08c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBehaviorHandler
-  idleBehavior: {fileID: 1574135277}
-  targetBehavior: {fileID: 452379438}
-  target: {fileID: 9101605159679012043}
-  attentionRadius: 4
-  isIdling: 0
 --- !u!135 &2053609281
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -7859,7 +7842,7 @@ Transform:
   m_GameObject: {fileID: 9101605159679012043}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.70710576, z: -0, w: 0.7071079}
-  m_LocalPosition: {x: 0, y: 3.6, z: 0}
+  m_LocalPosition: {x: 0, y: 0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8446,7 +8429,6 @@ MonoBehaviour:
   JumpTimeout: 0.3
   FallTimeout: 0.15
   GroundedOffset: -0.14
-  GroundedRadius: 0.28
   GroundLayers:
     serializedVersion: 2
     m_Bits: 1
@@ -8525,8 +8507,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c76989de26a12430e9aee1b881b0e094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  health: 3
+  startHealth: 3
   hurtbox: {fileID: 9101605159679012044}
+  isDestroyedOnDeath: 0
+  currentHealth: 3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

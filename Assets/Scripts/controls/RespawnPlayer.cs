@@ -56,9 +56,9 @@ namespace StarterAssets
         private void Update()
         {
             // Check if the player's Y position has fallen below the threshold
-            if (_playerScript.health <= 0)
+            if (_playerScript.GetHealth() <= 0)
             {
-                _playerScript.health = 3;
+                _playerScript.Respawn();
                 Respawn();
             }
             if (transform.position.y < yThreshold)
@@ -68,34 +68,27 @@ namespace StarterAssets
         }
 
         private void Respawn()
-{
-    // Disable the CharacterController so we can manually adjust position
-    if (_characterController != null)
-    {
-        _characterController.enabled = false; // Disable to reset position/rotation correctly
-    }
+        {
+            // Disable the CharacterController so we can manually adjust position
+            if (_characterController != null)
+            {
+                _characterController.enabled = false; // Disable to reset position/rotation correctly
+            }
 
-    // Reset the player's position and rotation
-    transform.position = _startingPosition;
-    transform.rotation = Quaternion.Euler(0f, 90f, 0f); // Reset player Y rotation to 90 degrees
+            // Reset the player's position and rotation
+            transform.position = _startingPosition;
+            transform.rotation = _startingRotation; // Reset player Y rotation to 90 degrees
 
-    // Reset the CharacterController's vertical velocity to ensure the robot doesn't keep falling
-    if (_characterController != null)
-    {
-        _characterController.enabled = true; // Enable it back after resetting position
-        ResetVerticalVelocity();
-    }
+            // Reset the CharacterController's vertical velocity to ensure the robot doesn't keep falling
+            if (_characterController != null)
+            {
+                _characterController.enabled = true; // Enable it back after resetting position
+                ResetVerticalVelocity();
+            }
 
-    // Reset the camera's rotation
-    ThirdPersonController thirdPersonController = GetComponent<ThirdPersonController>();
-    if (thirdPersonController != null)
-    {
-        //thirdPersonController.ResetCameraRotation(90f); // Reset camera's Y rotation to 90 degrees
-    }
+            AudioSource.PlayClipAtPoint(respawnSound, transform.position);
 
-    AudioSource.PlayClipAtPoint(respawnSound, transform.position);
-
-}
+        }
 
         private void ResetVerticalVelocity()
         {
