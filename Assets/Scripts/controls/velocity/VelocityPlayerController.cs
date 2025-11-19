@@ -12,6 +12,14 @@ public class VelocityPlayerController : MonoBehaviour
     public float maxJumpTime = 0.35f;
     public float holdJumpGravityMultiplier = 0.3f;
 
+    [Header("Player Model")]
+    public Transform playerModel;
+
+    [Header("Rotation Settings")]
+    public float rotationSmoothTime = 0.1f;
+    private float rotationVelocity;
+    private float targetRotation;
+
     [Header("Coyote Time Settings")]
     public float coyoteTime = 0.15f;
 
@@ -66,15 +74,25 @@ public class VelocityPlayerController : MonoBehaviour
 
     void Update()
     {
+        HandleRotation();
         HandleMovement();
         HandleWallSlide();
     }
 
     void HandleMovement()
     {
+        // CAMERA-relative movement
+        Vector3 camForward = cameraTransform.forward;
+        Vector3 camRight = cameraTransform.right;
 
-        // Bewegung (lokal)
-        Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
+        camForward.y = 0;
+        camRight.y = 0;
+
+        camForward.Normalize();
+        camRight.Normalize();
+
+        Vector3 move = camForward * moveInput.y + camRight * moveInput.x;
+
         if (velocity.IsGrounded())
         {
             isJumping = false;
@@ -151,6 +169,38 @@ public class VelocityPlayerController : MonoBehaviour
             isWallSliding = false;
         }
     }
+
+    void HandleRotation()
+    {
+        if (moveInput.sqrMagnitude < 0.01f)
+            return;
+
+        if (cameraTransform == null || playerModel == null)
+            return;
+
+        // Camera Relative
+        Vector3 camForward = cameraTransform.forward;
+        Vector3 camRight = cameraTransform.right;
+
+        camForward.y = 0;
+        camRight.y = 0;
+        camForward.Normalize();
+        camRight.Normalize();
+
+        Vector3 move = camForward * moveInput.y + camRight * moveInput.x;
+
+        float targetAngle = Mathf.Atan2(move.x, move.z) * Mathf.Rad2Deg;
+
+        float angle = Mathf.SmoothDampAngle(
+            playerModel.eulerAngles.y,
+            targetAngle,
+            ref rotationVelocity,
+            rotationSmoothTime
+        );
+
+        playerModel.rotation = Quaternion.Euler(0, angle, 0);
+    }
+
 
     // ---------------------------
     // Input Callbacks

@@ -1293,6 +1293,8 @@ MonoBehaviour:
   gravity: -9.81
   maxJumpTime: 0.35
   holdJumpGravityMultiplier: 0.3
+  playerModel: {fileID: 0}
+  rotationSmoothTime: 0.1
   coyoteTime: 0.15
   dashSpeed: 15
   dashDuration: 0.2
@@ -2037,6 +2039,8 @@ MonoBehaviour:
   gravity: -9.81
   maxJumpTime: 0.35
   holdJumpGravityMultiplier: 0.3
+  playerModel: {fileID: 1284923259}
+  rotationSmoothTime: 0.1
   coyoteTime: 0.15
   dashSpeed: 15
   dashDuration: 0.2
@@ -2051,7 +2055,7 @@ MonoBehaviour:
     m_Bits: 64
   wallSlideMaxTime: 2
   canWallJump: 0
-  cameraTransform: {fileID: 0}
+  cameraTransform: {fileID: 1036211854}
   lookSensitivity: 2
 --- !u!114 &1937687568
 MonoBehaviour:
