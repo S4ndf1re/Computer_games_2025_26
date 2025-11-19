@@ -76,12 +76,13 @@ public class VelocityPlayerController : MonoBehaviour
     {
         HandleRotation();
         HandleMovement();
+        HandleDash();
         HandleWallSlide();
     }
 
     void HandleMovement()
     {
-        // CAMERA-relative movement
+        // Camera-relative movement
         Vector3 camForward = cameraTransform.forward;
         Vector3 camRight = cameraTransform.right;
 
@@ -98,6 +99,7 @@ public class VelocityPlayerController : MonoBehaviour
             isJumping = false;
         }
 
+        /*
         // DASH
         if (isDashing)
         {
@@ -110,6 +112,7 @@ public class VelocityPlayerController : MonoBehaviour
             }
             return;
         }
+        */
 
 
         // Wenn wallslide aktiv ist, fall langsamer
@@ -201,6 +204,17 @@ public class VelocityPlayerController : MonoBehaviour
         playerModel.rotation = Quaternion.Euler(0, angle, 0);
     }
 
+    void HandleDash()
+    {
+        if (!isDashing) return;
+
+        velocity.SetInstant(dashDirection * dashSpeed);
+
+        if (Time.time >= dashEndTime)
+        {
+            isDashing = false;
+        }
+    }
 
     // ---------------------------
     // Input Callbacks
@@ -247,18 +261,48 @@ public class VelocityPlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (!context.performed || isDashing)
+        if (!context.started)
+            return;
+
+        // wenn grounded kein dash
+        if (velocity.IsGrounded())
+            return;
+
+        // wenn man nichts drückt kein dash
+        if (moveInput.sqrMagnitude < 0.01f)
+            return;
+
+        // wenn man dashed nicht nochmal dashen
+        if (isDashing)
             return;
 
         if (Time.time - lastDashTime < dashCooldown)
             return;
 
+        // ---- DASH START ----
         lastDashTime = Time.time;
         isDashing = true;
         dashEndTime = Time.time + dashDuration;
 
-        // Richtung = aktuelle Bewegung oder Vorwärtsrichtung
-        Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
-        dashDirection = move.magnitude > 0.1f ? move.normalized : transform.forward;
+        // Kamera-basierte Richtung
+        Vector3 camForward = cameraTransform.forward;
+        Vector3 camRight = cameraTransform.right;
+
+        camForward.y = 0;
+        camRight.y = 0;
+        camForward.Normalize();
+        camRight.Normalize();
+
+        // Nur horizontaler Input
+        Vector3 camMove = camForward * moveInput.y + camRight * moveInput.x;
+
+        // fallback
+        if (camMove.sqrMagnitude < 0.01f)
+            camMove = camForward;
+
+        // Planar erzwingen
+        camMove.y = 0;
+
+        dashDirection = camMove.normalized;
     }
 }
