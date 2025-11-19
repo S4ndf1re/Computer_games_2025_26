@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            Debug.Log("Warning: hurtbox is null");
+            Debug.LogWarning("Warning: hurtbox is null");
         }
     }
 
@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            Debug.Log("Warning: hurtbox is null");
+            Debug.LogWarning("Hurtbox is null");
         }
     }
 
