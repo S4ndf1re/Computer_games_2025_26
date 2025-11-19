@@ -1,5 +1,9 @@
 using UnityEngine;
 
+    /// <summary>
+    /// Class <c>MoveIdle</c> defines an idle behavior of an enemy in which the enemy is pulled towards the ground by gravity and knocked back when taking damage.
+    /// Can be used to control an enemy by adding it to its EnemyMoveHandler.
+    /// </summary>
 public class MoveIdle : EnemyAct
 {
     public CharacterController enemy;
@@ -20,10 +24,6 @@ public class MoveIdle : EnemyAct
     }
     public override bool Move()
     {
-        // playerVelocity.y += gravity * Time.deltaTime;
-        // Vector3 finalMove = playerVelocity.y * Vector3.up;
-        // enemy.Move(finalMove * Time.deltaTime);
-        // return true;
         if (wasHit)
         {
             currentMoveDuration += Time.deltaTime;
@@ -32,7 +32,7 @@ public class MoveIdle : EnemyAct
         playerVelocity.y += gravity * Time.deltaTime;
         Vector3 finalMove = (currentMoveDirection * maxWalkSpeed) + (playerVelocity.y * Vector3.up);
         enemy.Move(finalMove * Time.deltaTime);
-        if (wasHit && currentMoveDuration >= maxWalkSpeed / maxWalkSpeed && groundCheck.isGrounded(enemy))
+        if (wasHit && currentMoveDuration >= maxWalkDistance / maxWalkSpeed && groundCheck.isGrounded(enemy))
         {
             ResetToIdle();
             return true;
@@ -47,9 +47,8 @@ public class MoveIdle : EnemyAct
         currentMoveDirection = (enemy.transform.position - hitbox.transform.position).normalized;
     }
 
-    public override bool PrepareMove(CharacterController enemy, GameObject target, float currentGravity)
+    public override bool PrepareMove(GameObject target, float currentGravity)
     {
-        this.enemy = enemy;
         gravity = currentGravity;
         ResetToIdle();
         return true;

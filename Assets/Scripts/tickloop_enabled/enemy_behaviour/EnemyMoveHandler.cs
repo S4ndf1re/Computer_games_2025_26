@@ -28,7 +28,7 @@ public class EnemyMoveHandler : MonoBehaviour
         {
             hurtbox.onHitTriggerEvent += OnHit;
         }
-        idleMove.PrepareMove(enemy, null, gravity);
+        idleMove.PrepareMove(null, gravity);
     }
 
     // Update is called once per frame
@@ -41,7 +41,7 @@ public class EnemyMoveHandler : MonoBehaviour
                 currentMoveIndex = (currentMoveIndex + 1) % moves.Count;
                 currentlyMoving = false;
                 playerVelocity = Vector3.zero;
-                idleMove.PrepareMove(enemy, target, gravity);
+                idleMove.PrepareMove(target, gravity);
             }
         }
         //if move finished, use gravity
@@ -73,7 +73,7 @@ public class EnemyMoveHandler : MonoBehaviour
     {
         if (!currentlyHitMoving)
         {
-            moves[currentMoveIndex].PrepareMove(enemy, target, gravity);
+            moves[currentMoveIndex].PrepareMove(target, gravity);
             currentlyMoving = true;
         }
     }
