@@ -6,7 +6,7 @@ public class VelocityPlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
     public float moveSpeed = 5f;
-    public float airSpeed = 0.5f;
+    public float airSpeed = 200f;
     public float jumpHeight = 2f;
     public float gravity = -9.81f;
     public float maxJumpTime = 0.35f;
