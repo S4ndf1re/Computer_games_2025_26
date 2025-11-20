@@ -59,12 +59,15 @@ public class Velocity : MonoBehaviour
         {
             ResetVelocity();
             // Reset to zero here, since we are using custom check and not collider check
-            velocity.y = gravity;
+            velocity.y = 0f;
         }
 
         if (!IsGrounded() && previouslyGrounded)
         {
+            var oldVelocity = new Vector2(this.velocity.x, this.velocity.z);
             ResetVelocity();
+            this.velocity.x = oldVelocity.x;
+            this.velocity.z = oldVelocity.y;
         }
 
         previouslyGrounded = IsGrounded();
