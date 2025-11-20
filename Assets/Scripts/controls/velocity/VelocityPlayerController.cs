@@ -11,6 +11,7 @@ public class VelocityPlayerController : MonoBehaviour
     public float gravity = -9.81f;
     public float maxJumpTime = 0.35f;
     public float holdJumpGravityMultiplier = 0.3f;
+    public bool disableZMovement = false;
 
     [Header("Coyote Time Settings")]
     public float coyoteTime = 0.15f;
@@ -75,6 +76,10 @@ public class VelocityPlayerController : MonoBehaviour
 
         // Bewegung (lokal)
         Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
+        if (disableZMovement) {
+            move = transform.right * moveInput.x;
+        }
+
         if (velocity.IsGrounded())
         {
             isJumping = false;
