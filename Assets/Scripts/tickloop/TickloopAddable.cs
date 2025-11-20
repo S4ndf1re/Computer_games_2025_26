@@ -65,8 +65,10 @@ public class TickloopAddable : MonoBehaviour
 
 
         foreach(var enabler in enabledInColliders) {
-            enabler.enableEvent += AddToTickloop;
-            enabler.disableEvent += RemoveFromTickloop;
+            if (enabler != null) {
+                enabler.enableEvent += AddToTickloop;
+                enabler.disableEvent += RemoveFromTickloop;
+            }
         }
     }
 

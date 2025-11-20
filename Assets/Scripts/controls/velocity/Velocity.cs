@@ -157,9 +157,9 @@ public class Velocity : MonoBehaviour
     {
         if (characterController != null)
         {
-            var radius = characterController.radius - 0.2f;
+            var radius = characterController.radius;
             var position = transform.position;
-            position.y += -characterController.height / 2f + characterController.radius - characterController.skinWidth - 0.2f;
+            position.y += -characterController.height / 2f + characterController.radius - characterController.skinWidth;
             return Physics.CheckBox(position, radius * Vector3.one, transform.rotation,
                                     groundFilter, QueryTriggerInteraction.Ignore);
         }
