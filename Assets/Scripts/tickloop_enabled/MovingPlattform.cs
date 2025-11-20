@@ -1,12 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
-using UnityEngine.UIElements;
 
 public class MovingPlatform : MonoBehaviour
 {
     private TickloopAddable tickloopAddable;
-    
+
     public WaypointPath waypointPath;
 
     public float speed;
@@ -34,13 +32,39 @@ public class MovingPlatform : MonoBehaviour
     }
 
 
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         isInFixedUpdateCycle = true;
+
+        elapsedTime += Time.fixedDeltaTime;
+        if (isMoving)
+        {
+            float timePercentage = elapsedTime / timeToNextWaypoint;
+            GetComponent<Rigidbody>().MovePosition(Vector3.Lerp(previousWaypoint.position, nextWaypoint.position, timePercentage));
+            // transform.position = Vector3.Lerp(previousWaypoint.position, nextWaypoint.position, timePercentage);
+
+            // Vector3 positiondelta = transform.position - lastPosition;
+            // foreach (var collider in objectsOnPlatform)
+            // {
+            //     var deltaV = Vector3.Scale(new Vector3(1.0f, 0.0f, 1.0f), positiondelta);
+            //     collider.GetComponent<Velocity>()?.AddInstant(positiondelta);
+            //     // var position = collider.transform.position;
+            //     // position.x += positiondelta.x;
+            //     // position.z += positiondelta.z;
+            //     // collider.transform.position = position;
+            // }
+            lastPosition = transform.position;
+            if (timePercentage >= 1)
+            {
+                isMoving = false;
+            }
+        }
     }
 
     void Update()
     {
-        if(isInFixedUpdateCycle) {
+        if (isInFixedUpdateCycle)
+        {
             List<Collider> toRemove = new List<Collider>();
             foreach (var collider in objectsOnPlatform)
             {
@@ -56,42 +80,15 @@ public class MovingPlatform : MonoBehaviour
             {
                 Debug.Log("objectsOnPlatform.Remove(collider);");
                 objectsOnPlatform.Remove(collider);
+                collider.transform.SetParent(null);
+                // collider.GetComponent<Velocity>()?.EnableGravity();
             }
+            isInFixedUpdateCycle = false;
         }
+
+
     }
 
-
-    void LateUpdate()
-    {
-        if (isInFixedUpdateCycle)
-        {
-            elapsedTime += Time.fixedDeltaTime;
-            if (isMoving)
-            {
-                float timePercentage = elapsedTime / timeToNextWaypoint;
-                transform.position = Vector3.Lerp(previousWaypoint.position, nextWaypoint.position, timePercentage);
-                Vector3 positiondelta = transform.position - lastPosition;
-                foreach (var collider in objectsOnPlatform)
-                {
-                    var cc = collider.GetComponent<CharacterController>();
-                    if(cc)
-                        cc.Move(positiondelta);
-
-                    // var position = collider.transform.position;
-                    // position.x +=  positiondelta.x;
-                    // position.z +=  positiondelta.z;
-                    // collider.transform.position = position;
-                }
-                lastPosition = transform.position;
-                if(timePercentage >= 1)
-                {
-                    isMoving = false;
-                }
-            }
-        }
-        isInFixedUpdateCycle = false;
-
-    }
     public void MoveTowardsNextWaypoint(Tickloop tp)
     {
         isMoving = true;
@@ -115,11 +112,12 @@ public class MovingPlatform : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        Debug.Log("Stay");
         if (!objectsOnPlatform.Contains(other))
         {
             Debug.Log("objectsOnPlatform.Add(other);");
             objectsOnPlatform.Add(other);
+            other.transform.SetParent(this.transform);
+            // other.GetComponent<Velocity>()?.DisableGravity();
         }
 
         collidedObjects.Add(other);
