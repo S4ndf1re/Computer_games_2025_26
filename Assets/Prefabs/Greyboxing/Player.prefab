@@ -27,13 +27,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3725360814282078563}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -6}
+  m_LocalRotation: {x: 0.06104851, y: 0, z: 0, w: 0.99813485}
+  m_LocalPosition: {x: 0, y: 2, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4250664478296845803}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 7, y: 0, z: 0}
 --- !u!20 &7464938760062504369
 Camera:
   m_ObjectHideFlags: 0
@@ -152,6 +152,8 @@ GameObject:
   - component: {fileID: 8457849602421325652}
   - component: {fileID: 2970895959182933759}
   - component: {fileID: 1198370983011176336}
+  - component: {fileID: 4460454070091842734}
+  - component: {fileID: 3694966129831191639}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -168,8 +170,8 @@ Transform:
   m_GameObject: {fileID: 3959801321005208456}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.435, y: 1.483, z: -0.083}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: -3.5923488, y: 1.33, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2345002127868181580}
@@ -418,13 +420,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Velocity
   velocity: {x: 0, y: 0, z: 0}
-  gravity: -9.81
-  maxGroundVelocity: {x: 5, y: Infinity, z: 5}
-  minGroundVelocity: {x: -5, y: -Infinity, z: -5}
-  maxAirVelocity: {x: 5, y: Infinity, z: 5}
-  minAirVelocity: {x: -5, y: -Infinity, z: -5}
+  gravity: -35
+  maxXYGroundSpeed: 8
+  maxXYAirSpeed: 8
+  maxFallingSpeed: Infinity
+  groundFilter:
+    serializedVersion: 2
+    m_Bits: 8
   characterController: {fileID: 0}
   isGrounded: 0
+  gravityDisabled: 0
+  t: {fileID: 0}
 --- !u!114 &2970895959182933759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,12 +443,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3ef8496bc35460fb7c54ae1051f2c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VelocityPlayerController
-  moveSpeed: 5
-  airSpeed: 200
-  jumpHeight: 1
-  gravity: -9.81
+  moveSpeed: 8
+  airSpeed: 50
+  jumpHeight: 3
+  gravity: -35
   maxJumpTime: 0.35
   holdJumpGravityMultiplier: 0.3
+  disableZMovement: 1
   coyoteTime: 0.15
   dashSpeed: 15
   dashDuration: 0.2
@@ -484,3 +491,34 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4460454070091842734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3959801321005208456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c76989de26a12430e9aee1b881b0e094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player
+  startHealth: 3
+  hurtbox: {fileID: 3694966129831191639}
+  isDestroyedOnDeath: 0
+  currentHealth: 3
+--- !u!114 &3694966129831191639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3959801321005208456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd3edfb82adac48419cfbb7afbb1404e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Hurtbox
+  mustExit: 1
+  delayTillNextHitSeconds: 0
+  ignoreHits: 1
