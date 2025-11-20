@@ -722,6 +722,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2284268748006341794, guid: 74b4753d00d179f449b7ca02c506a336, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2284268748006341794, guid: 74b4753d00d179f449b7ca02c506a336, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2284268748006341794, guid: 74b4753d00d179f449b7ca02c506a336, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2284268748006341794, guid: 74b4753d00d179f449b7ca02c506a336, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.51
       objectReference: {fileID: 0}
@@ -765,6 +777,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dampf
       objectReference: {fileID: 0}
+    - target: {fileID: 7013539635174063367, guid: 74b4753d00d179f449b7ca02c506a336, type: 3}
+      propertyPath: tickloop
+      value: 
+      objectReference: {fileID: 237717958}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
