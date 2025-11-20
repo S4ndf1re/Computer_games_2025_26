@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using Unity.Cinemachine;
 #if ENABLE_INPUT_SYSTEM
@@ -35,7 +35,7 @@ namespace StarterAssets
 
         [SerializeField] private AudioClip LandingAudioClip;
         [SerializeField] private AudioClip[] FootstepAudioClips;
-        [Range(0, 1)] [SerializeField] private float FootstepAudioVolume = 0.5f;
+        [Range(0, 1)][SerializeField] private float FootstepAudioVolume = 0.5f;
 
         [Space(10)]
         [Tooltip("The height the player can jump")]
@@ -238,8 +238,12 @@ namespace StarterAssets
         /// </summary>
         private void GroundedCheck()
         {
-            Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
-            Grounded = Physics.CheckSphere(spherePosition, _controller.radius, GroundLayers, QueryTriggerInteraction.Ignore);
+
+            var radius = _controller.radius;
+            var position = transform.position;
+            position.y += -_controller.height / 2f + _controller.radius - _controller.skinWidth;
+            Grounded = Physics.CheckBox(position, radius * Vector3.one, transform.rotation,
+                                    GroundLayers, QueryTriggerInteraction.Ignore);
 
             if (_hasAnimator)
                 _animator.SetBool(_animIDGrounded, Grounded);
@@ -418,9 +422,9 @@ namespace StarterAssets
             RaycastHit hit;
 
             bool forwardHit = Physics.Raycast(transform.position, transform.forward, out hit, WallCheckDistance, WallLayer);
-            bool backHit    = Physics.Raycast(transform.position, -transform.forward, out hit, WallCheckDistance, WallLayer);
-            bool rightHit   = Physics.Raycast(transform.position, transform.right, out hit, WallCheckDistance, WallLayer);
-            bool leftHit    = Physics.Raycast(transform.position, -transform.right, out hit, WallCheckDistance, WallLayer);
+            bool backHit = Physics.Raycast(transform.position, -transform.forward, out hit, WallCheckDistance, WallLayer);
+            bool rightHit = Physics.Raycast(transform.position, transform.right, out hit, WallCheckDistance, WallLayer);
+            bool leftHit = Physics.Raycast(transform.position, -transform.right, out hit, WallCheckDistance, WallLayer);
 
             bool wallHit = forwardHit || backHit || rightHit || leftHit;
 
@@ -633,9 +637,9 @@ namespace StarterAssets
         {
             Color color = Grounded ? new Color(0, 1, 0, 0.35f) : new Color(1, 0, 0, 0.35f);
             Gizmos.color = color;
-            #if !UNITY_EDITOR
+#if !UNITY_EDITOR
                 Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), _controller.radius);
-            #endif
+#endif
         }
 
         private void OnFootstep(AnimationEvent animationEvent)
