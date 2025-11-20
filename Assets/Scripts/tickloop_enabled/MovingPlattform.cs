@@ -23,18 +23,15 @@ public class MovingPlatform : MonoBehaviour
 
     List<Collider> objectsOnPlatform = new List<Collider>();
 
-    Rigidbody rb;
-
     void Start()
     {
         tickloopAddable = GetComponent<TickloopAddable>();
         tickloopAddable.triggeredByTickloop += MoveTowardsNextWaypoint;
-        rb = GetComponent<Rigidbody>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        elapsedTime += Time.fixedDeltaTime;
+        elapsedTime += Time.deltaTime;
         if (isMoving)
         {
             float timePercentage = elapsedTime / timeToNextWaypoint;
@@ -42,8 +39,9 @@ public class MovingPlatform : MonoBehaviour
             Vector3 positiondelta = transform.position - lastPosition;
             foreach (var collider in objectsOnPlatform)
             {
-
+                collider.enabled = false;
                 collider.transform.position += positiondelta;
+                collider.enabled = true;
             }
             lastPosition = transform.position;
             if(timePercentage >= 1)
