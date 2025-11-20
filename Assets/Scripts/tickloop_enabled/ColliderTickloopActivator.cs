@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ColliderTickloopEnabler : MonoBehaviour
+public class ColliderTickloopActivator : MonoBehaviour
 {
     public float onTimeSeconds = 0.5f;
     public Collider toggleableCollider;
