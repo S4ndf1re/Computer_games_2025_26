@@ -19,7 +19,7 @@ public class Velocity : MonoBehaviour
 
     [Header("Debug")]
     public bool isGrounded;
-    private bool gravityDisabled = false;
+    public bool gravityDisabled = false;
     private bool inputLocked = false;
     private float lockedTimer = 0.0f;
     private bool previouslyGrounded = true;
