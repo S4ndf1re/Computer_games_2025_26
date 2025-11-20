@@ -467,7 +467,7 @@ namespace StarterAssets
 
                 // Reset slight downward velocity
                 if (_verticalVelocity < 0.0f)
-                    _verticalVelocity = -2f;
+                    _verticalVelocity = Gravity;
 
                 // Normal jump from ground
                 if (_input.jump && _jumpTimeoutDelta <= 0.0f)
