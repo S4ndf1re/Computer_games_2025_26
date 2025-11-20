@@ -59,35 +59,48 @@ public class TickloopAddable : MonoBehaviour
             }
         }
 
-        if (enabledInColliders.Count == 0) {
-            AddToTickloop();
+
+        var addedEnabler = false;
+
+
+        foreach (var enabler in enabledInColliders)
+        {
+            if (enabler != null)
+            {
+                enabler.enableEvent += AddToTickloop;
+                enabler.disableEvent += RemoveFromTickloop;
+                addedEnabler = true;
+            }
         }
 
-
-        foreach(var enabler in enabledInColliders) {
-            enabler.enableEvent += AddToTickloop;
-            enabler.disableEvent += RemoveFromTickloop;
+        if (!addedEnabler)
+        {
+            AddToTickloop();
         }
     }
 
 
     void OnDisable()
     {
-        if(enabledInColliders.Count == 0) {
+        if (enabledInColliders.Count == 0)
+        {
             RemoveFromTickloop();
         }
 
-        foreach(var enabler in enabledInColliders) {
+        foreach (var enabler in enabledInColliders)
+        {
             enabler.enableEvent -= AddToTickloop;
             enabler.disableEvent -= RemoveFromTickloop;
         }
     }
 
-    void RemoveFromTickloop() {
+    void RemoveFromTickloop()
+    {
         this.tickloop.RemoveFromTickloop(this);
     }
 
-    void AddToTickloop() {
+    void AddToTickloop()
+    {
         if (!requestColor)
         {
             tickloop.AddToTickloop(this, ticksToTrigger, Trigger, PhasedOut);
@@ -103,7 +116,8 @@ public class TickloopAddable : MonoBehaviour
         triggeredByTickloop?.Invoke(this.tickloop);
     }
 
-    void PhasedOut() {
+    void PhasedOut()
+    {
         phasedOutTickEvent?.Invoke();
     }
 
