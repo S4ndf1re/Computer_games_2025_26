@@ -180,6 +180,14 @@ PrefabInstance:
       propertyPath: tickloop
       value: 
       objectReference: {fileID: 237717958}
+    - target: {fileID: 8290256820640534910, guid: 535c8e4fbbf74644c9f4892184cf4b54, type: 3}
+      propertyPath: enabledInColliders.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8290256820640534910, guid: 535c8e4fbbf74644c9f4892184cf4b54, type: 3}
+      propertyPath: 'enabledInColliders.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1766206341}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1002,6 +1010,14 @@ PrefabInstance:
       propertyPath: tickloop
       value: 
       objectReference: {fileID: 237717958}
+    - target: {fileID: 1540634950788169122, guid: c6c712da95eb643f1ad81a191a91f7e0, type: 3}
+      propertyPath: enabledInColliders.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1540634950788169122, guid: c6c712da95eb643f1ad81a191a91f7e0, type: 3}
+      propertyPath: 'enabledInColliders.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1766206341}
     - target: {fileID: 2251650378797950004, guid: c6c712da95eb643f1ad81a191a91f7e0, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
@@ -1135,6 +1151,14 @@ PrefabInstance:
       propertyPath: tickloop
       value: 
       objectReference: {fileID: 237717958}
+    - target: {fileID: 7013539635174063367, guid: 74b4753d00d179f449b7ca02c506a336, type: 3}
+      propertyPath: enabledInColliders.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013539635174063367, guid: 74b4753d00d179f449b7ca02c506a336, type: 3}
+      propertyPath: 'enabledInColliders.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1766206341}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1463,6 +1487,14 @@ PrefabInstance:
       propertyPath: every_nth
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6954867258087723979, guid: 14466ad39576c48ea9849fd9052d8318, type: 3}
+      propertyPath: enabledInColliders.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6954867258087723979, guid: 14466ad39576c48ea9849fd9052d8318, type: 3}
+      propertyPath: 'enabledInColliders.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1711266753}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3043,6 +3075,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1711266752}
+  - component: {fileID: 1711266754}
+  - component: {fileID: 1711266753}
   m_Layer: 0
   m_Name: jumpUpPassage
   m_TagString: Untagged
@@ -3070,6 +3104,39 @@ Transform:
   - {fileID: 510785105}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &1711266753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711266751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717e1a9107dcb450db7051530941021c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TickloopEnableCollider
+--- !u!65 &1711266754
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711266751}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 6.5384655, y: 13.541122, z: 2.9448805}
+  m_Center: {x: 14.016547, y: 29.16169, z: 0.03353256}
 --- !u!1 &1766206338
 GameObject:
   m_ObjectHideFlags: 0
@@ -3079,6 +3146,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1766206339}
+  - component: {fileID: 1766206340}
+  - component: {fileID: 1766206341}
   m_Layer: 0
   m_Name: Area2
   m_TagString: Untagged
@@ -3108,6 +3177,39 @@ Transform:
   - {fileID: 2018566397}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1766206340
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766206338}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 30.123787, y: 13.892105, z: 3.2727916}
+  m_Center: {x: 5.490494, y: 12.345671, z: -0.042247176}
+--- !u!114 &1766206341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766206338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717e1a9107dcb450db7051530941021c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TickloopEnableCollider
 --- !u!1001 &1907061867
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3461,11 +3563,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4250664478296845803, guid: e57677590fc62d64382f8fa9dbb7edde, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.63
+      value: 12.8
       objectReference: {fileID: 0}
     - target: {fileID: 4250664478296845803, guid: e57677590fc62d64382f8fa9dbb7edde, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.04
+      value: 24.61
       objectReference: {fileID: 0}
     - target: {fileID: 4250664478296845803, guid: e57677590fc62d64382f8fa9dbb7edde, type: 3}
       propertyPath: m_LocalPosition.z
