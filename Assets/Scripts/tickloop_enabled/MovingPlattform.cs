@@ -22,6 +22,9 @@ public class MovingPlatform : MonoBehaviour
     private Vector3 lastPosition;
 
     List<Collider> objectsOnPlatform = new List<Collider>();
+    List<Collider> collidedObjects = new List<Collider>();
+
+    private bool isInFixedUpdateCycle = false;
 
     void Start()
     {
@@ -29,26 +32,57 @@ public class MovingPlatform : MonoBehaviour
         tickloopAddable.triggeredByTickloop += MoveTowardsNextWaypoint;
     }
 
+
+    void FixedUpdate() {
+        isInFixedUpdateCycle = true;
+    }
+
     void Update()
     {
-        elapsedTime += Time.deltaTime;
-        if (isMoving)
-        {
-            float timePercentage = elapsedTime / timeToNextWaypoint;
-            transform.position = Vector3.Lerp(previousWaypoint.position, nextWaypoint.position, timePercentage);
-            Vector3 positiondelta = transform.position - lastPosition;
+
+        if(isInFixedUpdateCycle) {
+            List<Collider> toRemove = new List<Collider>();
             foreach (var collider in objectsOnPlatform)
             {
-                collider.enabled = false;
-                collider.transform.position += positiondelta;
-                collider.enabled = true;
+                if (!collidedObjects.Contains(collider))
+                {
+                    toRemove.Add(collider);
+                }
             }
-            lastPosition = transform.position;
-            if(timePercentage >= 1)
+
+            collidedObjects.Clear();
+
+            foreach (var collider in toRemove)
             {
-                isMoving = false;
+                Debug.Log("objectsOnPlatform.Remove(collider);");
+                objectsOnPlatform.Remove(collider);
             }
+
+            elapsedTime += Time.fixedDeltaTime;
+            if (isMoving)
+            {
+                float timePercentage = elapsedTime / timeToNextWaypoint;
+                transform.position = Vector3.Lerp(previousWaypoint.position, nextWaypoint.position, timePercentage);
+                Vector3 positiondelta = transform.position - lastPosition;
+                foreach (var collider in objectsOnPlatform)
+                {
+                    collider.enabled = false;
+                    collider.transform.position += positiondelta;
+                    collider.enabled = true;
+                }
+                lastPosition = transform.position;
+                if(timePercentage >= 1)
+                {
+                    isMoving = false;
+                }
+            }
+            
+            isInFixedUpdateCycle = false;
         }
+
+        
+
+
     }
     public void MoveTowardsNextWaypoint(Tickloop tp)
     {
@@ -70,17 +104,16 @@ public class MovingPlatform : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("ENter");
-        objectsOnPlatform.Add(other);
-        //other.transform.SetParent(transform, true);
-    }
 
-    private void OnTriggerExit(Collider other)
+    void OnTriggerStay(Collider other)
     {
-        Debug.Log("Exit");
-        objectsOnPlatform.Remove(other);
-        //other.transform.SetParent(null, true);
+        Debug.Log("Stay");
+        if (!objectsOnPlatform.Contains(other))
+        {
+            Debug.Log("objectsOnPlatform.Add(other);");
+            objectsOnPlatform.Add(other);
+        }
+
+        collidedObjects.Add(other);
     }
 }
