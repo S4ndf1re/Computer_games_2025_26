@@ -76,6 +76,11 @@ public class Velocity : MonoBehaviour
         }
     }
 
+    public Vector3 GetVelocity()
+    {
+        return velocity;
+    }
+
     /// <summary>
     /// Setting the velocity in u/s, except in the y direction. The y direction is added to apply gravity
     /// </summary>
