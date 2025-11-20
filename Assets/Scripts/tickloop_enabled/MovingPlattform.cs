@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 
 public class MovingPlatform : MonoBehaviour
@@ -39,7 +40,6 @@ public class MovingPlatform : MonoBehaviour
 
     void Update()
     {
-
         if(isInFixedUpdateCycle) {
             List<Collider> toRemove = new List<Collider>();
             foreach (var collider in objectsOnPlatform)
@@ -57,7 +57,14 @@ public class MovingPlatform : MonoBehaviour
                 Debug.Log("objectsOnPlatform.Remove(collider);");
                 objectsOnPlatform.Remove(collider);
             }
+        }
+    }
 
+
+    void LateUpdate()
+    {
+        if (isInFixedUpdateCycle)
+        {
             elapsedTime += Time.fixedDeltaTime;
             if (isMoving)
             {
@@ -66,9 +73,14 @@ public class MovingPlatform : MonoBehaviour
                 Vector3 positiondelta = transform.position - lastPosition;
                 foreach (var collider in objectsOnPlatform)
                 {
-                    collider.enabled = false;
-                    collider.transform.position += positiondelta;
-                    collider.enabled = true;
+                    var cc = collider.GetComponent<CharacterController>();
+                    if(cc)
+                        cc.Move(positiondelta);
+
+                    // var position = collider.transform.position;
+                    // position.x +=  positiondelta.x;
+                    // position.z +=  positiondelta.z;
+                    // collider.transform.position = position;
                 }
                 lastPosition = transform.position;
                 if(timePercentage >= 1)
@@ -76,12 +88,8 @@ public class MovingPlatform : MonoBehaviour
                     isMoving = false;
                 }
             }
-            
-            isInFixedUpdateCycle = false;
         }
-
-        
-
+        isInFixedUpdateCycle = false;
 
     }
     public void MoveTowardsNextWaypoint(Tickloop tp)

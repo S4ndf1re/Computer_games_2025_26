@@ -171,6 +171,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: MovingPlatform
       objectReference: {fileID: 0}
+    - target: {fileID: 2658907446067397017, guid: 535c8e4fbbf74644c9f4892184cf4b54, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 2658907446067397017, guid: 535c8e4fbbf74644c9f4892184cf4b54, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 4874554492176081522, guid: 535c8e4fbbf74644c9f4892184cf4b54, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8290256820640534910, guid: 535c8e4fbbf74644c9f4892184cf4b54, type: 3}
       propertyPath: tickloop
       value: 
@@ -1318,8 +1330,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.99999994, z: 1}
-  m_Center: {x: 0.00000023841858, y: 0.8, z: 0}
+  m_Size: {x: 1, y: 3, z: 1}
+  m_Center: {x: 0.00000023841858, y: 1.7, z: 0}
 --- !u!1 &1037104853
 GameObject:
   m_ObjectHideFlags: 0

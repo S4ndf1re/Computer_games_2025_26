@@ -59,7 +59,7 @@ public class Velocity : MonoBehaviour
         {
             ResetVelocity();
             // Reset to zero here, since we are using custom check and not collider check
-            velocity.y = 0f;
+            velocity.y = gravity;
         }
 
         if (!IsGrounded() && previouslyGrounded)
