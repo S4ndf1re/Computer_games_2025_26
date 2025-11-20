@@ -82,6 +82,7 @@ public class VelocityPlayerController : MonoBehaviour
 
         if (velocity.IsGrounded())
         {
+            lastGroundedTime = Time.time;
             isJumping = false;
         }
 
