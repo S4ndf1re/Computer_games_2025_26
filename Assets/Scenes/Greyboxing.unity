@@ -176,6 +176,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MovingPlatform
       objectReference: {fileID: 0}
+    - target: {fileID: 7122866616890641133, guid: 535c8e4fbbf74644c9f4892184cf4b54, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8290256820640534910, guid: 535c8e4fbbf74644c9f4892184cf4b54, type: 3}
       propertyPath: tickloop
       value: 
@@ -2850,6 +2854,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8457849602421325652, guid: e57677590fc62d64382f8fa9dbb7edde, type: 3}
+      propertyPath: platformFilter.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3334,7 +3342,7 @@ GameObject:
   - component: {fileID: 1989732987}
   - component: {fileID: 1989732986}
   - component: {fileID: 1989732985}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}

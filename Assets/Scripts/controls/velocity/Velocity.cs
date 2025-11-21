@@ -12,6 +12,7 @@ public class Velocity : MonoBehaviour
     public float maxFallingSpeed = float.PositiveInfinity;
 
     public LayerMask groundFilter;
+    public LayerMask platformFilter;
 
     [Header("Controller")]
     public CharacterController characterController;
@@ -55,8 +56,12 @@ public class Velocity : MonoBehaviour
             characterController.Move(velocity * Time.deltaTime);
         }
 
-        if (IsGrounded())
+        if (IsGrounded() && !IsOnPlattform())
         {
+            ResetVelocity();
+            // Reset to zero here, since we are using custom check and not collider check
+            velocity.y = 0f;
+        } else if (IsOnPlattform()) {
             ResetVelocity();
             // Reset to zero here, since we are using custom check and not collider check
             velocity.y = gravity;
@@ -164,7 +169,24 @@ public class Velocity : MonoBehaviour
             var position = transform.position;
             position.y += -characterController.height / 2f + characterController.radius - characterController.skinWidth;
             return Physics.CheckBox(position, radius * Vector3.one, transform.rotation,
-                                    groundFilter, QueryTriggerInteraction.Ignore);
+                                    groundFilter, QueryTriggerInteraction.Ignore)
+            || IsOnPlattform();
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool IsOnPlattform()
+    {
+        if (characterController != null)
+        {
+            var radius = characterController.radius;
+            var position = transform.position;
+            position.y += -characterController.height / 2f + characterController.radius - characterController.skinWidth;
+            return Physics.CheckBox(position, radius * Vector3.one, transform.rotation,
+                                    platformFilter, QueryTriggerInteraction.Ignore);
         }
         else
         {
