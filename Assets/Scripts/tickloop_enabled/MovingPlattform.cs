@@ -41,19 +41,18 @@ public class MovingPlatform : MonoBehaviour
         {
             float timePercentage = elapsedTime / timeToNextWaypoint;
             GetComponent<Rigidbody>().MovePosition(Vector3.Lerp(previousWaypoint.position, nextWaypoint.position, timePercentage));
-            // transform.position = Vector3.Lerp(previousWaypoint.position, nextWaypoint.position, timePercentage);
 
             // Vector3 positiondelta = transform.position - lastPosition;
             // foreach (var collider in objectsOnPlatform)
             // {
-            //     var deltaV = Vector3.Scale(new Vector3(1.0f, 0.0f, 1.0f), positiondelta);
+            //     var deltaV = Vector3.Scale(new Vector3(1.0f, 1.0f, 1.0f), positiondelta);
             //     collider.GetComponent<Velocity>()?.AddInstant(positiondelta);
             //     // var position = collider.transform.position;
             //     // position.x += positiondelta.x;
             //     // position.z += positiondelta.z;
             //     // collider.transform.position = position;
             // }
-            lastPosition = transform.position;
+            // lastPosition = transform.position;
             if (timePercentage >= 1)
             {
                 isMoving = false;
@@ -80,7 +79,7 @@ public class MovingPlatform : MonoBehaviour
             {
                 Debug.Log("objectsOnPlatform.Remove(collider);");
                 objectsOnPlatform.Remove(collider);
-                // collider.transform.SetParent(null);
+                collider.transform.SetParent(null);
                 // collider.GetComponent<Velocity>()?.EnableGravity();
             }
             isInFixedUpdateCycle = false;
@@ -116,7 +115,7 @@ public class MovingPlatform : MonoBehaviour
         {
             Debug.Log("objectsOnPlatform.Add(other);");
             objectsOnPlatform.Add(other);
-            // other.transform.SetParent(this.transform);
+            other.transform.SetParent(this.transform);
             // other.GetComponent<Velocity>()?.DisableGravity();
         }
 

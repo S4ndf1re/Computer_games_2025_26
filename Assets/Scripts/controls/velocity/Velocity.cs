@@ -33,7 +33,7 @@ public class Velocity : MonoBehaviour
         previouslyGrounded = IsGrounded();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (inputLocked)
         {
