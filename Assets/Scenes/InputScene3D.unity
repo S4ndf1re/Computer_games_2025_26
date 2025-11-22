@@ -480,13 +480,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3ef8496bc35460fb7c54ae1051f2c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VelocityPlayerController
+  cameraTransform: {fileID: 0}
+  lookSensitivity: 2
+  playerModel: {fileID: 0}
   moveSpeed: 5
   airSpeed: 0.5
   jumpHeight: 2
   gravity: -9.81
   maxJumpTime: 0.35
   holdJumpGravityMultiplier: 0.3
-  playerModel: {fileID: 0}
   rotationSmoothTime: 0.1
   coyoteTime: 0.15
   dashSpeed: 15
@@ -501,9 +503,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   wallSlideMaxTime: 2
+  CanDoubleJump: 1
+  DoubleJumpHeight: 1
+  DoubleJumpDelay: 0.15
   canWallJump: 0
-  cameraTransform: {fileID: 0}
-  lookSensitivity: 2
 --- !u!143 &1065968626
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1007,6 +1010,7 @@ GameObject:
   - component: {fileID: 1937687568}
   - component: {fileID: 1937687567}
   - component: {fileID: 1937687566}
+  - component: {fileID: 1937687575}
   m_Layer: 8
   m_Name: Robot
   m_TagString: Player
@@ -1098,6 +1102,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1937687575}
+        m_TargetAssemblyTypeName: PlayerAnimator, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: f1ba0d36-48eb-4cd5-b651-1c94a6531f70
     m_ActionName: 'Player3D/Jump[/Keyboard/space]'
   - m_PersistentCalls:
@@ -1114,6 +1130,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: VelocityPlayerController, Assembly-CSharp
         m_MethodName: OnDash
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1937687575}
+        m_TargetAssemblyTypeName: PlayerAnimator, Assembly-CSharp
+        m_MethodName: OnDash
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1193,13 +1221,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3ef8496bc35460fb7c54ae1051f2c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VelocityPlayerController
+  cameraTransform: {fileID: 383705752}
+  lookSensitivity: 2
+  playerModel: {fileID: 1284923259}
   moveSpeed: 5
   airSpeed: 5
   jumpHeight: 2
   gravity: -9.81
   maxJumpTime: 0.15
   holdJumpGravityMultiplier: 0.3
-  playerModel: {fileID: 1284923259}
   rotationSmoothTime: 0.1
   coyoteTime: 0.15
   dashSpeed: 15
@@ -1214,9 +1244,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   wallSlideMaxTime: 2
+  CanDoubleJump: 1
+  DoubleJumpHeight: 1
+  DoubleJumpDelay: 0.15
   canWallJump: 0
-  cameraTransform: {fileID: 383705752}
-  lookSensitivity: 2
 --- !u!114 &1937687568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1231,10 +1262,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Velocity
   velocity: {x: 0, y: 0, z: 0}
   gravity: -9.81
-  maxGroundVelocity: {x: Infinity, y: Infinity, z: Infinity}
-  minGroundVelocity: {x: -Infinity, y: -Infinity, z: -Infinity}
-  maxAirVelocity: {x: NaN, y: Infinity, z: NaN}
-  minAirVelocity: {x: NaN, y: -Infinity, z: NaN}
+  maxGroundVelocity: {x: 8, y: Infinity, z: 8}
+  minGroundVelocity: {x: -8, y: -Infinity, z: -8}
+  maxAirVelocity: {x: 8, y: Infinity, z: 8}
+  minAirVelocity: {x: -8, y: -Infinity, z: -8}
   characterController: {fileID: 1937687573}
   isGrounded: 0
 --- !u!114 &1937687569
@@ -1289,7 +1320,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1937687564}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!143 &1937687573
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1337,6 +1368,132 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1937687575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937687564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 078eac83389fd7d4ba66cb7b482c89d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimator
+  animator: {fileID: 1937687574}
+  velocity: {fileID: 1937687568}
+  AnimationAcceleration: 10
+--- !u!1 &2025007923
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2025007927}
+  - component: {fileID: 2025007926}
+  - component: {fileID: 2025007925}
+  - component: {fileID: 2025007924}
+  m_Layer: 6
+  m_Name: Cube (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &2025007924
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025007923}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &2025007925
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025007923}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &2025007926
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025007923}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &2025007927
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025007923}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -7.6, y: 5.12, z: 0}
+  m_LocalScale: {x: 14.579559, y: 1, z: 11.177}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &2069055999
 GameObject:
   m_ObjectHideFlags: 0
@@ -1454,5 +1611,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1862667465}
   - {fileID: 2069056003}
+  - {fileID: 2025007927}
   - {fileID: 1065968630}
   - {fileID: 933247366}
