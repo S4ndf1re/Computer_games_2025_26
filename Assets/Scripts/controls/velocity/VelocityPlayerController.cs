@@ -300,7 +300,6 @@ public class VelocityPlayerController : MonoBehaviour
             // Double Jump
             if (!velocity.IsGrounded() && !hasDoubleJumped && !isWallSliding)
             {
-                Debug.Log("DOUBLE JUMP!");
                 hasDoubleJumped = true;
                 velocity.Jump(jumpHeight);
                 isJumping = true;

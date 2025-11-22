@@ -6,8 +6,8 @@ public class PlayerAnimator : MonoBehaviour
     /// Serializable Fields
     /// ---------------------------
     public Animator animator;
-
     public Velocity velocity;
+    public VelocityPlayerController velocityPlayerController;
     public float AnimationAcceleration = 10.0f;
 
     /// ---------------------------
@@ -19,12 +19,12 @@ public class PlayerAnimator : MonoBehaviour
     private int animIDGrounded;
     private int animIDJump;
     private int animIDFreeFall;
-    //private int animIDMotionSpeed;
+    private int animIDMotionSpeed;
     //private int animIDPunch;
     //private int animIDPush;
     //private int animIDCrawl;
 
-    private float animationBlend;
+    private float animationBlend = 1;
 
     //Movement Bools
     private bool isMoving;
@@ -38,20 +38,23 @@ public class PlayerAnimator : MonoBehaviour
 
     void Update()
     {
-        if (velocity.GetVelocity().magnitude > 0)
-        {
-            animationBlend = Mathf.Lerp(animationBlend, velocity.GetVelocity().magnitude, Time.deltaTime * AnimationAcceleration);
-            if (animationBlend < 0.01f) animationBlend = 0f;
-            animator.SetFloat(animIDSpeed, animationBlend);
-        }
+        Vector3 currentVelocity = velocity.GetVelocity();
+        float horizontalSpeed = new Vector2(currentVelocity.x, currentVelocity.z).magnitude;
 
-        Debug.Log(velocity.IsGrounded());
+        animationBlend = Mathf.Lerp(animationBlend, horizontalSpeed, Time.deltaTime * AnimationAcceleration);
+        if (animationBlend < 0.01f) animationBlend = 0f;
+        Debug.Log(animationBlend);
+        animator.SetFloat(animIDMotionSpeed, animationBlend);
+        animator.SetFloat(animIDSpeed, 1);
+
         if (velocity.IsGrounded())
         {
             animator.SetBool(animIDJump, false);
             animator.SetBool(animIDFreeFall, false);
+            animator.SetBool(animIDGrounded, true);
         } else
         {
+            animator.SetBool(animIDGrounded, false);
             animator.SetBool(animIDFreeFall, true);
         }
 
@@ -63,7 +66,7 @@ public class PlayerAnimator : MonoBehaviour
         animIDGrounded = Animator.StringToHash("Grounded");
         animIDJump = Animator.StringToHash("Jump");
         animIDFreeFall = Animator.StringToHash("FreeFall");
-        //animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
+        animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
         //animIDPunch = Animator.StringToHash("Punch");
         //animIDPush = Animator.StringToHash("Push");
         //animIDCrawl = Animator.StringToHash("Crawl");
