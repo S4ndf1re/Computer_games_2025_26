@@ -18,7 +18,6 @@ public class VelocityPlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     public float airSpeed = 200f;
     public float jumpHeight = 2f;
-    public float gravity = -9.81f;
     public float maxJumpTime = 0.35f;
     public float holdJumpGravityMultiplier = 0.3f;
     public bool disableZMovement = false;
@@ -123,9 +122,8 @@ public class VelocityPlayerController : MonoBehaviour
         Vector3 move = camForward * moveInput.y + camRight * moveInput.x;
 
         // Bewegung (lokal)
-        Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
         if (disableZMovement) {
-            move = transform.right * moveInput.x;
+            move = camRight * moveInput.x;
         }
 
         if (velocity.IsGrounded())
@@ -340,7 +338,7 @@ public class VelocityPlayerController : MonoBehaviour
 
         if (Time.time - lastDashTime < dashCooldown)
             return;
-        
+
         isDashing = true;
     }
 }

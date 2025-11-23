@@ -13,7 +13,7 @@ public class PlayerAnimator : MonoBehaviour
     /// ---------------------------
     /// Internal Variables
     /// ---------------------------
-    
+
     // Animator IDs
     private int animIDSpeed;
     private int animIDGrounded;
@@ -44,11 +44,10 @@ public class PlayerAnimator : MonoBehaviour
         animationBlend = Mathf.Lerp(animationBlend, horizontalSpeed, Time.deltaTime * AnimationAcceleration);
         if (animationBlend < 0.01f) animationBlend = 0f;
 
-        Debug.Log(animationBlend);
         animator.SetFloat(animIDMotionSpeed, 1);
         animator.SetFloat(animIDSpeed, animationBlend);
 
-        if (velocity.IsGrounded())
+        if (velocity.isGrounded)
         {
             animator.SetBool(animIDJump, false);
             animator.SetBool(animIDFreeFall, false);
@@ -76,7 +75,7 @@ public class PlayerAnimator : MonoBehaviour
     /// ---------------------------
     /// Input Callbacks
     /// ---------------------------
-    
+
     public void OnJump()
     {
         animator.SetBool(animIDJump, true);

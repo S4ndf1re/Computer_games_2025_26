@@ -20,6 +20,7 @@ public class Velocity : MonoBehaviour
 
     [Header("Debug")]
     public bool isGrounded;
+    public bool isOnPlattform;
     public bool gravityDisabled = false;
     private bool inputLocked = false;
     private float lockedTimer = 0.0f;
@@ -60,7 +61,7 @@ public class Velocity : MonoBehaviour
         {
             ResetVelocity();
             // Reset to zero here, since we are using custom check and not collider check
-            velocity.y = 0f;
+            velocity.y = gravity;
         } else if (IsOnPlattform()) {
             ResetVelocity();
             // Reset to zero here, since we are using custom check and not collider check
@@ -79,6 +80,7 @@ public class Velocity : MonoBehaviour
 
         // Debug
         isGrounded = IsGrounded();
+        isOnPlattform = IsOnPlattform();
     }
 
     public void AddInstant(Vector3 toAdd)
@@ -161,32 +163,18 @@ public class Velocity : MonoBehaviour
         return this.velocity.y < 0f;
     }
 
-    /*
     public bool IsGrounded()
     {
         if (characterController != null)
         {
             var radius = characterController.radius;
             var position = transform.position;
-            position.y += -characterController.height / 2f + characterController.radius - characterController.skinWidth;
-            return Physics.CheckBox(position, radius * Vector3.one, transform.rotation,
-                                    groundFilter, QueryTriggerInteraction.Ignore)
-            || IsOnPlattform();
-        }
-        else
-        {
-            return false;
-        }
-    }
-    */
-
-    public bool IsGrounded()
-    {
-        if (characterController != null)
-        {
-            var radius = characterController.radius;
-            var position = transform.position;
-            position.y += -characterController.height / 2f + characterController.radius - characterController.skinWidth;
+            position.y += -characterController.height / 2f + characterController.radius - characterController.skinWidth*2f;
+            if (t != null) {
+                t.transform.position = position;
+                t.transform.rotation = transform.rotation;
+                t.transform.localScale = 2f * radius * Vector3.one;
+            }
             return Physics.CheckBox(position, radius * Vector3.one, transform.rotation,
                                     groundFilter, QueryTriggerInteraction.Ignore)
             || IsOnPlattform();
@@ -204,22 +192,10 @@ public class Velocity : MonoBehaviour
             var radius = characterController.radius;
             var position = transform.position;
             position.y += -characterController.height / 2f + characterController.radius - characterController.skinWidth;
-            return Physics.CheckBox(position, radius * Vector3.one, transform.rotation,
-                                    platformFilter, QueryTriggerInteraction.Ignore);
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public bool IsOnPlattform()
-    {
-        if (characterController != null)
-        {
-            var radius = characterController.radius;
-            var position = transform.position;
-            position.y += -characterController.height / 2f + characterController.radius - characterController.skinWidth;
+            // if (t != null) {
+            //     t.transform.position = position;
+            //     t.transform.rotation = transform.rotation;
+            // }
             return Physics.CheckBox(position, radius * Vector3.one, transform.rotation,
                                     platformFilter, QueryTriggerInteraction.Ignore);
         }
