@@ -161,6 +161,7 @@ public class Velocity : MonoBehaviour
         return this.velocity.y < 0f;
     }
 
+    /*
     public bool IsGrounded()
     {
         if (characterController != null)
@@ -171,6 +172,40 @@ public class Velocity : MonoBehaviour
             return Physics.CheckBox(position, radius * Vector3.one, transform.rotation,
                                     groundFilter, QueryTriggerInteraction.Ignore)
             || IsOnPlattform();
+        }
+        else
+        {
+            return false;
+        }
+    }
+    */
+
+    public bool IsGrounded()
+    {
+        if (characterController != null)
+        {
+            var radius = characterController.radius;
+            var position = transform.position;
+            position.y += -characterController.height / 2f + characterController.radius - characterController.skinWidth;
+            return Physics.CheckBox(position, radius * Vector3.one, transform.rotation,
+                                    groundFilter, QueryTriggerInteraction.Ignore)
+            || IsOnPlattform();
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool IsOnPlattform()
+    {
+        if (characterController != null)
+        {
+            var radius = characterController.radius;
+            var position = transform.position;
+            position.y += -characterController.height / 2f + characterController.radius - characterController.skinWidth;
+            return Physics.CheckBox(position, radius * Vector3.one, transform.rotation,
+                                    platformFilter, QueryTriggerInteraction.Ignore);
         }
         else
         {

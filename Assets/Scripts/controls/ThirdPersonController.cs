@@ -232,7 +232,6 @@ namespace StarterAssets
             _animIDCrawl = Animator.StringToHash("Crawl");
         }
 
-
         /// <summary>
         /// Checks whether a player is in contact with a ground layer.
         /// </summary>
