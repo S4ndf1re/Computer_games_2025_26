@@ -453,12 +453,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Velocity
   velocity: {x: 0, y: 0, z: 0}
   gravity: -9.81
-  maxGroundVelocity: {x: Infinity, y: Infinity, z: Infinity}
-  minGroundVelocity: {x: -Infinity, y: -Infinity, z: -Infinity}
-  maxAirVelocity: {x: NaN, y: Infinity, z: NaN}
-  minAirVelocity: {x: NaN, y: -Infinity, z: NaN}
+  maxXYGroundSpeed: 5
+  maxXYAirSpeed: 5
+  maxFallingSpeed: Infinity
+  groundFilter:
+    serializedVersion: 2
+    m_Bits: 0
+  platformFilter:
+    serializedVersion: 2
+    m_Bits: 0
   characterController: {fileID: 1065968626}
   isGrounded: 0
+  gravityDisabled: 0
+  t: {fileID: 0}
 --- !u!114 &1065968625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1253,12 +1260,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Velocity
   velocity: {x: 0, y: 0, z: 0}
   gravity: -9.81
-  maxGroundVelocity: {x: Infinity, y: Infinity, z: Infinity}
-  minGroundVelocity: {x: -Infinity, y: -Infinity, z: -Infinity}
-  maxAirVelocity: {x: NaN, y: Infinity, z: NaN}
-  minAirVelocity: {x: NaN, y: -Infinity, z: NaN}
+  maxXYGroundSpeed: 5
+  maxXYAirSpeed: 5
+  maxFallingSpeed: Infinity
+  groundFilter:
+    serializedVersion: 2
+    m_Bits: 0
+  platformFilter:
+    serializedVersion: 2
+    m_Bits: 0
   characterController: {fileID: 1937687573}
   isGrounded: 0
+  gravityDisabled: 0
+  t: {fileID: 0}
 --- !u!114 &1937687569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1334,9 +1348,9 @@ CharacterController:
   m_Radius: 0.28
   m_SlopeLimit: 45
   m_StepOffset: 0.25
-  m_SkinWidth: 0.0001
+  m_SkinWidth: 0.1
   m_MinMoveDistance: 0
-  m_Center: {x: 0, y: 0.93, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!95 &1937687574
 Animator:
   serializedVersion: 7

@@ -38,7 +38,7 @@ public class PlayerAnimator : MonoBehaviour
 
     void Update()
     {
-        Vector3 currentVelocity = velocity.GetVelocity();
+        Vector3 currentVelocity = velocity.velocity;
         float horizontalSpeed = new Vector2(currentVelocity.x, currentVelocity.z).magnitude;
 
         animationBlend = Mathf.Lerp(animationBlend, horizontalSpeed, Time.deltaTime * AnimationAcceleration);

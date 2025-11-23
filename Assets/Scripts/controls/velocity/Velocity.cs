@@ -5,12 +5,14 @@ public class Velocity : MonoBehaviour
 
     public Vector3 velocity;
     public float gravity = -9.81f;
-    public Vector3 maxGroundVelocity = Vector3.positiveInfinity;
-    public Vector3 minGroundVelocity = Vector3.negativeInfinity;
 
-    public Vector3 maxAirVelocity = Vector3.right * 10f + Vector3.forward * 10f + Vector3.up * float.PositiveInfinity;
-    public Vector3 minAirVelocity = Vector3.left * 10f + Vector3.back * 10f + Vector3.down * float.PositiveInfinity;
+    public float maxXYGroundSpeed = 5f;
+    public float maxXYAirSpeed = 5f;
 
+    public float maxFallingSpeed = float.PositiveInfinity;
+
+    public LayerMask groundFilter;
+    public LayerMask platformFilter;
 
     [Header("Controller")]
     public CharacterController characterController;
@@ -18,20 +20,26 @@ public class Velocity : MonoBehaviour
 
     [Header("Debug")]
     public bool isGrounded;
-    private bool gravityDisabled = false;
+    public bool gravityDisabled = false;
     private bool inputLocked = false;
     private float lockedTimer = 0.0f;
+    private bool previouslyGrounded = true;
+
+    public Transform t;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        previouslyGrounded = IsGrounded();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if(inputLocked) {
+        if (inputLocked)
+        {
             lockedTimer -= Time.deltaTime;
-            if (lockedTimer <= 0f) {
+            if (lockedTimer <= 0f)
+            {
                 inputLocked = false;
             }
         }
@@ -48,37 +56,39 @@ public class Velocity : MonoBehaviour
             characterController.Move(velocity * Time.deltaTime);
         }
 
-        if (IsGrounded())
+        if (IsGrounded() && !IsOnPlattform())
         {
             ResetVelocity();
+            // Reset to zero here, since we are using custom check and not collider check
+            velocity.y = 0f;
+        } else if (IsOnPlattform()) {
+            ResetVelocity();
+            // Reset to zero here, since we are using custom check and not collider check
             velocity.y = gravity;
         }
+
+        if (!IsGrounded() && previouslyGrounded)
+        {
+            var oldVelocity = new Vector2(this.velocity.x, this.velocity.z);
+            ResetVelocity();
+            this.velocity.x = oldVelocity.x;
+            this.velocity.z = oldVelocity.y;
+        }
+
+        previouslyGrounded = IsGrounded();
+
+        // Debug
         isGrounded = IsGrounded();
     }
 
     public void AddInstant(Vector3 toAdd)
     {
-        if (inputLocked) {
+        if (inputLocked)
+        {
             return;
         }
         this.velocity += toAdd;
-        if (IsGrounded())
-        {
-            this.velocity.x = Mathf.Clamp(this.velocity.x, minGroundVelocity.x, maxGroundVelocity.x);
-            this.velocity.y = Mathf.Clamp(this.velocity.y, minGroundVelocity.y, maxGroundVelocity.y);
-            this.velocity.z = Mathf.Clamp(this.velocity.z, minGroundVelocity.z, maxGroundVelocity.z);
-        }
-        else
-        {
-            this.velocity.x = Mathf.Clamp(this.velocity.x, minAirVelocity.x, maxAirVelocity.x);
-            this.velocity.y = Mathf.Clamp(this.velocity.y, minAirVelocity.y, maxAirVelocity.y);
-            this.velocity.z = Mathf.Clamp(this.velocity.z, minAirVelocity.z, maxAirVelocity.z);
-        }
-    }
-
-    public Vector3 GetVelocity()
-    {
-        return velocity;
+        ClampVelocity();
     }
 
     /// <summary>
@@ -86,65 +96,64 @@ public class Velocity : MonoBehaviour
     /// </summary>
     public void SetInstant(Vector3 toAdd)
     {
-        if (inputLocked) {
+        if (inputLocked)
+        {
             return;
         }
         this.velocity.x = toAdd.x;
         this.velocity.y += toAdd.y;
         this.velocity.z = toAdd.z;
-        if (IsGrounded())
-        {
-            this.velocity.x = Mathf.Clamp(this.velocity.x, minGroundVelocity.x, maxGroundVelocity.x);
-            this.velocity.y = Mathf.Clamp(this.velocity.y, minGroundVelocity.y, maxGroundVelocity.y);
-            this.velocity.z = Mathf.Clamp(this.velocity.z, minGroundVelocity.z, maxGroundVelocity.z);
-        }
-        else
-        {
-            this.velocity.x = Mathf.Clamp(this.velocity.x, minAirVelocity.x, maxAirVelocity.x);
-            this.velocity.y = Mathf.Clamp(this.velocity.y, minAirVelocity.y, maxAirVelocity.y);
-            this.velocity.z = Mathf.Clamp(this.velocity.z, minAirVelocity.z, maxAirVelocity.z);
-        }
+
+        ClampVelocity();
     }
 
-    public void SetInstant(Vector3 toAdd, bool withoutY ) {
-        if (inputLocked) {
+    public void SetInstant(Vector3 toAdd, bool withoutY)
+    {
+        if (inputLocked)
+        {
             return;
         }
         this.velocity.x = toAdd.x;
-        if (!withoutY) {
+        if (!withoutY)
+        {
             this.velocity.y += toAdd.y;
         }
         this.velocity.z = toAdd.z;
+
+        ClampVelocity();
+    }
+
+    void ClampVelocity()
+    {
         if (IsGrounded())
         {
-            this.velocity.x = Mathf.Clamp(this.velocity.x, minGroundVelocity.x, maxGroundVelocity.x);
-            this.velocity.y = Mathf.Clamp(this.velocity.y, minGroundVelocity.y, maxGroundVelocity.y);
-            this.velocity.z = Mathf.Clamp(this.velocity.z, minGroundVelocity.z, maxGroundVelocity.z);
+            Vector2 xySpeed = new Vector2(this.velocity.x, this.velocity.z);
+            xySpeed = Vector2.ClampMagnitude(xySpeed, maxXYGroundSpeed);
+
+            this.velocity.x = xySpeed.x;
+            this.velocity.z = xySpeed.y;
         }
         else
         {
-            this.velocity.x = Mathf.Clamp(this.velocity.x, minAirVelocity.x, maxAirVelocity.x);
-            this.velocity.y = Mathf.Clamp(this.velocity.y, minAirVelocity.y, maxAirVelocity.y);
-            this.velocity.z = Mathf.Clamp(this.velocity.z, minAirVelocity.z, maxAirVelocity.z);
+            Vector2 xySpeed = new Vector2(this.velocity.x, this.velocity.z);
+            xySpeed = Vector2.ClampMagnitude(xySpeed, maxXYAirSpeed);
+
+            this.velocity.x = xySpeed.x;
+            this.velocity.z = xySpeed.y;
         }
+        this.velocity.y = Mathf.Clamp(this.velocity.y, -maxFallingSpeed, maxFallingSpeed);
     }
 
     public void SetY(float y)
     {
-        if(IsGrounded()) {
-            this.velocity.y = Mathf.Clamp(y, minGroundVelocity.y, maxGroundVelocity.y);
-        } else {
-            this.velocity.y = Mathf.Clamp(y, minAirVelocity.y, maxAirVelocity.y);
-        }
+        this.velocity.y = y;
+        ClampVelocity();
     }
 
     public void AddY(float y)
     {
-        if(IsGrounded()) {
-            this.velocity.y = Mathf.Clamp(this.velocity.y + y, minGroundVelocity.y, maxGroundVelocity.y);
-        } else {
-            this.velocity.y = Mathf.Clamp(this.velocity.y + y, minAirVelocity.y, maxAirVelocity.y);
-        }
+        this.velocity.y += y;
+        ClampVelocity();
     }
 
     public bool IsFalling()
@@ -152,11 +161,46 @@ public class Velocity : MonoBehaviour
         return this.velocity.y < 0f;
     }
 
+    /*
+    public bool IsGrounded()
+    {
+        if (characterController != null)
+        {
+            var radius = characterController.radius;
+            var position = transform.position;
+            position.y += -characterController.height / 2f + characterController.radius - characterController.skinWidth;
+            return Physics.CheckBox(position, radius * Vector3.one, transform.rotation,
+                                    groundFilter, QueryTriggerInteraction.Ignore)
+            || IsOnPlattform();
+        }
+        else
+        {
+            return false;
+        }
+    }
+    */
+
     public bool IsGrounded()
     {
         if (characterController != null)
         {
             return characterController.isGrounded;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool IsOnPlattform()
+    {
+        if (characterController != null)
+        {
+            var radius = characterController.radius;
+            var position = transform.position;
+            position.y += -characterController.height / 2f + characterController.radius - characterController.skinWidth;
+            return Physics.CheckBox(position, radius * Vector3.one, transform.rotation,
+                                    platformFilter, QueryTriggerInteraction.Ignore);
         }
         else
         {
@@ -182,13 +226,16 @@ public class Velocity : MonoBehaviour
 
     public void Jump(float jumpHeight)
     {
-        if (inputLocked) {
+        if (inputLocked)
+        {
             return;
         }
         velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        previouslyGrounded = false;
     }
 
-    public void LockInputForSeconds(float duration) {
+    public void LockInputForSeconds(float duration)
+    {
         inputLocked = true;
         lockedTimer = duration;
     }
