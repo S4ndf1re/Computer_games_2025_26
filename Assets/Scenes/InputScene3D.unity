@@ -1222,22 +1222,22 @@ MonoBehaviour:
   cameraTransform: {fileID: 383705752}
   lookSensitivity: 2
   playerModel: {fileID: 1284923259}
-  moveSpeed: 5
-  airSpeed: 5
+  moveSpeed: 20
+  airSpeed: 250
   jumpHeight: 2
   gravity: -9.81
   maxJumpTime: 0.15
   holdJumpGravityMultiplier: 0.3
   rotationSmoothTime: 0.1
   coyoteTime: 0.15
-  dashSpeed: 15
+  dashSpeed: 50
   dashDuration: 0.2
   dashCooldown: 0.5
   wallCheckDistance: 0.6
   wallSlideSpeed: 2
   wallJumpForce: 7
   wallJumpAngle: {x: 1, y: 1.5}
-  inputLockAfterJump: 0.5
+  inputLockAfterJump: 0.1
   wallLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -1350,7 +1350,7 @@ CharacterController:
   m_StepOffset: 0.25
   m_SkinWidth: 0.1
   m_MinMoveDistance: 0
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.93, z: 0}
 --- !u!95 &1937687574
 Animator:
   serializedVersion: 7

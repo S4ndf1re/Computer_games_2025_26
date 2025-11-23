@@ -24,7 +24,7 @@ public class PlayerAnimator : MonoBehaviour
     //private int animIDPush;
     //private int animIDCrawl;
 
-    private float animationBlend = 1;
+    private float animationBlend;
 
     //Movement Bools
     private bool isMoving;
@@ -43,9 +43,10 @@ public class PlayerAnimator : MonoBehaviour
 
         animationBlend = Mathf.Lerp(animationBlend, horizontalSpeed, Time.deltaTime * AnimationAcceleration);
         if (animationBlend < 0.01f) animationBlend = 0f;
+
         Debug.Log(animationBlend);
-        animator.SetFloat(animIDMotionSpeed, animationBlend);
-        animator.SetFloat(animIDSpeed, 1);
+        animator.SetFloat(animIDMotionSpeed, 1);
+        animator.SetFloat(animIDSpeed, animationBlend);
 
         if (velocity.IsGrounded())
         {
@@ -83,6 +84,6 @@ public class PlayerAnimator : MonoBehaviour
 
     public void OnDash()
     {
-        animator.SetTrigger("Dash");
+        //animator.SetTrigger("Dash");
     }
 }
