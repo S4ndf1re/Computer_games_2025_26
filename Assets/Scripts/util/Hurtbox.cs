@@ -25,6 +25,7 @@ public class Hurtbox : MonoBehaviour
     {
         if (isIntersecting)
         {
+            Debug.Log("hurtbox is hurting");
             intersectingSinceSeconds += Time.deltaTime;
         }
     }

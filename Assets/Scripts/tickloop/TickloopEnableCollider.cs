@@ -44,7 +44,6 @@ public class TickloopEnableCollider : MonoBehaviour
         {
             if (!collidedPlayers.Contains(player))
             {
-                Debug.Log("collided does not contain player");
                 toRemove.Add(player);
             }
         }
@@ -59,7 +58,6 @@ public class TickloopEnableCollider : MonoBehaviour
         // Only disable, when we actually removed any players
         if (currentlyActive.Count == 0 && toRemove.Count > 0)
         {
-            Debug.Log("Disabeling");
             disableEvent?.Invoke();
         }
 
@@ -73,10 +71,8 @@ public class TickloopEnableCollider : MonoBehaviour
         {
             if (!currentlyActive.Contains(player))
             {
-                Debug.Log("Does Not contain player");
                 if (currentlyActive.Count == 0)
                 {
-                    Debug.Log("Enabeling");
                     enableEvent?.Invoke();
                 }
 

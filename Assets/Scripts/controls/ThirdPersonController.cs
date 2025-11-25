@@ -232,7 +232,6 @@ namespace StarterAssets
             _animIDCrawl = Animator.StringToHash("Crawl");
         }
 
-
         /// <summary>
         /// Checks whether a player is in contact with a ground layer.
         /// </summary>
@@ -467,7 +466,7 @@ namespace StarterAssets
 
                 // Reset slight downward velocity
                 if (_verticalVelocity < 0.0f)
-                    _verticalVelocity = -2f;
+                    _verticalVelocity = Gravity;
 
                 // Normal jump from ground
                 if (_input.jump && _jumpTimeoutDelta <= 0.0f)

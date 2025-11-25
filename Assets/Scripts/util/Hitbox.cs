@@ -13,6 +13,7 @@ public class Hitbox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("hitbox is hitting");
         Hurtbox hurtbox = other.GetComponent<Hurtbox>();
 
         if (hurtbox != null)

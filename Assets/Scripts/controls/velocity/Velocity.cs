@@ -12,6 +12,7 @@ public class Velocity : MonoBehaviour
     public float maxFallingSpeed = float.PositiveInfinity;
 
     public LayerMask groundFilter;
+    public LayerMask platformFilter;
 
     [Header("Controller")]
     public CharacterController characterController;
@@ -19,7 +20,8 @@ public class Velocity : MonoBehaviour
 
     [Header("Debug")]
     public bool isGrounded;
-    private bool gravityDisabled = false;
+    public bool isOnPlattform;
+    public bool gravityDisabled = false;
     private bool inputLocked = false;
     private float lockedTimer = 0.0f;
     private bool previouslyGrounded = true;
@@ -32,7 +34,7 @@ public class Velocity : MonoBehaviour
         previouslyGrounded = IsGrounded();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (inputLocked)
         {
@@ -55,22 +57,30 @@ public class Velocity : MonoBehaviour
             characterController.Move(velocity * Time.deltaTime);
         }
 
-        if (IsGrounded())
+        if (IsGrounded() && !IsOnPlattform())
         {
             ResetVelocity();
             // Reset to zero here, since we are using custom check and not collider check
-            velocity.y = 0f;
+            velocity.y = gravity;
+        } else if (IsOnPlattform()) {
+            ResetVelocity();
+            // Reset to zero here, since we are using custom check and not collider check
+            velocity.y = gravity;
         }
 
         if (!IsGrounded() && previouslyGrounded)
         {
+            var oldVelocity = new Vector2(this.velocity.x, this.velocity.z);
             ResetVelocity();
+            this.velocity.x = oldVelocity.x;
+            this.velocity.z = oldVelocity.y;
         }
 
         previouslyGrounded = IsGrounded();
 
         // Debug
         isGrounded = IsGrounded();
+        isOnPlattform = IsOnPlattform();
     }
 
     public void AddInstant(Vector3 toAdd)
@@ -157,11 +167,37 @@ public class Velocity : MonoBehaviour
     {
         if (characterController != null)
         {
-            var radius = characterController.radius - 0.2f;
+            var radius = characterController.radius;
             var position = transform.position;
-            position.y += -characterController.height / 2f + characterController.radius - characterController.skinWidth - 0.2f;
+            position.y += -characterController.height / 2f + characterController.radius - characterController.skinWidth*2f;
+            if (t != null) {
+                t.transform.position = position;
+                t.transform.rotation = transform.rotation;
+                t.transform.localScale = 2f * radius * Vector3.one;
+            }
             return Physics.CheckBox(position, radius * Vector3.one, transform.rotation,
-                                    groundFilter, QueryTriggerInteraction.Ignore);
+                                    groundFilter, QueryTriggerInteraction.Ignore)
+            || IsOnPlattform();
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool IsOnPlattform()
+    {
+        if (characterController != null)
+        {
+            var radius = characterController.radius;
+            var position = transform.position;
+            position.y += -characterController.height / 2f + characterController.radius - characterController.skinWidth;
+            // if (t != null) {
+            //     t.transform.position = position;
+            //     t.transform.rotation = transform.rotation;
+            // }
+            return Physics.CheckBox(position, radius * Vector3.one, transform.rotation,
+                                    platformFilter, QueryTriggerInteraction.Ignore);
         }
         else
         {

@@ -4,13 +4,28 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Velocity))]
 public class VelocityPlayerController : MonoBehaviour
 {
+    /// ---------------------------
+    /// Serializable Fields
+    /// ---------------------------
+    [Header("Camera Settings")]
+    public Transform cameraTransform;
+    public float lookSensitivity = 2f;
+
+    [Header("Player Model")]
+    public Transform playerModel;
+
     [Header("Movement Settings")]
     public float moveSpeed = 5f;
     public float airSpeed = 200f;
     public float jumpHeight = 2f;
-    public float gravity = -9.81f;
     public float maxJumpTime = 0.35f;
     public float holdJumpGravityMultiplier = 0.3f;
+    public bool disableZMovement = false;
+
+    [Header("Rotation Settings")]
+    public float rotationSmoothTime = 0.1f;
+    private float rotationVelocity;
+    private float targetRotation;
 
     [Header("Coyote Time Settings")]
     public float coyoteTime = 0.15f;
@@ -27,37 +42,50 @@ public class VelocityPlayerController : MonoBehaviour
     public Vector2 wallJumpAngle = new Vector2(1f, 1.5f);
     public float inputLockAfterJump = 0.5f;
     public LayerMask wallLayer;
-    public float wallSlideMaxTime = 2f; // <--- NEU
+    public float wallSlideMaxTime = 2f;
 
-    // intern
-    private bool isTouchingWall;
-    private bool isWallSliding;
-    public bool canWallJump;
-    private float wallSlideStartTime; // <--- NEU
+    [Header("Double Jump Settings")]
+    public bool CanDoubleJump = true;
+    public float DoubleJumpHeight = 1.0f;
+    public float DoubleJumpDelay = 0.15f;
 
-    private Vector3 lastWallNormal;
-
-    [Header("Camera Settings")]
-    public Transform cameraTransform;
-    public float lookSensitivity = 2f;
-
+    /// ---------------------------
+    /// Internal Variables
+    /// ---------------------------
+    // Movement
+    private Velocity velocity;
     private Vector2 moveInput;
+
+    // Rotation
     private Vector2 lookInput;
     private float xRotation = 0f;
 
-    private bool isJumping;
-    private bool isHoldingJump;
-    private float jumpTimeCounter;
-    private float lastGroundedTime;
-
+    // Dash
     private bool isDashing = false;
     private float dashEndTime = 0f;
     private float lastDashTime = -999f;
     private Vector3 dashDirection;
 
+    // Wall Climb
+    private bool isTouchingWall;
+    private bool isWallSliding;
+    public bool canWallJump;
+    private float wallSlideStartTime;
+    private Vector3 lastWallNormal;
 
-    private Velocity velocity;
+    // Jump
+    private bool isJumping;
+    private bool isHoldingJump;
+    private float jumpTimeCounter;
+    private float lastGroundedTime;
 
+    // Double Jump
+    private float doubleJumpDelayTimer = 0f;
+    private bool hasDoubleJumped = false;
+
+    /// ---------------------------
+    /// Object Functions
+    /// ---------------------------
     void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -66,33 +94,44 @@ public class VelocityPlayerController : MonoBehaviour
 
     void Update()
     {
+        HandleRotation();
         HandleMovement();
+        HandleDash();
         HandleWallSlide();
     }
 
+    /// ---------------------------
+    /// Internal Functions
+    /// ---------------------------
+
+    /// <summary>
+    /// Handles Movement and Jumping
+    /// </summary>
     void HandleMovement()
     {
+        // Camera-relative movement
+        Vector3 camForward = cameraTransform.forward;
+        Vector3 camRight = cameraTransform.right;
+
+        camForward.y = 0;
+        camRight.y = 0;
+
+        camForward.Normalize();
+        camRight.Normalize();
+
+        Vector3 move = camForward * moveInput.y + camRight * moveInput.x;
 
         // Bewegung (lokal)
-        Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
+        if (disableZMovement) {
+            move = camRight * moveInput.x;
+        }
+
         if (velocity.IsGrounded())
         {
+            lastGroundedTime = Time.time;
             isJumping = false;
+            hasDoubleJumped = false;
         }
-
-        // DASH
-        if (isDashing)
-        {
-            velocity.DisableGravity();
-            velocity.SetInstant(dashDirection * dashSpeed);
-            if (Time.time >= dashEndTime)
-            {
-                velocity.ResetVelocity();
-                isDashing = false;
-            }
-            return;
-        }
-
 
         // Wenn wallslide aktiv ist, fall langsamer
         if (isWallSliding)
@@ -120,6 +159,9 @@ public class VelocityPlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles Checking if the player is currently wallsliding
+    /// </summary>
     void HandleWallSlide()
     {
         // Raycast in Bewegungsrichtung, um Wand zu finden
@@ -152,9 +194,81 @@ public class VelocityPlayerController : MonoBehaviour
         }
     }
 
-    // ---------------------------
-    // Input Callbacks
-    // ---------------------------
+    /// <summary>
+    /// Handles Rotation of Player Model based on move direction
+    /// </summary>
+    void HandleRotation()
+    {
+        if (moveInput.sqrMagnitude < 0.01f)
+            return;
+
+        if (cameraTransform == null || playerModel == null)
+            return;
+
+        // Camera Relative
+        Vector3 camForward = cameraTransform.forward;
+        Vector3 camRight = cameraTransform.right;
+
+        camForward.y = 0;
+        camRight.y = 0;
+        camForward.Normalize();
+        camRight.Normalize();
+
+        Vector3 move = camForward * moveInput.y + camRight * moveInput.x;
+
+        float targetAngle = Mathf.Atan2(move.x, move.z) * Mathf.Rad2Deg;
+
+        float angle = Mathf.SmoothDampAngle(
+            playerModel.eulerAngles.y,
+            targetAngle,
+            ref rotationVelocity,
+            rotationSmoothTime
+        );
+
+        playerModel.rotation = Quaternion.Euler(0, angle, 0);
+    }
+
+    /// <summary>
+    /// Handles Dashing Ability
+    /// </summary>
+    void HandleDash()
+    {
+        if (!isDashing) return;
+
+        // ---- DASH START ----
+        lastDashTime = Time.time;
+        isDashing = true;
+        dashEndTime = Time.time + dashDuration;
+
+        // Kamera-basierte Richtung
+        Vector3 camForward = cameraTransform.forward;
+        Vector3 camRight = cameraTransform.right;
+
+        camForward.y = 0;
+        camRight.y = 0;
+        camForward.Normalize();
+        camRight.Normalize();
+
+        // Nur horizontaler Input
+        Vector3 camMove = camForward * moveInput.y + camRight * moveInput.x;
+
+        // fallback
+        if (camMove.sqrMagnitude < 0.01f)
+            camMove = camForward;
+
+        // Planar erzwingen
+        camMove.y = 0;
+
+        dashDirection = camMove.normalized;
+
+        velocity.SetInstant(dashDirection * dashSpeed);
+
+        isDashing = false;
+    }
+
+    /// ---------------------------
+    /// Input Callbacks
+    /// ---------------------------
     public void OnMove(InputAction.CallbackContext context)
         => moveInput = context.ReadValue<Vector2>();
 
@@ -188,6 +302,16 @@ public class VelocityPlayerController : MonoBehaviour
                 isHoldingJump = true;
                 jumpTimeCounter = 0f;
             }
+
+            // Double Jump
+            if (!velocity.IsGrounded() && !hasDoubleJumped && !isWallSliding)
+            {
+                hasDoubleJumped = true;
+                velocity.Jump(jumpHeight);
+                isJumping = true;
+                isHoldingJump = true;
+                jumpTimeCounter = 0f;
+            }
         }
 
         // Loslassen beendet verlängerten Sprung
@@ -197,18 +321,24 @@ public class VelocityPlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (!context.performed || isDashing)
+        if (!context.started)
+            return;
+
+        // wenn grounded kein dash
+        if (velocity.IsGrounded())
+            return;
+
+        // wenn man nichts drückt kein dash
+        if (moveInput.sqrMagnitude < 0.01f)
+            return;
+
+        // wenn man dashed nicht nochmal dashen
+        if (isDashing)
             return;
 
         if (Time.time - lastDashTime < dashCooldown)
             return;
 
-        lastDashTime = Time.time;
         isDashing = true;
-        dashEndTime = Time.time + dashDuration;
-
-        // Richtung = aktuelle Bewegung oder Vorwärtsrichtung
-        Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
-        dashDirection = move.magnitude > 0.1f ? move.normalized : transform.forward;
     }
 }
