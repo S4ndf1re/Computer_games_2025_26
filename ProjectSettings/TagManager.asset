@@ -10,6 +10,7 @@ TagManager:
   - Hidden_Area_2
   - Hidden_Area_3
   - Cube_Spawn_Point_1
+  - Platform_Ignore
   layers:
   - Default
   - TransparentFX
