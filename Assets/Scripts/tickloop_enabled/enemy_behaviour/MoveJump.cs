@@ -6,7 +6,6 @@ using UnityEngine;
 public class MoveJump : EnemyAct
 {
     public CharacterController enemy;
-    public Vector3 playerVelocity;
     public float gravity;
     public float jumpHeight;
     public float maxJumpDistance;
@@ -34,7 +33,7 @@ public class MoveJump : EnemyAct
         enemy.Move(finalMove * Time.deltaTime);
 
         //jump ends when we land
-        if (groundCheck.isGrounded(enemy) && playerVelocity.y < 0)
+        if (groundCheck.IsGrounded(enemy) && playerVelocity.y < 0)
         {
             playerVelocity.y = 0f;
             return true;
@@ -45,7 +44,7 @@ public class MoveJump : EnemyAct
     public override bool PrepareMove(GameObject target, float currentGravity)
     {
         //only prepare when enemy is grounded
-        if (groundCheck.isGrounded(enemy))
+        if (groundCheck.IsGrounded(enemy))
         {
             gravity = currentGravity;
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);

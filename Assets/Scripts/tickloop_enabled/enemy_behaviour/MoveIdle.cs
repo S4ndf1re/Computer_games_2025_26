@@ -7,7 +7,7 @@ using UnityEngine;
 public class MoveIdle : EnemyAct
 {
     public CharacterController enemy;
-    private Vector3 playerVelocity;
+
     public float gravity;
     public float maxWalkDistance;
     public float maxWalkSpeed;
@@ -32,7 +32,7 @@ public class MoveIdle : EnemyAct
         playerVelocity.y += gravity * Time.deltaTime;
         Vector3 finalMove = (currentMoveDirection * maxWalkSpeed) + (playerVelocity.y * Vector3.up);
         enemy.Move(finalMove * Time.deltaTime);
-        if (wasHit && currentMoveDuration >= maxWalkDistance / maxWalkSpeed && groundCheck.isGrounded(enemy))
+        if (wasHit && currentMoveDuration >= maxWalkDistance / maxWalkSpeed && groundCheck.IsGrounded(enemy))
         {
             ResetToIdle();
             return true;

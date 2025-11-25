@@ -6,7 +6,6 @@ using UnityEngine;
 public class MoveWalk : EnemyAct
 {
     public CharacterController enemy;
-    private Vector3 playerVelocity;
     public float gravity;
     public float maxWalkDistance;
     public float maxWalkSpeed;
@@ -28,7 +27,7 @@ public class MoveWalk : EnemyAct
         Vector3 finalMove = (currentMoveDirection * maxWalkSpeed) + (playerVelocity.y * Vector3.up);
         enemy.Move(finalMove * Time.deltaTime);
         //end if moved far enough and grounded
-        if (currentMoveDuration >= currentMoveDistance / maxWalkSpeed && groundCheck.isGrounded(enemy))
+        if (currentMoveDuration >= currentMoveDistance / maxWalkSpeed && groundCheck.IsGrounded(enemy))
         {
             return true;
         }
@@ -38,7 +37,7 @@ public class MoveWalk : EnemyAct
     public override bool PrepareMove(GameObject target, float currentGravity)
     {
         //only perpare if enemy is grounded
-        if (groundCheck.isGrounded(enemy))
+        if (groundCheck.IsGrounded(enemy))
         {
             gravity = currentGravity;
             currentMoveDuration = 0;
