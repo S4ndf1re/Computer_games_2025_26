@@ -13,13 +13,11 @@ public class MoveIdle : EnemyAct
     public float maxWalkSpeed;
     public float currentMoveDuration;
     public Vector3 currentMoveDirection;
-    public EnemyGroundCheck groundCheck;
     public bool wasHit = false;
 
 
     void Start()
     {
-        groundCheck = GetComponentInParent<EnemyGroundCheck>();
         enemy = GetComponentInParent<CharacterController>();
     }
     public override bool Move()

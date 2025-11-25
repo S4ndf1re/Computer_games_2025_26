@@ -41,7 +41,7 @@ public class EnemyAnimator : MonoBehaviour
         animator.SetFloat(animIDMotionSpeed, 1);
         animator.SetFloat(animIDSpeed, animationBlend);
 
-        if (moveHandler.groundCheck.IsGrounded(moveHandler.enemy))
+        if (velocity.IsGrounded())
         {
             animator.SetBool(animIDJump, false);
             animator.SetBool(animIDFreeFall, false);

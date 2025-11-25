@@ -12,11 +12,9 @@ public class MoveWalk : EnemyAct
     public float currentMoveDuration;
     private Vector3 currentMoveDirection;
     private float currentMoveDistance;
-    public EnemyGroundCheck groundCheck;
 
     void Start()
     {
-        groundCheck = GetComponentInParent<EnemyGroundCheck>();
         enemy = GetComponentInParent<CharacterController>();
         velocity = GetComponentInParent<Velocity>();
     }

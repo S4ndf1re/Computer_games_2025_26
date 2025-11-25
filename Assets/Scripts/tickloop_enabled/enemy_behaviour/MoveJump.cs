@@ -13,12 +13,10 @@ public class MoveJump : EnemyAct
     public float currentMoveDuration;
     public Vector3 currentMoveDirection;
     public float currentMoveSpeed;
-    public EnemyGroundCheck groundCheck;
 
 
     void Start()
     {
-        groundCheck = GetComponentInParent<EnemyGroundCheck>();
         enemy = GetComponentInParent<CharacterController>();
         velocity = GetComponentInParent<Velocity>();
     }
