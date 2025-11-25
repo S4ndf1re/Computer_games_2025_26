@@ -49,6 +49,9 @@ public class MoveWalk : EnemyAct
             currentMoveDuration = 0;
             currentMoveDirection = DetermineWalkDirection(enemy, target);
             currentMoveDistance = DetermineWalkDistance(enemy, target);
+            //orientate the model into direction the enemy is moving
+            float targetAngle = Mathf.Atan2(currentMoveDirection.x, currentMoveDirection.z) * Mathf.Rad2Deg;
+            enemyModel.rotation = Quaternion.Euler(0, targetAngle, 0);
             return true;
         }
         return false;

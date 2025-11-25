@@ -51,6 +51,7 @@ public class MoveJump : EnemyAct
             return true;
         }
         return false;
+        
     }
 
     public override bool PrepareMove(GameObject target, float currentGravity)
@@ -65,7 +66,9 @@ public class MoveJump : EnemyAct
             currentMoveDirection = DetermineJumpDirection(target);
             currentMoveSpeed = DetermineJumpSpeed(target);
             velocity.Jump(jumpHeight);
-
+            //orientate the model into direction the enemy is moving
+            float targetAngle = Mathf.Atan2(currentMoveDirection.x, currentMoveDirection.z) * Mathf.Rad2Deg;
+            enemyModel.rotation = Quaternion.Euler(0, targetAngle, 0);
             return true;
         }
         return false;

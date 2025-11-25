@@ -17,6 +17,8 @@ public class EnemyMoveHandler : MonoBehaviour
     public bool currentlyHitMoving;
     public EnemyGroundCheck groundCheck;
 
+    public Transform enemyModel;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
