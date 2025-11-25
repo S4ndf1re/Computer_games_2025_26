@@ -81,7 +81,7 @@ public class MovingPlatform : MonoBehaviour
             {
                 Debug.Log("objectsOnPlatform.Remove(collider);");
                 objectsOnPlatform.Remove(collider);
-                // collider.transform.SetParent(null);
+                collider.transform.SetParent(null);
                 // collider.GetComponent<Velocity>()?.EnableGravity();
             }
             isInFixedUpdateCycle = false;
@@ -117,7 +117,7 @@ public class MovingPlatform : MonoBehaviour
         {
             Debug.Log("objectsOnPlatform.Add(other);");
             objectsOnPlatform.Add(other);
-            // other.transform.SetParent(this.transform);
+            other.transform.SetParent(this.transform);
             // other.GetComponent<Velocity>()?.DisableGravity();
         }
 
