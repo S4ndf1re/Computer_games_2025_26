@@ -5,7 +5,7 @@ using UnityEngine;
     /// </summary>
 public abstract class EnemyAct : MonoBehaviour
 {
-    public Vector3 playerVelocity;
+    public Velocity velocity;
     /// <summary>
     /// Makes the enemy move in the specified way. Is called from the Update-Method of EnemyMoveHandler. 
     /// <returns> Returns true when the move is finished. </returns>

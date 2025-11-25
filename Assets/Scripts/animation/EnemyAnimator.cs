@@ -9,6 +9,8 @@ public class EnemyAnimator : MonoBehaviour
     public EnemyMoveHandler moveHandler;
     public float AnimationAcceleration = 10.0f;
 
+    public Velocity velocity;
+
     /// ---------------------------
     /// Internal Variables
     /// ---------------------------
@@ -19,16 +21,9 @@ public class EnemyAnimator : MonoBehaviour
     private int animIDJump;
     private int animIDFreeFall;
     private int animIDMotionSpeed;
-    //private int animIDPunch;
-    //private int animIDPush;
-    //private int animIDCrawl;
 
     private float animationBlend;
 
-    //Movement Bools
-    private bool isMoving;
-    private bool isDashing;
-    private bool IsFalling;
 
     void Start()
     {
@@ -37,8 +32,7 @@ public class EnemyAnimator : MonoBehaviour
 
     void Update()
     {
-        Vector3 currentVelocity = moveHandler.moves[moveHandler.currentMoveIndex].playerVelocity;
-        Debug.Log(currentVelocity);
+        Vector3 currentVelocity = velocity.velocity;
         float horizontalSpeed = new Vector2(currentVelocity.x, currentVelocity.z).magnitude;
 
         animationBlend = Mathf.Lerp(animationBlend, horizontalSpeed, Time.deltaTime * AnimationAcceleration);

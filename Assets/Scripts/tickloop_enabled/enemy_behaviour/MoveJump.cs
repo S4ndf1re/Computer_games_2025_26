@@ -6,7 +6,8 @@ using UnityEngine;
 public class MoveJump : EnemyAct
 {
     public CharacterController enemy;
-    public float gravity;
+    public float jumpGravity;
+    public float oldVelocityGravity;
     public float jumpHeight;
     public float maxJumpDistance;
     public float currentMoveDuration;
@@ -19,6 +20,7 @@ public class MoveJump : EnemyAct
     {
         groundCheck = GetComponentInParent<EnemyGroundCheck>();
         enemy = GetComponentInParent<CharacterController>();
+        velocity = GetComponentInParent<Velocity>();
     }
 
 
@@ -27,15 +29,25 @@ public class MoveJump : EnemyAct
     {
         
         currentMoveDuration += Time.deltaTime;
-        playerVelocity.y += gravity * Time.deltaTime;
+        //velocity.y += gravity * Time.deltaTime;
 
-        Vector3 finalMove = (currentMoveDirection * currentMoveSpeed) + (playerVelocity.y * Vector3.up);
-        enemy.Move(finalMove * Time.deltaTime);
+        //Vector3 finalMove = (currentMoveDirection * currentMoveSpeed) + (velocity.y * Vector3.up);
+        //enemy.Move(finalMove * Time.deltaTime);
 
         //jump ends when we land
-        if (groundCheck.IsGrounded(enemy) && playerVelocity.y < 0)
+        // if (groundCheck.IsGrounded(enemy) && velocity.y < 0)
+        // {
+        //     velocity.y = 0f;
+        //     return true;
+        // }
+
+        Vector3 move = currentMoveDirection * currentMoveSpeed;
+        velocity.SetInstant(move);
+
+        //jump ends when we land
+        if (velocity.IsGrounded() && velocity.velocity.y < 0)
         {
-            playerVelocity.y = 0f;
+            velocity.gravity = oldVelocityGravity;
             return true;
         }
         return false;
@@ -44,13 +56,15 @@ public class MoveJump : EnemyAct
     public override bool PrepareMove(GameObject target, float currentGravity)
     {
         //only prepare when enemy is grounded
-        if (groundCheck.IsGrounded(enemy))
+        if (velocity.IsGrounded())
         {
-            gravity = currentGravity;
-            playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
+            oldVelocityGravity = currentGravity;
+            velocity.gravity = jumpGravity;
+            //velocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
             currentMoveDuration = 0;
             currentMoveDirection = DetermineJumpDirection(target);
             currentMoveSpeed = DetermineJumpSpeed(target);
+            velocity.Jump(jumpHeight);
 
             return true;
         }
@@ -72,6 +86,7 @@ public class MoveJump : EnemyAct
         Vector3 targetWithoutY = new Vector3(target.transform.position.x, 0, target.transform.position.z);
         float currentDistance = (targetWithoutY - enemyWithoutY).magnitude;
         float totalJumpDuration = DetermineJumpDuration();
+        Debug.Log(totalJumpDuration);
         return currentDistance < maxJumpDistance? currentDistance / totalJumpDuration : maxJumpDistance / totalJumpDuration;
     }
 
@@ -79,7 +94,7 @@ public class MoveJump : EnemyAct
     {
         //freefall formula: h-1/2 * g * t^2 rearranged to t = sqrt(4*h/g) -> -g because our acceleration is negative
         // 2 times because we jump up first and fall then, it is a parabola
-        return 2*Mathf.Sqrt(2*jumpHeight/-gravity);
+        return 2*Mathf.Sqrt(2*jumpHeight/-jumpGravity);
     }
 
     public override void OnHit(Hitbox hitbox)

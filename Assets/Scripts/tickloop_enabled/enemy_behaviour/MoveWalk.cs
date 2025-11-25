@@ -18,16 +18,22 @@ public class MoveWalk : EnemyAct
     {
         groundCheck = GetComponentInParent<EnemyGroundCheck>();
         enemy = GetComponentInParent<CharacterController>();
+        velocity = GetComponentInParent<Velocity>();
     }
 
     public override bool Move()
     {
         currentMoveDuration += Time.deltaTime;
-        playerVelocity.y += gravity * Time.deltaTime;
-        Vector3 finalMove = (currentMoveDirection * maxWalkSpeed) + (playerVelocity.y * Vector3.up);
-        enemy.Move(finalMove * Time.deltaTime);
+        //velocity.y += gravity * Time.deltaTime;
+        //Vector3 finalMove = (currentMoveDirection * maxWalkSpeed) + (velocity.y * Vector3.up);
+        //enemy.Move(finalMove * Time.deltaTime);
+        Vector3 move = (currentMoveDirection * maxWalkSpeed) ;
+        velocity.SetInstant(move);
+
+
+
         //end if moved far enough and grounded
-        if (currentMoveDuration >= currentMoveDistance / maxWalkSpeed && groundCheck.IsGrounded(enemy))
+        if (currentMoveDuration >= currentMoveDistance / maxWalkSpeed && velocity.IsGrounded())
         {
             return true;
         }
@@ -37,7 +43,7 @@ public class MoveWalk : EnemyAct
     public override bool PrepareMove(GameObject target, float currentGravity)
     {
         //only perpare if enemy is grounded
-        if (groundCheck.IsGrounded(enemy))
+        if (velocity.IsGrounded())
         {
             gravity = currentGravity;
             currentMoveDuration = 0;

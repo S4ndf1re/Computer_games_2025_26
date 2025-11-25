@@ -29,10 +29,12 @@ public class MoveIdle : EnemyAct
             currentMoveDuration += Time.deltaTime;
         }
 
-        playerVelocity.y += gravity * Time.deltaTime;
-        Vector3 finalMove = (currentMoveDirection * maxWalkSpeed) + (playerVelocity.y * Vector3.up);
-        enemy.Move(finalMove * Time.deltaTime);
-        if (wasHit && currentMoveDuration >= maxWalkDistance / maxWalkSpeed && groundCheck.IsGrounded(enemy))
+        // velocity.y += gravity * Time.deltaTime;
+        // Vector3 finalMove = (currentMoveDirection * maxWalkSpeed) + (velocity.y * Vector3.up);
+        // enemy.Move(finalMove * Time.deltaTime);
+
+
+        if (wasHit && currentMoveDuration >= maxWalkDistance / maxWalkSpeed && velocity.IsGrounded())
         {
             ResetToIdle();
             return true;
