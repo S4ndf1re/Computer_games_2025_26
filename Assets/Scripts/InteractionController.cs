@@ -1,16 +1,17 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InteractionController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public Interactable currentInteractable;
 
-    // Update is called once per frame
-    void Update()
+    // Wird vom PlayerInput über UnityEvent getriggert
+    public void OnInteract(InputAction.CallbackContext ctx)
     {
-        
+        if (!ctx.performed)
+            return;
+
+        if (currentInteractable != null)
+            currentInteractable.InvokeInteraction();
     }
 }

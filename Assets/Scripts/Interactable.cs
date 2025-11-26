@@ -2,15 +2,31 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public float interactRange = 1.5f;
+
+    public InteractionController player;
+
     void Start()
     {
-
     }
 
-    // Update is called once per frame
     void Update()
     {
+        float dist = Vector3.Distance(player.transform.position, transform.position);
 
+        // Wenn in Reichweite → setzen
+        if (dist <= interactRange)
+        {
+            player.currentInteractable = this;
+        }
+        else if (player.currentInteractable == this)
+        {
+            player.currentInteractable = null;
+        }
+    }
+
+    public void InvokeInteraction()
+    {
+        Debug.Log("Pressed E!");
     }
 }
