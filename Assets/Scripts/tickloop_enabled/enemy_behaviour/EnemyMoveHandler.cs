@@ -15,13 +15,13 @@ public class EnemyMoveHandler : MonoBehaviour
     //public EnemyAct gettingHitMove;
     public EnemyAct idleMove;
     public bool currentlyHitMoving;
-    public EnemyGroundCheck groundCheck;
+
+    public Transform enemyModel;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        groundCheck = GetComponent<EnemyGroundCheck>();
         GetComponent<TickloopAddable>().triggeredByTickloop += StartMove;
         enemy = GetComponent<CharacterController>();
         if (hurtbox)

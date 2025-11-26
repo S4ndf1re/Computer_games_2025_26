@@ -7,19 +7,17 @@ using UnityEngine;
 public class MoveIdle : EnemyAct
 {
     public CharacterController enemy;
-    private Vector3 playerVelocity;
+
     public float gravity;
     public float maxWalkDistance;
     public float maxWalkSpeed;
     public float currentMoveDuration;
     public Vector3 currentMoveDirection;
-    public EnemyGroundCheck groundCheck;
     public bool wasHit = false;
 
 
     void Start()
     {
-        groundCheck = GetComponentInParent<EnemyGroundCheck>();
         enemy = GetComponentInParent<CharacterController>();
     }
     public override bool Move()
@@ -29,10 +27,12 @@ public class MoveIdle : EnemyAct
             currentMoveDuration += Time.deltaTime;
         }
 
-        playerVelocity.y += gravity * Time.deltaTime;
-        Vector3 finalMove = (currentMoveDirection * maxWalkSpeed) + (playerVelocity.y * Vector3.up);
-        enemy.Move(finalMove * Time.deltaTime);
-        if (wasHit && currentMoveDuration >= maxWalkDistance / maxWalkSpeed && groundCheck.isGrounded(enemy))
+        // velocity.y += gravity * Time.deltaTime;
+        // Vector3 finalMove = (currentMoveDirection * maxWalkSpeed) + (velocity.y * Vector3.up);
+        // enemy.Move(finalMove * Time.deltaTime);
+
+
+        if (wasHit && currentMoveDuration >= maxWalkDistance / maxWalkSpeed && velocity.IsGrounded())
         {
             ResetToIdle();
             return true;
