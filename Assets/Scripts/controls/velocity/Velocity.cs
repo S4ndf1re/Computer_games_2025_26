@@ -57,15 +57,15 @@ public class Velocity : MonoBehaviour
             characterController.Move(velocity * Time.deltaTime);
         }
 
-        if (IsGrounded() && !IsOnPlattform())
+        if (IsGrounded())
         {
-            ResetVelocity();
-            // Reset to zero here, since we are using custom check and not collider check
-            velocity.y = gravity;
-        } else if (IsOnPlattform()) {
-            ResetVelocity();
-            // Reset to zero here, since we are using custom check and not collider check
-            velocity.y = gravity;
+            if(velocity.y >= 0) {
+               // Do not reset velocity
+            } else {
+                ResetVelocity();
+                // Reset to zero here, since we are using custom check and not collider check
+                velocity.y = gravity;
+            }
         }
 
         if (!IsGrounded() && previouslyGrounded)
