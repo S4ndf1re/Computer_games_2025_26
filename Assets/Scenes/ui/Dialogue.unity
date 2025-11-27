@@ -500,6 +500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   interactRange: 2.5
   player: {fileID: 2078008837}
+  velocityController: {fileID: 2078008825}
 --- !u!114 &476216288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -903,6 +904,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   interactRange: 2.5
   player: {fileID: 2078008837}
+  velocityController: {fileID: 2078008825}
 --- !u!65 &2052048542
 BoxCollider:
   m_ObjectHideFlags: 0

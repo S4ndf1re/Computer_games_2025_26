@@ -7,6 +7,8 @@ public class Interactable : MonoBehaviour
     public InteractionController player;
     public InteractableAction action;
 
+    public VelocityPlayerController velocityController;
+
     private Outline outline;
     private bool isHighlighted = false;
 
@@ -27,7 +29,6 @@ public class Interactable : MonoBehaviour
         originalWidth = outline.OutlineWidth;
         outline.enabled = false;
 
-        // Variable Aktion suchen
         action = GetComponent<InteractableAction>();
     }
 
@@ -48,12 +49,20 @@ public class Interactable : MonoBehaviour
         }
         else
         {
+            // Nur dieses Interactable verliert Fokus, nicht andere
             if (player.currentInteractable == this)
             {
                 player.currentInteractable = null;
 
+                // Wenn Kamera gerade dieses Objekt fokussiert → Reset
                 if (cam.currentTarget == this.transform)
+                {
                     cam.ResetCamera();
+
+                    // Movement wieder erlauben
+                    if (velocityController != null)
+                        velocityController.canMove = true;
+                }
             }
 
             if (isHighlighted)
@@ -68,13 +77,28 @@ public class Interactable : MonoBehaviour
     {
         StartCoroutine(FlashOutline());
 
-        // Fokus der Kamera
         var cam = Camera.main.GetComponent<CameraController>();
-        if (cam.currentTarget != this.transform)
+
+        if (!cam.isFocused)
+        {
             cam.FocusOn(transform);
 
-        // Aktion ausführen — wenn vorhanden
-        action?.Execute();
+            if (velocityController != null)
+                velocityController.canMove = false;
+
+            action?.Execute(); // optional: Dialog etc.
+            return;
+        }
+
+        if (cam.isFocused && cam.currentTarget == this.transform)
+        {
+            cam.ResetCamera();
+
+            if (velocityController != null)
+                velocityController.canMove = true;
+
+            return;
+        }
     }
 
     private IEnumerator FlashOutline()
