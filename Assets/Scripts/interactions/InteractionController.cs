@@ -11,6 +11,7 @@ public class InteractionController : MonoBehaviour
         if (!ctx.performed)
             return;
 
+        // Sonst Interactable-Action starten
         if (currentInteractable != null)
             currentInteractable.InvokeInteraction();
     }
