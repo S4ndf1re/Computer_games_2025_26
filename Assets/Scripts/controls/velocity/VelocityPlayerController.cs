@@ -44,6 +44,12 @@ public class VelocityPlayerController : MonoBehaviour
     public LayerMask wallLayer;
     public float wallSlideMaxTime = 2f;
 
+    [Header("KnockBack")]
+    public float inputLockAfterHit = 0.25f;
+    public float knockBackForce = 7f;
+    public float knockUpForce = 1f;
+    public Hurtbox hurtbox;
+
     [Header("Double Jump Settings")]
     public bool CanDoubleJump = true;
     public float DoubleJumpHeight = 1.0f;
@@ -90,6 +96,11 @@ public class VelocityPlayerController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         velocity = GetComponent<Velocity>();
+        hurtbox = GetComponentInChildren<Hurtbox>();
+        if (hurtbox)
+        {
+            hurtbox.onHitTriggerEvent += OnHit;
+        }
     }
 
     void Update()
@@ -340,5 +351,15 @@ public class VelocityPlayerController : MonoBehaviour
             return;
 
         isDashing = true;
+    }
+
+    public void OnHit(Hitbox hitbox)
+    {
+        velocity.ResetVelocity();
+        Vector3 playerWithoutYZ = new Vector3(transform.position.x, 0, 0);
+        Vector3 hitboxWithoutYZ = new Vector3(hitbox.transform.position.x, 0, 0);
+        velocity.AddInstant(( playerWithoutYZ - hitboxWithoutYZ).normalized * knockBackForce);
+        velocity.Jump(knockUpForce);
+        velocity.LockInputForSeconds(inputLockAfterHit);
     }
 }

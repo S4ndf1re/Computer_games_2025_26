@@ -7089,6 +7089,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 191004985}
     - target: {fileID: 2970895959182933759, guid: e57677590fc62d64382f8fa9dbb7edde, type: 3}
+      propertyPath: knockUpForce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2970895959182933759, guid: e57677590fc62d64382f8fa9dbb7edde, type: 3}
       propertyPath: wallJumpForce
       value: 14
       objectReference: {fileID: 0}

@@ -6,29 +6,32 @@ using UnityEngine;
 public class MoveWalk : EnemyAct
 {
     public CharacterController enemy;
-    private Vector3 playerVelocity;
     public float gravity;
     public float maxWalkDistance;
     public float maxWalkSpeed;
     public float currentMoveDuration;
     private Vector3 currentMoveDirection;
     private float currentMoveDistance;
-    public EnemyGroundCheck groundCheck;
 
     void Start()
     {
-        groundCheck = GetComponentInParent<EnemyGroundCheck>();
         enemy = GetComponentInParent<CharacterController>();
+        velocity = GetComponentInParent<Velocity>();
     }
 
     public override bool Move()
     {
         currentMoveDuration += Time.deltaTime;
-        playerVelocity.y += gravity * Time.deltaTime;
-        Vector3 finalMove = (currentMoveDirection * maxWalkSpeed) + (playerVelocity.y * Vector3.up);
-        enemy.Move(finalMove * Time.deltaTime);
+        //velocity.y += gravity * Time.deltaTime;
+        //Vector3 finalMove = (currentMoveDirection * maxWalkSpeed) + (velocity.y * Vector3.up);
+        //enemy.Move(finalMove * Time.deltaTime);
+        Vector3 move = (currentMoveDirection * maxWalkSpeed) ;
+        velocity.SetInstant(move);
+
+
+
         //end if moved far enough and grounded
-        if (currentMoveDuration >= currentMoveDistance / maxWalkSpeed && groundCheck.isGrounded(enemy))
+        if (currentMoveDuration >= currentMoveDistance / maxWalkSpeed && velocity.IsGrounded())
         {
             return true;
         }
@@ -38,12 +41,15 @@ public class MoveWalk : EnemyAct
     public override bool PrepareMove(GameObject target, float currentGravity)
     {
         //only perpare if enemy is grounded
-        if (groundCheck.isGrounded(enemy))
+        if (velocity.IsGrounded())
         {
             gravity = currentGravity;
             currentMoveDuration = 0;
             currentMoveDirection = DetermineWalkDirection(enemy, target);
             currentMoveDistance = DetermineWalkDistance(enemy, target);
+            //orientate the model into direction the enemy is moving
+            float targetAngle = Mathf.Atan2(currentMoveDirection.x, currentMoveDirection.z) * Mathf.Rad2Deg;
+            enemyModel.rotation = Quaternion.Euler(0, targetAngle, 0);
             return true;
         }
         return false;
