@@ -15,6 +15,7 @@ public class VelocityPlayerController : MonoBehaviour
     public Transform playerModel;
 
     [Header("Movement Settings")]
+    public bool canMove = true;
     public float moveSpeed = 5f;
     public float airSpeed = 200f;
     public float jumpHeight = 2f;
@@ -105,10 +106,13 @@ public class VelocityPlayerController : MonoBehaviour
 
     void Update()
     {
-        HandleRotation();
-        HandleMovement();
-        HandleDash();
-        HandleWallSlide();
+        if (canMove)
+        {
+            HandleRotation();
+            HandleMovement();
+            HandleDash();
+            HandleWallSlide();
+        }
     }
 
     /// ---------------------------
