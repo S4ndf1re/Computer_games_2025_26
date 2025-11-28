@@ -59,11 +59,9 @@ public class CameraController : MonoBehaviour
     {
         Quaternion startRot = transform.rotation;
 
-        // Die Rotation, damit die Kamera auf das Objekt schaut
         Quaternion targetRot =
             Quaternion.LookRotation(target.position - transform.position);
 
-        // Optional: etwas versetzen
         if (rotationOffset != 0f)
             targetRot *= Quaternion.Euler(0f, rotationOffset, 0f);
 
