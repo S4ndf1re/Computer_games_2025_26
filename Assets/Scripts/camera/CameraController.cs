@@ -7,8 +7,8 @@ public class CameraController : MonoBehaviour
 
     [Header("Settings")]
     public float focusDuration = 0.5f;
-    public float zoomedFOV = 60f;       // subtiler Zoom
-    public float rotationOffset = 0f;   // optional: z. B. 10° seitlich, falls du willst
+    public float zoomedFOV = 60f;
+    public float rotationOffset = 0f;
 
     private Quaternion originalRot;
     private float originalFOV;

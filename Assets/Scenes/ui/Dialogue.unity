@@ -500,7 +500,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   interactRange: 2.5
   player: {fileID: 2078008837}
-  velocityController: {fileID: 2078008825}
 --- !u!114 &476216288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,6 +521,7 @@ MonoBehaviour:
     eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
     sea takimata sanctus est Lorem ipsum dolor sit amet.
   dialoguePrefab: {fileID: 3869799346472648246, guid: 1c554ad4a9a3b174bb0ef52f60f3e3c7, type: 3}
+  velocityController: {fileID: 2078008825}
 --- !u!1 &674111235
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,7 +912,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   interactRange: 2.5
   player: {fileID: 2078008837}
-  velocityController: {fileID: 2078008825}
 --- !u!65 &2052048542
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1026,6 +1025,7 @@ MonoBehaviour:
     eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
     sea takimata sanctus est Lorem ipsum dolor sit amet.
   dialoguePrefab: {fileID: 3869799346472648246, guid: 1c554ad4a9a3b174bb0ef52f60f3e3c7, type: 3}
+  velocityController: {fileID: 0}
 --- !u!1001 &2078008823
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -7,8 +7,6 @@ public class Interactable : MonoBehaviour
     public InteractionController player;
     public InteractableAction action;
 
-    public VelocityPlayerController velocityController;
-
     private Outline outline;
     private bool isHighlighted = false;
 
@@ -35,7 +33,6 @@ public class Interactable : MonoBehaviour
     void Update()
     {
         float dist = Vector3.Distance(player.transform.position, transform.position);
-        var cam = Camera.main.GetComponent<CameraController>();
 
         if (dist <= interactRange)
         {
@@ -47,58 +44,13 @@ public class Interactable : MonoBehaviour
                 isHighlighted = true;
             }
         }
-        else
-        {
-            // Nur dieses Interactable verliert Fokus, nicht andere
-            if (player.currentInteractable == this)
-            {
-                player.currentInteractable = null;
-
-                // Wenn Kamera gerade dieses Objekt fokussiert → Reset
-                if (cam.currentTarget == this.transform)
-                {
-                    cam.ResetCamera();
-
-                    // Movement wieder erlauben
-                    if (velocityController != null)
-                        velocityController.canMove = true;
-                }
-            }
-
-            if (isHighlighted)
-            {
-                outline.enabled = false;
-                isHighlighted = false;
-            }
-        }
     }
 
     public void InvokeInteraction()
     {
         StartCoroutine(FlashOutline());
 
-        var cam = Camera.main.GetComponent<CameraController>();
-
-        if (!cam.isFocused)
-        {
-            cam.FocusOn(transform);
-
-            if (velocityController != null)
-                velocityController.canMove = false;
-
-            action?.Execute(); // optional: Dialog etc.
-            return;
-        }
-
-        if (cam.isFocused && cam.currentTarget == this.transform)
-        {
-            cam.ResetCamera();
-
-            if (velocityController != null)
-                velocityController.canMove = true;
-
-            return;
-        }
+        action?.Execute();
     }
 
     private IEnumerator FlashOutline()
