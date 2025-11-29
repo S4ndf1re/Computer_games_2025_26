@@ -27786,7 +27786,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
   dialogueText:
-  - Was geht!
+  - "Du suchst Tinte f\xFCr einen Drucker?"
+  - "F\xFCr sowas triviales fragst du extra mich?"
+  - '*seuftz*'
+  - Die Tinte sollte ganz am Ende sein
   dialoguePrefab: {fileID: 3869799346472648246, guid: 1c554ad4a9a3b174bb0ef52f60f3e3c7, type: 3}
   velocityController: {fileID: 1012913390}
 --- !u!114 &1355371654
