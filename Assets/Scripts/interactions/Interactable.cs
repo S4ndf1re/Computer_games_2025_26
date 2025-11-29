@@ -43,6 +43,13 @@ public class Interactable : MonoBehaviour
                 outline.enabled = true;
                 isHighlighted = true;
             }
+        } else
+        {
+            if (isHighlighted)
+            {
+                outline.enabled = false;
+                isHighlighted = false;
+            }
         }
     }
 

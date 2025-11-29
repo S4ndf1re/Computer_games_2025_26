@@ -59,8 +59,9 @@ public class CameraController : MonoBehaviour
     {
         Quaternion startRot = transform.rotation;
 
+        Vector3 focusPoint = target.position + Vector3.up * 2f;   // Offset-Punkt oberhalb
         Quaternion targetRot =
-            Quaternion.LookRotation(target.position - transform.position);
+            Quaternion.LookRotation(focusPoint - transform.position);
 
         if (rotationOffset != 0f)
             targetRot *= Quaternion.Euler(0f, rotationOffset, 0f);
