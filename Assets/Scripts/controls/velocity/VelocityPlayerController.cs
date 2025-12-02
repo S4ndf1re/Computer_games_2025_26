@@ -22,6 +22,7 @@ public class VelocityPlayerController : MonoBehaviour
     public float maxJumpTime = 0.35f;
     public float holdJumpGravityMultiplier = 0.3f;
     public bool disableZMovement = false;
+    public bool disableJump = false;
 
     [Header("Rotation Settings")]
     public float rotationSmoothTime = 0.1f;
@@ -290,7 +291,7 @@ public class VelocityPlayerController : MonoBehaviour
     public void OnJump(InputAction.CallbackContext context)
     {
         // Sprung starten (Boden, Coyote oder Wand)
-        if (context.started)
+        if (context.started && !disableJump)
         {
             // WALL JUMP
             if (canWallJump)
