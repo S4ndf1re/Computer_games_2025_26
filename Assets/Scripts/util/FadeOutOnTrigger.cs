@@ -1,38 +1,32 @@
 using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
-public class FadeOutOnTrigger : MonoBehaviour
+public class InstantHideOnTrigger : MonoBehaviour
 {
-    [Header("Target to fade")]
-    public Renderer targetRenderer;
+    [Header("Parent whose children will be hidden")]
+    public Transform targetParent;
 
-    [Header("Fade Settings")]
-    public float fadeDuration = 1.0f;
-    public bool disableRendererAtEnd = true;
-
-    private Material targetMaterial;
-    private Color originalColor;
+    private List<Renderer> renderers = new List<Renderer>();
 
     private void Start()
     {
-        if (targetRenderer == null)
+        if (targetParent == null)
         {
-            Debug.LogError("FadeOutOnTrigger: Kein Renderer gesetzt!", this);
+            Debug.LogError("InstantHideOnTrigger: Kein Parent gesetzt!", this);
             enabled = false;
             return;
         }
-        targetMaterial = targetRenderer.material;
-        originalColor = targetMaterial.color;
+
+        // alle Renderer im gesamten Hierarchiebaum sammeln
+        renderers.AddRange(targetParent.GetComponentsInChildren<Renderer>());
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        StartCoroutine(FadeOut());
-    }
-
-    private IEnumerator FadeOut()
-    {
-        targetRenderer.enabled = false;
-        yield return null;
+        // sofort unsichtbar machen
+        foreach (Renderer r in renderers)
+        {
+            r.enabled = false;
+        }
     }
 }
