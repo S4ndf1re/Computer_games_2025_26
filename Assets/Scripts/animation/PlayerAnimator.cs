@@ -52,7 +52,8 @@ public class PlayerAnimator : MonoBehaviour
             animator.SetBool(animIDJump, false);
             animator.SetBool(animIDFreeFall, false);
             animator.SetBool(animIDGrounded, true);
-        } else
+        }
+        else
         {
             animator.SetBool(animIDGrounded, false);
             animator.SetBool(animIDFreeFall, true);
@@ -84,5 +85,15 @@ public class PlayerAnimator : MonoBehaviour
     public void OnDash()
     {
         //animator.SetTrigger("Dash");
+    }
+
+    public void OnLand()
+    {
+        // Do nothing
+    }
+
+    public void OnFootstep()
+    {
+        // Do nothing
     }
 }
