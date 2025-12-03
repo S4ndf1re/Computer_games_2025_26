@@ -36,18 +36,26 @@ public class Player : MonoBehaviour
     void OnHit(Hitbox box)
     {
         currentHealth -= 1;
-        if (currentHealth < 1 && isDestroyedOnDeath){
+        if (currentHealth < 1 && isDestroyedOnDeath)
+        {
             Destroy(gameObject);
         }
     }
 
 
-    public void Respawn() {
+    public void Respawn()
+    {
         this.currentHealth = startHealth;
     }
 
-    public int GetHealth() {
+    public int GetHealth()
+    {
         return this.currentHealth;
+    }
+
+    public bool IsDead()
+    {
+        return this.currentHealth <= 0;
     }
 
 }
