@@ -5611,7 +5611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
   dialogueText:
-  - Press E to interact
+  - adfsf
   dialoguePrefab: {fileID: 3869799346472648246, guid: 1c554ad4a9a3b174bb0ef52f60f3e3c7, type: 3}
   velocityController: {fileID: 629255604}
 --- !u!114 &952456282
@@ -5716,6 +5716,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4000012379944660, guid: 612d527ca8f2aa24daee25e4945d7bae, type: 3}
   m_PrefabInstance: {fileID: 218117860}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1035343607 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3725360814282078563, guid: e57677590fc62d64382f8fa9dbb7edde, type: 3}
+  m_PrefabInstance: {fileID: 1398381047}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1035343611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035343607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88710f0c0f3b33d429a8c5e23ce415ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraController
+  focusDuration: 0.5
+  zoomedFOV: 40
+  rotationOffset: 0
+  currentTarget: {fileID: 0}
 --- !u!1 &1037104853
 GameObject:
   m_ObjectHideFlags: 0
@@ -7252,6 +7273,10 @@ PrefabInstance:
       propertyPath: ignoreHits
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3725360814282078563, guid: e57677590fc62d64382f8fa9dbb7edde, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3959801321005208456, guid: e57677590fc62d64382f8fa9dbb7edde, type: 3}
       propertyPath: m_Name
       value: Player
@@ -7312,6 +7337,34 @@ PrefabInstance:
       propertyPath: platformFilter.m_Bits
       value: 256
       objectReference: {fileID: 0}
+    - target: {fileID: 8475789767842872438, guid: e57677590fc62d64382f8fa9dbb7edde, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8475789767842872438, guid: e57677590fc62d64382f8fa9dbb7edde, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8475789767842872438, guid: e57677590fc62d64382f8fa9dbb7edde, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 629255619}
+    - target: {fileID: 8475789767842872438, guid: e57677590fc62d64382f8fa9dbb7edde, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8475789767842872438, guid: e57677590fc62d64382f8fa9dbb7edde, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnInteract
+      objectReference: {fileID: 0}
+    - target: {fileID: 8475789767842872438, guid: e57677590fc62d64382f8fa9dbb7edde, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InteractionController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8475789767842872438, guid: e57677590fc62d64382f8fa9dbb7edde, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7417744331665784686, guid: e57677590fc62d64382f8fa9dbb7edde, type: 3}
     - {fileID: 7066453733437489639, guid: e57677590fc62d64382f8fa9dbb7edde, type: 3}
@@ -7345,6 +7398,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3959801321005208456, guid: e57677590fc62d64382f8fa9dbb7edde, type: 3}
       insertIndex: -1
       addedObject: {fileID: 629255619}
+    - targetCorrespondingSourceObject: {fileID: 3725360814282078563, guid: e57677590fc62d64382f8fa9dbb7edde, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1035343611}
   m_SourcePrefab: {fileID: 100100000, guid: e57677590fc62d64382f8fa9dbb7edde, type: 3}
 --- !u!1 &1398577516
 GameObject:
