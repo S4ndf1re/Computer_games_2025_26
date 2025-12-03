@@ -5591,29 +5591,13 @@ PrefabInstance:
       addedObject: {fileID: 952456282}
     - targetCorrespondingSourceObject: {fileID: 100000, guid: c3a2e9c7a879b7d41b29957e6f9ed6c0, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 952456281}
+      addedObject: {fileID: 952456285}
   m_SourcePrefab: {fileID: 100100000, guid: c3a2e9c7a879b7d41b29957e6f9ed6c0, type: 3}
 --- !u!4 &952456280 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: c3a2e9c7a879b7d41b29957e6f9ed6c0, type: 3}
   m_PrefabInstance: {fileID: 952456279}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &952456281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 770087464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f71714c68b71ad44a855ad8032000a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
-  dialogueText:
-  - adfsf
-  dialoguePrefab: {fileID: 3869799346472648246, guid: 1c554ad4a9a3b174bb0ef52f60f3e3c7, type: 3}
-  velocityController: {fileID: 629255604}
 --- !u!114 &952456282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5629,6 +5613,20 @@ MonoBehaviour:
   oneTimeUse: 0
   interactRange: 1.5
   player: {fileID: 629255619}
+--- !u!114 &952456285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770087464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd6bf7104205a49b09fcd7e47ac9cd0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  sceneName: Lobby
+  loadSceneMode: 0
 --- !u!4 &966270956 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: e5860c25af9af8b49bd5df070e4c9ce9, type: 3}
