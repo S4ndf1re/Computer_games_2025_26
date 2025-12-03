@@ -3044,7 +3044,7 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 0.3301887, g: 0.28518805, b: 0.1791118, a: 1}
-  m_Intensity: 35.7
+  m_Intensity: 118.8
   m_Range: 10
   m_SpotAngle: 76.19355
   m_InnerSpotAngle: 21.80208
@@ -3758,19 +3758,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4848899773351372, guid: 20ffe5c18928a4c4594e9261db2333af, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.21473539
+      value: 0.053207573
       objectReference: {fileID: 0}
     - target: {fileID: 4848899773351372, guid: 20ffe5c18928a4c4594e9261db2333af, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4848899773351372, guid: 20ffe5c18928a4c4594e9261db2333af, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9766723
+      value: 0.9985835
       objectReference: {fileID: 0}
     - target: {fileID: 4848899773351372, guid: 20ffe5c18928a4c4594e9261db2333af, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4848899773351372, guid: 20ffe5c18928a4c4594e9261db2333af, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3778,7 +3778,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4848899773351372, guid: 20ffe5c18928a4c4594e9261db2333af, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 155.2
+      value: 173.9
       objectReference: {fileID: 0}
     - target: {fileID: 4848899773351372, guid: 20ffe5c18928a4c4594e9261db2333af, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -5626,6 +5626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d018b9bdcc2e139489993ef1438614da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  oneTimeUse: 0
   interactRange: 1.5
   player: {fileID: 629255619}
 --- !u!4 &966270956 stripped
