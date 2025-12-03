@@ -7,21 +7,32 @@ public class ObjectSpawner : MonoBehaviour
     public bool withAutomaticDespawn = true;
     public float despawnTimeSeconds = 5.0f;
 
+    private TickloopAddable addable;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        GetComponent<TickloopAddable>().triggeredByTickloop += Spawn;
+        addable = GetComponent<TickloopAddable>();
+        addable.triggeredByTickloop += Spawn;
     }
 
-    void OnDisable() {
-        GetComponent<TickloopAddable>().triggeredByTickloop -= Spawn;
+    void OnDisable()
+    {
+        addable.triggeredByTickloop -= Spawn;
     }
 
 
-    void Spawn(Tickloop loop) {
+    void Spawn(Tickloop loop)
+    {
         var obj = Instantiate(prefab, this.transform.position, Quaternion.identity);
+        var renderer = obj.GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            renderer.material.SetColor("_BaseColor", addable.color);
+        }
 
-        if (withAutomaticDespawn && despawnTimeSeconds > 0) {
+        if (withAutomaticDespawn && despawnTimeSeconds > 0)
+        {
             Destroy(obj, despawnTimeSeconds);
         }
     }

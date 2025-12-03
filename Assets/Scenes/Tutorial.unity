@@ -794,6 +794,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 237717958}
     - target: {fileID: 8290256820640534910, guid: 535c8e4fbbf74644c9f4892184cf4b54, type: 3}
+      propertyPath: toRenderTo
+      value: 
+      objectReference: {fileID: 737136080}
+    - target: {fileID: 8290256820640534910, guid: 535c8e4fbbf74644c9f4892184cf4b54, type: 3}
       propertyPath: enabledInColliders.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -1783,9 +1787,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1540634950788169122, guid: c6c712da95eb643f1ad81a191a91f7e0, type: 3}
+      propertyPath: color.b
+      value: 0.13550198
+      objectReference: {fileID: 0}
+    - target: {fileID: 1540634950788169122, guid: c6c712da95eb643f1ad81a191a91f7e0, type: 3}
+      propertyPath: color.g
+      value: 0.13550198
+      objectReference: {fileID: 0}
+    - target: {fileID: 1540634950788169122, guid: c6c712da95eb643f1ad81a191a91f7e0, type: 3}
+      propertyPath: color.r
+      value: 0.990566
+      objectReference: {fileID: 0}
+    - target: {fileID: 1540634950788169122, guid: c6c712da95eb643f1ad81a191a91f7e0, type: 3}
       propertyPath: tickloop
       value: 
       objectReference: {fileID: 237717958}
+    - target: {fileID: 1540634950788169122, guid: c6c712da95eb643f1ad81a191a91f7e0, type: 3}
+      propertyPath: toRenderTo
+      value: 
+      objectReference: {fileID: 1435046367}
+    - target: {fileID: 1540634950788169122, guid: c6c712da95eb643f1ad81a191a91f7e0, type: 3}
+      propertyPath: requestColor
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1540634950788169122, guid: c6c712da95eb643f1ad81a191a91f7e0, type: 3}
       propertyPath: enabledInColliders.Array.size
       value: 1
@@ -2016,6 +2040,14 @@ PrefabInstance:
     - target: {fileID: 7013539635174063367, guid: 74b4753d00d179f449b7ca02c506a336, type: 3}
       propertyPath: every_nth
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013539635174063367, guid: 74b4753d00d179f449b7ca02c506a336, type: 3}
+      propertyPath: toRenderTo
+      value: 
+      objectReference: {fileID: 809787895}
+    - target: {fileID: 7013539635174063367, guid: 74b4753d00d179f449b7ca02c506a336, type: 3}
+      propertyPath: requestColor
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7013539635174063367, guid: 74b4753d00d179f449b7ca02c506a336, type: 3}
       propertyPath: enabledInColliders.Array.size
@@ -2917,6 +2949,14 @@ PrefabInstance:
     - target: {fileID: 7013539635174063367, guid: 74b4753d00d179f449b7ca02c506a336, type: 3}
       propertyPath: every_nth
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013539635174063367, guid: 74b4753d00d179f449b7ca02c506a336, type: 3}
+      propertyPath: toRenderTo
+      value: 
+      objectReference: {fileID: 1514194210}
+    - target: {fileID: 7013539635174063367, guid: 74b4753d00d179f449b7ca02c506a336, type: 3}
+      propertyPath: requestColor
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7013539635174063367, guid: 74b4753d00d179f449b7ca02c506a336, type: 3}
       propertyPath: enabledInColliders.Array.size
@@ -4333,6 +4373,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1075707474541070602, guid: 8c5eddb779d78b04fa4ba76329a50384, type: 3}
   m_PrefabInstance: {fileID: 829737706}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &737136080 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5671837968217442644, guid: 535c8e4fbbf74644c9f4892184cf4b54, type: 3}
+  m_PrefabInstance: {fileID: 192253765}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &740675253 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3400370840027677007, guid: 0def2c943e92d4344824e28a1c11a401, type: 3}
@@ -4701,6 +4746,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1766419123}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &809787895 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1460227200943304684, guid: 74b4753d00d179f449b7ca02c506a336, type: 3}
+  m_PrefabInstance: {fileID: 470107686}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &826867648 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1075707474541070602, guid: 8c5eddb779d78b04fa4ba76329a50384, type: 3}
@@ -7569,6 +7619,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2251650378797950004, guid: c6c712da95eb643f1ad81a191a91f7e0, type: 3}
   m_PrefabInstance: {fileID: 438747267}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &1435046367 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6610131774217513236, guid: c6c712da95eb643f1ad81a191a91f7e0, type: 3}
+  m_PrefabInstance: {fileID: 438747267}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1435139097
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8031,6 +8086,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e5f5149d6996cd3408294d5663b85654, type: 3}
   m_PrefabInstance: {fileID: 1096983053}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1514194210 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1460227200943304684, guid: 74b4753d00d179f449b7ca02c506a336, type: 3}
+  m_PrefabInstance: {fileID: 567015434}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1530283963
 GameObject:
@@ -9261,6 +9321,14 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7013539635174063367, guid: 74b4753d00d179f449b7ca02c506a336, type: 3}
+      propertyPath: toRenderTo
+      value: 
+      objectReference: {fileID: 1789076906}
+    - target: {fileID: 7013539635174063367, guid: 74b4753d00d179f449b7ca02c506a336, type: 3}
+      propertyPath: requestColor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013539635174063367, guid: 74b4753d00d179f449b7ca02c506a336, type: 3}
       propertyPath: enabledInColliders.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -9852,6 +9920,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 4.5670466, z: 7.3013244}
   m_Center: {x: 0, y: 1.4141095, z: 2.1345084}
+--- !u!23 &1789076906 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1460227200943304684, guid: 74b4753d00d179f449b7ca02c506a336, type: 3}
+  m_PrefabInstance: {fileID: 1720143458}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1811775290 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1075707474541070602, guid: 8c5eddb779d78b04fa4ba76329a50384, type: 3}
@@ -10194,6 +10267,14 @@ PrefabInstance:
     - target: {fileID: 7013539635174063367, guid: 74b4753d00d179f449b7ca02c506a336, type: 3}
       propertyPath: every_nth
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013539635174063367, guid: 74b4753d00d179f449b7ca02c506a336, type: 3}
+      propertyPath: toRenderTo
+      value: 
+      objectReference: {fileID: 2082150816}
+    - target: {fileID: 7013539635174063367, guid: 74b4753d00d179f449b7ca02c506a336, type: 3}
+      propertyPath: requestColor
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7013539635174063367, guid: 74b4753d00d179f449b7ca02c506a336, type: 3}
       propertyPath: enabledInColliders.Array.size
@@ -11560,6 +11641,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3a2e9c7a879b7d41b29957e6f9ed6c0, type: 3}
+--- !u!23 &2082150816 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1460227200943304684, guid: 74b4753d00d179f449b7ca02c506a336, type: 3}
+  m_PrefabInstance: {fileID: 1828422357}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2085058953
 PrefabInstance:
   m_ObjectHideFlags: 0

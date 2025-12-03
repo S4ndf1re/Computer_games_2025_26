@@ -31,9 +31,12 @@ public class TickloopAddable : MonoBehaviour
 
     [Header("Display Properties")]
     public Sprite icon;
+    [Tooltip("The renderer object that will change the color based on the tickloop addable")]
+    public Renderer toRenderTo;
     public Color color = Color.white;
     [Tooltip("When true, request a random color from the tickloop")]
     public bool requestColor = false;
+    private Color oldColor = Color.white;
 
     [Header("Collider Selection")]
     public List<TickloopEnableCollider> enabledInColliders;
@@ -97,16 +100,28 @@ public class TickloopAddable : MonoBehaviour
     void RemoveFromTickloop()
     {
         this.tickloop.RemoveFromTickloop(this);
+
+        if (this.toRenderTo != null)
+        {
+            this.toRenderTo.material.SetColor("_BaseColor", oldColor);
+        }
     }
 
     void AddToTickloop()
     {
+        if (this.toRenderTo != null)
+        {
+            oldColor = this.toRenderTo.material.GetColor("_BaseColor");
+        }
+
         if (!requestColor)
         {
+            SetColorToRenderer();
             tickloop.AddToTickloop(this, ticksToTrigger, Trigger, PhasedOut);
         }
         else
         {
+            SetColorToRenderer();
             tickloop.AddToTickloop(this, ticksToTrigger, Trigger, PhasedOut, ReceiveRandomColor);
         }
     }
@@ -124,5 +139,15 @@ public class TickloopAddable : MonoBehaviour
     void ReceiveRandomColor(Color color)
     {
         this.color = color;
+        SetColorToRenderer();
+    }
+
+    void SetColorToRenderer()
+    {
+        if (this.toRenderTo != null)
+        {
+            this.toRenderTo.material.SetColor("_BaseColor", this.color);
+            Debug.Log("Color: " + this.toRenderTo.material.GetColor("_BaseColor"));
+        }
     }
 }
