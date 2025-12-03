@@ -61,7 +61,9 @@ public class SceneSwapTrigger : MonoBehaviour, InteractableAction
             {
                 var color = fadeOutImage.color;
                 color.a = (float)i / 255.0f;
+                Debug.Log("Alpha = " + color.a);
                 fadeOutImage.color = color;
+                Debug.Log("Alpha = " + fadeOutImage.color.a);
 
                 yield return new WaitForSeconds(speed);
             }
