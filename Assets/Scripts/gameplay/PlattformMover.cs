@@ -13,12 +13,12 @@ public class PlattformMoveAction : MonoBehaviour, InteractableAction
 
     private Coroutine moveRoutine;
 
-    public void Execute()
+    public bool Execute()
     {
         if (targetToMove == null)
         {
             Debug.LogWarning($"PlattformMoveAction: Kein Target gesetzt bei {gameObject.name}.");
-            return;
+            return false;
         }
 
         // Bereits laufende Bewegung stoppen
@@ -26,6 +26,7 @@ public class PlattformMoveAction : MonoBehaviour, InteractableAction
             StopCoroutine(moveRoutine);
 
         moveRoutine = StartCoroutine(MovePlatform());
+        return true;
     }
 
     private IEnumerator MovePlatform()
@@ -51,4 +52,6 @@ public class PlattformMoveAction : MonoBehaviour, InteractableAction
 
         moveRoutine = null;
     }
+
+
 }
