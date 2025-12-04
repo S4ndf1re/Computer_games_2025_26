@@ -1,4 +1,12 @@
 public interface InteractableAction
 {
-    void Execute();
+    bool Execute();
+    void StartInteraction()
+    {
+
+    }
+    void EndInteraction()
+    {
+
+    }
 }
