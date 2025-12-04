@@ -9,9 +9,7 @@ public class DialogueTrigger : MonoBehaviour, InteractableAction
 
     private DialogueController dialogue;
     private CameraController cam;
-    private bool isActive;
     private int dialogueIndex;
-    private int dialogueAmount;
 
     void Start()
     {
@@ -20,42 +18,45 @@ public class DialogueTrigger : MonoBehaviour, InteractableAction
         obj.SetActive(false);
 
         dialogueIndex = 0;
-        dialogueAmount = dialogueText.Count;
 
-        Debug.Log(dialogueAmount);
+        Debug.Log(dialogueText.Count);
 
         dialogue = obj.GetComponent<DialogueController>();
         dialogue.followTarget = transform;
     }
 
-    public void Execute()
+    public bool Execute()
     {
-        // initial Activation
-        if (!isActive && dialogueAmount != dialogueIndex)
-        {
-            cam.FocusOn(transform);
-            if (velocityController != null)
-                velocityController.canMove = false;
-            dialogue.gameObject.SetActive(true);
-            dialogue.ShowText(dialogueText[dialogueIndex]);
-            isActive = true;
-            dialogueIndex++;
-            Debug.Log(dialogueIndex);
-        } else if (isActive && dialogueAmount != dialogueIndex)
-        {
-            // update text
-            dialogue.ShowText(dialogueText[dialogueIndex]);
-            dialogueIndex++;
-            Debug.Log(dialogueIndex);
-        } else if (isActive && dialogueAmount == dialogueIndex)
-        {
-            cam.ResetCamera();
-            if (velocityController != null)
-                velocityController.canMove = true;
-            dialogue.gameObject.SetActive(false);
-            isActive = false;
+        Debug.Log("Execute interaction");
+        if (dialogueIndex == dialogueText.Count) {
+            return true;
         }
 
+        // update text
+        dialogue.ShowText(dialogueText[dialogueIndex]);
+        dialogueIndex++;
+        Debug.Log(dialogueIndex);
+
+        // Always return false. the actual check is done at the top, because once the last dialog was shown, the player must interact one more time to disable the dialog
+        return false;
+    }
+
+    public void StartInteraction()
+    {
+        Debug.Log("Start Interaction");
+        cam.FocusOn(transform);
+        if (velocityController != null)
+            velocityController.canMove = false;
+        dialogue.gameObject.SetActive(true);
+        dialogueIndex = 0;
+    }
+
+    public void EndInteraction()
+    {
+        Debug.Log("End Interaction");
+        cam.ResetCamera();
+        if (velocityController != null)
+            velocityController.canMove = true;
+        dialogue.gameObject.SetActive(false);
     }
 }
-

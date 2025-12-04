@@ -1,19 +1,24 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Interactable : MonoBehaviour
 {
     [Header("Interaction Settings")]
     public bool oneTimeUse = false;     // NEU: Im Inspector auswählbar
 
+    [Tooltip("Tigger once player enters")]
+    public bool triggerOnEnter = false;
+    private bool hasTriggeredAfterEnter = false;
+
     public float interactRange = 1.5f;
     public InteractionController player;
 
     private InteractableAction[] actions;
+    private Dictionary<InteractableAction, bool> hasInteracted;
+    private Dictionary<InteractableAction, bool> hasFinished;
 
     private Outline outline;
-    private bool isHighlighted = false;
-    private bool hasInteracted = false;
 
     private Color originalColor;
     private float originalWidth;
@@ -21,28 +26,70 @@ public class Interactable : MonoBehaviour
     void Start()
     {
         outline = GetComponent<Outline>();
-        if (outline == null)
-            outline = gameObject.AddComponent<Outline>();
+        // if (outline == null)
+        //     outline = gameObject.AddComponent<Outline>();
 
-        outline.OutlineMode = Outline.Mode.OutlineAll;
-        outline.OutlineColor = Color.white;
-        outline.OutlineWidth = 5f;
+        if (outline != null)
+        {
+            outline.OutlineMode = Outline.Mode.OutlineAll;
+            outline.OutlineColor = Color.white;
+            outline.OutlineWidth = 5f;
 
-        originalColor = outline.OutlineColor;
-        originalWidth = outline.OutlineWidth;
-        outline.enabled = false;
+            originalColor = outline.OutlineColor;
+            originalWidth = outline.OutlineWidth;
+            outline.enabled = false;
+        }
 
+        hasInteracted = new Dictionary<InteractableAction, bool>();
+        hasFinished = new Dictionary<InteractableAction, bool>();
         actions = GetComponents<InteractableAction>();
+        foreach (var action in actions)
+        {
+            hasInteracted[action] = false;
+            hasFinished[action] = false;
+        }
+
+        hasTriggeredAfterEnter = false;
+
     }
+
+    bool AllInteracted()
+    {
+        foreach (var action in hasInteracted)
+        {
+            if (!action.Value)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    bool AllFinished()
+    {
+        foreach (var action in hasFinished)
+        {
+            if (!action.Value)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     void Update()
     {
+
         // Falls One-Time und bereits benutzt → dauerhaft grau, keine Highlight-Logik mehr
-        if (oneTimeUse && hasInteracted)
+        if (oneTimeUse && AllFinished())
         {
-            outline.enabled = true;
-            outline.OutlineColor = Color.gray;
-            outline.OutlineWidth = 2f;
+            if (outline != null)
+            {
+                outline.enabled = true;
+                outline.OutlineColor = Color.gray;
+                outline.OutlineWidth = 2f;
+            }
             return;
         }
 
@@ -51,19 +98,27 @@ public class Interactable : MonoBehaviour
         if (dist <= interactRange)
         {
             player.currentInteractable = this;
+            if (triggerOnEnter && !hasTriggeredAfterEnter)
+            {
+                InvokeInteraction();
+                hasTriggeredAfterEnter = true;
+            }
 
-            if (!isHighlighted)
+            if (outline != null)
             {
                 outline.enabled = true;
-                isHighlighted = true;
             }
         }
         else
         {
-            if (isHighlighted)
+            if (outline != null)
             {
                 outline.enabled = false;
-                isHighlighted = false;
+            }
+
+            if (player.currentInteractable == this)
+            {
+                player.currentInteractable = null;
             }
         }
     }
@@ -71,41 +126,68 @@ public class Interactable : MonoBehaviour
     public void InvokeInteraction()
     {
         // Wenn One-Time und bereits interagiert → abbrechen
-        if (oneTimeUse && hasInteracted)
+        if (oneTimeUse && AllFinished() || AllFinished() && hasTriggeredAfterEnter)
+        {
             return;
-
-        // Markiere Interaktion als erfolgt
-        hasInteracted = true;
+        }
+        else if (!oneTimeUse && AllFinished())
+        {
+            foreach (var action in actions)
+            {
+                hasFinished[action] = false;
+                hasInteracted[action] = false;
+            }
+        }
 
         StartCoroutine(FlashOutline());
 
         if (actions != null)
         {
             foreach (var a in actions)
-                a.Execute();
+            {
+                if (!hasInteracted[a])
+                {
+                    a.StartInteraction();
+                    hasInteracted[a] = true;
+                }
+                if (!hasFinished[a])
+                {
+                    var finished = a.Execute();
+                    hasFinished[a] = finished;
+
+                    if (finished)
+                    {
+                        a.EndInteraction();
+                    }
+                }
+            }
         }
     }
 
     private IEnumerator FlashOutline()
     {
-        outline.enabled = true;
-
-        outline.OutlineColor = Color.gray;
-        outline.OutlineWidth = 2f;
-
-        yield return new WaitForSeconds(0.15f);
-
-        // Wenn One-Time → dauerhaft grau
-        if (oneTimeUse)
+        if (outline != null)
         {
+            outline.enabled = true;
+
             outline.OutlineColor = Color.gray;
             outline.OutlineWidth = 2f;
+
+
+            // Wenn One-Time → dauerhaft grau
+            if (oneTimeUse)
+            {
+                outline.OutlineColor = Color.gray;
+                outline.OutlineWidth = 2f;
+            }
+            else
+            {
+                // sonst originaler Style
+                outline.OutlineColor = originalColor;
+                outline.OutlineWidth = originalWidth;
+            }
         }
-        else
-        {
-            // sonst originaler Style
-            outline.OutlineColor = originalColor;
-            outline.OutlineWidth = originalWidth;
-        }
+
+        yield return new WaitForSeconds(0.15f);
     }
 }
