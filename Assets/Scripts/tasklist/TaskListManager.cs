@@ -39,7 +39,7 @@ public class TaskListManager : MonoBehaviour
         for (var i = 0; i < tasks.Count; i++)
         {
             var task = tasks[i];
-            if (task.condition == null || task.condition.TaskFinished())
+            if (task.condition == null || task.condition.GetInstance().TaskFinished())
             {
                 toRemove.Add(i);
             }

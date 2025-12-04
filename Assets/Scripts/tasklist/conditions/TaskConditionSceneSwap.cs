@@ -22,10 +22,16 @@ public class TaskConditionSceneSwap : MonoBehaviour, TaskCondition
         };
     }
 
-    public bool TaskFinished()
+    bool TaskCondition.TaskFinished()
     {
         return done;
     }
+
+    TaskCondition TaskCondition.GetInstance()
+    {
+        return this;
+    }
+
 
     private IEnumerator TriggerAfterDelay(float delay)
     {

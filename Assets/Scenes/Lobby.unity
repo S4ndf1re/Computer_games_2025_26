@@ -2339,8 +2339,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a3f4565f6a64cb09c09fff98c5a928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FinishTaskonInteraction
-  afterN: 8
-  condition: {fileID: 1541127531}
+  afterN: 9
+  condition: {fileID: 1541127530}
+--- !u!114 &773395992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773395983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b3dc4df3c72c4142944e3431c35d413, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AddTaskOnInteraction
+  afterN: 6
+  taskDescription: Finde Bob
+  condition: {fileID: 2040962193}
+--- !u!114 &773395993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773395983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b3dc4df3c72c4142944e3431c35d413, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AddTaskOnInteraction
+  afterN: 4
+  taskDescription: Finde die Tinte im Lager
+  condition: {fileID: 898227481}
 --- !u!1 &786134863
 GameObject:
   m_ObjectHideFlags: 0
@@ -2584,6 +2614,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ac791919426674dfeb11d6108e2221ea, type: 3}
       insertIndex: -1
       addedObject: {fileID: 773395991}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ac791919426674dfeb11d6108e2221ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 773395993}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ac791919426674dfeb11d6108e2221ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 773395992}
   m_SourcePrefab: {fileID: 100100000, guid: ac791919426674dfeb11d6108e2221ea, type: 3}
 --- !u!1001 &826278482
 PrefabInstance:
@@ -2986,6 +3022,51 @@ MonoBehaviour:
   afterN: 3
   taskDescription: Finde den Drucker
   condition: {fileID: 1202689714}
+--- !u!1 &898227481
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 898227483}
+  - component: {fileID: 898227482}
+  m_Layer: 0
+  m_Name: InkCondition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &898227482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898227481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: add9ddce097794620beef95adf789aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleCondition
+  isDone: 0
+--- !u!4 &898227483
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898227481}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.9255, y: 1.4781, z: 17.63793}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &918289231 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 407020, guid: b39af83ea51e1f74fa9441c571c84b2d, type: 3}
@@ -4412,8 +4493,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a3f4565f6a64cb09c09fff98c5a928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FinishTaskonInteraction
-  afterN: 4
-  condition: {fileID: 1202689715}
+  afterN: 5
+  condition: {fileID: 1202689714}
 --- !u!1001 &1296429829
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6945,6 +7026,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: c3a2e9c7a879b7d41b29957e6f9ed6c0, type: 3}
   m_PrefabInstance: {fileID: 967187438}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2040962193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2040962195}
+  - component: {fileID: 2040962194}
+  m_Layer: 0
+  m_Name: PaperCondition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2040962194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040962193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: add9ddce097794620beef95adf789aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleCondition
+  isDone: 0
+--- !u!4 &2040962195
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040962193}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.9255, y: 1.4781, z: 17.63793}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2063508687
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7463,3 +7589,5 @@ SceneRoots:
   - {fileID: 7661768743337612994}
   - {fileID: 1202689716}
   - {fileID: 1541127532}
+  - {fileID: 898227483}
+  - {fileID: 2040962195}

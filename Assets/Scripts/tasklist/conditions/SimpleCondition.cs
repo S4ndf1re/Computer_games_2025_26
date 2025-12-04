@@ -9,8 +9,14 @@ public class SimpleCondition : MonoBehaviour, TaskCondition
         return isDone;
     }
 
-    public void MarkDone()
+    TaskCondition TaskCondition.GetInstance()
+    {
+        return this;
+    }
+
+    void TaskCondition.FinishTask()
     {
         isDone = true;
     }
+
 }
