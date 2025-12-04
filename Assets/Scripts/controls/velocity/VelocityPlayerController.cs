@@ -47,6 +47,7 @@ public class VelocityPlayerController : MonoBehaviour
     public float wallSlideMaxTime = 2f;
 
     [Header("KnockBack")]
+    public bool shouldBeKnockedBack = false;
     public float inputLockAfterHit = 0.25f;
     public float knockBackForce = 7f;
     public float knockUpForce = 1f;
@@ -138,7 +139,8 @@ public class VelocityPlayerController : MonoBehaviour
         Vector3 move = camForward * moveInput.y + camRight * moveInput.x;
 
         // Bewegung (lokal)
-        if (disableZMovement) {
+        if (disableZMovement)
+        {
             move = camRight * moveInput.x;
         }
 
@@ -291,7 +293,7 @@ public class VelocityPlayerController : MonoBehaviour
     public void OnJump(InputAction.CallbackContext context)
     {
         // Sprung starten (Boden, Coyote oder Wand)
-        if (context.started && !disableJump)
+        if (context.started && !disableJump && canMove)
         {
             // WALL JUMP
             if (canWallJump)
@@ -337,7 +339,7 @@ public class VelocityPlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (!context.started)
+        if (!context.started || !canMove)
             return;
 
         // wenn grounded kein dash
@@ -360,11 +362,14 @@ public class VelocityPlayerController : MonoBehaviour
 
     public void OnHit(Hitbox hitbox)
     {
-        velocity.ResetVelocity();
-        Vector3 playerWithoutYZ = new Vector3(transform.position.x, 0, 0);
-        Vector3 hitboxWithoutYZ = new Vector3(hitbox.transform.position.x, 0, 0);
-        velocity.AddInstant(( playerWithoutYZ - hitboxWithoutYZ).normalized * knockBackForce);
-        velocity.Jump(knockUpForce);
-        velocity.LockInputForSeconds(inputLockAfterHit);
+        if (shouldBeKnockedBack)
+        {
+            velocity.ResetVelocity();
+            Vector3 playerWithoutYZ = new Vector3(transform.position.x, 0, 0);
+            Vector3 hitboxWithoutYZ = new Vector3(hitbox.transform.position.x, 0, 0);
+            velocity.AddInstant((playerWithoutYZ - hitboxWithoutYZ).normalized * knockBackForce);
+            velocity.Jump(knockUpForce);
+            velocity.LockInputForSeconds(inputLockAfterHit);
+        }
     }
 }

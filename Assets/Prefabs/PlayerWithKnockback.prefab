@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3522338021483649720}
   - component: {fileID: 5044884554038432075}
-  - component: {fileID: 6832252550759575366}
   - component: {fileID: 2388282554019526066}
   - component: {fileID: 1284896737062399589}
   m_Layer: 0
@@ -86,14 +85,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &6832252550759575366
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3880089984235607029}
-  m_Enabled: 1
 --- !u!114 &2388282554019526066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,6 +166,7 @@ GameObject:
   - component: {fileID: 610640527614509389}
   - component: {fileID: 6292148698219239857}
   - component: {fileID: 7086357740954338603}
+  - component: {fileID: 6449789203748903498}
   m_Layer: 0
   m_Name: PlayerWithKnockback
   m_TagString: Untagged
@@ -452,6 +444,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   wallSlideMaxTime: 2
+  shouldBeKnockedBack: 0
   inputLockAfterHit: 0.25
   knockBackForce: 7
   knockUpForce: 1
@@ -616,6 +609,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StarterAssets.RespawnPlayer
   yThreshold: -5
   respawnSound: {fileID: 8300000, guid: 55462452cb80442b6acf85f10b161e13, type: 3}
+--- !u!81 &6449789203748903498
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4102138314524208712}
+  m_Enabled: 1
 --- !u!1 &5571348948060267379
 GameObject:
   m_ObjectHideFlags: 0

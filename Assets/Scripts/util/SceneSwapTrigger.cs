@@ -8,11 +8,7 @@ public class SceneSwapTrigger : MonoBehaviour, InteractableAction
 
     public string sceneName;
     public LoadSceneMode loadSceneMode;
-
-    [Header("Fade In options")]
-    public Image fadeOutImage;
-    [Tooltip("The time between each step in seconds")]
-    public float speed = 0.1f;
+    public Animator transition;
 
     private Coroutine sceneSwap;
 
@@ -35,39 +31,13 @@ public class SceneSwapTrigger : MonoBehaviour, InteractableAction
 
     IEnumerator LoadScene()
     {
-        if (fadeOutImage != null)
-        {
-            Debug.Log("Setting Color");
-            var color = fadeOutImage.color;
-            color.a = 1;
-            fadeOutImage.color = color;
-        }
+        transition.SetTrigger("start");
 
+        yield return new WaitForSeconds(1.0f);
         yield return SceneManager.LoadSceneAsync(sceneName);
 
-        Camera.main.gameObject.SetActive(false);
         var scene = SceneManager.GetSceneByName(sceneName);
-        Debug.Log("Swapping Scene");
         SceneManager.SetActiveScene(scene);
-
-        yield return StartCoroutine(FadeInImage());
-    }
-
-    IEnumerator FadeInImage()
-    {
-        for (var i = 255; i >= 0; i--)
-        {
-            if (fadeOutImage != null)
-            {
-                var color = fadeOutImage.color;
-                color.a = (float)i / 255.0f;
-                Debug.Log("Alpha = " + color.a);
-                fadeOutImage.color = color;
-                Debug.Log("Alpha = " + fadeOutImage.color.a);
-
-                yield return new WaitForSeconds(speed);
-            }
-        }
 
     }
 
