@@ -69,7 +69,7 @@ public class EnemyMoveHandler : MonoBehaviour
     /// Prepares the next Move so that it can be executed in Update, and activate Moving.
     /// </summary>
     /// <param name="tp"></param>
-    void StartMove(Tickloop tp)
+    void StartMove(Tickloop tp, int nth_trigger)
     {
         if (!currentlyHitMoving)
         {

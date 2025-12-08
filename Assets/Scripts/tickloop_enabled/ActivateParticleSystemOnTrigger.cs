@@ -22,7 +22,7 @@ public class ActivateParticleSystemOnTrigger : MonoBehaviour
         GetComponent<TickloopAddable>().triggeredByTickloop -= OnTrigger;
     }
 
-    public void OnTrigger(Tickloop loop)
+    public void OnTrigger(Tickloop loop, int nth_trigger)
     {
         this.system.Play();
 

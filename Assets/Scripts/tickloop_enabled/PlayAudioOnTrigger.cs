@@ -24,7 +24,7 @@ public class PlayAudioOnTrigger : MonoBehaviour
         GetComponent<TickloopAddable>().triggeredByTickloop -= PlaySound;
     }
 
-    void PlaySound(Tickloop loop)
+    void PlaySound(Tickloop loop, int nth_trigger)
     {
 
         source.Play();

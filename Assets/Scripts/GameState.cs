@@ -9,7 +9,8 @@ public class GameState : ScriptableObject
     {
         Tutorial,
         Lobby,
-        StorageRoom
+        StorageRoom,
+        Treppenhaus,
     }
 
     public Scenes currentScene = Scenes.Tutorial;
@@ -19,12 +20,18 @@ public class GameState : ScriptableObject
         if (sceneName == "lobby")
         {
             this.currentScene = Scenes.Lobby;
-        } else if (sceneName == "storageroom")
+        }
+        else if (sceneName == "storageroom")
         {
             this.currentScene = Scenes.StorageRoom;
-        } else if(sceneName == "tutorial")
+        }
+        else if (sceneName == "tutorial")
         {
             this.currentScene = Scenes.Tutorial;
+        }
+        else if (sceneName == "treppenhaus")
+        {
+            this.currentScene = Scenes.Treppenhaus;
         }
     }
 }
