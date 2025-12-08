@@ -41,12 +41,10 @@ public class PlayerAnimator : MonoBehaviour
         Vector3 currentVelocity = velocity.velocity;
         float horizontalSpeed = new Vector2(currentVelocity.x, currentVelocity.z).magnitude;
 
-        Debug.Log("Horizontal: " + horizontalSpeed);
         animationBlend = Mathf.Lerp(animationBlend, horizontalSpeed, Time.deltaTime * AnimationAcceleration);
         if (animationBlend < 0.01f) animationBlend = 0f;
 
         animator.SetFloat(animIDMotionSpeed, 1);
-        Debug.Log("Speed: " + animationBlend);
         animator.SetFloat(animIDSpeed, animationBlend);
 
         if (velocity.isGrounded)

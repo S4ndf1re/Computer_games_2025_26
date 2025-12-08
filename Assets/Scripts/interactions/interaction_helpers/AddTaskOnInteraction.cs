@@ -8,6 +8,7 @@ public class AddTaskOnInteraction : MonoBehaviour, InteractableAction
     public string taskDescription = "";
     public GameObject condition;
     private TaskCondition conditionInterface;
+    private bool taskAdded = false;
 
     void Start()
     {
@@ -17,6 +18,8 @@ public class AddTaskOnInteraction : MonoBehaviour, InteractableAction
             Debug.Log("Expected condition to inherit the interface TaskCondition, deactivating");
             enabled = false;
         }
+
+        taskAdded = false;
     }
 
     void InteractableAction.StartInteraction()
@@ -32,7 +35,11 @@ public class AddTaskOnInteraction : MonoBehaviour, InteractableAction
 
     void InteractableAction.EndInteraction()
     {
-        TaskListManager.Instance.SpawnTask(taskDescription, conditionInterface);
+        if (!taskAdded)
+        {
+            TaskListManager.Instance.SpawnTask(taskDescription, conditionInterface);
+            taskAdded = true;
+        }
     }
 
 }

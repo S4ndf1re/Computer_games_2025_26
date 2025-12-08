@@ -19,8 +19,6 @@ public class DialogueTrigger : MonoBehaviour, InteractableAction
 
         dialogueIndex = 0;
 
-        Debug.Log(dialogueText.Count);
-
         dialogue = obj.GetComponent<DialogueController>();
         dialogue.followTarget = transform;
     }
