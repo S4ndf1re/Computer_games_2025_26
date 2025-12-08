@@ -54,9 +54,7 @@ public class VelocityPlayerController : MonoBehaviour
     public Hurtbox hurtbox;
 
     [Header("Double Jump Settings")]
-    public bool CanDoubleJump = true;
-    public float DoubleJumpHeight = 1.0f;
-    public float DoubleJumpDelay = 0.15f;
+    public bool canDoubleJump = true;
 
     /// ---------------------------
     /// Internal Variables
@@ -78,7 +76,7 @@ public class VelocityPlayerController : MonoBehaviour
     // Wall Climb
     private bool isTouchingWall;
     private bool isWallSliding;
-    public bool canWallJump;
+    private bool canWallJump;
     private float wallSlideStartTime;
     private Vector3 lastWallNormal;
 
@@ -322,7 +320,7 @@ public class VelocityPlayerController : MonoBehaviour
             }
 
             // Double Jump
-            if (!velocity.IsGrounded() && !hasDoubleJumped && !isWallSliding)
+            if (!velocity.IsGrounded() && !hasDoubleJumped && !isWallSliding && canDoubleJump)
             {
                 hasDoubleJumped = true;
                 velocity.Jump(jumpHeight);
