@@ -736,10 +736,10 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1.49, z: 1}
-  m_Center: {x: 0, y: 1.56, z: 0}
+  m_Center: {x: 0, y: 1.12, z: 0}
 --- !u!54 &227367119
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3816,11 +3816,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 694415958591279176, guid: 3dba0373657928f429c094afe71fa21f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -41.75
+      value: -46.15
       objectReference: {fileID: 0}
     - target: {fileID: 694415958591279176, guid: 3dba0373657928f429c094afe71fa21f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 16.58
+      value: 2.57
       objectReference: {fileID: 0}
     - target: {fileID: 694415958591279176, guid: 3dba0373657928f429c094afe71fa21f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4660,6 +4660,8 @@ GameObject:
   - component: {fileID: 1284934604}
   - component: {fileID: 1284934608}
   - component: {fileID: 1284934609}
+  - component: {fileID: 1284934611}
+  - component: {fileID: 1284934610}
   m_Layer: 3
   m_Name: FallingSlope
   m_TagString: Untagged
@@ -4793,6 +4795,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 717e1a9107dcb450db7051530941021c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TickloopEnableCollider
+--- !u!114 &1284934610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284934603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eea6ebc7a00ab4534aff4742dc46eecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!114 &1284934611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284934603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e133d862f7f942c08eb5ecd6a3647ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TickloopAddable
+  ticksToTrigger: 
+  every_nth: 4
+  offset: 0
+  repeat: 1
+  icon: {fileID: 0}
+  toRenderTo: {fileID: 0}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  requestColor: 0
+  enabledInColliders: []
+  tickloop: {fileID: 160531149}
 --- !u!1 &1299334670
 GameObject:
   m_ObjectHideFlags: 0
