@@ -90,7 +90,7 @@ public class MovingPlatform : MonoBehaviour
 
     }
 
-    public void MoveTowardsNextWaypoint(Tickloop tp)
+    public void MoveTowardsNextWaypoint(Tickloop tp, int nth_trigger)
     {
         isMoving = true;
         previousWaypoint = waypointPath.GetWaypoint(nextWaypointIndex);

@@ -36,7 +36,7 @@ public class ColliderTickloopActivator : MonoBehaviour
     }
 
 
-    void EnableCollider(Tickloop loop)
+    void EnableCollider(Tickloop loop, int nth_trigger)
     {
         lastEnabledSince = 0.0f;
         toggleableCollider.enabled = true;

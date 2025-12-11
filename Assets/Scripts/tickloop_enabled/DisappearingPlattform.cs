@@ -4,6 +4,7 @@ public class DisappearingPlattform : MonoBehaviour
 {
     MeshRenderer renderer;
     Collider collider;
+    public bool invertEnabling = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,17 +20,20 @@ public class DisappearingPlattform : MonoBehaviour
 
     }
 
-    void OnDisable() {
+    void OnDisable()
+    {
         GetComponent<TickloopAddable>().triggeredByTickloop -= Trigger;
     }
 
-    void Trigger(Tickloop loop) {
-        if (renderer.enabled) {
-            renderer.enabled = false;
-            collider.enabled = false;
-        } else {
-            renderer.enabled = true;
-            collider.enabled = true;
+    void Trigger(Tickloop loop, int nth_trigger)
+    {
+        var enable = nth_trigger % 2 == 0;
+        if (invertEnabling)
+        {
+            enable = !enable;
         }
+
+        renderer.enabled = enable;
+        collider.enabled = enable;
     }
 }

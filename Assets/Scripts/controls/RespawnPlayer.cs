@@ -8,9 +8,9 @@ namespace StarterAssets
         [Tooltip("The Y position threshold at which the player will respawn.")]
         public float yThreshold = -5f;
 
-        private Vector3 startingPosition;
+        public Vector3 startingPosition;
 
-        private Quaternion startingRotation;
+        public Quaternion startingRotation;
 
         private CharacterController characterController;
         private Velocity velocity;

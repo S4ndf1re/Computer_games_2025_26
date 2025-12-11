@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using NUnit.Framework.Constraints;
 using UnityEngine;
 
 /// <summary>
@@ -12,7 +13,7 @@ using UnityEngine;
 public class TickloopAddable : MonoBehaviour
 {
 
-    public delegate void TriggeredByTickloop(Tickloop tickloop);
+    public delegate void TriggeredByTickloop(Tickloop tickloop, int nth_trigger);
     public event TriggeredByTickloop triggeredByTickloop;
 
     public delegate void PhasedOutTick();
@@ -128,7 +129,9 @@ public class TickloopAddable : MonoBehaviour
 
     void Trigger()
     {
-        triggeredByTickloop?.Invoke(this.tickloop);
+        var triggeredCount = this.ticksToTrigger.FindIndex(x => x == tickloop.currentIdx);
+
+        triggeredByTickloop?.Invoke(this.tickloop, triggeredCount + 1);
     }
 
     void PhasedOut()

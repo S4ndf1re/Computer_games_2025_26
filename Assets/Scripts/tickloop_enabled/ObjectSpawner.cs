@@ -22,7 +22,7 @@ public class ObjectSpawner : MonoBehaviour
     }
 
 
-    void Spawn(Tickloop loop)
+    void Spawn(Tickloop loop, int nth_trigger)
     {
         var obj = Instantiate(prefab, this.transform.position, Quaternion.identity);
         var renderer = obj.GetComponent<Renderer>();

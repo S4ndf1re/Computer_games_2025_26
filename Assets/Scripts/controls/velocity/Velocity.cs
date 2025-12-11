@@ -59,13 +59,11 @@ public class Velocity : MonoBehaviour
 
         if (IsGrounded())
         {
-            if(velocity.y >= 0) {
-               // Do not reset velocity
-            } else {
+            if(velocity.y < 0) {
                 ResetVelocity();
                 // Reset to zero here, since we are using custom check and not collider check
                 velocity.y = gravity;
-            }
+            } 
         }
 
         if (!IsGrounded() && previouslyGrounded)

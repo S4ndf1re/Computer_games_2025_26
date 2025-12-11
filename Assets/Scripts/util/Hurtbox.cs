@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Hurtbox : MonoBehaviour
@@ -6,78 +8,70 @@ public class Hurtbox : MonoBehaviour
     public event OnHitTrigger onHitTriggerEvent;
 
     public bool mustExit = true;
-    public float delayTillNextHitSeconds = 0.0f;
     public bool ignoreHits = false;
+    public float iFrameSeconds = 0.0f;
 
-    private bool isIntersecting = false;
-    private float intersectingSinceSeconds = 0.0f;
+    [Header("Mesh Flash Settings")]
+    public float flashTime = 0.0f;
+    public List<Renderer> renderers;
+
     private bool alreadyTriggered = false;
+    public bool isInIFrame = false;
 
 
     void Start()
     {
-        isIntersecting = false;
-        intersectingSinceSeconds = 0.0f;
         alreadyTriggered = false;
-    }
-
-    void Update()
-    {
-        if (isIntersecting)
-        {
-            intersectingSinceSeconds += Time.deltaTime;
-        }
     }
 
     public void ExitTrigger(Hitbox box)
     {
-        isIntersecting = false;
         alreadyTriggered = false;
     }
 
     public void EnterTrigger(Hitbox box)
     {
-        isIntersecting = true;
-        intersectingSinceSeconds = 0.0f;
         // Set to false here, since the StayTrigger will  set this
         alreadyTriggered = false;
     }
 
     public void StayTrigger(Hitbox box)
     {
-        if (mustExit && alreadyTriggered || ignoreHits)
+        if (mustExit && alreadyTriggered || ignoreHits || isInIFrame)
         {
             return;
         }
 
-        if (mustExit)
-        {
-            onHitTriggerEvent?.Invoke(box);
-            alreadyTriggered = true;
-        }
-        else
-        {
-            if (!alreadyTriggered)
-            {
-                onHitTriggerEvent?.Invoke(box);
-                alreadyTriggered = true;
-            }
-            else
-            {
-                var delayTillNextHitLocal = delayTillNextHitSeconds;
-                if (delayTillNextHitLocal < 0.00000001)
-                {
-                    // Trigger exactly once
-                    delayTillNextHitLocal = Mathf.Max(0.0000001f, delayTillNextHitSeconds);
-                }
+        StartCoroutine(Hit(box));
+    }
 
-                while (intersectingSinceSeconds >= delayTillNextHitLocal)
-                {
-                    onHitTriggerEvent?.Invoke(box);
-                    intersectingSinceSeconds -= delayTillNextHitLocal;
-                }
-            }
+    IEnumerator Hit(Hitbox box)
+    {
+        var flashRoutine = StartCoroutine(Flash());
+        alreadyTriggered = true;
+        this.onHitTriggerEvent?.Invoke(box);
+        this.isInIFrame = true;
+        yield return new WaitForSeconds(iFrameSeconds);
+        this.isInIFrame = false;
+        StopCoroutine(flashRoutine);
+        foreach (var renderer in renderers)
+        {
+            renderer.enabled = true;
         }
+    }
 
+
+    IEnumerator Flash()
+    {
+        var setEnabled = false;
+        while (true)
+        {
+            foreach (var renderer in renderers)
+            {
+                renderer.enabled = setEnabled;
+            }
+            setEnabled = !setEnabled;
+            yield return new WaitForSeconds(flashTime);
+        }
     }
 }
