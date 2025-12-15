@@ -10,6 +10,7 @@ public class SceneSetup : MonoBehaviour
     [Header("Lobby Settings")]
     public Transform afterTutorialSpawnpoint;
     public Transform afterStorageRoomSpawnpoint;
+    public Transform afterElevatorSpawnpoint;
     public Interactable afterTutorialDialog;
     public CharacterController player;
 
@@ -63,6 +64,14 @@ public class SceneSetup : MonoBehaviour
             player.transform.position = afterStorageRoomSpawnpoint.position;
             player.transform.localScale = afterStorageRoomSpawnpoint.localScale;
             player.transform.rotation = afterStorageRoomSpawnpoint.rotation;
+            player.enabled = true;
+        } else if (oldScene == GameState.Scenes.Treppenhaus)
+        {
+            afterTutorialDialog.enabled = false;
+            player.enabled = false;
+            player.transform.position = afterElevatorSpawnpoint.position;
+            player.transform.localScale = afterElevatorSpawnpoint.localScale;
+            player.transform.rotation = afterElevatorSpawnpoint.rotation;
             player.enabled = true;
         }
 
