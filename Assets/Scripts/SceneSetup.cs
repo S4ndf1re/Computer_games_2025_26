@@ -17,8 +17,14 @@ public class SceneSetup : MonoBehaviour
 
     void Start()
     {
+        if (state.currentScene == null)
+        {
+            state.Clear();
+        }
+
         var oldScene = state.currentScene;
         state.SetSceneBasedOnString(SceneManager.GetActiveScene().name.ToLower());
+
 
         switch (state.currentScene)
         {
@@ -34,13 +40,12 @@ public class SceneSetup : MonoBehaviour
 
     }
 
-
-    void SetupTutorial(GameState.Scenes oldScene)
+    void SetupTutorial(GameState.Scenes? oldScene)
     {
         // Nothing to do here
     }
 
-    void SetupLobby(GameState.Scenes oldScene)
+    void SetupLobby(GameState.Scenes? oldScene)
     {
         if (oldScene == GameState.Scenes.Tutorial)
         {

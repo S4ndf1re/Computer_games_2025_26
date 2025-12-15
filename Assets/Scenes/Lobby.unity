@@ -884,6 +884,60 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1031141194, guid: abc00000000001076255003919069748, type: 3}
   m_PrefabInstance: {fileID: 1694310466}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &326368904 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1949671195395142, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
+  m_PrefabInstance: {fileID: 1177495657}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &326368905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326368904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd6bf7104205a49b09fcd7e47ac9cd0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneSwapTrigger
+  sceneName: Treppenhaus
+  loadSceneMode: 0
+  transition: {fileID: 104755114}
+--- !u!114 &326368906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326368904}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &326368907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326368904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d018b9bdcc2e139489993ef1438614da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  oneTimeUse: 0
+  triggerOnEnter: 0
+  interactRange: 1.5
+  player: {fileID: 1187813047}
 --- !u!1 &350134072
 GameObject:
   m_ObjectHideFlags: 0
@@ -3695,7 +3749,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1949671195395142, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 326368907}
+    - targetCorrespondingSourceObject: {fileID: 1949671195395142, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 326368906}
+    - targetCorrespondingSourceObject: {fileID: 1949671195395142, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 326368905}
   m_SourcePrefab: {fileID: 100100000, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
 --- !u!4 &1180777747 stripped
 Transform:
@@ -7175,7 +7238,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2040962195}
-  - component: {fileID: 2040962194}
+  - component: {fileID: 2040962196}
   m_Layer: 0
   m_Name: PaperCondition
   m_TagString: Untagged
@@ -7183,19 +7246,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2040962194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2040962193}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: add9ddce097794620beef95adf789aed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SimpleCondition
-  isDone: 0
 --- !u!4 &2040962195
 Transform:
   m_ObjectHideFlags: 0
@@ -7211,6 +7261,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2040962196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040962193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b63db2522f25e4b45baef3a98cd4d68f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PaperTaskCondition
+  isDone: 0
+  state: {fileID: 11400000, guid: 693ba17327987418c9ba4379171e13ce, type: 2}
 --- !u!1001 &2063508687
 PrefabInstance:
   m_ObjectHideFlags: 0

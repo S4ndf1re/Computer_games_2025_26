@@ -51,8 +51,10 @@ MonoBehaviour:
   offset: 2
   repeat: 1
   icon: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  toRenderTo: {fileID: 5010373019524976173}
   color: {r: 1, g: 1, b: 1, a: 1}
   requestColor: 1
+  enabledInColliders: []
   tickloop: {fileID: 0}
 --- !u!114 &9030274333753170671
 MonoBehaviour:
