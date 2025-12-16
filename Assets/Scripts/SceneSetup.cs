@@ -10,6 +10,7 @@ public class SceneSetup : MonoBehaviour
     [Header("Lobby Settings")]
     public Transform afterTutorialSpawnpoint;
     public Transform afterStorageRoomSpawnpoint;
+    public Transform afterElevatorSpawnpoint;
     public Interactable afterTutorialDialog;
     public CharacterController player;
 
@@ -17,8 +18,14 @@ public class SceneSetup : MonoBehaviour
 
     void Start()
     {
+        if (state.currentScene == null)
+        {
+            state.Clear();
+        }
+
         var oldScene = state.currentScene;
         state.SetSceneBasedOnString(SceneManager.GetActiveScene().name.ToLower());
+
 
         switch (state.currentScene)
         {
@@ -34,33 +41,36 @@ public class SceneSetup : MonoBehaviour
 
     }
 
-
-    void SetupTutorial(GameState.Scenes oldScene)
+    void SetupTutorial(GameState.Scenes? oldScene)
     {
         // Nothing to do here
     }
 
-    void SetupLobby(GameState.Scenes oldScene)
+    void SetupLobby(GameState.Scenes? oldScene)
     {
+        player.enabled = false;
         if (oldScene == GameState.Scenes.Tutorial)
         {
             afterTutorialDialog.enabled = true;
-            player.enabled = false;
             player.transform.position = afterTutorialSpawnpoint.position;
             player.transform.localScale = afterTutorialSpawnpoint.localScale;
             player.transform.rotation = afterTutorialSpawnpoint.rotation;
-            player.enabled = true;
         }
         else if (oldScene == GameState.Scenes.StorageRoom)
         {
             afterTutorialDialog.enabled = false;
-            player.enabled = false;
             player.transform.position = afterStorageRoomSpawnpoint.position;
             player.transform.localScale = afterStorageRoomSpawnpoint.localScale;
             player.transform.rotation = afterStorageRoomSpawnpoint.rotation;
-            player.enabled = true;
         }
-
+        else if (oldScene == GameState.Scenes.Treppenhaus)
+        {
+            afterTutorialDialog.enabled = false;
+            player.transform.position = afterElevatorSpawnpoint.position;
+            player.transform.localScale = afterElevatorSpawnpoint.localScale;
+            player.transform.rotation = afterElevatorSpawnpoint.rotation;
+        }
+        player.enabled = true;
     }
 
 }

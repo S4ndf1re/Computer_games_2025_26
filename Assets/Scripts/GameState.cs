@@ -13,7 +13,15 @@ public class GameState : ScriptableObject
         Treppenhaus,
     }
 
-    public Scenes currentScene = Scenes.Tutorial;
+
+    public Scenes? currentScene = null;
+    public bool hasPaper = false;
+
+    public void Clear()
+    {
+        this.currentScene = null;
+        this.hasPaper = false;
+    }
 
     public void SetSceneBasedOnString(string sceneName)
     {
