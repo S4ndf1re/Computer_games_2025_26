@@ -2272,6 +2272,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Office Floor (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 3450521028057788316, guid: fffad5bd1416749cdbe1a07e598ad903, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6688102825378711489, guid: fffad5bd1416749cdbe1a07e598ad903, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2311,6 +2315,10 @@ PrefabInstance:
     - target: {fileID: 6688102825378711489, guid: fffad5bd1416749cdbe1a07e598ad903, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8803700612838811715, guid: fffad5bd1416749cdbe1a07e598ad903, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4176,6 +4184,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9112193095359668088, guid: fffad5bd1416749cdbe1a07e598ad903, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -4782,6 +4794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   withYAdjustment: 1
   newYThreshold: 12
+  collected: 0
 --- !u!4 &1053651940
 Transform:
   m_ObjectHideFlags: 0
@@ -9507,6 +9520,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   withYAdjustment: 1
   newYThreshold: 20
+  collected: 0
 --- !u!1001 &1834816241
 PrefabInstance:
   m_ObjectHideFlags: 0
