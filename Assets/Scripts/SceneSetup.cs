@@ -48,33 +48,29 @@ public class SceneSetup : MonoBehaviour
 
     void SetupLobby(GameState.Scenes? oldScene)
     {
+        player.enabled = false;
         if (oldScene == GameState.Scenes.Tutorial)
         {
             afterTutorialDialog.enabled = true;
-            player.enabled = false;
             player.transform.position = afterTutorialSpawnpoint.position;
             player.transform.localScale = afterTutorialSpawnpoint.localScale;
             player.transform.rotation = afterTutorialSpawnpoint.rotation;
-            player.enabled = true;
         }
         else if (oldScene == GameState.Scenes.StorageRoom)
         {
             afterTutorialDialog.enabled = false;
-            player.enabled = false;
             player.transform.position = afterStorageRoomSpawnpoint.position;
             player.transform.localScale = afterStorageRoomSpawnpoint.localScale;
             player.transform.rotation = afterStorageRoomSpawnpoint.rotation;
-            player.enabled = true;
-        } else if (oldScene == GameState.Scenes.Treppenhaus)
+        }
+        else if (oldScene == GameState.Scenes.Treppenhaus)
         {
             afterTutorialDialog.enabled = false;
-            player.enabled = false;
             player.transform.position = afterElevatorSpawnpoint.position;
             player.transform.localScale = afterElevatorSpawnpoint.localScale;
             player.transform.rotation = afterElevatorSpawnpoint.rotation;
-            player.enabled = true;
         }
-
+        player.enabled = true;
     }
 
 }

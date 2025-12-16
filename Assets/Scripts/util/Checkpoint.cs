@@ -13,7 +13,7 @@ public class Checkpoint : MonoBehaviour
         var respawnScript = other.GetComponent<RespawnPlayer>();
         if (respawnScript != null)
         {
-            if ((currentCheckpoint == null || currentCheckpoint != this) && collected)
+            if ((currentCheckpoint == null || currentCheckpoint != this) && !collected)
             {
                 respawnScript.startingPosition = other.transform.position;
                 respawnScript.startingRotation = other.transform.rotation;
