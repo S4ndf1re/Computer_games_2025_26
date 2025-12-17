@@ -3147,7 +3147,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 898227483}
-  - component: {fileID: 898227482}
+  - component: {fileID: 898227484}
   m_Layer: 0
   m_Name: InkCondition
   m_TagString: Untagged
@@ -3155,19 +3155,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &898227482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 898227481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: add9ddce097794620beef95adf789aed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SimpleCondition
-  isDone: 0
 --- !u!4 &898227483
 Transform:
   m_ObjectHideFlags: 0
@@ -3183,6 +3170,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &898227484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898227481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b50df02980915e445885df6c2a41c2c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InkTaskCondition
+  isDone: 0
+  state: {fileID: 11400000, guid: 693ba17327987418c9ba4379171e13ce, type: 2}
 --- !u!4 &918289231 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 407020, guid: b39af83ea51e1f74fa9441c571c84b2d, type: 3}
