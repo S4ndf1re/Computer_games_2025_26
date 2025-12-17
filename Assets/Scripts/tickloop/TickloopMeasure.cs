@@ -9,16 +9,6 @@ public class TickloopMeasure : MonoBehaviour
     public Color activeColor = Color.black;
     public Color inactiveColor = Color.white;
     public Tickloop tickloop;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void Instantiate(int number_of_beats, Transform measure_transform, Color activeColor, Color inactiveColor, Tickloop loop)
     {

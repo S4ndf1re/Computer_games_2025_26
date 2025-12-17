@@ -73,7 +73,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 511
+    m_Bits: 1535
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -449,10 +449,9 @@ MonoBehaviour:
   knockBackForce: 7
   knockUpForce: 1
   hurtbox: {fileID: 0}
-  CanDoubleJump: 1
-  DoubleJumpHeight: 1
-  DoubleJumpDelay: 0.15
-  canWallJump: 0
+  maxSpeedOnInk: 3
+  slowedForSeconds: 2
+  canDoubleJump: 1
 --- !u!143 &2702084139711828418
 CharacterController:
   m_ObjectHideFlags: 0

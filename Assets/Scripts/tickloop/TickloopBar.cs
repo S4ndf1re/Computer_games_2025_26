@@ -15,7 +15,7 @@ public class TickloopBar : MonoBehaviour
 
 
 
-    void Start()
+    void OnEnable()
     {
         tickloop.uiTrigger += AnimateBar;
         tickloop.onAddedGameObject += AddObject;

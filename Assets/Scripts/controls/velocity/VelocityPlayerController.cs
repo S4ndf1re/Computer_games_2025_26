@@ -1,5 +1,7 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 [RequireComponent(typeof(Velocity))]
 public class VelocityPlayerController : MonoBehaviour
@@ -52,6 +54,13 @@ public class VelocityPlayerController : MonoBehaviour
     public float knockBackForce = 7f;
     public float knockUpForce = 1f;
     public Hurtbox hurtbox;
+
+    [Header("Ink Settings")]
+    public float maxSpeedOnInk = 8f;
+    public float overallMaxSpeedBuffer = 8f;
+    public float slowedForSeconds = 1f;
+    public LayerMask inkLayerMask;
+    private Coroutine currentlyInkedRunning;
 
     [Header("Double Jump Settings")]
     public bool canDoubleJump = true;
@@ -369,5 +378,33 @@ public class VelocityPlayerController : MonoBehaviour
             velocity.Jump(knockUpForce);
             velocity.LockInputForSeconds(inputLockAfterHit);
         }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Collision");
+        Debug.Log("Layer Ink: " + LayerMask.NameToLayer("Ink"));
+        Debug.Log("Layer other: " + other.gameObject.layer);
+        if (((1 << other.gameObject.layer) & inkLayerMask) != 0)
+        {
+            if (currentlyInkedRunning != null)
+            {
+                StopCoroutine(currentlyInkedRunning);
+            }
+            currentlyInkedRunning = StartCoroutine(SlowForSeconds());
+        }
+    }
+
+
+    IEnumerator SlowForSeconds()
+    {
+        var oldMaxVelocity = velocity.maxXYGroundSpeed;
+        velocity.maxXYGroundSpeed = maxSpeedOnInk;
+        if (oldMaxVelocity > maxSpeedOnInk)
+        {
+            overallMaxSpeedBuffer = oldMaxVelocity;
+        }
+        yield return new WaitForSeconds(slowedForSeconds);
+        velocity.maxXYGroundSpeed = overallMaxSpeedBuffer;
     }
 }

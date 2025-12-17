@@ -13,8 +13,14 @@ using UnityEngine;
 public class TickloopAddable : MonoBehaviour
 {
 
+    public delegate void LoopStartEnd(Tickloop tickloop);
+    public delegate void OnEnableDisable();
     public delegate void TriggeredByTickloop(Tickloop tickloop, int nth_trigger);
     public event TriggeredByTickloop triggeredByTickloop;
+    public event LoopStartEnd loopStart;
+    public event LoopStartEnd loopEnd;
+    public event OnEnableDisable onEnable;
+    public event OnEnableDisable onDisable;
 
     public delegate void PhasedOutTick();
     public event PhasedOutTick phasedOutTickEvent;
@@ -46,10 +52,10 @@ public class TickloopAddable : MonoBehaviour
     public Tickloop tickloop;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void OnEnable()
     {
         // tickloop = tickloopObject.GetComponent<Tickloop>();
-
+        Debug.Log("Starting addable");
 
         if (every_nth > 0 && ticksToTrigger.Count == 0)
         {
@@ -81,6 +87,8 @@ public class TickloopAddable : MonoBehaviour
         {
             AddToTickloop();
         }
+
+        onEnable?.Invoke();
     }
 
 
@@ -96,6 +104,8 @@ public class TickloopAddable : MonoBehaviour
             enabler.enableEvent -= AddToTickloop;
             enabler.disableEvent -= RemoveFromTickloop;
         }
+
+        onDisable?.Invoke();
     }
 
     void RemoveFromTickloop()
@@ -152,5 +162,15 @@ public class TickloopAddable : MonoBehaviour
             this.toRenderTo.material.SetColor("_BaseColor", this.color);
             Debug.Log("Color: " + this.toRenderTo.material.GetColor("_BaseColor"));
         }
+    }
+
+    public void OnLoopStart()
+    {
+        this.loopStart?.Invoke(this.tickloop);
+    }
+
+    public void OnLoopEnd()
+    {
+        this.loopEnd?.Invoke(this.tickloop);
     }
 }
