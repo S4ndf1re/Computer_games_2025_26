@@ -2,15 +2,29 @@ using UnityEngine;
 
 public class ColliderTickloopActivator : MonoBehaviour
 {
+    [Header("Tickloop Source")]
+    [Tooltip("If null, TickloopAddable on this GameObject will be used")]
+    public TickloopAddable triggeredBy;
+
     public float onTimeSeconds = 0.5f;
     public Collider toggleableCollider;
 
     private float lastEnabledSince = 0.0f;
 
+    private TickloopAddable addable;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        GetComponent<TickloopAddable>().triggeredByTickloop += EnableCollider;
+        if (triggeredBy != null)
+        {
+            this.addable = this.triggeredBy;
+        } else
+        {
+            this.addable = GetComponent<TickloopAddable>();
+        }
+
+        this.addable.triggeredByTickloop += EnableCollider;
         toggleableCollider.enabled = false;
     }
 
@@ -32,7 +46,10 @@ public class ColliderTickloopActivator : MonoBehaviour
 
     void OnDisable()
     {
-        GetComponent<TickloopAddable>().triggeredByTickloop -= EnableCollider;
+        if (this.addable != null)
+        {
+            this.addable.triggeredByTickloop -= EnableCollider;
+        }
     }
 
 
