@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
 
     void OnHit(Hitbox box)
     {
-        currentHealth -= 1;
+        currentHealth -= box.damage;
         if (currentHealth < 1 && isDestroyedOnDeath)
         {
             Destroy(gameObject);

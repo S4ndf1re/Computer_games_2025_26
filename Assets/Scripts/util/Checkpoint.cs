@@ -8,6 +8,9 @@ public class Checkpoint : MonoBehaviour
     public float newYThreshold = 0.0f;
     public bool collected = false;
 
+    [Header("Collected Particles")]
+    public ParticleSystem particles;
+
     void OnTriggerEnter(Collider other)
     {
         var respawnScript = other.GetComponent<RespawnPlayer>();
@@ -24,6 +27,11 @@ public class Checkpoint : MonoBehaviour
                 currentCheckpoint = this;
                 GetComponent<AudioSource>()?.Play();
                 collected = true;
+                if (particles != null)
+                {
+                    particles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+                    particles.Play();
+                }
             }
         }
 

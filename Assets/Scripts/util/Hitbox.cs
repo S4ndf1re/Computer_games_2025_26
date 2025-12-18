@@ -11,6 +11,8 @@ public class Hitbox : MonoBehaviour
     public delegate void HitboxStay();
     public event HitboxStay hitboxStayEvent;
 
+    public int damage = 1;
+
     private void OnTriggerEnter(Collider other)
     {
         Hurtbox hurtbox = other.GetComponent<Hurtbox>();
