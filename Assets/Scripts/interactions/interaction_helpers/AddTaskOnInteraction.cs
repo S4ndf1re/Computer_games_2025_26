@@ -42,4 +42,9 @@ public class AddTaskOnInteraction : MonoBehaviour, InteractableAction
         }
     }
 
+
+    bool InteractableAction.IsActive()
+    {
+        return enabled;
+    }
 }

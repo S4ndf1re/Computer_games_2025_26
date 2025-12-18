@@ -1,12 +1,13 @@
 using UnityEngine;
 
-public class ActivateAfterInteraction : MonoBehaviour, InteractableAction
+public class SoundOnInteraction : MonoBehaviour, InteractableAction
 {
-    public GameObject toActivate;
+
+    public AudioSource audio;
 
     public bool Execute()
     {
-        toActivate.SetActive(true);
+        audio.Play();
         return true;
     }
 

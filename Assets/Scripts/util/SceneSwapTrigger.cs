@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class SceneSwapTrigger : MonoBehaviour, InteractableAction
 {
+    public int afterN = 0;
+    private int counter = 0;
 
     public string sceneName;
     public LoadSceneMode loadSceneMode;
@@ -19,14 +21,24 @@ public class SceneSwapTrigger : MonoBehaviour, InteractableAction
         sceneSwap = null;
     }
 
+    void InteractableAction.StartInteraction()
+    {
+        counter = 0;
+    }
+
     public bool Execute()
     {
-        if (sceneSwap == null)
+        if (counter >= afterN)
         {
-            sceneSwap = StartCoroutine(LoadScene());
+            if (sceneSwap == null)
+            {
+                sceneSwap = StartCoroutine(LoadScene());
+            }
+            return true;
         }
+        counter++;
 
-        return true;
+        return false;
     }
 
     IEnumerator LoadScene()
@@ -39,6 +51,11 @@ public class SceneSwapTrigger : MonoBehaviour, InteractableAction
         var scene = SceneManager.GetSceneByName(sceneName);
         SceneManager.SetActiveScene(scene);
 
+    }
+
+    bool InteractableAction.IsActive()
+    {
+        return enabled;
     }
 
 }

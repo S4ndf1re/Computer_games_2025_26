@@ -54,4 +54,8 @@ public class PlattformMoveAction : MonoBehaviour, InteractableAction
     }
 
 
+    bool InteractableAction.IsActive()
+    {
+        return enabled;
+    }
 }

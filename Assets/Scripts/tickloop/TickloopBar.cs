@@ -52,13 +52,18 @@ public class TickloopBar : MonoBehaviour
 
     private void AnimateBar()
     {
-        int previousIndex = (tickloop.currentIdx - 1 + tickloop.tickLength) % tickloop.tickLength;
+        // int previousIndex = (tickloop.currentIdx - 1 + tickloop.tickLength) % tickloop.tickLength;
 
         var (currentMeasure, currentBeat) = IndexToBarAndBeat(tickloop.currentIdx);
-        var (previousMeasure, previousBeat) = IndexToBarAndBeat(previousIndex);
+        // var (previousMeasure, previousBeat) = IndexToBarAndBeat(previousIndex);
+
+        foreach (var measure in measures)
+        {
+            measure.UnhighlightAll();
+        }
 
         measures[currentMeasure].HighlightBeat(currentBeat);
-        measures[previousMeasure].UnhighlightBeat(previousBeat);
+        // measures[previousMeasure].UnhighlightBeat(previousBeat);
     }
 
     void AddObject(TickloopAddable obj, List<int> tickIndices)

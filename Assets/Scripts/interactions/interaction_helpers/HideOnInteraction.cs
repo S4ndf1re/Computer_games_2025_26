@@ -56,4 +56,9 @@ public class HideOnInteract : MonoBehaviour, InteractableAction
             r.enabled = false;
         }
     }
+
+    bool InteractableAction.IsActive()
+    {
+        return enabled;
+    }
 }

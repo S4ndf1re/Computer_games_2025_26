@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 897261582c6e04c06a97ef4f84929291, type: 3}
   m_Name: GameState
   m_EditorClassIdentifier: Assembly-CSharp::GameState
-  currentScene: 0
+  hasPaper: 0
+  hasInk: 0

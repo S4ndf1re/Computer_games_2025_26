@@ -408,6 +408,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   oneTimeUse: 1
   triggerOnEnter: 1
+  explicitMultiUse: 0
+  blockForSeconds: 0
   setOutline: {fileID: 0}
   interactRange: 1
   player: {fileID: 1626467075}
@@ -753,6 +755,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   oneTimeUse: 1
   triggerOnEnter: 1
+  explicitMultiUse: 0
+  blockForSeconds: 0
   setOutline: {fileID: 0}
   interactRange: 1
   player: {fileID: 1626467075}
@@ -2972,6 +2976,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   oneTimeUse: 1
   triggerOnEnter: 1
+  explicitMultiUse: 0
+  blockForSeconds: 0
   setOutline: {fileID: 0}
   interactRange: 0.5
   player: {fileID: 1626467075}
@@ -3933,6 +3939,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   oneTimeUse: 1
   triggerOnEnter: 1
+  explicitMultiUse: 0
+  blockForSeconds: 0
   setOutline: {fileID: 0}
   interactRange: 1
   player: {fileID: 1626467075}
@@ -6212,6 +6220,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   oneTimeUse: 1
   triggerOnEnter: 0
+  explicitMultiUse: 0
+  blockForSeconds: 0
   setOutline: {fileID: 0}
   interactRange: 1.5
   player: {fileID: 1626467075}
@@ -6227,6 +6237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd6bf7104205a49b09fcd7e47ac9cd0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  afterN: 0
   sceneName: Lobby
   loadSceneMode: 0
   transition: {fileID: 402125045}
@@ -8581,6 +8592,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5358328985757783582, guid: 3dba0373657928f429c094afe71fa21f, type: 3}
+      propertyPath: canDoubleJump
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5358328985757783582, guid: 3dba0373657928f429c094afe71fa21f, type: 3}
       propertyPath: knockBackForce
       value: 0
       objectReference: {fileID: 0}
@@ -9604,6 +9619,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   oneTimeUse: 1
   triggerOnEnter: 1
+  explicitMultiUse: 0
+  blockForSeconds: 0
   setOutline: {fileID: 0}
   interactRange: 3
   player: {fileID: 1626467075}
@@ -12026,6 +12043,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   oneTimeUse: 1
   triggerOnEnter: 1
+  explicitMultiUse: 0
+  blockForSeconds: 0
   setOutline: {fileID: 0}
   interactRange: 1
   player: {fileID: 1626467075}

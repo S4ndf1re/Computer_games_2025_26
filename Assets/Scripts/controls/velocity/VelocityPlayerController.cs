@@ -382,9 +382,6 @@ public class VelocityPlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collision");
-        Debug.Log("Layer Ink: " + LayerMask.NameToLayer("Ink"));
-        Debug.Log("Layer other: " + other.gameObject.layer);
         if (((1 << other.gameObject.layer) & inkLayerMask) != 0)
         {
             if (currentlyInkedRunning != null)
