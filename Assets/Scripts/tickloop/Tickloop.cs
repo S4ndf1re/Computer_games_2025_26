@@ -212,4 +212,10 @@ public class Tickloop : MonoBehaviour
 
         return color ?? Color.white;
     }
+
+    public void SetToLastMeasure()
+    {
+        currentIdx = ticks.Count - beatsInMeasure - 2;
+        uiTrigger?.Invoke();
+    }
 }

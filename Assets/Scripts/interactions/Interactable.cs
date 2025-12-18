@@ -5,11 +5,13 @@ using System.Collections.Generic;
 public class Interactable : MonoBehaviour
 {
     [Header("Interaction Settings")]
-    public bool oneTimeUse = false;     // NEU: Im Inspector auswählbar
+    public bool oneTimeUse = false;
 
     [Tooltip("Tigger once player enters")]
     public bool triggerOnEnter = false;
+    public bool explicitMultiUse = false;
     private bool hasTriggeredAfterEnter = false;
+
 
     public Outline setOutline;
 
@@ -30,7 +32,8 @@ public class Interactable : MonoBehaviour
         if (setOutline != null)
         {
             outline = setOutline;
-        } else
+        }
+        else
         {
             outline = GetComponent<Outline>();
         }
@@ -106,7 +109,7 @@ public class Interactable : MonoBehaviour
         if (dist <= interactRange)
         {
             player.currentInteractable = this;
-            if (triggerOnEnter && !hasTriggeredAfterEnter)
+            if (triggerOnEnter && !hasTriggeredAfterEnter || triggerOnEnter && explicitMultiUse)
             {
                 InvokeInteraction();
                 hasTriggeredAfterEnter = true;
@@ -134,7 +137,7 @@ public class Interactable : MonoBehaviour
     public void InvokeInteraction()
     {
         // Wenn One-Time und bereits interagiert → abbrechen
-        if (oneTimeUse && AllFinished() || AllFinished() && hasTriggeredAfterEnter)
+        if (oneTimeUse && AllFinished() || AllFinished() && hasTriggeredAfterEnter && !explicitMultiUse)
         {
             return;
         }

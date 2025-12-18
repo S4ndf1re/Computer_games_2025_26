@@ -59,6 +59,9 @@ public class TaskListManager : MonoBehaviour
     /// <param name="condition"></param>
     public void SpawnTask(string taskDescription, TaskCondition condition)
     {
-        tasks.Add(spawner.SpawnTask(taskDescription, condition));
+        if (condition != null)
+        {
+            tasks.Add(spawner.SpawnTask(taskDescription, condition));
+        }
     }
 }

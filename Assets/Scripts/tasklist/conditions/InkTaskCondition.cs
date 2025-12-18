@@ -44,6 +44,22 @@ public class InkTaskCondition : MonoBehaviour, TaskCondition
 
     void TaskCondition.FinishTask()
     {
-        isDone = true;
+        if (enabled)
+            isDone = true;
+    }
+
+    void TaskCondition.Activate()
+    {
+        enabled = true;
+    }
+
+    void TaskCondition.Deactivate()
+    {
+        enabled = false;
+    }
+
+    bool TaskCondition.IsActive()
+    {
+        return enabled;
     }
 }

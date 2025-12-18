@@ -53,6 +53,14 @@ public class TickloopMeasure : MonoBehaviour
         beats[beat].Unhighlight();
     }
 
+    public void UnhighlightAll()
+    {
+        foreach(var beat in beats)
+        {
+            beat.Unhighlight();
+        }
+    }
+
     public void AddObject(TickloopAddable obj, int idx)
     {
         this.beats[idx].AddObject(obj);
