@@ -9220,6 +9220,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   oneTimeUse: 1
   triggerOnEnter: 1
+  explicitMultiUse: 0
+  blockForSeconds: 0
   setOutline: {fileID: 0}
   interactRange: 1
   player: {fileID: 1373538649}
@@ -14974,6 +14976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd6bf7104205a49b09fcd7e47ac9cd0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneSwapTrigger
+  afterN: 0
   sceneName: Lobby
   loadSceneMode: 0
   transition: {fileID: 1484391226}
@@ -14991,6 +14994,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   oneTimeUse: 0
   triggerOnEnter: 0
+  explicitMultiUse: 0
+  blockForSeconds: 0
   setOutline: {fileID: 0}
   interactRange: 1.5
   player: {fileID: 1373538649}
@@ -21241,6 +21246,75 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0.000000059604645, y: 0, z: 0}
+--- !u!1001 &1601087571
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4174420927943478170, guid: f2be014028fea4241b38c35828c625d2, type: 3}
+      propertyPath: newYThreshold
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4518918007512092864, guid: f2be014028fea4241b38c35828c625d2, type: 3}
+      propertyPath: m_Name
+      value: Checkpoint Trigger (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554880650855510353, guid: f2be014028fea4241b38c35828c625d2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.2463
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554880650855510353, guid: f2be014028fea4241b38c35828c625d2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.2463
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554880650855510353, guid: f2be014028fea4241b38c35828c625d2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554880650855510353, guid: f2be014028fea4241b38c35828c625d2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 39.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554880650855510353, guid: f2be014028fea4241b38c35828c625d2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12.117169
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554880650855510353, guid: f2be014028fea4241b38c35828c625d2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554880650855510353, guid: f2be014028fea4241b38c35828c625d2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554880650855510353, guid: f2be014028fea4241b38c35828c625d2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554880650855510353, guid: f2be014028fea4241b38c35828c625d2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554880650855510353, guid: f2be014028fea4241b38c35828c625d2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554880650855510353, guid: f2be014028fea4241b38c35828c625d2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554880650855510353, guid: f2be014028fea4241b38c35828c625d2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f2be014028fea4241b38c35828c625d2, type: 3}
 --- !u!4 &1627136357 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400794, guid: a0caed2329b1ff545b145d48d6ef85d7, type: 3}
@@ -28730,4 +28804,5 @@ SceneRoots:
   - {fileID: 1041834219}
   - {fileID: 244546570}
   - {fileID: 2128594991}
+  - {fileID: 1601087571}
   - {fileID: 768339777}
