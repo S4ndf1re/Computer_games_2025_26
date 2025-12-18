@@ -162,7 +162,7 @@ public class TickloopAddable : MonoBehaviour
             r.material.SetColor("_BaseColor", color);
         }
     }
-    
+
 
     IEnumerable<Renderer> GetAllRenderers()
     {
