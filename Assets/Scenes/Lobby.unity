@@ -1121,7 +1121,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1949671195395142, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
       propertyPath: m_Name
-      value: Door_4_White
+      value: StorageRoomDoor
       objectReference: {fileID: 0}
     - target: {fileID: 4227889827151656, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3755,7 +3755,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1949671195395142, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
       propertyPath: m_Name
-      value: Door_4_White (2)
+      value: StaircaseDoor
       objectReference: {fileID: 0}
     - target: {fileID: 4227889827151656, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4293,7 +4293,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1949671195395142, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
       propertyPath: m_Name
-      value: Door_4_White (1)
+      value: ElevatorDoor
       objectReference: {fileID: 0}
     - target: {fileID: 4227889827151656, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6673,6 +6673,18 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1576776764}
+    - target: {fileID: 2569634376704373384, guid: f5b6439a8ab4a4b6f8cb2e356b7d79f0, type: 3}
+      propertyPath: staircaseDoor
+      value: 
+      objectReference: {fileID: 326368907}
+    - target: {fileID: 2569634376704373384, guid: f5b6439a8ab4a4b6f8cb2e356b7d79f0, type: 3}
+      propertyPath: printerDialogue
+      value: 
+      objectReference: {fileID: 1293994131}
+    - target: {fileID: 2569634376704373384, guid: f5b6439a8ab4a4b6f8cb2e356b7d79f0, type: 3}
+      propertyPath: storageRoomDoor
+      value: 
+      objectReference: {fileID: 1625128826}
     - target: {fileID: 2569634376704373384, guid: f5b6439a8ab4a4b6f8cb2e356b7d79f0, type: 3}
       propertyPath: afterTutorialDialog
       value: 
