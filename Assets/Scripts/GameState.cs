@@ -16,11 +16,13 @@ public class GameState : ScriptableObject
 
     public Scenes? currentScene = null;
     public bool hasPaper = false;
+    public bool hasInk = false;
 
     public void Clear()
     {
         this.currentScene = null;
         this.hasPaper = false;
+        this.hasInk = false;
     }
 
     public void SetSceneBasedOnString(string sceneName)

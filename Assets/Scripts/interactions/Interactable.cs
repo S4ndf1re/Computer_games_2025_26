@@ -11,6 +11,8 @@ public class Interactable : MonoBehaviour
     public bool triggerOnEnter = false;
     private bool hasTriggeredAfterEnter = false;
 
+    public Outline setOutline;
+
     public float interactRange = 1.5f;
     public InteractionController player;
 
@@ -25,7 +27,13 @@ public class Interactable : MonoBehaviour
 
     void Start()
     {
-        outline = GetComponent<Outline>();
+        if (setOutline != null)
+        {
+            outline = setOutline;
+        } else
+        {
+            outline = GetComponent<Outline>();
+        }
         // if (outline == null)
         //     outline = gameObject.AddComponent<Outline>();
 
