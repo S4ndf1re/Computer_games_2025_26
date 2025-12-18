@@ -28,4 +28,9 @@ public class GiveInkOnInteraction : MonoBehaviour, InteractableAction
     {
         state.hasInk = true;
     }
+
+    bool InteractableAction.IsActive()
+    {
+        return enabled;
+    }
 }

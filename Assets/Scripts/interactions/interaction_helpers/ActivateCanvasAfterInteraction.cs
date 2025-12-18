@@ -8,4 +8,9 @@ public class ActivateCanvasAfterInteraction : MonoBehaviour, InteractableAction
         canvas.enabled = true;
         return false;
     }
+
+    bool InteractableAction.IsActive()
+    {
+        return enabled;
+    }
 }

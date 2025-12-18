@@ -34,4 +34,9 @@ public class FinishTaskonInteraction : MonoBehaviour, InteractableAction
         conditionInterface.GetInstance().FinishTask();
     }
 
+    bool InteractableAction.IsActive()
+    {
+        return enabled;
+    }
+
 }

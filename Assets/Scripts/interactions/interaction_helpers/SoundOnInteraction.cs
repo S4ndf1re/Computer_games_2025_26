@@ -10,4 +10,9 @@ public class SoundOnInteraction : MonoBehaviour, InteractableAction
         audio.Play();
         return true;
     }
+
+    bool InteractableAction.IsActive()
+    {
+        return enabled;
+    }
 }

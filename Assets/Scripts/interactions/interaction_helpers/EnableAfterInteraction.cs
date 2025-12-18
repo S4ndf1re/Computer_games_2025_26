@@ -10,4 +10,9 @@ public class EnableAfterInteraction : MonoBehaviour, InteractableAction
 
         return true;
     }
+
+    bool InteractableAction.IsActive()
+    {
+        return enabled;
+    }
 }

@@ -164,6 +164,13 @@ public class Interactable : MonoBehaviour
         {
             foreach (var a in actions)
             {
+                if (!a.IsActive())
+                {
+                    hasInteracted[a] = true;
+                    hasFinished[a] = true;
+                    continue;
+                }
+
                 if (!hasInteracted[a])
                 {
                     a.StartInteraction();
