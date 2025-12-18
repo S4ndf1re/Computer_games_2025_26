@@ -55,6 +55,7 @@ public class CombinedCondition : MonoBehaviour, TaskCondition
         {
             cond.GetInstance().Reset();
         }
+        isFinished = false;
     }
 
     public bool TaskFinished()

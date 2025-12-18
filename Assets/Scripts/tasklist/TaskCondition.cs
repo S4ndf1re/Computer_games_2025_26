@@ -12,10 +12,7 @@ public interface TaskCondition
     /// </summary>
     public void FinishTask();
 
-    public void Reset()
-    {
-
-    }
+    public void Reset();
 
     public void Activate();
 

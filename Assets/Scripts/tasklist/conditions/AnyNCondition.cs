@@ -10,7 +10,7 @@ public class AnyNCondition : MonoBehaviour, TaskCondition
     public bool isFinished = false;
     public int minFinished = 1;
 
-    void Start()
+    void Awake()
     {
         foreach (var cond in conditions)
         {
@@ -57,6 +57,7 @@ public class AnyNCondition : MonoBehaviour, TaskCondition
         {
             cond.GetInstance().Reset();
         }
+        isFinished = false;
     }
 
     public bool TaskFinished()

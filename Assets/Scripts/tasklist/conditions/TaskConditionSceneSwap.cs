@@ -69,4 +69,13 @@ public class TaskConditionSceneSwap : MonoBehaviour, TaskCondition
     {
         return enabled;
     }
+
+    void TaskCondition.Reset()
+    {
+        if (current != null)
+        {
+            StopCoroutine(current);
+        }
+        done = false;
+    }
 }

@@ -22,6 +22,7 @@ public class SimpleCondition : MonoBehaviour, TaskCondition
 
     void TaskCondition.Activate()
     {
+        Debug.Log("Enabling Simple Task");
         enabled = true;
     }
 
@@ -37,6 +38,7 @@ public class SimpleCondition : MonoBehaviour, TaskCondition
 
     void TaskCondition.Reset()
     {
+        Debug.Log("Resetting Simple Task");
         isDone = false;
     }
 

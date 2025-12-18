@@ -241,6 +241,7 @@ public class BossState : MonoBehaviour
 
     void SetupPrintheadDodgePhase()
     {
+        Debug.Log("Setting up phase printhead dodge");
         maxLoopCountForPhase = printheadDodgeLoops;
         currentLoop = 0;
         head.enabled = true;
@@ -249,7 +250,9 @@ public class BossState : MonoBehaviour
         printHead2.enabled = false;
         obstacles.enabled = true;
         TaskListManager.Instance.SpawnTask(printheadDodgeTaskTitle, conditionPrintheadDodgePhase);
+        Debug.Log("Resetting");
         conditionPrintheadDodgePhase?.GetInstance().Reset();
+        Debug.Log("Activating");
         conditionPrintheadDodgePhase?.GetInstance().Activate();
     }
 

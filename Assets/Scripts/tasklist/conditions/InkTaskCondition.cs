@@ -62,4 +62,9 @@ public class InkTaskCondition : MonoBehaviour, TaskCondition
     {
         return enabled;
     }
+
+    void TaskCondition.Reset()
+    {
+        isDone = false;
+    }
 }

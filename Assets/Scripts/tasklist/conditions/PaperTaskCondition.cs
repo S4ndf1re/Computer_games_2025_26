@@ -63,4 +63,9 @@ public class PaperTaskCondition : MonoBehaviour, TaskCondition
         return enabled;
     }
 
+    void TaskCondition.Reset()
+    {
+        isDone = false;
+    }
+
 }

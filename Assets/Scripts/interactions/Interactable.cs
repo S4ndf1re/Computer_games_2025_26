@@ -10,7 +10,10 @@ public class Interactable : MonoBehaviour
     [Tooltip("Tigger once player enters")]
     public bool triggerOnEnter = false;
     public bool explicitMultiUse = false;
+    public float blockForSeconds = 0f;
     private bool hasTriggeredAfterEnter = false;
+    private bool blocked = false;
+    private Coroutine blockedCoroutine;
 
 
     public Outline setOutline;
@@ -109,10 +112,15 @@ public class Interactable : MonoBehaviour
         if (dist <= interactRange)
         {
             player.currentInteractable = this;
-            if (triggerOnEnter && !hasTriggeredAfterEnter || triggerOnEnter && explicitMultiUse)
+            if (triggerOnEnter && !hasTriggeredAfterEnter || triggerOnEnter && explicitMultiUse && !blocked)
             {
                 InvokeInteraction();
                 hasTriggeredAfterEnter = true;
+                if (blockedCoroutine != null)
+                {
+                    StopCoroutine(blockedCoroutine);
+                }
+                blockedCoroutine = StartCoroutine(BlockOnEnter());
             }
 
             if (outline != null)
@@ -137,11 +145,11 @@ public class Interactable : MonoBehaviour
     public void InvokeInteraction()
     {
         // Wenn One-Time und bereits interagiert → abbrechen
-        if (oneTimeUse && AllFinished() || AllFinished() && hasTriggeredAfterEnter && !explicitMultiUse)
+        if (oneTimeUse && AllFinished() || AllFinished() && hasTriggeredAfterEnter)
         {
             return;
         }
-        else if (!oneTimeUse && AllFinished())
+        else if ((!oneTimeUse) && AllFinished())
         {
             foreach (var action in actions)
             {
@@ -200,5 +208,14 @@ public class Interactable : MonoBehaviour
         }
 
         yield return new WaitForSeconds(0.15f);
+    }
+
+
+    IEnumerator BlockOnEnter()
+    {
+        blocked = true;
+        yield return new WaitForSeconds(blockForSeconds);
+
+        blocked = false;
     }
 }

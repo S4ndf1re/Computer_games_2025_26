@@ -45473,12 +45473,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1864145121}
     - target: {fileID: 3086192848505052077, guid: f40820cd7f70e4c7c9536c2f54c95a03, type: 3}
-      propertyPath: oneTimeUse
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086192848505052077, guid: f40820cd7f70e4c7c9536c2f54c95a03, type: 3}
-      propertyPath: explicitMultiUse
-      value: 1
+      propertyPath: blockForSeconds
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7892963464009435889, guid: f40820cd7f70e4c7c9536c2f54c95a03, type: 3}
       propertyPath: m_LocalPosition.x
