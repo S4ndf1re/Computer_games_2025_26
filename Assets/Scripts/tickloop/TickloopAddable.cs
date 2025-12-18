@@ -57,8 +57,6 @@ public class TickloopAddable : MonoBehaviour
     void OnEnable()
     {
         // tickloop = tickloopObject.GetComponent<Tickloop>();
-        Debug.Log("Starting addable");
-
         if (every_nth > 0 && ticksToTrigger.Count == 0)
         {
             ticksToTrigger.Clear();

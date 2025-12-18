@@ -1,8 +1,14 @@
+using System.Collections;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossState : MonoBehaviour
 {
+    [Header("Tickloop Control")]
+    public Tickloop loop;
+
     [Header("Control Elements")]
     public Player player;
     public TickloopAddable printHead;
@@ -24,6 +30,16 @@ public class BossState : MonoBehaviour
     private TaskCondition conditionPrintheadHardPhase;
     private TaskCondition conditionPrintheadDodgePhase;
 
+    [Header("Restart")]
+    public Animator transition;
+
+
+    [Header("Task Creation")]
+    public string dodgeTaskTitle;
+    public string printheadTaskTitle;
+    public string printheadHardTaskTitle;
+    public string printheadDodgeTaskTitle;
+
     public enum Phase
     {
         Dodge,
@@ -43,7 +59,10 @@ public class BossState : MonoBehaviour
     // Internal counter
     private int maxLoopCountForPhase;
     private int currentLoop;
+    private TaskCondition currentCondition;
     private bool isNextPhase;
+
+    private Coroutine sceneSwap;
 
     void OnEnable()
     {
@@ -51,10 +70,27 @@ public class BossState : MonoBehaviour
         GetComponent<TickloopAddable>().loopStart += OnLoopStart;
         GetComponent<TickloopAddable>().loopEnd += OnLoopEnd;
 
-        conditionDodgePhase = conditionDodge.GetComponent<TaskCondition>();
-        conditionPrintheadPhase = conditionPrinthead.GetComponent<TaskCondition>();
-        conditionPrintheadHardPhase = conditionPrintheadHard.GetComponent<TaskCondition>();
-        conditionPrintheadDodgePhase = conditionPrintheadDodge.GetComponent<TaskCondition>();
+        if (conditionDodge != null)
+        {
+            conditionDodgePhase = conditionDodge.GetComponent<TaskCondition>();
+            conditionDodgePhase.GetInstance().Deactivate();
+        }
+
+        if (conditionPrinthead != null)
+        {
+            conditionPrintheadPhase = conditionPrinthead.GetComponent<TaskCondition>();
+            conditionPrintheadPhase.GetInstance().Deactivate();
+        }
+        if (conditionPrintheadHard != null)
+        {
+            conditionPrintheadHardPhase = conditionPrintheadHard.GetComponent<TaskCondition>();
+            conditionPrintheadHardPhase.GetInstance().Deactivate();
+        }
+        if (conditionPrintheadDodge != null)
+        {
+            conditionPrintheadDodgePhase = conditionPrintheadDodge.GetComponent<TaskCondition>();
+            conditionPrintheadDodgePhase.GetInstance().Deactivate();
+        }
     }
 
     void OnDisable()
@@ -67,9 +103,17 @@ public class BossState : MonoBehaviour
     void Start()
     {
         SetupPhase();
-        isNextPhase = true;
     }
 
+
+    void Update()
+    {
+        if (CanContinue() && !isNextPhase)
+        {
+            DeactivateAll();
+            NextPhase();
+        }
+    }
 
     bool CanContinue()
     {
@@ -79,41 +123,25 @@ public class BossState : MonoBehaviour
             case Phase.Dodge:
                 if (conditionDodgePhase != null)
                 {
-                    canContinue = conditionDodgePhase.TaskFinished();
-                }
-                else
-                {
-                    canContinue = true;
+                    canContinue = conditionDodgePhase.GetInstance().TaskFinished();
                 }
                 break;
             case Phase.Printhead:
                 if (conditionPrintheadPhase != null)
                 {
-                    canContinue = conditionPrintheadPhase.TaskFinished();
-                }
-                else
-                {
-                    canContinue = true;
+                    canContinue = conditionPrintheadPhase.GetInstance().TaskFinished();
                 }
                 break;
             case Phase.PrintheadHard:
                 if (conditionPrintheadHardPhase != null)
                 {
-                    canContinue = conditionPrintheadHardPhase.TaskFinished();
-                }
-                else
-                {
-                    canContinue = true;
+                    canContinue = conditionPrintheadHardPhase.GetInstance().TaskFinished();
                 }
                 break;
             case Phase.PrintheadDodge:
                 if (conditionPrintheadDodgePhase != null)
                 {
-                    canContinue = conditionPrintheadDodgePhase.TaskFinished();
-                }
-                else
-                {
-                    canContinue = true;
+                    canContinue = conditionPrintheadDodgePhase.GetInstance().TaskFinished();
                 }
                 break;
         }
@@ -132,14 +160,18 @@ public class BossState : MonoBehaviour
         {
             case Phase.Dodge:
                 this.currentPhase = Phase.Printhead;
+                this.currentCondition = conditionDodgePhase;
                 break;
             case Phase.Printhead:
                 this.currentPhase = Phase.PrintheadHard;
+                this.currentCondition = conditionPrintheadPhase;
                 break;
             case Phase.PrintheadHard:
                 this.currentPhase = Phase.PrintheadDodge;
+                this.currentCondition = conditionPrintheadHardPhase;
                 break;
             case Phase.PrintheadDodge:
+                this.currentCondition = conditionPrintheadDodgePhase;
                 this.currentPhase = Phase.Finished;
                 break;
         }
@@ -174,6 +206,9 @@ public class BossState : MonoBehaviour
         head2.enabled = false;
         printHead2.enabled = false;
         obstacles.enabled = true;
+        TaskListManager.Instance.SpawnTask(dodgeTaskTitle, conditionDodgePhase);
+        conditionDodgePhase?.GetInstance().Reset();
+        conditionDodgePhase?.GetInstance().Activate();
     }
 
     void SetupPrintheadPhase()
@@ -185,6 +220,9 @@ public class BossState : MonoBehaviour
         head2.enabled = false;
         printHead2.enabled = false;
         obstacles.enabled = false;
+        TaskListManager.Instance.SpawnTask(printheadTaskTitle, conditionPrintheadPhase);
+        conditionPrintheadPhase?.GetInstance().Reset();
+        conditionPrintheadPhase?.GetInstance().Activate();
     }
 
     void SetupPrintheadHardPhase()
@@ -196,10 +234,14 @@ public class BossState : MonoBehaviour
         head2.enabled = true;
         printHead2.enabled = true;
         obstacles.enabled = false;
+        TaskListManager.Instance.SpawnTask(printheadHardTaskTitle, conditionPrintheadHardPhase);
+        conditionPrintheadHardPhase?.GetInstance().Reset();
+        conditionPrintheadHardPhase?.GetInstance().Activate();
     }
 
     void SetupPrintheadDodgePhase()
     {
+        Debug.Log("Setting up phase printhead dodge");
         maxLoopCountForPhase = printheadDodgeLoops;
         currentLoop = 0;
         head.enabled = true;
@@ -207,6 +249,25 @@ public class BossState : MonoBehaviour
         head2.enabled = false;
         printHead2.enabled = false;
         obstacles.enabled = true;
+        TaskListManager.Instance.SpawnTask(printheadDodgeTaskTitle, conditionPrintheadDodgePhase);
+        Debug.Log("Resetting");
+        conditionPrintheadDodgePhase?.GetInstance().Reset();
+        Debug.Log("Activating");
+        conditionPrintheadDodgePhase?.GetInstance().Activate();
+    }
+
+    public void DeactivateAll()
+    {
+        conditionDodgePhase?.GetInstance().Deactivate();
+        conditionPrintheadPhase?.GetInstance().Deactivate();
+        conditionPrintheadHardPhase?.GetInstance().Deactivate();
+        conditionPrintheadDodgePhase?.GetInstance().Deactivate();
+        head.enabled = false;
+        printHead.enabled = false;
+        head2.enabled = false;
+        printHead2.enabled = false;
+        obstacles.enabled = false;
+        loop.SetToLastMeasure();
     }
 
     public bool IsFinished()
@@ -217,8 +278,35 @@ public class BossState : MonoBehaviour
     void PlayerRespawned()
     {
         // Restart completely from the beginning. no checkpoints
-        currentPhase = Phase.Dodge;
-        isNextPhase = true;
+        // currentPhase = Phase.Dodge;
+        // isNextPhase = true;
+
+        conditionDodgePhase?.GetInstance().FinishTask();
+        conditionPrintheadPhase?.GetInstance().FinishTask();
+        conditionPrintheadHardPhase?.GetInstance().FinishTask();
+        conditionPrintheadDodgePhase?.GetInstance().FinishTask();
+
+        conditionDodgePhase?.GetInstance().Deactivate();
+        conditionPrintheadPhase?.GetInstance().Deactivate();
+        conditionPrintheadHardPhase?.GetInstance().Deactivate();
+        conditionPrintheadDodgePhase?.GetInstance().Deactivate();
+        if (sceneSwap == null)
+        {
+            sceneSwap = StartCoroutine(LoadScene());
+        }
+
+    }
+
+    IEnumerator LoadScene()
+    {
+        transition.SetTrigger("start");
+
+        yield return new WaitForSeconds(1.0f);
+        yield return SceneManager.LoadSceneAsync("Boss");
+
+        var scene = SceneManager.GetSceneByName("Boss");
+        SceneManager.SetActiveScene(scene);
+
     }
 
     void OnLoopStart(Tickloop loop)
@@ -232,11 +320,11 @@ public class BossState : MonoBehaviour
 
     void OnLoopEnd(Tickloop loop)
     {
-        currentLoop += 1;
-        if (currentLoop >= maxLoopCountForPhase)
-        {
-            NextPhase();
-        }
+        // currentLoop += 1;
+        // if (currentLoop >= maxLoopCountForPhase)
+        // {
+        //     NextPhase();
+        // }
 
     }
 }

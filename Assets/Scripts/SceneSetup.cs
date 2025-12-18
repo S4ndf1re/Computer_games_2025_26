@@ -12,11 +12,14 @@ public class SceneSetup : MonoBehaviour
     public Transform afterStorageRoomSpawnpoint;
     public Transform afterElevatorSpawnpoint;
     public Interactable afterTutorialDialog;
+    public Interactable storageRoomDoor;
+    public Interactable staircaseDoor;
+    public Interactable printerDialogue;
     public CharacterController player;
 
 
 
-    void Start()
+    void Awake()
     {
         if (state.currentScene == null)
         {
@@ -59,6 +62,9 @@ public class SceneSetup : MonoBehaviour
         else if (oldScene == GameState.Scenes.StorageRoom)
         {
             afterTutorialDialog.enabled = false;
+            staircaseDoor.enabled = true;
+            storageRoomDoor.enabled = true;
+            printerDialogue.enabled = true;
             player.transform.position = afterStorageRoomSpawnpoint.position;
             player.transform.localScale = afterStorageRoomSpawnpoint.localScale;
             player.transform.rotation = afterStorageRoomSpawnpoint.rotation;
@@ -66,6 +72,9 @@ public class SceneSetup : MonoBehaviour
         else if (oldScene == GameState.Scenes.Treppenhaus)
         {
             afterTutorialDialog.enabled = false;
+            staircaseDoor.enabled = true;
+            storageRoomDoor.enabled = true;
+            printerDialogue.enabled = true;
             player.transform.position = afterElevatorSpawnpoint.position;
             player.transform.localScale = afterElevatorSpawnpoint.localScale;
             player.transform.rotation = afterElevatorSpawnpoint.rotation;

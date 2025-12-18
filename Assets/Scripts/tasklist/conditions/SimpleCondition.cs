@@ -16,7 +16,32 @@ public class SimpleCondition : MonoBehaviour, TaskCondition
 
     void TaskCondition.FinishTask()
     {
-        isDone = true;
+        if (enabled)
+            isDone = true;
     }
+
+    void TaskCondition.Activate()
+    {
+        Debug.Log("Enabling Simple Task");
+        enabled = true;
+    }
+
+    void TaskCondition.Deactivate()
+    {
+        enabled = false;
+    }
+
+    bool TaskCondition.IsActive()
+    {
+        return enabled;
+    }
+
+    void TaskCondition.Reset()
+    {
+        Debug.Log("Resetting Simple Task");
+        isDone = false;
+    }
+
+
 
 }

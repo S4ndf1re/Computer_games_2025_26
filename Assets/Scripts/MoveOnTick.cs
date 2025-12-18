@@ -71,13 +71,11 @@ public class MoveOnTick : MonoBehaviour
     {
         var pos = transform.position;
         var startY = transform.position.y;
-        Debug.Log("Start Y: " + startY);
         while (pos.y > -startY)
         {
             pos.y -= 0.01f;
             transform.position = pos;
-            Debug.Log("Current Y: " + pos.y);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.01f);
         }
         this.transform.position = startPosition;
     }

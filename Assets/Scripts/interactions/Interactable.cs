@@ -5,11 +5,16 @@ using System.Collections.Generic;
 public class Interactable : MonoBehaviour
 {
     [Header("Interaction Settings")]
-    public bool oneTimeUse = false;     // NEU: Im Inspector auswählbar
+    public bool oneTimeUse = false;
 
     [Tooltip("Tigger once player enters")]
     public bool triggerOnEnter = false;
+    public bool explicitMultiUse = false;
+    public float blockForSeconds = 0f;
     private bool hasTriggeredAfterEnter = false;
+    private bool blocked = false;
+    private Coroutine blockedCoroutine;
+
 
     public Outline setOutline;
 
@@ -30,7 +35,8 @@ public class Interactable : MonoBehaviour
         if (setOutline != null)
         {
             outline = setOutline;
-        } else
+        }
+        else
         {
             outline = GetComponent<Outline>();
         }
@@ -106,10 +112,15 @@ public class Interactable : MonoBehaviour
         if (dist <= interactRange)
         {
             player.currentInteractable = this;
-            if (triggerOnEnter && !hasTriggeredAfterEnter)
+            if (triggerOnEnter && !hasTriggeredAfterEnter || triggerOnEnter && explicitMultiUse && !blocked)
             {
                 InvokeInteraction();
                 hasTriggeredAfterEnter = true;
+                if (blockedCoroutine != null)
+                {
+                    StopCoroutine(blockedCoroutine);
+                }
+                blockedCoroutine = StartCoroutine(BlockOnEnter());
             }
 
             if (outline != null)
@@ -138,7 +149,7 @@ public class Interactable : MonoBehaviour
         {
             return;
         }
-        else if (!oneTimeUse && AllFinished())
+        else if ((!oneTimeUse) && AllFinished())
         {
             foreach (var action in actions)
             {
@@ -153,6 +164,13 @@ public class Interactable : MonoBehaviour
         {
             foreach (var a in actions)
             {
+                if (!a.IsActive())
+                {
+                    hasInteracted[a] = true;
+                    hasFinished[a] = true;
+                    continue;
+                }
+
                 if (!hasInteracted[a])
                 {
                     a.StartInteraction();
@@ -197,5 +215,14 @@ public class Interactable : MonoBehaviour
         }
 
         yield return new WaitForSeconds(0.15f);
+    }
+
+
+    IEnumerator BlockOnEnter()
+    {
+        blocked = true;
+        yield return new WaitForSeconds(blockForSeconds);
+
+        blocked = false;
     }
 }

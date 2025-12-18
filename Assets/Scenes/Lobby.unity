@@ -932,6 +932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd6bf7104205a49b09fcd7e47ac9cd0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneSwapTrigger
+  afterN: 0
   sceneName: Treppenhaus
   loadSceneMode: 0
   transition: {fileID: 104755114}
@@ -967,6 +968,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   oneTimeUse: 0
   triggerOnEnter: 0
+  explicitMultiUse: 0
+  blockForSeconds: 0
+  setOutline: {fileID: 0}
   interactRange: 1.5
   player: {fileID: 1187813047}
 --- !u!1 &350134072
@@ -1117,7 +1121,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1949671195395142, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
       propertyPath: m_Name
-      value: Door_4_White
+      value: StorageRoomDoor
       objectReference: {fileID: 0}
     - target: {fileID: 4227889827151656, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2410,6 +2414,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   oneTimeUse: 0
   triggerOnEnter: 0
+  explicitMultiUse: 0
+  blockForSeconds: 0
+  setOutline: {fileID: 0}
   interactRange: 1.55
   player: {fileID: 1187813047}
 --- !u!114 &773395989
@@ -3106,6 +3113,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   oneTimeUse: 1
   triggerOnEnter: 1
+  explicitMultiUse: 0
+  blockForSeconds: 0
+  setOutline: {fileID: 0}
   interactRange: 1.5
   player: {fileID: 1187813047}
 --- !u!4 &897010611
@@ -3427,6 +3437,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 21a08b7f2530d47f88d9dfd97d322ce1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1293994136}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 21a08b7f2530d47f88d9dfd97d322ce1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1293994140}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 21a08b7f2530d47f88d9dfd97d322ce1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1293994139}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 21a08b7f2530d47f88d9dfd97d322ce1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1293994138}
     - targetCorrespondingSourceObject: {fileID: -3435279276100194387, guid: 21a08b7f2530d47f88d9dfd97d322ce1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1090478849}
@@ -3736,7 +3755,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1949671195395142, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
       propertyPath: m_Name
-      value: Door_4_White (2)
+      value: StaircaseDoor
       objectReference: {fileID: 0}
     - target: {fileID: 4227889827151656, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4274,7 +4293,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1949671195395142, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
       propertyPath: m_Name
-      value: Door_4_White (1)
+      value: ElevatorDoor
       objectReference: {fileID: 0}
     - target: {fileID: 4227889827151656, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4540,6 +4559,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   oneTimeUse: 0
   triggerOnEnter: 0
+  explicitMultiUse: 0
+  blockForSeconds: 0
+  setOutline: {fileID: 0}
   interactRange: 1.5
   player: {fileID: 1187813047}
 --- !u!114 &1293994132
@@ -4621,6 +4643,60 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FinishTaskonInteraction
   afterN: 5
   condition: {fileID: 1202689714}
+--- !u!114 &1293994138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293994129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd6bf7104205a49b09fcd7e47ac9cd0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneSwapTrigger
+  afterN: 4
+  sceneName: Boss
+  loadSceneMode: 0
+  transition: {fileID: 104755114}
+--- !u!114 &1293994139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293994129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f71714c68b71ad44a855ad8032000a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
+  dialogueText:
+  - 'Jetzt habe ich alles nur noch einsetzen '
+  - ...
+  - Uuuund
+  - "*uh\xE4\xE4\xE4h*"
+  dialoguePrefab: {fileID: 3869799346472648246, guid: 1c554ad4a9a3b174bb0ef52f60f3e3c7, type: 3}
+  velocityController: {fileID: 1187813054}
+--- !u!114 &1293994140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293994129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f869a95061aee45f694eb748130ff8b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PrinterStateCheck
+  state: {fileID: 11400000, guid: 693ba17327987418c9ba4379171e13ce, type: 2}
+  dialogueAfterTutorial: {fileID: 1293994133}
+  dialogueWhenFinishing: {fileID: 1293994139}
+  secretaryInteractable: {fileID: 1293994135}
+  printerTaskFinisher: {fileID: 1293994137}
+  findSecretaryTask: {fileID: 1293994136}
+  toBossTrigger: {fileID: 1293994138}
 --- !u!1001 &1296429829
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6036,6 +6112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd6bf7104205a49b09fcd7e47ac9cd0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneSwapTrigger
+  afterN: 0
   sceneName: StorageRoom
   loadSceneMode: 0
   transition: {fileID: 104755114}
@@ -6053,6 +6130,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   oneTimeUse: 0
   triggerOnEnter: 0
+  explicitMultiUse: 0
+  blockForSeconds: 0
+  setOutline: {fileID: 0}
   interactRange: 1.2
   player: {fileID: 1187813047}
 --- !u!114 &1625128828
@@ -6593,6 +6673,18 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1576776764}
+    - target: {fileID: 2569634376704373384, guid: f5b6439a8ab4a4b6f8cb2e356b7d79f0, type: 3}
+      propertyPath: staircaseDoor
+      value: 
+      objectReference: {fileID: 326368907}
+    - target: {fileID: 2569634376704373384, guid: f5b6439a8ab4a4b6f8cb2e356b7d79f0, type: 3}
+      propertyPath: printerDialogue
+      value: 
+      objectReference: {fileID: 1293994131}
+    - target: {fileID: 2569634376704373384, guid: f5b6439a8ab4a4b6f8cb2e356b7d79f0, type: 3}
+      propertyPath: storageRoomDoor
+      value: 
+      objectReference: {fileID: 1625128826}
     - target: {fileID: 2569634376704373384, guid: f5b6439a8ab4a4b6f8cb2e356b7d79f0, type: 3}
       propertyPath: afterTutorialDialog
       value: 

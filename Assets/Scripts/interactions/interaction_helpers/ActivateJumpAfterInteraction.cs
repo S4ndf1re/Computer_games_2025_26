@@ -10,4 +10,9 @@ public class ActivateJumpAfterInteraction : MonoBehaviour, InteractableAction
         controller.disableJump = false;
         return true;
     }
+
+    bool InteractableAction.IsActive()
+    {
+        return enabled;
+    }
 }

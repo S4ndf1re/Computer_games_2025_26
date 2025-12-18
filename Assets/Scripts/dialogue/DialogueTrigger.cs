@@ -57,4 +57,10 @@ public class DialogueTrigger : MonoBehaviour, InteractableAction
             velocityController.canMove = true;
         dialogue.gameObject.SetActive(false);
     }
+
+
+    bool InteractableAction.IsActive()
+    {
+        return enabled;
+    }
 }

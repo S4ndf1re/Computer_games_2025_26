@@ -28,4 +28,9 @@ public class GivePaperOnInteraction : MonoBehaviour, InteractableAction
     {
         state.hasPaper = true;
     }
+
+    bool InteractableAction.IsActive()
+    {
+        return enabled;
+    }
 }
