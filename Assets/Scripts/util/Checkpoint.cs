@@ -23,6 +23,7 @@ public class Checkpoint : MonoBehaviour
                 }
                 currentCheckpoint = this;
                 GetComponent<AudioSource>()?.Play();
+                collected = true;
             }
         }
 

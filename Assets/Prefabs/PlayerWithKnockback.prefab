@@ -73,7 +73,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 511
+    m_Bits: 1535
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -162,7 +162,6 @@ GameObject:
   - component: {fileID: 6526022127187992230}
   - component: {fileID: 549334067950392028}
   - component: {fileID: 5567384551539405280}
-  - component: {fileID: 6982477301354848814}
   - component: {fileID: 610640527614509389}
   - component: {fileID: 6292148698219239857}
   - component: {fileID: 7086357740954338603}
@@ -449,10 +448,9 @@ MonoBehaviour:
   knockBackForce: 7
   knockUpForce: 1
   hurtbox: {fileID: 0}
-  CanDoubleJump: 1
-  DoubleJumpHeight: 1
-  DoubleJumpDelay: 0.15
-  canWallJump: 0
+  maxSpeedOnInk: 3
+  slowedForSeconds: 2
+  canDoubleJump: 1
 --- !u!143 &2702084139711828418
 CharacterController:
   m_ObjectHideFlags: 0
@@ -532,29 +530,6 @@ MonoBehaviour:
   velocity: {fileID: 2270489987000075637}
   velocityPlayerController: {fileID: 5358328985757783582}
   AnimationAcceleration: 10
---- !u!136 &6982477301354848814
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4102138314524208712}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.28
-  m_Height: 1.8
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &610640527614509389
 Rigidbody:
   m_ObjectHideFlags: 0

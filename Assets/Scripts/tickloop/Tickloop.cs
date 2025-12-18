@@ -1,6 +1,8 @@
 using UnityEngine;
 
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using System.Linq;
 
 
 public class Tickloop : MonoBehaviour
@@ -90,6 +92,19 @@ public class Tickloop : MonoBehaviour
                 // Trigger Event, since we crossed the tick mark.
                 if (this.currentIdx >= 0 && this.currentIdx < this.ticks.Count)
                 {
+
+                    // Restart
+                    if (this.currentIdx == this.ticks.Count - 1)
+                    {
+                        var cloned = objDelegateMapping.ToDictionary(entry => entry.Key,
+                                                   entry => entry.Value);
+
+                        foreach (var obj in cloned)
+                        {
+                            obj.Key.OnLoopStart();
+                        }
+                    }
+
                     // Phase out the object mapping
                     foreach (var obj in this.ticks[this.currentIdx])
                     {
@@ -115,6 +130,16 @@ public class Tickloop : MonoBehaviour
                     // Undo change done previously
                     this.currentIdx = (this.currentIdx - 1 + this.tickLength) % this.tickLength;
 
+                    // End loop
+                    if (this.currentIdx == this.ticks.Count - 2)
+                    {
+                        var cloned = objDelegateMapping.ToDictionary(entry => entry.Key,
+                                                   entry => entry.Value);
+                        foreach (var obj in cloned)
+                        {
+                            obj.Key.OnLoopEnd();
+                        }
+                    }
                 }
 
                 this.currentIdx = (this.currentIdx + 1) % this.ticks.Count;
@@ -140,28 +165,23 @@ public class Tickloop : MonoBehaviour
     /// </summary>
     public void AddToTickloop(TickloopAddable obj, List<int> ticksToTrigger, OnTriggeredTick delegateToRegister, OnPhaseOutTick onPhaseOutTick, RequestRandomColor colorRequestor = null)
     {
-        bool added = false;
         foreach (int idx in ticksToTrigger)
         {
             if (idx >= 0 && idx < this.ticks.Count)
             {
                 this.ticks[idx].Add(obj);
-                added = true;
             }
         }
 
-        if (added)
+        if (colorRequestor != null)
         {
-            if (colorRequestor != null)
-            {
-                // supply random color choosen from a color pallete to the entity
-                colorRequestor.Invoke(RequestColor());
-            }
-            this.objDelegateMapping.Add(obj, delegateToRegister);
-            this.objPhaseOutMapping.Add(obj, onPhaseOutTick);
-
-            this.onAddedGameObject?.Invoke(obj, ticksToTrigger);
+            // supply random color choosen from a color pallete to the entity
+            colorRequestor.Invoke(RequestColor());
         }
+        this.objDelegateMapping.Add(obj, delegateToRegister);
+        this.objPhaseOutMapping.Add(obj, onPhaseOutTick);
+
+        this.onAddedGameObject?.Invoke(obj, ticksToTrigger);
 
     }
 

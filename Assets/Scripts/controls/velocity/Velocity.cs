@@ -59,11 +59,12 @@ public class Velocity : MonoBehaviour
 
         if (IsGrounded())
         {
-            if(velocity.y < 0) {
+            if (velocity.y < 0)
+            {
                 ResetVelocity();
                 // Reset to zero here, since we are using custom check and not collider check
                 velocity.y = gravity;
-            } 
+            }
         }
 
         if (!IsGrounded() && previouslyGrounded)
@@ -167,8 +168,9 @@ public class Velocity : MonoBehaviour
         {
             var radius = characterController.radius;
             var position = transform.position;
-            position.y += -characterController.height / 2f + characterController.radius - characterController.skinWidth*2f;
-            if (t != null) {
+            position.y += -characterController.height / 2f + characterController.radius - characterController.skinWidth * 2f;
+            if (t != null)
+            {
                 t.transform.position = position;
                 t.transform.rotation = transform.rotation;
                 t.transform.localScale = 2f * radius * Vector3.one;

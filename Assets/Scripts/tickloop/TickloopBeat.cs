@@ -16,7 +16,7 @@ public class TickloopBeat : MonoBehaviour
 
     private Dictionary<TickloopAddable, Image> objToIconMapping = new Dictionary<TickloopAddable, Image>();
 
-    void Start()
+    void OnEnable()
     {
         this.image = GetComponent<Image>();
     }

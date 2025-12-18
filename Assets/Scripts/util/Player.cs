@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public delegate void RespawnedDelegate();
+    public event RespawnedDelegate playerRespawned;
+
+
     public int startHealth = 3;
     public Hurtbox hurtbox;
     public bool isDestroyedOnDeath;
@@ -46,6 +50,7 @@ public class Player : MonoBehaviour
     public void Respawn()
     {
         this.currentHealth = startHealth;
+        playerRespawned?.Invoke();
     }
 
     public int GetHealth()

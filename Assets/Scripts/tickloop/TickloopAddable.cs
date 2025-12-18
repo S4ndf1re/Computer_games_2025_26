@@ -13,8 +13,14 @@ using UnityEngine;
 public class TickloopAddable : MonoBehaviour
 {
 
+    public delegate void LoopStartEnd(Tickloop tickloop);
+    public delegate void OnEnableDisable();
     public delegate void TriggeredByTickloop(Tickloop tickloop, int nth_trigger);
     public event TriggeredByTickloop triggeredByTickloop;
+    public event LoopStartEnd loopStart;
+    public event LoopStartEnd loopEnd;
+    public event OnEnableDisable onEnable;
+    public event OnEnableDisable onDisable;
 
     public delegate void PhasedOutTick();
     public event PhasedOutTick phasedOutTickEvent;
@@ -34,10 +40,12 @@ public class TickloopAddable : MonoBehaviour
     public Sprite icon;
     [Tooltip("The renderer object that will change the color based on the tickloop addable")]
     public Renderer toRenderTo;
+    [Tooltip("Optional: additional renderers to color together")]
+    public List<Renderer> additionalRenderers = new();
     public Color color = Color.white;
     [Tooltip("When true, request a random color from the tickloop")]
     public bool requestColor = false;
-    private Color oldColor = Color.white;
+    private readonly Dictionary<Renderer, Color> oldColors = new();
 
     [Header("Collider Selection")]
     public List<TickloopEnableCollider> enabledInColliders;
@@ -46,10 +54,10 @@ public class TickloopAddable : MonoBehaviour
     public Tickloop tickloop;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void OnEnable()
     {
         // tickloop = tickloopObject.GetComponent<Tickloop>();
-
+        Debug.Log("Starting addable");
 
         if (every_nth > 0 && ticksToTrigger.Count == 0)
         {
@@ -81,6 +89,8 @@ public class TickloopAddable : MonoBehaviour
         {
             AddToTickloop();
         }
+
+        onEnable?.Invoke();
     }
 
 
@@ -96,33 +106,43 @@ public class TickloopAddable : MonoBehaviour
             enabler.enableEvent -= AddToTickloop;
             enabler.disableEvent -= RemoveFromTickloop;
         }
+
+        onDisable?.Invoke();
     }
 
     void RemoveFromTickloop()
     {
-        this.tickloop.RemoveFromTickloop(this);
+        tickloop.RemoveFromTickloop(this);
 
-        if (this.toRenderTo != null)
+        foreach (var kv in oldColors)
         {
-            this.toRenderTo.material.SetColor("_BaseColor", oldColor);
+            if (kv.Key != null)
+            {
+                kv.Key.material.SetColor("_BaseColor", kv.Value);
+            }
         }
+
+        oldColors.Clear();
     }
+
 
     void AddToTickloop()
     {
-        if (this.toRenderTo != null)
+        oldColors.Clear();
+
+        foreach (var r in GetAllRenderers())
         {
-            oldColor = this.toRenderTo.material.GetColor("_BaseColor");
+            oldColors[r] = r.material.GetColor("_BaseColor");
         }
+
+        SetColorToRenderer();
 
         if (!requestColor)
         {
-            SetColorToRenderer();
             tickloop.AddToTickloop(this, ticksToTrigger, Trigger, PhasedOut);
         }
         else
         {
-            SetColorToRenderer();
             tickloop.AddToTickloop(this, ticksToTrigger, Trigger, PhasedOut, ReceiveRandomColor);
         }
     }
@@ -147,10 +167,32 @@ public class TickloopAddable : MonoBehaviour
 
     void SetColorToRenderer()
     {
-        if (this.toRenderTo != null)
+        foreach (var r in GetAllRenderers())
         {
-            this.toRenderTo.material.SetColor("_BaseColor", this.color);
-            Debug.Log("Color: " + this.toRenderTo.material.GetColor("_BaseColor"));
+            r.material.SetColor("_BaseColor", color);
         }
     }
+
+    public void OnLoopStart()
+    {
+        this.loopStart?.Invoke(this.tickloop);
+    }
+
+    public void OnLoopEnd()
+    {
+        this.loopEnd?.Invoke(this.tickloop);
+    }
+
+    IEnumerable<Renderer> GetAllRenderers()
+    {
+        if (toRenderTo != null)
+            yield return toRenderTo;
+
+        foreach (var r in additionalRenderers)
+        {
+            if (r != null)
+                yield return r;
+        }
+    }
+
 }

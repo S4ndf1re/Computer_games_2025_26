@@ -50,7 +50,6 @@ namespace StarterAssets
             // Check if the player's Y position has fallen below the threshold
             if (playerScript.GetHealth() <= 0)
             {
-                playerScript.Respawn();
                 Respawn();
             }
             if (transform.position.y < yThreshold)
@@ -61,6 +60,7 @@ namespace StarterAssets
 
         private void Respawn()
         {
+            playerScript.Respawn();
             if (characterController != null)
             {
                 characterController.enabled = false;
