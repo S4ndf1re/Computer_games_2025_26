@@ -20,6 +20,9 @@ public class Tickloop : MonoBehaviour
 
     public event OnTriggeredTick uiTrigger;
 
+    public delegate void AudioTrigger(bool isDownbeat);
+    public event AudioTrigger audioTrigger;
+
     [Header("Debug Fields")]
     public int tickLength = 0;
     public int currentIdx = 0;
@@ -114,9 +117,21 @@ public class Tickloop : MonoBehaviour
                         }
                     }
 
-
                     // Set tick to one more than actual tick. to represent tick change and start at 0
                     this.currentIdx = (this.currentIdx + 1) % this.tickLength;
+
+                    // Trigger metronome sound event
+                    int tick = this.currentIdx;
+
+                    bool isDownbeat = false;
+
+                    if (tick % beatsInMeasure == 0)
+                    {
+                        isDownbeat = true;
+                    }
+
+                    audioTrigger?.Invoke(isDownbeat);
+
                     foreach (var obj in this.ticks[this.currentIdx])
                     {
                         if (this.objDelegateMapping.ContainsKey(obj))

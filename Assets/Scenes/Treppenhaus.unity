@@ -10101,7 +10101,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 2cc37823a32733c4ca071bc927737103, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.02
+  m_Volume: 0.01
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -17139,7 +17139,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 9ff690d4903f2f94b960371f84927c37, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.02
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -29049,6 +29049,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80f09fcf31869f8459f02ead2fe23204, type: 3}
+--- !u!1001 &4681185648087602189
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 859126319011826486, guid: 267a9a91bc679724db7b81f83fab6d9f, type: 3}
+      propertyPath: m_Name
+      value: Metronome Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059163113994882934, guid: 267a9a91bc679724db7b81f83fab6d9f, type: 3}
+      propertyPath: tickloop
+      value: 
+      objectReference: {fileID: 160531149}
+    - target: {fileID: 2499104928157182356, guid: 267a9a91bc679724db7b81f83fab6d9f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2018.3883
+      objectReference: {fileID: 0}
+    - target: {fileID: 2499104928157182356, guid: 267a9a91bc679724db7b81f83fab6d9f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2499104928157182356, guid: 267a9a91bc679724db7b81f83fab6d9f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4331.4297
+      objectReference: {fileID: 0}
+    - target: {fileID: 2499104928157182356, guid: 267a9a91bc679724db7b81f83fab6d9f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2499104928157182356, guid: 267a9a91bc679724db7b81f83fab6d9f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2499104928157182356, guid: 267a9a91bc679724db7b81f83fab6d9f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2499104928157182356, guid: 267a9a91bc679724db7b81f83fab6d9f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2499104928157182356, guid: 267a9a91bc679724db7b81f83fab6d9f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2499104928157182356, guid: 267a9a91bc679724db7b81f83fab6d9f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2499104928157182356, guid: 267a9a91bc679724db7b81f83fab6d9f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 267a9a91bc679724db7b81f83fab6d9f, type: 3}
 --- !u!4 &8516795207812177454 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2773232628893482942, guid: 1a1076881bcdb654aa91e97740ce7af7, type: 3}
@@ -29092,5 +29153,6 @@ SceneRoots:
   - {fileID: 2128594991}
   - {fileID: 1601087571}
   - {fileID: 768339777}
+  - {fileID: 4681185648087602189}
   - {fileID: 858681986}
   - {fileID: 1334063625}
