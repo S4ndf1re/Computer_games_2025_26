@@ -11,6 +11,7 @@ public class GameState : ScriptableObject
         Lobby,
         StorageRoom,
         Treppenhaus,
+        Boss,
     }
 
 
@@ -42,6 +43,10 @@ public class GameState : ScriptableObject
         else if (sceneName == "treppenhaus")
         {
             this.currentScene = Scenes.Treppenhaus;
+        }
+        else if (sceneName == "boss")
+        {
+            this.currentScene = Scenes.Boss;
         }
     }
 }
