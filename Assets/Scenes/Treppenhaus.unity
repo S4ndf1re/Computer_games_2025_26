@@ -9205,7 +9205,7 @@ MonoBehaviour:
   - "Hier muss ich einen Wandsprung vollf\xFChren!"
   - "Daf\xFCr muss ich einfach an der Wand erneut springen"
   dialoguePrefab: {fileID: 3869799346472648246, guid: 1c554ad4a9a3b174bb0ef52f60f3e3c7, type: 3}
-  velocityController: {fileID: 0}
+  velocityController: {fileID: 1373538647}
 --- !u!114 &768339776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9234,7 +9234,7 @@ Transform:
   m_GameObject: {fileID: 768339773}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.64, y: 5.27, z: 12.04}
+  m_LocalPosition: {x: -3.466, y: 6.217, z: 12.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
