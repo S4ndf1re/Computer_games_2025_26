@@ -32,7 +32,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5902336868457299594}
   - {fileID: 1551441980325973956}
   - {fileID: 8749620390837283418}
   m_Father: {fileID: 0}
@@ -159,7 +158,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 110, y: -20}
-  m_SizeDelta: {x: 200, y: 20}
+  m_SizeDelta: {x: 200, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8968911117606294952
 MonoBehaviour:
@@ -391,13 +390,14 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5902336868457299594}
   - {fileID: 6169580597198387511}
   m_Father: {fileID: 8702304426400328994}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 110, y: -20}
-  m_SizeDelta: {x: 200, y: 20}
+  m_SizeDelta: {x: 200, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1155293060241772105
 MonoBehaviour:
@@ -480,12 +480,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8702304426400328994}
+  m_Father: {fileID: 1551441980325973956}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -404, y: 261}
-  m_SizeDelta: {x: -828, y: -542}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4531348141793119540
 CanvasRenderer:
