@@ -4,11 +4,13 @@ using UnityEngine.UI;
 public class HealthBarController : MonoBehaviour
 {
     public Slider healthSlider;
+    public Slider easeSlider;
     public Player player;
     // Set this to players max health
     public int maxHealth;
     public float health;
     public float healthRatio;
+    public float lerpSpeed = 0.05f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,6 +30,11 @@ public class HealthBarController : MonoBehaviour
         if(healthSlider.value != healthRatio)
         {
             healthSlider.value = healthRatio;
+        }
+
+        if(easeSlider.value != healthRatio)
+        {
+            easeSlider.value = Mathf.Lerp(easeSlider.value, healthRatio, lerpSpeed);
         }
     }
 }
