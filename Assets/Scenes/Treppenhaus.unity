@@ -13295,11 +13295,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 694415958591279176, guid: 3dba0373657928f429c094afe71fa21f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -47.4
+      value: -6.87
       objectReference: {fileID: 0}
     - target: {fileID: 694415958591279176, guid: 3dba0373657928f429c094afe71fa21f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.4
+      value: 6.08
       objectReference: {fileID: 0}
     - target: {fileID: 694415958591279176, guid: 3dba0373657928f429c094afe71fa21f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13426,8 +13426,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5358328985757783582, guid: 3dba0373657928f429c094afe71fa21f, type: 3}
+      propertyPath: wallJumpForce
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5358328985757783582, guid: 3dba0373657928f429c094afe71fa21f, type: 3}
       propertyPath: knockBackForce
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5358328985757783582, guid: 3dba0373657928f429c094afe71fa21f, type: 3}
+      propertyPath: wallSlideSpeed
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5358328985757783582, guid: 3dba0373657928f429c094afe71fa21f, type: 3}
       propertyPath: disableZMovement
@@ -15989,6 +15997,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 986810018}
     m_Modifications:
+    - target: {fileID: 1604598541515272550, guid: f2be014028fea4241b38c35828c625d2, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1373538656}
     - target: {fileID: 4174420927943478170, guid: f2be014028fea4241b38c35828c625d2, type: 3}
       propertyPath: newYThreshold
       value: 12
@@ -17902,6 +17914,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e5bc549eb8264ba8838bcde116a07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractionController
+--- !u!114 &1373538656 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6526022127187992230, guid: 3dba0373657928f429c094afe71fa21f, type: 3}
+  m_PrefabInstance: {fileID: 1102875767}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373538632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c76989de26a12430e9aee1b881b0e094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player
 --- !u!1 &1373716081
 GameObject:
   m_ObjectHideFlags: 0
@@ -21540,6 +21563,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1604598541515272550, guid: f2be014028fea4241b38c35828c625d2, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1373538656}
     - target: {fileID: 4174420927943478170, guid: f2be014028fea4241b38c35828c625d2, type: 3}
       propertyPath: newYThreshold
       value: 30
@@ -28654,6 +28681,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1604598541515272550, guid: f2be014028fea4241b38c35828c625d2, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1373538656}
     - target: {fileID: 4174420927943478170, guid: f2be014028fea4241b38c35828c625d2, type: 3}
       propertyPath: newYThreshold
       value: 20

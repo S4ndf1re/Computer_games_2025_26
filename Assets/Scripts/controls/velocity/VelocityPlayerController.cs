@@ -84,10 +84,14 @@ public class VelocityPlayerController : MonoBehaviour
 
     // Wall Climb
     private bool isTouchingWall;
-    private bool isWallSliding;
+    public bool isWallSliding;
     private bool canWallJump;
     private float wallSlideStartTime;
     private Vector3 lastWallNormal;
+    private bool isWallJumping = false;
+    private float wallJumpEndTime;
+    private bool isPressingIntoWall;
+
 
     // Jump
     private bool isJumping;
@@ -133,6 +137,10 @@ public class VelocityPlayerController : MonoBehaviour
     /// </summary>
     void HandleMovement()
     {
+        if (isWallJumping && Time.time >= wallJumpEndTime)
+        {
+            isWallJumping = false;
+        }
         // Camera-relative movement
         Vector3 camForward = cameraTransform.forward;
         Vector3 camRight = cameraTransform.right;
@@ -159,18 +167,27 @@ public class VelocityPlayerController : MonoBehaviour
         }
 
         // Wenn wallslide aktiv ist, fall langsamer
-        if (isWallSliding)
+        if (isWallSliding && !isWallJumping)
         {
+            /*
             velocity.DisableGravity();
             velocity.ResetVelocity();
+            velocity.SetY(-wallSlideSpeed);
+            canWallJump = true;
+            */
+            velocity.EnableGravity();
             velocity.SetY(-wallSlideSpeed);
             canWallJump = true;
         }
         else
         {
+            /*
             canWallJump = false;
             velocity.EnableGravity();
+            */
+            canWallJump = false;
         }
+
 
         // Add final Movement
         if (velocity.IsGrounded())
@@ -189,7 +206,46 @@ public class VelocityPlayerController : MonoBehaviour
     /// </summary>
     void HandleWallSlide()
     {
-        // Raycast in Bewegungsrichtung, um Wand zu finden
+        RaycastHit hit;
+        isTouchingWall = false;
+
+        Vector3[] dirs =
+        {
+            transform.forward,
+            -transform.forward,
+            transform.right,
+            -transform.right
+        };
+
+        foreach (var dir in dirs)
+        {
+            if (Physics.Raycast(transform.position, dir, out hit, wallCheckDistance, wallLayer))
+            {
+                isTouchingWall = true;
+                lastWallNormal = hit.normal;
+                break;
+            }
+        }
+
+        // Prüfen, ob Input in Richtung Wand geht
+        Vector3 camForward = cameraTransform.forward;
+        Vector3 camRight = cameraTransform.right;
+
+        camForward.y = 0;
+        camRight.y = 0;
+        camForward.Normalize();
+        camRight.Normalize();
+
+        Vector3 inputWorldDir =
+            camForward * moveInput.y +
+            camRight * moveInput.x;
+
+        // true, wenn Input in Richtung der Wand zeigt
+        isPressingIntoWall =
+            inputWorldDir.sqrMagnitude > 0.01f &&
+            Vector3.Dot(inputWorldDir.normalized, -lastWallNormal) > 0.5f;
+
+        /*
         RaycastHit hit;
         bool wallHit = Physics.Raycast(transform.position, transform.forward, out hit, wallCheckDistance, wallLayer)
                     || Physics.Raycast(transform.position, -transform.forward, out hit, wallCheckDistance, wallLayer)
@@ -200,18 +256,20 @@ public class VelocityPlayerController : MonoBehaviour
 
         if (wallHit)
             lastWallNormal = hit.normal; // Normale speichern
-
+        */
+        // Raycast in Bewegungsrichtung, um Wand zu finden
+        
         // WallSlide aktivieren, wenn in der Luft, Wand berührt und nach unten fällt
-        if (!velocity.IsGrounded() && wallHit && velocity.IsFalling())
+        if (!velocity.IsGrounded()
+            && isTouchingWall
+            && velocity.IsFalling()
+            && !isWallJumping
+            && isPressingIntoWall)
         {
             if (!isWallSliding)
                 wallSlideStartTime = Time.time;
 
             isWallSliding = true;
-
-            // // Timer prüfen – nach Ablauf deaktivieren
-            // if (Time.time - wallSlideStartTime > wallSlideMaxTime)
-            //     isWallSliding = false;
         }
         else
         {
@@ -306,16 +364,17 @@ public class VelocityPlayerController : MonoBehaviour
             if (canWallJump)
             {
                 isWallSliding = false;
-                isJumping = true;
-                isHoldingJump = false;
-
-                // Richtung = Kombination aus Wandnormalen (weg von der Wand) + nach oben
-                Vector3 jumpDir = (lastWallNormal + Vector3.up).normalized;
+                isWallJumping = true;
+                wallJumpEndTime = Time.time + inputLockAfterJump;
 
                 velocity.ResetVelocity();
-                velocity.AddInstant(jumpDir * wallJumpForce);
-                velocity.LockInputForSeconds(inputLockAfterJump);
 
+                Vector3 jumpDir =
+                    lastWallNormal.normalized * wallJumpForce +
+                    Vector3.up * wallJumpForce * 0.75f;
+
+                velocity.AddInstant(jumpDir);
+                velocity.LockInputForSeconds(inputLockAfterJump);
                 return;
             }
 
