@@ -1,6 +1,7 @@
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class StatTracker : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class StatTracker : MonoBehaviour
     public float playTime;
 
     private string currentSceneName;
+    private Dictionary<string, int> sceneVisitCounts = new();
     private float sceneStartTime;
     private bool inDialogue = false;
 
@@ -50,7 +52,8 @@ public class StatTracker : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        ResetStatsForNewScene(scene.name);
+        RegisterSceneVisit(scene.name);
+        InitStatsForNewScene(scene.name);
     }
 
     public void RegisterDialogueStart()
@@ -78,30 +81,47 @@ public class StatTracker : MonoBehaviour
         deaths++;
     }
 
+    private void RegisterSceneVisit(string sceneName)
+    {
+        if (!sceneVisitCounts.ContainsKey(sceneName))
+        {
+            sceneVisitCounts[sceneName] = 1;
+        }
+        else
+        {
+            sceneVisitCounts[sceneName]++;
+        }
+    }
+
     // -------- Save Logic --------
     public void SaveStats(string sceneName)
     {
+        int visitIndex = sceneVisitCounts.ContainsKey(sceneName)
+            ? sceneVisitCounts[sceneName]
+            : 1;
+
         Stats data = new Stats
         {
             sceneName = sceneName,
-            hits = this.hits,
-            damageTaken = this.damageTaken,
-            deaths = this.deaths,
-            playTime = this.playTime
+            hits = hits,
+            damageTaken = damageTaken,
+            deaths = deaths,
+            playTime = playTime
         };
 
         string json = JsonUtility.ToJson(data, true);
 
         string path = Path.Combine(
             Application.persistentDataPath,
-            $"stats_{sceneName}.json"
+            $"stats_{sceneName}_{visitIndex}.json"
         );
 
         File.WriteAllText(path, json);
         Debug.Log($"Stats saved: {path}");
     }
 
-    private void ResetStatsForNewScene(string newSceneName)
+
+    private void InitStatsForNewScene(string newSceneName)
     {
         inDialogue = false;
         currentSceneName = newSceneName;
