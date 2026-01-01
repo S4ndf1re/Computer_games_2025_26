@@ -394,6 +394,7 @@ MonoBehaviour:
   - Lass mich das direkt mal ausprobieren...
   dialoguePrefab: {fileID: 3869799346472648246, guid: 1c554ad4a9a3b174bb0ef52f60f3e3c7, type: 3}
   velocityController: {fileID: 1626467082}
+  statTracker: {fileID: 545970262}
 --- !u!114 &71492311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -741,6 +742,7 @@ MonoBehaviour:
   - "Aber ich sollte aufpassen, der Keller scheint Br\xFCchig zu sein!"
   dialoguePrefab: {fileID: 3869799346472648246, guid: 1c554ad4a9a3b174bb0ef52f60f3e3c7, type: 3}
   velocityController: {fileID: 1626467082}
+  statTracker: {fileID: 545970262}
 --- !u!114 &153784179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2962,6 +2964,7 @@ MonoBehaviour:
   - "Vielleicht kann ich mit der T\xFCr interagieren, in dem ich E dr\xFCcke"
   dialoguePrefab: {fileID: 3869799346472648246, guid: 1c554ad4a9a3b174bb0ef52f60f3e3c7, type: 3}
   velocityController: {fileID: 1626467082}
+  statTracker: {fileID: 545970262}
 --- !u!114 &543223811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2991,6 +2994,54 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 27.88, y: 17.55, z: 2.225}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &545970261
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 545970263}
+  - component: {fileID: 545970262}
+  m_Layer: 0
+  m_Name: StatTracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &545970262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545970261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1a2a75f820140c4192827eb29a10f62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatTracker
+  hits: 0
+  damageTaken: 0
+  deaths: 0
+  playTime: 0
+--- !u!4 &545970263
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545970261}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.0989, y: 5.06268, z: -1.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3925,6 +3976,7 @@ MonoBehaviour:
   - "Objekte k\xF6nnen verschiedenste Dinge tun, wie hier zu verschwinden"
   dialoguePrefab: {fileID: 3869799346472648246, guid: 1c554ad4a9a3b174bb0ef52f60f3e3c7, type: 3}
   velocityController: {fileID: 1626467082}
+  statTracker: {fileID: 545970262}
 --- !u!114 &650069340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5083,6 +5135,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 933383213}
     m_Modifications:
+    - target: {fileID: 1604598541515272550, guid: f2be014028fea4241b38c35828c625d2, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1626467091}
     - target: {fileID: 4518918007512092864, guid: f2be014028fea4241b38c35828c625d2, type: 3}
       propertyPath: m_Name
       value: Checkpoint Trigger
@@ -8607,6 +8663,10 @@ PrefabInstance:
       propertyPath: inputLockAfterHit
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6526022127187992230, guid: 3dba0373657928f429c094afe71fa21f, type: 3}
+      propertyPath: statTracker
+      value: 
+      objectReference: {fileID: 545970262}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -9456,6 +9516,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 694415958591279176, guid: 3dba0373657928f429c094afe71fa21f, type: 3}
   m_PrefabInstance: {fileID: 1473193519}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1626467091 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6526022127187992230, guid: 3dba0373657928f429c094afe71fa21f, type: 3}
+  m_PrefabInstance: {fileID: 1473193519}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626467072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c76989de26a12430e9aee1b881b0e094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player
 --- !u!1001 &1636744818
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9658,6 +9729,7 @@ MonoBehaviour:
   - Mit "A" Laufe ich nach links, mit "D" nach rechts
   dialoguePrefab: {fileID: 3869799346472648246, guid: 1c554ad4a9a3b174bb0ef52f60f3e3c7, type: 3}
   velocityController: {fileID: 1626467082}
+  statTracker: {fileID: 545970262}
 --- !u!114 &1649850803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12029,6 +12101,7 @@ MonoBehaviour:
   - Mit Leertaste kann ich springen
   dialoguePrefab: {fileID: 3869799346472648246, guid: 1c554ad4a9a3b174bb0ef52f60f3e3c7, type: 3}
   velocityController: {fileID: 1626467082}
+  statTracker: {fileID: 545970262}
 --- !u!114 &2053417941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13105,3 +13178,4 @@ SceneRoots:
   - {fileID: 1228992601151074046}
   - {fileID: 933383213}
   - {fileID: 402125044}
+  - {fileID: 545970263}

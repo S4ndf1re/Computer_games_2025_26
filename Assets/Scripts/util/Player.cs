@@ -1,3 +1,4 @@
+using System.Data;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -5,6 +6,7 @@ public class Player : MonoBehaviour
     public delegate void RespawnedDelegate();
     public event RespawnedDelegate playerRespawned;
 
+    public StatTracker statTracker;
 
     public int startHealth = 3;
     public Hurtbox hurtbox;
@@ -39,7 +41,15 @@ public class Player : MonoBehaviour
 
     void OnHit(Hitbox box)
     {
-        currentHealth -= box.damage;
+        int damage = box.damage;
+        currentHealth -= damage;
+        
+        if (statTracker != null)
+        {
+            statTracker.RegisterHit();
+            statTracker.RegisterDamageTaken(damage);
+        }
+
         if (currentHealth < 1 && isDestroyedOnDeath)
         {
             Destroy(gameObject);

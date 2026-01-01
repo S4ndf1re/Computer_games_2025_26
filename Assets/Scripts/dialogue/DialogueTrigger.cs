@@ -6,6 +6,7 @@ public class DialogueTrigger : MonoBehaviour, InteractableAction
     public List<string> dialogueText;
     public GameObject dialoguePrefab;
     public VelocityPlayerController velocityController;
+    public StatTracker statTracker;
 
     private DialogueController dialogue;
     private CameraController cam;
@@ -47,6 +48,11 @@ public class DialogueTrigger : MonoBehaviour, InteractableAction
             velocityController.canMove = false;
         dialogue.gameObject.SetActive(true);
         dialogueIndex = 0;
+        
+        if (statTracker != null)
+        {
+            statTracker.RegisterDialogueStart();
+        }
     }
 
     public void EndInteraction()
@@ -56,6 +62,11 @@ public class DialogueTrigger : MonoBehaviour, InteractableAction
         if (velocityController != null)
             velocityController.canMove = true;
         dialogue.gameObject.SetActive(false);
+
+        if (statTracker != null)
+        {
+            statTracker.RegisterDialogueEnd();
+        }
     }
 
 
