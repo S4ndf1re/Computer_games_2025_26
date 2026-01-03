@@ -20,6 +20,7 @@ public class PlayerAnimator : MonoBehaviour
     private int animIDJump;
     private int animIDFreeFall;
     private int animIDMotionSpeed;
+    private int animIDWallSliding;
     //private int animIDPunch;
     //private int animIDPush;
     //private int animIDCrawl;
@@ -47,6 +48,8 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetFloat(animIDMotionSpeed, 1);
         animator.SetFloat(animIDSpeed, animationBlend);
 
+        animator.SetBool(animIDWallSliding, velocityPlayerController.isWallSliding);
+
         if (velocity.isGrounded)
         {
             animator.SetBool(animIDJump, false);
@@ -56,7 +59,7 @@ public class PlayerAnimator : MonoBehaviour
         else
         {
             animator.SetBool(animIDGrounded, false);
-            animator.SetBool(animIDFreeFall, true);
+            animator.SetBool(animIDFreeFall, !velocityPlayerController.isWallSliding);
         }
 
     }
@@ -68,6 +71,7 @@ public class PlayerAnimator : MonoBehaviour
         animIDJump = Animator.StringToHash("Jump");
         animIDFreeFall = Animator.StringToHash("FreeFall");
         animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
+        animIDWallSliding = Animator.StringToHash("IsWallSliding");
         //animIDPunch = Animator.StringToHash("Punch");
         //animIDPush = Animator.StringToHash("Push");
         //animIDCrawl = Animator.StringToHash("Crawl");
