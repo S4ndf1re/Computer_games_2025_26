@@ -57,7 +57,8 @@ public class Player : MonoBehaviour
         if (newValue > startHealth)
         {
             currentHealth = newValue;
-        } else
+        }
+        else
         {
             currentHealth = startHealth;
         }

@@ -85,5 +85,11 @@ public class CombinedCondition : MonoBehaviour, TaskCondition
         }
     }
 
-
+    void TaskCondition.SetTask(Task relatedTask)
+    {
+        foreach (var cond in conditionsIntern)
+        {
+            cond.SetTask(relatedTask);
+        }
+    }
 }

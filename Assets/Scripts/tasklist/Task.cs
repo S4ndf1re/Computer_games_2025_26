@@ -1,17 +1,31 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.Rendering;
 
 public class Task : MonoBehaviour
 {
     public AudioSource audio;
     public Animator animator;
     public float wait = 1;
+    public string originalTaskText;
     public TextMeshProUGUI textField;
     public float typewriterSpeed;
     public TaskCondition condition;
+    public Coroutine coroutine;
 
-    public IEnumerator TypeText(string msg)
+
+    public void TypeText()
+    {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+            coroutine = null;
+        }
+        coroutine = StartCoroutine(TypeText(originalTaskText));
+    }
+
+    IEnumerator TypeText(string msg)
     {
         textField.text = "";
 
@@ -24,6 +38,11 @@ public class Task : MonoBehaviour
 
     public void ShowTextInstant(string msg)
     {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+            coroutine = null;
+        }
         textField.text = msg;
     }
 

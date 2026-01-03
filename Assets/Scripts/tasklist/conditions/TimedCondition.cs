@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Text;
 using UnityEngine;
 
 public class TimedCondition : MonoBehaviour, TaskCondition
@@ -7,6 +9,8 @@ public class TimedCondition : MonoBehaviour, TaskCondition
     public float timeInSeconds = 0f;
     public bool isDone = false;
     private Coroutine current;
+    private float currentElapsedTime = 0f;
+    private Task task;
 
 
     void OnEnable()
@@ -15,7 +19,6 @@ public class TimedCondition : MonoBehaviour, TaskCondition
         {
             StopCoroutine(current);
         }
-        Debug.Log("Starting Timer on Enable");
         current = StartCoroutine(StartTime());
     }
 
@@ -23,7 +26,6 @@ public class TimedCondition : MonoBehaviour, TaskCondition
     {
         if (current != null)
         {
-            Debug.Log("Stopping");
             StopCoroutine(current);
         }
     }
@@ -32,7 +34,6 @@ public class TimedCondition : MonoBehaviour, TaskCondition
     {
         if (current != null)
         {
-            Debug.Log("Stopping");
             StopCoroutine(current);
         }
         enabled = true;
@@ -42,7 +43,6 @@ public class TimedCondition : MonoBehaviour, TaskCondition
     {
         if (current != null)
         {
-            Debug.Log("Stopping");
             StopCoroutine(current);
         }
         enabled = false;
@@ -93,6 +93,22 @@ public class TimedCondition : MonoBehaviour, TaskCondition
             StopCoroutine(current);
         }
         isDone = true;
+    }
+
+    void TaskCondition.SetTask(Task relatedTask)
+    {
+        task = relatedTask;
+    }
+
+    void FixedUpdate()
+    {
+        if (task != null)
+        {
+            StringBuilder builder = new StringBuilder(task.originalTaskText);
+            builder.Replace("$", (int)(timeInSeconds - currentElapsedTime) + "");
+            task.ShowTextInstant(builder.ToString());
+        }
+        currentElapsedTime += Time.fixedDeltaTime;
     }
 
 }

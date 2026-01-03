@@ -16,6 +16,7 @@ public class BossState : MonoBehaviour
     public TickloopAddable printHead2;
     public TickloopAddable head2;
     public TickloopAddable obstacles;
+    public TickloopAddable inkjetSideShooters;
 
 
     [Header("Conditions")]
@@ -57,9 +58,6 @@ public class BossState : MonoBehaviour
     public int printheadDodgeLoops = 5;
 
     // Internal counter
-    private int maxLoopCountForPhase;
-    private int currentLoop;
-    private TaskCondition currentCondition;
     private bool isNextPhase;
 
     private Coroutine sceneSwap;
@@ -160,18 +158,14 @@ public class BossState : MonoBehaviour
         {
             case Phase.Dodge:
                 this.currentPhase = Phase.Printhead;
-                this.currentCondition = conditionDodgePhase;
                 break;
             case Phase.Printhead:
                 this.currentPhase = Phase.PrintheadHard;
-                this.currentCondition = conditionPrintheadPhase;
                 break;
             case Phase.PrintheadHard:
                 this.currentPhase = Phase.PrintheadDodge;
-                this.currentCondition = conditionPrintheadHardPhase;
                 break;
             case Phase.PrintheadDodge:
-                this.currentCondition = conditionPrintheadDodgePhase;
                 this.currentPhase = Phase.Finished;
                 break;
         }
@@ -199,13 +193,12 @@ public class BossState : MonoBehaviour
 
     void SetupDodgePhase()
     {
-        maxLoopCountForPhase = dodgeLoops;
-        currentLoop = 0;
         head.enabled = false;
         printHead.enabled = false;
         head2.enabled = false;
         printHead2.enabled = false;
         obstacles.enabled = true;
+        inkjetSideShooters.enabled = false;
         TaskListManager.Instance.SpawnTask(dodgeTaskTitle, conditionDodgePhase);
         conditionDodgePhase?.GetInstance().Reset();
         conditionDodgePhase?.GetInstance().Activate();
@@ -213,13 +206,12 @@ public class BossState : MonoBehaviour
 
     void SetupPrintheadPhase()
     {
-        maxLoopCountForPhase = printheadLoops;
-        currentLoop = 0;
         head.enabled = true;
         printHead.enabled = true;
         head2.enabled = false;
         printHead2.enabled = false;
         obstacles.enabled = false;
+        inkjetSideShooters.enabled = true;
         TaskListManager.Instance.SpawnTask(printheadTaskTitle, conditionPrintheadPhase);
         conditionPrintheadPhase?.GetInstance().Reset();
         conditionPrintheadPhase?.GetInstance().Activate();
@@ -227,28 +219,27 @@ public class BossState : MonoBehaviour
 
     void SetupPrintheadHardPhase()
     {
-        maxLoopCountForPhase = printheadHardLoops;
-        currentLoop = 0;
         head.enabled = true;
         printHead.enabled = true;
         head2.enabled = true;
         printHead2.enabled = true;
         obstacles.enabled = false;
+        inkjetSideShooters.enabled = true;
         TaskListManager.Instance.SpawnTask(printheadHardTaskTitle, conditionPrintheadHardPhase);
         conditionPrintheadHardPhase?.GetInstance().Reset();
         conditionPrintheadHardPhase?.GetInstance().Activate();
+        player.Heal();
     }
 
     void SetupPrintheadDodgePhase()
     {
         Debug.Log("Setting up phase printhead dodge");
-        maxLoopCountForPhase = printheadDodgeLoops;
-        currentLoop = 0;
         head.enabled = true;
         printHead.enabled = true;
         head2.enabled = false;
         printHead2.enabled = false;
         obstacles.enabled = true;
+        inkjetSideShooters.enabled = true;
         TaskListManager.Instance.SpawnTask(printheadDodgeTaskTitle, conditionPrintheadDodgePhase);
         Debug.Log("Resetting");
         conditionPrintheadDodgePhase?.GetInstance().Reset();
@@ -267,6 +258,7 @@ public class BossState : MonoBehaviour
         head2.enabled = false;
         printHead2.enabled = false;
         obstacles.enabled = false;
+        inkjetSideShooters.enabled = false;
         loop.SetToLastMeasure();
     }
 

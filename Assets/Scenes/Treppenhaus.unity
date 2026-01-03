@@ -10978,17 +10978,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: -0.00000047683716, z: -0.000000059604645}
---- !u!114 &910259715 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3794130078672055430, guid: 3dba0373657928f429c094afe71fa21f, type: 3}
-  m_PrefabInstance: {fileID: 1102875767}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd3edfb82adac48419cfbb7afbb1404e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Hurtbox
 --- !u!1001 &926995230
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13754,11 +13743,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4102138314524208712, guid: 3dba0373657928f429c094afe71fa21f, type: 3}
-      insertIndex: -1
+      insertIndex: 12
       addedObject: {fileID: 1373538646}
-    - targetCorrespondingSourceObject: {fileID: 4102138314524208712, guid: 3dba0373657928f429c094afe71fa21f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1373538666}
   m_SourcePrefab: {fileID: 100100000, guid: 3dba0373657928f429c094afe71fa21f, type: 3}
 --- !u!1 &1108224990
 GameObject:
@@ -18303,22 +18289,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c76989de26a12430e9aee1b881b0e094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
---- !u!114 &1373538666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1373538632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7cd4b0ff723b5941a5024d39c96b5df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ScreenFreeze
-  duration: 0.5
-  shakeMagnitude: 0.2
-  mainCamera: {fileID: 1412922870}
-  hurtbox: {fileID: 910259715}
 --- !u!1 &1373716081
 GameObject:
   m_ObjectHideFlags: 0
@@ -18823,11 +18793,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 223.19, y: 0, z: 0}
---- !u!20 &1412922870 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 5044884554038432075, guid: 3dba0373657928f429c094afe71fa21f, type: 3}
-  m_PrefabInstance: {fileID: 1102875767}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1416764658
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,7 +23,9 @@ public class TaskListSpawner : MonoBehaviour
     {
         var obj = Instantiate(prefabTask, gameObject.transform);
         obj.condition = condition;
-        StartCoroutine(obj.TypeText(taskDescription));
+        obj.originalTaskText = taskDescription;
+        condition.SetTask(obj);
+        obj.TypeText();
         return obj;
     }
 }

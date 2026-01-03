@@ -5,13 +5,22 @@ public class Ink : MonoBehaviour
 {
 
     public Splash splash;
-    public float yVelocity = -20f;
+    public float velocity = 20f;
+    public Vector3 direction = Vector3.down;
     public float lifetimeSeconds = 2f;
     public LayerMask layerFilter;
 
     public void Instantiate(Vector3 startingPosition, LayerMask layerFilter)
     {
         transform.position = startingPosition;
+        this.direction = Vector3.down;
+        this.layerFilter = layerFilter;
+        Destroy(gameObject, lifetimeSeconds);
+    }
+    public void Instantiate(Vector3 startingPosition, Vector3 direction, LayerMask layerFilter)
+    {
+        transform.position = startingPosition;
+        this.direction = direction;
         this.layerFilter = layerFilter;
         Destroy(gameObject, lifetimeSeconds);
     }
@@ -20,7 +29,7 @@ public class Ink : MonoBehaviour
     {
         var old = transform.position;
 
-        old.y += yVelocity * Time.fixedDeltaTime;
+        old += velocity * direction * Time.fixedDeltaTime;
 
         transform.position = old;
     }

@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 6292148698219239857}
   - component: {fileID: 7086357740954338603}
   - component: {fileID: 6449789203748903498}
+  - component: {fileID: 3299352969189752051}
   m_Layer: 0
   m_Name: PlayerWithKnockback
   m_TagString: Untagged
@@ -449,8 +450,13 @@ MonoBehaviour:
   knockUpForce: 1
   hurtbox: {fileID: 0}
   maxSpeedOnInk: 3
+  overallMaxSpeedBuffer: 8
   slowedForSeconds: 2
+  inkLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
   canDoubleJump: 1
+  isWallSliding: 0
 --- !u!143 &2702084139711828418
 CharacterController:
   m_ObjectHideFlags: 0
@@ -594,6 +600,22 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4102138314524208712}
   m_Enabled: 1
+--- !u!114 &3299352969189752051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4102138314524208712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7cd4b0ff723b5941a5024d39c96b5df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenFreeze
+  duration: 0.5
+  shakeMagnitude: 0.2
+  mainCamera: {fileID: 5044884554038432075}
+  hurtbox: {fileID: 3794130078672055430}
 --- !u!1 &5571348948060267379
 GameObject:
   m_ObjectHideFlags: 0
