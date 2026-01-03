@@ -287,6 +287,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4848899773351372, guid: 20ffe5c18928a4c4594e9261db2333af, type: 3}
   m_PrefabInstance: {fileID: 53779272}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &54103779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 54103780}
+  m_Layer: 0
+  m_Name: AfterTreppenhausSpawnpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &54103780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54103779}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.931, y: 1.47, z: 17.263}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &62511293 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7592977215538603244, guid: 302076e25a418954fb6acadb8434b8f6, type: 3}
@@ -6701,6 +6732,10 @@ PrefabInstance:
       propertyPath: afterStorageRoomSpawnpoint
       value: 
       objectReference: {fileID: 654641111}
+    - target: {fileID: 2569634376704373384, guid: f5b6439a8ab4a4b6f8cb2e356b7d79f0, type: 3}
+      propertyPath: afterTreppenhausSpawnpoint
+      value: 
+      objectReference: {fileID: 54103780}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7925,5 +7960,6 @@ SceneRoots:
   - {fileID: 2040962195}
   - {fileID: 1754281296}
   - {fileID: 1716365523}
+  - {fileID: 54103780}
   - {fileID: 654641111}
   - {fileID: 142042421}

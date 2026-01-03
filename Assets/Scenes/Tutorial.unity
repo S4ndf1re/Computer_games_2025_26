@@ -5083,6 +5083,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 933383213}
     m_Modifications:
+    - target: {fileID: 1604598541515272550, guid: f2be014028fea4241b38c35828c625d2, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1626467091}
     - target: {fileID: 4518918007512092864, guid: f2be014028fea4241b38c35828c625d2, type: 3}
       propertyPath: m_Name
       value: Checkpoint Trigger
@@ -9456,6 +9460,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 694415958591279176, guid: 3dba0373657928f429c094afe71fa21f, type: 3}
   m_PrefabInstance: {fileID: 1473193519}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1626467091 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6526022127187992230, guid: 3dba0373657928f429c094afe71fa21f, type: 3}
+  m_PrefabInstance: {fileID: 1473193519}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626467072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c76989de26a12430e9aee1b881b0e094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player
 --- !u!1001 &1636744818
 PrefabInstance:
   m_ObjectHideFlags: 0

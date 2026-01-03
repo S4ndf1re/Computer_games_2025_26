@@ -11,6 +11,7 @@ public class SceneSetup : MonoBehaviour
     public Transform afterTutorialSpawnpoint;
     public Transform afterStorageRoomSpawnpoint;
     public Transform afterElevatorSpawnpoint;
+    public Transform afterTreppenhausSpawnpoint;
     public Interactable afterTutorialDialog;
     public Interactable storageRoomDoor;
     public Interactable staircaseDoor;
@@ -26,7 +27,9 @@ public class SceneSetup : MonoBehaviour
             state.Clear();
         }
 
+        // Buffer here, since both will get overwritten by the SetSceneBasedOnString call
         var oldScene = state.currentScene;
+        var wasElevator = state.wasElevator;
         state.SetSceneBasedOnString(SceneManager.GetActiveScene().name.ToLower());
 
 
@@ -36,7 +39,7 @@ public class SceneSetup : MonoBehaviour
                 SetupTutorial(oldScene);
                 break;
             case GameState.Scenes.Lobby:
-                SetupLobby(oldScene);
+                SetupLobby(oldScene, wasElevator);
                 break;
             case GameState.Scenes.StorageRoom:
                 break;
@@ -49,7 +52,7 @@ public class SceneSetup : MonoBehaviour
         // Nothing to do here
     }
 
-    void SetupLobby(GameState.Scenes? oldScene)
+    void SetupLobby(GameState.Scenes? oldScene, bool wasElevator)
     {
         player.enabled = false;
         if (oldScene == GameState.Scenes.Tutorial)
@@ -69,7 +72,7 @@ public class SceneSetup : MonoBehaviour
             player.transform.localScale = afterStorageRoomSpawnpoint.localScale;
             player.transform.rotation = afterStorageRoomSpawnpoint.rotation;
         }
-        else if (oldScene == GameState.Scenes.Treppenhaus)
+        else if (oldScene == GameState.Scenes.Treppenhaus && !wasElevator)
         {
             afterTutorialDialog.enabled = false;
             staircaseDoor.enabled = true;
@@ -78,6 +81,15 @@ public class SceneSetup : MonoBehaviour
             player.transform.position = afterElevatorSpawnpoint.position;
             player.transform.localScale = afterElevatorSpawnpoint.localScale;
             player.transform.rotation = afterElevatorSpawnpoint.rotation;
+        } else if(oldScene == GameState.Scenes.Treppenhaus && wasElevator)
+        {
+            afterTutorialDialog.enabled = false;
+            staircaseDoor.enabled = true;
+            storageRoomDoor.enabled = true;
+            printerDialogue.enabled = true;
+            player.transform.position = afterTreppenhausSpawnpoint.position;
+            player.transform.localScale = afterTreppenhausSpawnpoint.localScale;
+            player.transform.rotation = afterTreppenhausSpawnpoint.rotation;
         }
         player.enabled = true;
     }
