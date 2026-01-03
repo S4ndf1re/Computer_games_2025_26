@@ -25,7 +25,6 @@ public class DialogueTrigger : MonoBehaviour, InteractableAction
 
     public bool Execute()
     {
-        Debug.Log("Execute interaction");
         if (dialogueIndex == dialogueText.Count) {
             return true;
         }
@@ -33,7 +32,6 @@ public class DialogueTrigger : MonoBehaviour, InteractableAction
         // update text
         dialogue.ShowText(dialogueText[dialogueIndex]);
         dialogueIndex++;
-        Debug.Log(dialogueIndex);
 
         // Always return false. the actual check is done at the top, because once the last dialog was shown, the player must interact one more time to disable the dialog
         return false;
@@ -41,7 +39,6 @@ public class DialogueTrigger : MonoBehaviour, InteractableAction
 
     public void StartInteraction()
     {
-        Debug.Log("Start Interaction");
         cam.FocusOn(transform);
         if (velocityController != null)
             velocityController.canMove = false;
@@ -51,7 +48,6 @@ public class DialogueTrigger : MonoBehaviour, InteractableAction
 
     public void EndInteraction()
     {
-        Debug.Log("End Interaction");
         cam.ResetCamera();
         if (velocityController != null)
             velocityController.canMove = true;
