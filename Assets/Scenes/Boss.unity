@@ -30566,7 +30566,7 @@ MonoBehaviour:
   printheadTaskTitle: "\xDCberlebe $ Sekunden. Der Drucker greift an!"
   printheadHardTaskTitle: "Wieder $, nur schwerer. Der Drucker ist W\xFCtend"
   printheadDodgeTaskTitle: Sammle $ Objekte (alle bis auf Eins)
-  currentPhase: 3
+  currentPhase: 0
   dodgeLoops: 1
   printheadLoops: 1
   printheadHardLoops: 1
