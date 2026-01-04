@@ -4634,6 +4634,10 @@ PrefabInstance:
       propertyPath: tickloop
       value: 
       objectReference: {fileID: 272132660}
+    - target: {fileID: 1291440955225775492, guid: 267a9a91bc679724db7b81f83fab6d9f, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: bcf021c840f8ab74fa34afbd6414ff08, type: 2}
     - target: {fileID: 2499104928157182356, guid: 267a9a91bc679724db7b81f83fab6d9f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 27.87081
