@@ -15,6 +15,7 @@ public class GameState : ScriptableObject
         Intro,
     }
 
+    public bool tickloopEnabled = true;
 
     public Scenes? currentScene = null;
     public bool hasPaper = false;

@@ -32,7 +32,11 @@ public class MenuManager : MonoBehaviour
             return;
         }
 
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         menuPanel.SetActive(true);
+        settingsPanel.SetActive(false);
         Time.timeScale = 0f;
         isPaused = true;
     }
@@ -43,6 +47,10 @@ public class MenuManager : MonoBehaviour
             Debug.Log("MenuPanel is null");
             return;
         }
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         menuPanel.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;

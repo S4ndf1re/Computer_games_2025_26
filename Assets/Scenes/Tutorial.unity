@@ -394,6 +394,7 @@ MonoBehaviour:
   - Lass mich das direkt mal ausprobieren...
   dialoguePrefab: {fileID: 3869799346472648246, guid: 1c554ad4a9a3b174bb0ef52f60f3e3c7, type: 3}
   velocityController: {fileID: 1626467082}
+  statTracker: {fileID: 545970262}
 --- !u!114 &71492311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -741,6 +742,7 @@ MonoBehaviour:
   - "Aber ich sollte aufpassen, der Keller scheint Br\xFCchig zu sein!"
   dialoguePrefab: {fileID: 3869799346472648246, guid: 1c554ad4a9a3b174bb0ef52f60f3e3c7, type: 3}
   velocityController: {fileID: 1626467082}
+  statTracker: {fileID: 545970262}
 --- !u!114 &153784179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1205,6 +1207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eda980412d3e49d0aaf516de9074ad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tickloop
+  state: {fileID: 11400000, guid: 693ba17327987418c9ba4379171e13ce, type: 2}
   tickLength: 0
   currentIdx: 0
   currentTimeSeconds: 0
@@ -2962,6 +2965,7 @@ MonoBehaviour:
   - "Vielleicht kann ich mit der T\xFCr interagieren, in dem ich E dr\xFCcke"
   dialoguePrefab: {fileID: 3869799346472648246, guid: 1c554ad4a9a3b174bb0ef52f60f3e3c7, type: 3}
   velocityController: {fileID: 1626467082}
+  statTracker: {fileID: 545970262}
 --- !u!114 &543223811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2991,6 +2995,54 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 27.88, y: 17.55, z: -0.24}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &545970261
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 545970263}
+  - component: {fileID: 545970262}
+  m_Layer: 0
+  m_Name: StatTracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &545970262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545970261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1a2a75f820140c4192827eb29a10f62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatTracker
+  hits: 0
+  damageTaken: 0
+  deaths: 0
+  playTime: 0
+--- !u!4 &545970263
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545970261}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.0989, y: 5.06268, z: -1.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3504,7 +3556,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &597423613
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3514,7 +3566,7 @@ AudioSource:
   m_GameObject: {fileID: 597423612}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: bcf021c840f8ab74fa34afbd6414ff08, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 0ec76a569e9a84d2394650a1a93de6bb, type: 3}
   m_PlayOnAwake: 0
@@ -3931,6 +3983,7 @@ MonoBehaviour:
   - "Probier mal mithilfe der Platform den Sprung in die n\xE4chste Ebene zu wagen"
   dialoguePrefab: {fileID: 3869799346472648246, guid: 1c554ad4a9a3b174bb0ef52f60f3e3c7, type: 3}
   velocityController: {fileID: 1626467082}
+  statTracker: {fileID: 545970262}
 --- !u!114 &650069340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6899,6 +6952,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 423379790340965663, guid: 3fc8c23364a6a43cb9b399c01599845f, type: 3}
+      propertyPath: state
+      value: 
+      objectReference: {fileID: 11400000, guid: 693ba17327987418c9ba4379171e13ce, type: 2}
+    - target: {fileID: 423379790340965663, guid: 3fc8c23364a6a43cb9b399c01599845f, type: 3}
       propertyPath: tickloop
       value: 
       objectReference: {fileID: 237717958}
@@ -8485,6 +8542,71 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 413377aaac3b21948ba2e1d99bde3774, type: 3}
+--- !u!1001 &1451950136
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1397342126063313435, guid: 5971312898c35c34899d497677e5a151, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -48.723743
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397342126063313435, guid: 5971312898c35c34899d497677e5a151, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0000009536743
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397342126063313435, guid: 5971312898c35c34899d497677e5a151, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12.281975
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397342126063313435, guid: 5971312898c35c34899d497677e5a151, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397342126063313435, guid: 5971312898c35c34899d497677e5a151, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397342126063313435, guid: 5971312898c35c34899d497677e5a151, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397342126063313435, guid: 5971312898c35c34899d497677e5a151, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397342126063313435, guid: 5971312898c35c34899d497677e5a151, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397342126063313435, guid: 5971312898c35c34899d497677e5a151, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397342126063313435, guid: 5971312898c35c34899d497677e5a151, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5797114450402702733, guid: 5971312898c35c34899d497677e5a151, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6744972078411911594, guid: 5971312898c35c34899d497677e5a151, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9020866423335663679, guid: 5971312898c35c34899d497677e5a151, type: 3}
+      propertyPath: m_Name
+      value: Settings
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5971312898c35c34899d497677e5a151, type: 3}
 --- !u!1001 &1458610574
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8800,6 +8922,14 @@ PrefabInstance:
       propertyPath: inputLockAfterHit
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6526022127187992230, guid: 3dba0373657928f429c094afe71fa21f, type: 3}
+      propertyPath: statTracker
+      value: 
+      objectReference: {fileID: 545970262}
+    - target: {fileID: 7086357740954338603, guid: 3dba0373657928f429c094afe71fa21f, type: 3}
+      propertyPath: statTracker
+      value: 
+      objectReference: {fileID: 545970262}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -9863,6 +9993,7 @@ MonoBehaviour:
   - Mit "A" Laufe ich nach Links, mit "D" nach Rechts!
   dialoguePrefab: {fileID: 3869799346472648246, guid: 1c554ad4a9a3b174bb0ef52f60f3e3c7, type: 3}
   velocityController: {fileID: 1626467082}
+  statTracker: {fileID: 545970262}
 --- !u!114 &1649850803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12234,6 +12365,7 @@ MonoBehaviour:
   - Mit Leertaste kann ich springen!
   dialoguePrefab: {fileID: 3869799346472648246, guid: 1c554ad4a9a3b174bb0ef52f60f3e3c7, type: 3}
   velocityController: {fileID: 1626467082}
+  statTracker: {fileID: 545970262}
 --- !u!114 &2053417941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13312,3 +13444,5 @@ SceneRoots:
   - {fileID: 933383213}
   - {fileID: 1458610574}
   - {fileID: 402125044}
+  - {fileID: 545970263}
+  - {fileID: 1451950136}

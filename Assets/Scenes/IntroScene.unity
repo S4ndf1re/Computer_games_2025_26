@@ -1874,6 +1874,7 @@ MonoBehaviour:
   - Dann mal auf, bevor der Chef seine Drohung wahr macht!
   dialoguePrefab: {fileID: 3869799346472648246, guid: 1c554ad4a9a3b174bb0ef52f60f3e3c7, type: 3}
   velocityController: {fileID: 0}
+  statTracker: {fileID: 0}
 --- !u!114 &1691173331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3043,7 +3044,7 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Player3D
+  m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &2087194910
