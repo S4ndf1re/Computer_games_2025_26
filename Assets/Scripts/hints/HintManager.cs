@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class HintManager : MonoBehaviour
@@ -7,6 +8,22 @@ public class HintManager : MonoBehaviour
     [Header("Setup")]
     [SerializeField] private HintController hintPrefab;
     [SerializeField] private Transform hintParent;
+    public Player player;
+    public string firstText;
+    public string secondText;
+
+    public const int firstHint = 2;
+    public const int secondHint = 5;
+    private int deathCounter;
+
+    void Start()
+    {
+        deathCounter = 0;
+        if (player != null)
+        {
+            player.playerRespawned += OnDeath;
+        }
+    }
 
     private void Awake()
     {
@@ -17,6 +34,22 @@ public class HintManager : MonoBehaviour
         }
 
         Instance = this;
+    }
+
+    void OnDeath()
+    {
+        deathCounter += 1;
+        switch(deathCounter)
+        {
+            case firstHint:
+                ShowHint(firstText);
+                break;
+            case secondHint:
+                ShowHint(secondText);
+                break;
+            default:
+                break;
+        }
     }
 
     public void ShowHint(string message)
