@@ -52,6 +52,7 @@ public class MenuManager : MonoBehaviour
         Cursor.visible = false;
 
         menuPanel.SetActive(false);
+        settingsPanel.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
     }
