@@ -19,6 +19,7 @@ public class GameState : ScriptableObject
     public Scenes? currentScene = null;
     public bool hasPaper = false;
     public bool hasInk = false;
+    public bool wasElevator = false;
 
     public void Clear()
     {
@@ -29,6 +30,7 @@ public class GameState : ScriptableObject
 
     public void SetSceneBasedOnString(string sceneName)
     {
+        wasElevator = false;
         if (sceneName == "lobby")
         {
             this.currentScene = Scenes.Lobby;

@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Text;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -9,6 +11,8 @@ public class AnyNCondition : MonoBehaviour, TaskCondition
     private List<TaskCondition> conditionsIntern = new List<TaskCondition>();
     public bool isFinished = false;
     public int minFinished = 1;
+    private Task task;
+    private int oldCounter = -1;
 
     void Awake()
     {
@@ -87,6 +91,37 @@ public class AnyNCondition : MonoBehaviour, TaskCondition
         {
             cond.GetInstance().FinishTask();
         }
+    }
+
+    void TaskCondition.SetTask(Task relatedTask)
+    {
+        task = relatedTask;
+        foreach (var cond in conditionsIntern)
+        {
+            cond.SetTask(relatedTask);
+        }
+    }
+
+    void Update()
+    {
+
+        var counter = 0;
+        foreach (var cond in conditionsIntern)
+        {
+            if (cond.GetInstance().TaskFinished())
+            {
+                counter += 1;
+            }
+        }
+
+        if (task != null && oldCounter != counter)
+        {
+            StringBuilder builder = new StringBuilder(task.originalTaskText);
+            builder.Replace("$", "" + counter + "/" + minFinished);
+            task.ShowTextInstant(builder.ToString());
+            oldCounter = counter;
+        }
+
     }
 
 }

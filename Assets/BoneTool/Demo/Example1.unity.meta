@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3f30cf6597023124db93c5023c0a01d9
+timeCreated: 1503833196
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 99464
+  packageName: BoneTool - Bone Visualizer
+  packageVersion: 1.2
+  assetPath: Assets/BoneTool/Demo/Example1.unity
+  uploadId: 397287

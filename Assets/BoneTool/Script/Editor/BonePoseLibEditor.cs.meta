@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 7ddc69d1b9ca44a4bcf12ffc0aa7d8c6
+timeCreated: 1504364518
+AssetOrigin:
+  serializedVersion: 1
+  productId: 99464
+  packageName: BoneTool - Bone Visualizer
+  packageVersion: 1.2
+  assetPath: Assets/BoneTool/Script/Editor/BonePoseLibEditor.cs
+  uploadId: 397287

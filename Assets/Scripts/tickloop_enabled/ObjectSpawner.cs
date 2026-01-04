@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
 {
+    public TickloopAddable triggerBy;
     public GameObject prefab;
     [Tooltip("It is advised, that this is set to true, otherwise, the objects must get deleted manually. For example, DespawnAfterSeconds component may be used for this")]
     public bool withAutomaticDespawn = true;
@@ -12,7 +13,14 @@ public class ObjectSpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        addable = GetComponent<TickloopAddable>();
+        if (triggerBy != null)
+        {
+            addable = triggerBy;
+        }
+        else
+        {
+            addable = GetComponent<TickloopAddable>();
+        }
         addable.triggeredByTickloop += Spawn;
     }
 

@@ -7,6 +7,7 @@ public class PointToConditions : MonoBehaviour
 
     public GameObject arrow;
     public Transform player;
+    public float xLimit = 0f;
     public List<GameObject> conditions;
     public List<(TaskCondition, GameObject)> conditionsInner = new List<(TaskCondition, GameObject)>();
     public Transform currentTarget = null;
@@ -33,7 +34,7 @@ public class PointToConditions : MonoBehaviour
         foreach (var (possibleTarget, obj) in conditionsInner)
         {
             var dist = Vector3.Distance(obj.transform.position, player.position);
-            if (!possibleTarget.TaskFinished() && dist < minDist)
+            if (!possibleTarget.TaskFinished() && dist < minDist && obj.transform.position.x <= xLimit)
             {
                 newTarget = obj.transform;
                 minDist = dist;
