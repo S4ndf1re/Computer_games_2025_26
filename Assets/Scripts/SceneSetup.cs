@@ -41,8 +41,6 @@ public class SceneSetup : MonoBehaviour
             case GameState.Scenes.Lobby:
                 SetupLobby(oldScene, wasElevator);
                 break;
-            case GameState.Scenes.StorageRoom:
-                break;
         }
 
     }

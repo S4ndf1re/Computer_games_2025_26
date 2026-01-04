@@ -12,6 +12,7 @@ public class GameState : ScriptableObject
         StorageRoom,
         Treppenhaus,
         Boss,
+        Intro,
     }
 
 
@@ -49,6 +50,10 @@ public class GameState : ScriptableObject
         else if (sceneName == "boss")
         {
             this.currentScene = Scenes.Boss;
+        }
+        else if (sceneName == "introscene")
+        {
+            this.currentScene = Scenes.Intro;
         }
     }
 }
