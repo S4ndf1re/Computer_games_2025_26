@@ -62,7 +62,7 @@ AudioSource:
   m_GameObject: {fileID: 4518918007512092864}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: bcf021c840f8ab74fa34afbd6414ff08, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 55462452cb80442b6acf85f10b161e13, type: 3}
   m_PlayOnAwake: 0
@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5f03924f9e73a1479ba22d86668351f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealPlayer
+  player: {fileID: 0}
 --- !u!1001 &4224470335884807551
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -20,7 +20,7 @@ public class MainMenuManager : MonoBehaviour
     public void StartGame()
     {
         state.tickloopEnabled = tickloopToggle.isOn;
-        SceneManager.LoadScene("Tutorial");
+        SceneManager.LoadScene("IntroScene");
     }
 
     public void QuitGame()
