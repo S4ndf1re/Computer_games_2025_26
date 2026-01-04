@@ -10,6 +10,7 @@ public class EnableRenderWhenEnabled : MonoBehaviour
     public float durationSeconds = 0.1f;
     public int flashNTimes = 10;
     private Coroutine current;
+    private bool isFlashing;
 
 
 
@@ -30,15 +31,24 @@ public class EnableRenderWhenEnabled : MonoBehaviour
             StopCoroutine(current);
             current = null;
         }
-        renderer.enabled = triggeredBy.enabled;
+        if (!isFlashing)
+        {
+            renderer.enabled = triggeredBy.enabled;
+        }
     }
 
     IEnumerator Flash()
     {
+        isFlashing = true;
         for (var i = 0; i < flashNTimes; i++)
         {
             renderer.enabled = !renderer.enabled;
+            if (!triggeredBy.enabled)
+            {
+                renderer.enabled = false;
+            }
             yield return new WaitForSeconds(durationSeconds);
         }
+        isFlashing = false;
     }
 }

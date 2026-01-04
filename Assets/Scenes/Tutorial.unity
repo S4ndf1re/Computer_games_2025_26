@@ -3919,12 +3919,12 @@ MonoBehaviour:
   - Etwas gibt den Rythmus an
   - Unten sind Indikatoren erschienen
   - "Jede einzelne Zelle repr\xE4sentiert ein Zeitpunkt"
-  - An jedem Zeitpunkt kann etwas geschehen
-  - "Zum Beispiel k\xF6nnen Plattformen verschwinden"
-  - Oder Objekte von der Decke fallen
+  - An jedem Zeitpunkt kann etwas geschehen!
+  - "Zum Beispiel k\xF6nnen Plattformen verschwinden,"
+  - oder Objekte von der Decke fallen.
   - "Auch k\xF6nnten sich Objekte bewegen, oder Schaden verursachen"
   - "Die Farbe in der Zelle f\xE4rbt das aktivierte Objekt in der Scene ein"
-  - "Manchmal gibt auch ein Icon Hinweis auf eine Aktivit\xE4t"
+  - "Zus\xE4tzlich gibt auch ein Icon Hinweis auf eine Aktivit\xE4t"
   - In der Anzeige siehst du nun 2 verschiedene Indikatoren
   - "Einer davon ist f\xFCr die Plattform vor dir"
   - Kannst du erkennen, welcher das ist?
@@ -9856,10 +9856,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
   dialogueText:
-  - "Puhh ich sollte schnell den Boss aufsuchen. Der ist eh schon w\xFCtend (Dr\xFCcke
-    E)"
-  - Aber erst einmal muss ich aus dem Keller raus kommen
-  - Mit "A" Laufe ich nach links, mit "D" nach rechts
+  - '*Puh*'
+  - Jetzt schnell aus diesem Loch raus kommen, damit der Boss zufrieden ist.
+  - "Der ist eh schon w\xFCtend!"
+  - Ich glaube dazu muss ich erst einmal nach rechts laufen
+  - Mit "A" Laufe ich nach Links, mit "D" nach Rechts!
   dialoguePrefab: {fileID: 3869799346472648246, guid: 1c554ad4a9a3b174bb0ef52f60f3e3c7, type: 3}
   velocityController: {fileID: 1626467082}
 --- !u!114 &1649850803
@@ -12229,8 +12230,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
   dialogueText:
-  - "\xDCber diese hindernisse sollte ich dr\xFCberspringen k\xF6nnen"
-  - Mit Leertaste kann ich springen
+  - "\xDCber diese Hindernisse sollte ich dr\xFCberspringen k\xF6nnen"
+  - Mit Leertaste kann ich springen!
   dialoguePrefab: {fileID: 3869799346472648246, guid: 1c554ad4a9a3b174bb0ef52f60f3e3c7, type: 3}
   velocityController: {fileID: 1626467082}
 --- !u!114 &2053417941

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 47d5a9b39d261634fa7d8b2bf1ffe35d
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 99464
+  packageName: BoneTool - Bone Visualizer
+  packageVersion: 1.2
+  assetPath: Assets/BoneTool/Demo/Models/Character_1.prefab
+  uploadId: 397287
