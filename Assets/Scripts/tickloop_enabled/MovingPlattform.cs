@@ -118,7 +118,6 @@ public class MovingPlatform : MonoBehaviour
 
             if(other.tag != "Platform_Ignore")
             {   
-                Debug.Log("objectsOnPlatform.Add(other);");
                 objectsOnPlatform.Add(other);
                 other.transform.SetParent(this.transform);
             }
