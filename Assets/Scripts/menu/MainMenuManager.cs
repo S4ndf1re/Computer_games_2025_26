@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
     [Header("General Menu Panel")]
     [SerializeField] public GameObject menuPanel;
 
+    public Toggle tickloopToggle;
+    public GameState state;
     public bool activeOnStart = false;
 
     void Start()
@@ -16,6 +19,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void StartGame()
     {
+        state.tickloopEnabled = tickloopToggle.isOn;
         SceneManager.LoadScene("Tutorial");
     }
 

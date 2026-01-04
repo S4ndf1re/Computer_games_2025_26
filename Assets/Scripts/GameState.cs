@@ -14,6 +14,7 @@ public class GameState : ScriptableObject
         Boss,
     }
 
+    public bool tickloopEnabled = true;
 
     public Scenes? currentScene = null;
     public bool hasPaper = false;

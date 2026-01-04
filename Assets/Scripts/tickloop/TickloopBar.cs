@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class TickloopBar : MonoBehaviour
 {
+    public GameState state;
     public List<TickloopMeasure> measures = new List<TickloopMeasure>();
     public TickloopMeasure tickloopMeasure;
     public GameObject tickloopBeat;
@@ -17,6 +18,10 @@ public class TickloopBar : MonoBehaviour
 
     void OnEnable()
     {
+        if (!state.tickloopEnabled)
+        {
+            return;
+        }
         tickloop.uiTrigger += AnimateBar;
         tickloop.onAddedGameObject += AddObject;
         tickloop.onRemoveGameObject += RemoveObject;

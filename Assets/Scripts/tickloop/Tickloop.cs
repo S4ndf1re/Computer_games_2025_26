@@ -7,6 +7,7 @@ using System.Linq;
 
 public class Tickloop : MonoBehaviour
 {
+    public GameState state;
     public delegate void OnTriggeredTick();
     public delegate void OnPhaseOutTick();
     public delegate void RequestRandomColor(Color color);
@@ -130,8 +131,11 @@ public class Tickloop : MonoBehaviour
                         isDownbeat = true;
                     }
 
-                    audioTrigger?.Invoke(isDownbeat);
-
+                    if (state.tickloopEnabled)
+                    {
+                        audioTrigger?.Invoke(isDownbeat);
+                    }
+                    
                     foreach (var obj in this.ticks[this.currentIdx])
                     {
                         if (this.objDelegateMapping.ContainsKey(obj))
