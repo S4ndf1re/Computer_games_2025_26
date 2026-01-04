@@ -5125,6 +5125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eda980412d3e49d0aaf516de9074ad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tickloop
+  state: {fileID: 11400000, guid: 693ba17327987418c9ba4379171e13ce, type: 2}
   tickLength: 0
   currentIdx: 0
   currentTimeSeconds: 0
@@ -30561,7 +30562,7 @@ MonoBehaviour:
   printheadTaskTitle: "\xDCberlebe $ Sekunden. Der Drucker greift an!"
   printheadHardTaskTitle: "Wieder $, nur schwerer. Der Drucker ist W\xFCtend"
   printheadDodgeTaskTitle: Sammle $ Objekte (alle bis auf Eins)
-  currentPhase: 0
+  currentPhase: 3
   dodgeLoops: 1
   printheadLoops: 1
   printheadHardLoops: 1
@@ -45227,6 +45228,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 423379790340965663, guid: 3fc8c23364a6a43cb9b399c01599845f, type: 3}
+      propertyPath: state
+      value: 
+      objectReference: {fileID: 11400000, guid: 693ba17327987418c9ba4379171e13ce, type: 2}
     - target: {fileID: 423379790340965663, guid: 3fc8c23364a6a43cb9b399c01599845f, type: 3}
       propertyPath: tickloop
       value: 

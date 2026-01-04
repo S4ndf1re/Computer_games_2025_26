@@ -188,6 +188,9 @@ public class BossState : MonoBehaviour
             case Phase.PrintheadDodge:
                 SetupPrintheadDodgePhase();
                 break;
+            case Phase.Finished:
+                SceneManager.LoadScene("EndScreen");
+                break;
         }
     }
 
