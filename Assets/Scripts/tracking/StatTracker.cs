@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class StatTracker : MonoBehaviour
 {
-    public static StatTracker Instance;
+    public static StatTracker Instance { get; private set; }
 
     // -------- Runtime Stats --------
     public int hits;
@@ -16,11 +16,11 @@ public class StatTracker : MonoBehaviour
     private string currentSceneName;
     private Dictionary<string, int> sceneVisitCounts = new();
     private float sceneStartTime;
-    private bool inDialogue = false;
+    private bool timeStop = false;
 
     private void Awake()
     {
-        if (Instance != null)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
@@ -38,7 +38,7 @@ public class StatTracker : MonoBehaviour
 
     private void Update()
     {
-        if(!inDialogue)
+        if(!timeStop)
         {
             playTime += Time.deltaTime;
         }
@@ -58,12 +58,12 @@ public class StatTracker : MonoBehaviour
 
     public void RegisterDialogueStart()
     {
-        this.inDialogue = true;
+        this.timeStop = true;
     }
 
     public void RegisterDialogueEnd()
     {
-        this.inDialogue = false;
+        this.timeStop = false;
     }
 
     public void RegisterHit()
@@ -123,7 +123,7 @@ public class StatTracker : MonoBehaviour
 
     private void InitStatsForNewScene(string newSceneName)
     {
-        inDialogue = false;
+        timeStop = false;
         currentSceneName = newSceneName;
         sceneStartTime = Time.time;
     }

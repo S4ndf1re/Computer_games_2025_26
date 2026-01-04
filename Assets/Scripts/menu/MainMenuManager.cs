@@ -7,7 +7,6 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] public GameObject menuPanel;
 
     public bool activeOnStart = false;
-    private bool isPaused = false;
 
     void Start()
     {
