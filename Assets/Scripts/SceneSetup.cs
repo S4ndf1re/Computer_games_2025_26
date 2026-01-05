@@ -65,7 +65,7 @@ public class SceneSetup : MonoBehaviour
             afterTutorialDialog.enabled = false;
             staircaseDoor.enabled = true;
             storageRoomDoor.enabled = true;
-            printerDialogue.enabled = true;
+            printerDialogue.enabled = false;
             player.transform.position = afterStorageRoomSpawnpoint.position;
             player.transform.localScale = afterStorageRoomSpawnpoint.localScale;
             player.transform.rotation = afterStorageRoomSpawnpoint.rotation;
@@ -75,7 +75,7 @@ public class SceneSetup : MonoBehaviour
             afterTutorialDialog.enabled = false;
             staircaseDoor.enabled = true;
             storageRoomDoor.enabled = true;
-            printerDialogue.enabled = true;
+            printerDialogue.enabled = false;
             player.transform.position = afterElevatorSpawnpoint.position;
             player.transform.localScale = afterElevatorSpawnpoint.localScale;
             player.transform.rotation = afterElevatorSpawnpoint.rotation;
@@ -84,7 +84,7 @@ public class SceneSetup : MonoBehaviour
             afterTutorialDialog.enabled = false;
             staircaseDoor.enabled = true;
             storageRoomDoor.enabled = true;
-            printerDialogue.enabled = true;
+            printerDialogue.enabled = false;
             player.transform.position = afterTreppenhausSpawnpoint.position;
             player.transform.localScale = afterTreppenhausSpawnpoint.localScale;
             player.transform.rotation = afterTreppenhausSpawnpoint.rotation;

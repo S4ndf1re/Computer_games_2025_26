@@ -3874,6 +3874,7 @@ GameObject:
   - component: {fileID: 650069340}
   - component: {fileID: 650069339}
   - component: {fileID: 650069342}
+  - component: {fileID: 650069343}
   m_Layer: 0
   m_Name: Tickloop Helper
   m_TagString: Untagged
@@ -3958,6 +3959,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ActivateCanvasAfterInteraction
   canvas: {fileID: 1084126292}
   metronome: {fileID: 914564593}
+--- !u!114 &650069343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650069337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38214c1cd99e944d69c92731723f5b1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  state: {fileID: 11400000, guid: 693ba17327987418c9ba4379171e13ce, type: 2}
+  script: {fileID: 650069340}
 --- !u!1001 &654257429
 PrefabInstance:
   m_ObjectHideFlags: 0

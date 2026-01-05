@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
-using UnityEngine.Rendering;
 
 public class FillBoneRenderer : MonoBehaviour
 {
@@ -30,7 +29,7 @@ public class FillBoneRenderer : MonoBehaviour
 
                 transforms.Add(current);
             }
-            boneRenderer.transforms = transforms.ToArray();
+            // boneRenderer.transforms = transforms.ToArray();
         }
     }
 

@@ -66,6 +66,7 @@ public class TimedCondition : MonoBehaviour, TaskCondition
         }
 
         Debug.Log("Running Timer");
+        currentElapsedTime = 0;
         yield return new WaitForSeconds(timeInSeconds);
         isDone = true;
     }
