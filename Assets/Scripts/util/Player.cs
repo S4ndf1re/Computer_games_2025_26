@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
     public delegate void RespawnedDelegate();
     public event RespawnedDelegate playerRespawned;
 
-    public StatTracker statTracker;
+    private StatTracker statTracker;
 
     public int startHealth = 3;
     public Hurtbox hurtbox;
@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        statTracker = StatTracker.Instance;
         currentHealth = startHealth;
         if (hurtbox != null)
         {
@@ -76,6 +77,7 @@ public class Player : MonoBehaviour
 
     public void Respawn()
     {
+        statTracker.RegisterDeath();
         this.currentHealth = startHealth;
         playerRespawned?.Invoke();
     }

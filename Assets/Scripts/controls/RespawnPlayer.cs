@@ -17,8 +17,6 @@ namespace StarterAssets
 
         public AudioClip respawnSound;
 
-        public StatTracker statTracker;
-
         private Player playerScript;
 
 
@@ -53,18 +51,10 @@ namespace StarterAssets
             if (playerScript.GetHealth() <= 0)
             {
                 Respawn();
-                if (statTracker != null)
-                {
-                    statTracker.RegisterDeath();
-                }
             }
             if (transform.position.y < yThreshold)
             {
                 Respawn();
-                if (statTracker != null)
-                {
-                    statTracker.RegisterDeath();
-                }
             }
         }
 

@@ -6,14 +6,15 @@ public class DialogueTrigger : MonoBehaviour, InteractableAction
     public List<string> dialogueText;
     public GameObject dialoguePrefab;
     public VelocityPlayerController velocityController;
-    public StatTracker statTracker;
 
+    private StatTracker statTracker;
     private DialogueController dialogue;
     private CameraController cam;
     private int dialogueIndex;
 
     void Start()
     {
+        statTracker = StatTracker.Instance;
         cam = Camera.main.GetComponent<CameraController>();
         var obj = Instantiate(dialoguePrefab);
         obj.SetActive(false);
