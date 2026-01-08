@@ -13603,7 +13603,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 694415958591279176, guid: 3dba0373657928f429c094afe71fa21f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.09
+      value: 2.54
       objectReference: {fileID: 0}
     - target: {fileID: 694415958591279176, guid: 3dba0373657928f429c094afe71fa21f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15484,6 +15484,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &1209158448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209158442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 947e58bd56962482a995419a85d1b669, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SetElevatorFlag
+  state: {fileID: 11400000, guid: 693ba17327987418c9ba4379171e13ce, type: 2}
 --- !u!1 &1210969195
 GameObject:
   m_ObjectHideFlags: 0
@@ -17822,6 +17835,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1949671195395142, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1209158444}
+    - targetCorrespondingSourceObject: {fileID: 1949671195395142, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1209158448}
   m_SourcePrefab: {fileID: 100100000, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
 --- !u!1001 &1350149969
 PrefabInstance:

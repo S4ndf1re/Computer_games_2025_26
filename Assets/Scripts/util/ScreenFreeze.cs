@@ -1,15 +1,14 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
 public class ScreenFreeze : MonoBehaviour
 {
-    public float duration = 0.5f;
+    public float duration = 0.1f;
     public float shakeMagnitude = 0.2f;
     public Camera mainCamera;
     public Hurtbox hurtbox;
-    private bool isFrozen = false;
-    private float pendingFreezeDuration = 0f;
+
+    private bool isFreezing = false;
 
     void Start()
     {
@@ -17,54 +16,41 @@ public class ScreenFreeze : MonoBehaviour
         {
             hurtbox.onHitTriggerEvent += OnHit;
         }
-        else
-        {
-            Debug.LogWarning("Warning: hurtbox is null");
-        }
     }
 
     private void OnHit(Hitbox box)
     {
-        Freeze();
+        if (!isFreezing)
+            StartCoroutine(FreezeRoutine());
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator FreezeRoutine()
     {
-        if(pendingFreezeDuration > 0 && !isFrozen)
-        {
-            StartCoroutine(DoFreeze());
-            StartCoroutine(ScreenShake());
-        }
-    }
+        isFreezing = true;
 
-    public void Freeze()
-    {
-        pendingFreezeDuration = duration;
-    }
-
-    IEnumerator DoFreeze()
-    {
-        isFrozen = true;
-        var original = Time.timeScale;
+        // --- FREEZE ---
         Time.timeScale = 0f;
 
+        // Shake parallel
+        StartCoroutine(ScreenShake());
+
+        // Unscaled warten
         yield return new WaitForSecondsRealtime(duration);
 
-        Time.timeScale = original;
-        pendingFreezeDuration = 0f;
-        isFrozen = false;
+        // --- UNFREEZE (hart) ---
+        Time.timeScale = 1f;
+        isFreezing = false;
     }
 
-    IEnumerator ScreenShake()
+    private IEnumerator ScreenShake()
     {
         Vector3 originalPos = mainCamera.transform.localPosition;
         float elapsed = 0f;
 
         while (elapsed < duration)
         {
-            float x = UnityEngine.Random.Range(-1f, 1f) * shakeMagnitude;
-            float y = UnityEngine.Random.Range(-1f, 1f) * shakeMagnitude;
+            float x = Random.Range(-1f, 1f) * shakeMagnitude;
+            float y = Random.Range(-1f, 1f) * shakeMagnitude;
 
             mainCamera.transform.localPosition = originalPos + new Vector3(x, y, 0f);
 
@@ -72,7 +58,17 @@ public class ScreenFreeze : MonoBehaviour
             yield return null;
         }
 
-       mainCamera.transform.localPosition = originalPos;
+        mainCamera.transform.localPosition = originalPos;
     }
 
+    // Failsafe
+    private void OnDisable()
+    {
+        Time.timeScale = 1f;
+    }
+
+    private void OnDestroy()
+    {
+        Time.timeScale = 1f;
+    }
 }

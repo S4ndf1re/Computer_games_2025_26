@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -76,18 +77,18 @@ public class SceneSetup : MonoBehaviour
             staircaseDoor.enabled = true;
             storageRoomDoor.enabled = true;
             printerDialogue.enabled = false;
-            player.transform.position = afterElevatorSpawnpoint.position;
-            player.transform.localScale = afterElevatorSpawnpoint.localScale;
-            player.transform.rotation = afterElevatorSpawnpoint.rotation;
+            player.transform.position = afterTreppenhausSpawnpoint.position;
+            player.transform.localScale = afterTreppenhausSpawnpoint.localScale;
+            player.transform.rotation = afterTreppenhausSpawnpoint.rotation;
         } else if(oldScene == GameState.Scenes.Treppenhaus && wasElevator)
         {
             afterTutorialDialog.enabled = false;
             staircaseDoor.enabled = true;
             storageRoomDoor.enabled = true;
-            printerDialogue.enabled = false;
-            player.transform.position = afterTreppenhausSpawnpoint.position;
-            player.transform.localScale = afterTreppenhausSpawnpoint.localScale;
-            player.transform.rotation = afterTreppenhausSpawnpoint.rotation;
+            printerDialogue.enabled = true;
+            player.transform.position = afterElevatorSpawnpoint.position;
+            player.transform.localScale = afterElevatorSpawnpoint.localScale;
+            player.transform.rotation = afterElevatorSpawnpoint.rotation;
         }
         player.enabled = true;
     }
