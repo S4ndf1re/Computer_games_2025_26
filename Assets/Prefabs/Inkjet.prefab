@@ -137,10 +137,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   triggerBy: {fileID: 0}
-  inkPrefab: {fileID: 7141924532969241177, guid: dfb5ff88d77c843958cb8294fef73094, type: 3}
+  inkPrefab: {fileID: 7141924532969241177, guid: bb1ba437e3065422e9cb77018a6371d4, type: 3}
   inkCollisionMask:
     serializedVersion: 2
     m_Bits: 0
+  beamFlasher: {fileID: 0}
 --- !u!114 &1547139624326251466
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -41,6 +41,9 @@ public class BossState : MonoBehaviour
     public string printheadHardTaskTitle;
     public string printheadDodgeTaskTitle;
 
+    [Header("Game State")]
+    public GameState state;
+
     public enum Phase
     {
         Dodge,
@@ -88,6 +91,19 @@ public class BossState : MonoBehaviour
         {
             conditionPrintheadDodgePhase = conditionPrintheadDodge.GetComponent<TaskCondition>();
             conditionPrintheadDodgePhase.GetInstance().Deactivate();
+        }
+
+
+        if (state != null)
+        {
+            if (state.currentBossPhase == null)
+            {
+                state.currentBossPhase = currentPhase;
+            }
+            else
+            {
+                currentPhase = (Phase)state.currentBossPhase;
+            }
         }
     }
 
@@ -191,6 +207,11 @@ public class BossState : MonoBehaviour
             case Phase.Finished:
                 SceneManager.LoadScene("EndScreen");
                 break;
+        }
+
+        if (state != null)
+        {
+            state.currentBossPhase = currentPhase;
         }
     }
 

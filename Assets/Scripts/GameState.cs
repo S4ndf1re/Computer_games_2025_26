@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameState : ScriptableObject
 {
 
+    public BossState.Phase? currentBossPhase;
+
     public enum Scenes
     {
         Tutorial,

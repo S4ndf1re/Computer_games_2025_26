@@ -10642,7 +10642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b61f7ffa9d04c8cbc29f312865141a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimedCondition
-  timeInSeconds: 60
+  timeInSeconds: 40
   isDone: 0
 --- !u!4 &488384639
 Transform:
@@ -30566,6 +30566,7 @@ MonoBehaviour:
   printheadTaskTitle: "\xDCberlebe $ Sekunden. Der Drucker greift an!"
   printheadHardTaskTitle: "Wieder $, nur schwerer. Der Drucker ist W\xFCtend"
   printheadDodgeTaskTitle: Sammle $ Objekte (alle bis auf Eins)
+  state: {fileID: 11400000, guid: 693ba17327987418c9ba4379171e13ce, type: 2}
   currentPhase: 0
   dodgeLoops: 1
   printheadLoops: 1
