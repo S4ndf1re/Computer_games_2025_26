@@ -263,7 +263,7 @@ public class BossState : MonoBehaviour
         head2.enabled = false;
         printHead2.enabled = false;
         obstacles.enabled = true;
-        inkjetSideShooters.enabled = true;
+        inkjetSideShooters.enabled = false;
         TaskListManager.Instance.SpawnTask(printheadDodgeTaskTitle, conditionPrintheadDodgePhase);
         Debug.Log("Resetting");
         conditionPrintheadDodgePhase?.GetInstance().Reset();
