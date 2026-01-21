@@ -38,6 +38,9 @@
 # Zed Editor
 .zed/
 
+# Idea Editor
+.idea/
+
 # .DS_Store
 .DS_Store
 
