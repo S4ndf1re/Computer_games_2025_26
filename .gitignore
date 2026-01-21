@@ -107,3 +107,5 @@ InitTestScene*.unity*
 
 # windows build
 win_build/
+build.app
+build.zip
