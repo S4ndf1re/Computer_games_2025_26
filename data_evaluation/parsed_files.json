@@ -591,6 +591,173 @@
       }
     ]
   },
+  "870227": {
+    "mit": [
+      {
+        "sceneName": "Tutorial",
+        "hits": 1,
+        "damageTaken": 3,
+        "deaths": 1,
+        "playTime": 53.76238250732422
+      },
+      {
+        "sceneName": "Lobby",
+        "hits": 1,
+        "damageTaken": 3,
+        "deaths": 1,
+        "playTime": 65.62194061279297
+      },
+      {
+        "sceneName": "StorageRoom",
+        "hits": 2,
+        "damageTaken": 4,
+        "deaths": 6,
+        "playTime": 234.40817260742188
+      },
+      {
+        "sceneName": "Lobby",
+        "hits": 2,
+        "damageTaken": 4,
+        "deaths": 6,
+        "playTime": 241.1552276611328
+      },
+      {
+        "sceneName": "Treppenhaus",
+        "hits": 14,
+        "damageTaken": 16,
+        "deaths": 15,
+        "playTime": 378.8164978027344
+      },
+      {
+        "sceneName": "Lobby",
+        "hits": 14,
+        "damageTaken": 16,
+        "deaths": 15,
+        "playTime": 382.1964111328125
+      },
+      {
+        "sceneName": "Boss",
+        "hits": 17,
+        "damageTaken": 19,
+        "deaths": 16,
+        "playTime": 437.2320556640625
+      },
+      {
+        "sceneName": "Boss",
+        "hits": 21,
+        "damageTaken": 23,
+        "deaths": 17,
+        "playTime": 518.435546875
+      },
+      {
+        "sceneName": "Boss",
+        "hits": 24,
+        "damageTaken": 26,
+        "deaths": 18,
+        "playTime": 550.226806640625
+      },
+      {
+        "sceneName": "Boss",
+        "hits": 27,
+        "damageTaken": 29,
+        "deaths": 19,
+        "playTime": 578.3800048828125
+      },
+      {
+        "sceneName": "Boss",
+        "hits": 30,
+        "damageTaken": 32,
+        "deaths": 20,
+        "playTime": 671.5357055664062
+      },
+      {
+        "sceneName": "Boss",
+        "hits": 30,
+        "damageTaken": 32,
+        "deaths": 21,
+        "playTime": 687.7120361328125
+      },
+      {
+        "sceneName": "Boss",
+        "hits": 31,
+        "damageTaken": 33,
+        "deaths": 22,
+        "playTime": 755.5519409179688
+      },
+      {
+        "sceneName": "Boss",
+        "hits": 31,
+        "damageTaken": 33,
+        "deaths": 22,
+        "playTime": 822.5248413085938
+      }
+    ],
+    "ohne": [
+      {
+        "sceneName": "Tutorial",
+        "hits": 1,
+        "damageTaken": 3,
+        "deaths": 1,
+        "playTime": 26.20371437072754
+      },
+      {
+        "sceneName": "Lobby",
+        "hits": 1,
+        "damageTaken": 3,
+        "deaths": 1,
+        "playTime": 38.382835388183594
+      },
+      {
+        "sceneName": "StorageRoom",
+        "hits": 1,
+        "damageTaken": 3,
+        "deaths": 5,
+        "playTime": 124.11691284179688
+      },
+      {
+        "sceneName": "Lobby",
+        "hits": 1,
+        "damageTaken": 3,
+        "deaths": 5,
+        "playTime": 127.89311218261719
+      },
+      {
+        "sceneName": "Treppenhaus",
+        "hits": 14,
+        "damageTaken": 16,
+        "deaths": 12,
+        "playTime": 220.6280975341797
+      },
+      {
+        "sceneName": "Lobby",
+        "hits": 14,
+        "damageTaken": 16,
+        "deaths": 12,
+        "playTime": 224.35888671875
+      },
+      {
+        "sceneName": "Boss",
+        "hits": 19,
+        "damageTaken": 21,
+        "deaths": 13,
+        "playTime": 337.6931457519531
+      },
+      {
+        "sceneName": "Boss",
+        "hits": 21,
+        "damageTaken": 23,
+        "deaths": 14,
+        "playTime": 480.1949768066406
+      },
+      {
+        "sceneName": "Boss",
+        "hits": 22,
+        "damageTaken": 24,
+        "deaths": 14,
+        "playTime": 547.1980590820312
+      }
+    ]
+  },
   "807289": {
     "ohne": [
       {
@@ -1202,6 +1369,152 @@
         "damageTaken": 142,
         "deaths": 96,
         "playTime": 2183.950439453125
+      }
+    ]
+  },
+  "297088": {
+    "ohne": [
+      {
+        "sceneName": "Tutorial",
+        "hits": 2,
+        "damageTaken": 4,
+        "deaths": 1,
+        "playTime": 47.18963623046875
+      },
+      {
+        "sceneName": "Lobby",
+        "hits": 2,
+        "damageTaken": 4,
+        "deaths": 1,
+        "playTime": 58.77875518798828
+      },
+      {
+        "sceneName": "StorageRoom",
+        "hits": 5,
+        "damageTaken": 7,
+        "deaths": 16,
+        "playTime": 150.36935424804688
+      },
+      {
+        "sceneName": "Lobby",
+        "hits": 5,
+        "damageTaken": 7,
+        "deaths": 16,
+        "playTime": 153.12318420410156
+      },
+      {
+        "sceneName": "Treppenhaus",
+        "hits": 17,
+        "damageTaken": 19,
+        "deaths": 23,
+        "playTime": 258.40032958984375
+      },
+      {
+        "sceneName": "Lobby",
+        "hits": 17,
+        "damageTaken": 19,
+        "deaths": 23,
+        "playTime": 261.26898193359375
+      },
+      {
+        "sceneName": "Boss",
+        "hits": 20,
+        "damageTaken": 22,
+        "deaths": 24,
+        "playTime": 406.13763427734375
+      },
+      {
+        "sceneName": "Boss",
+        "hits": 20,
+        "damageTaken": 22,
+        "deaths": 24,
+        "playTime": 475.1377868652344
+      }
+    ],
+    "mit": [
+      {
+        "sceneName": "Tutorial",
+        "hits": 2,
+        "damageTaken": 4,
+        "deaths": 1,
+        "playTime": 49.64475631713867
+      },
+      {
+        "sceneName": "Lobby",
+        "hits": 2,
+        "damageTaken": 4,
+        "deaths": 1,
+        "playTime": 64.91940307617188
+      },
+      {
+        "sceneName": "StorageRoom",
+        "hits": 6,
+        "damageTaken": 8,
+        "deaths": 29,
+        "playTime": 308.1590270996094
+      },
+      {
+        "sceneName": "Lobby",
+        "hits": 6,
+        "damageTaken": 8,
+        "deaths": 29,
+        "playTime": 312.8056640625
+      },
+      {
+        "sceneName": "Treppenhaus",
+        "hits": 12,
+        "damageTaken": 14,
+        "deaths": 40,
+        "playTime": 474.89276123046875
+      },
+      {
+        "sceneName": "Lobby",
+        "hits": 12,
+        "damageTaken": 14,
+        "deaths": 40,
+        "playTime": 480.04266357421875
+      },
+      {
+        "sceneName": "Boss",
+        "hits": 15,
+        "damageTaken": 17,
+        "deaths": 41,
+        "playTime": 537.514892578125
+      },
+      {
+        "sceneName": "Boss",
+        "hits": 18,
+        "damageTaken": 20,
+        "deaths": 42,
+        "playTime": 569.697265625
+      },
+      {
+        "sceneName": "Boss",
+        "hits": 21,
+        "damageTaken": 23,
+        "deaths": 43,
+        "playTime": 672.9064331054688
+      },
+      {
+        "sceneName": "Boss",
+        "hits": 22,
+        "damageTaken": 24,
+        "deaths": 44,
+        "playTime": 705.4906005859375
+      },
+      {
+        "sceneName": "Boss",
+        "hits": 25,
+        "damageTaken": 27,
+        "deaths": 45,
+        "playTime": 761.5944213867188
+      },
+      {
+        "sceneName": "Boss",
+        "hits": 25,
+        "damageTaken": 27,
+        "deaths": 45,
+        "playTime": 831.5982055664062
       }
     ]
   },
