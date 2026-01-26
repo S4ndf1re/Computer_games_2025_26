@@ -59,48 +59,6 @@
       },
       {
         "sceneName": "Boss",
-        "hits": 17,
-        "damageTaken": 19,
-        "deaths": 33,
-        "playTime": 482.4681396484375
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 20,
-        "damageTaken": 22,
-        "deaths": 34,
-        "playTime": 541.6712036132812
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 24,
-        "damageTaken": 26,
-        "deaths": 35,
-        "playTime": 626.8534545898438
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 27,
-        "damageTaken": 29,
-        "deaths": 36,
-        "playTime": 639.0323486328125
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 30,
-        "damageTaken": 32,
-        "deaths": 37,
-        "playTime": 654.7420043945312
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 32,
-        "damageTaken": 34,
-        "deaths": 38,
-        "playTime": 740.9072875976562
-      },
-      {
-        "sceneName": "Boss",
         "hits": 34,
         "damageTaken": 36,
         "deaths": 38,
@@ -166,20 +124,6 @@
       },
       {
         "sceneName": "Boss",
-        "hits": 9,
-        "damageTaken": 11,
-        "deaths": 12,
-        "playTime": 395.89007568359375
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 12,
-        "damageTaken": 14,
-        "deaths": 13,
-        "playTime": 428.0104675292969
-      },
-      {
-        "sceneName": "Boss",
         "hits": 13,
         "damageTaken": 15,
         "deaths": 13,
@@ -230,34 +174,6 @@
         "damageTaken": 5,
         "deaths": 5,
         "playTime": 299.4130554199219
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 6,
-        "damageTaken": 8,
-        "deaths": 6,
-        "playTime": 350.29638671875
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 10,
-        "damageTaken": 12,
-        "deaths": 7,
-        "playTime": 423.4789123535156
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 12,
-        "damageTaken": 14,
-        "deaths": 8,
-        "playTime": 481.96575927734375
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 12,
-        "damageTaken": 14,
-        "deaths": 9,
-        "playTime": 514.3711547851562
       },
       {
         "sceneName": "Boss",
@@ -354,83 +270,6 @@
       },
       {
         "sceneName": "Boss",
-        "hits": 21,
-        "damageTaken": 23,
-        "deaths": 39,
-        "playTime": 708.9334106445312
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 24,
-        "damageTaken": 26,
-        "deaths": 40,
-        "playTime": 728.6011352539062
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 27,
-        "damageTaken": 29,
-        "deaths": 41,
-        "playTime": 756.52587890625
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 30,
-        "damageTaken": 32,
-        "deaths": 42,
-        "playTime": 776.2078247070312
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 33,
-        "damageTaken": 35,
-        "deaths": 43,
-        "playTime": 800.3994140625
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 36,
-        "damageTaken": 38,
-        "deaths": 44,
-        "playTime": 820.2821044921875
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 39,
-        "damageTaken": 41,
-        "deaths": 45,
-        "playTime": 832.4486083984375
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 43,
-        "damageTaken": 45,
-        "deaths": 46,
-        "playTime": 901.63427734375
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 46,
-        "damageTaken": 48,
-        "deaths": 47,
-        "playTime": 915.8154907226562
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 49,
-        "damageTaken": 51,
-        "deaths": 48,
-        "playTime": 935.4385986328125
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 52,
-        "damageTaken": 54,
-        "deaths": 49,
-        "playTime": 996.6356811523438
-      },
-      {
-        "sceneName": "Boss",
         "hits": 52,
         "damageTaken": 54,
         "deaths": 49,
@@ -484,34 +323,6 @@
       },
       {
         "sceneName": "Boss",
-        "hits": 13,
-        "damageTaken": 15,
-        "deaths": 11,
-        "playTime": 431.55841064453125
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 18,
-        "damageTaken": 20,
-        "deaths": 12,
-        "playTime": 557.7167358398438
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 21,
-        "damageTaken": 23,
-        "deaths": 13,
-        "playTime": 579.8599243164062
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 22,
-        "damageTaken": 24,
-        "deaths": 14,
-        "playTime": 657.2860717773438
-      },
-      {
-        "sceneName": "Boss",
         "hits": 22,
         "damageTaken": 24,
         "deaths": 14,
@@ -560,27 +371,6 @@
         "damageTaken": 10,
         "deaths": 7,
         "playTime": 254.06887817382812
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 9,
-        "damageTaken": 11,
-        "deaths": 8,
-        "playTime": 422.38043212890625
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 11,
-        "damageTaken": 13,
-        "deaths": 9,
-        "playTime": 519.5353393554688
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 11,
-        "damageTaken": 13,
-        "deaths": 10,
-        "playTime": 563.2540893554688
       },
       {
         "sceneName": "Boss",
@@ -637,55 +427,6 @@
       },
       {
         "sceneName": "Boss",
-        "hits": 17,
-        "damageTaken": 19,
-        "deaths": 16,
-        "playTime": 437.2320556640625
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 21,
-        "damageTaken": 23,
-        "deaths": 17,
-        "playTime": 518.435546875
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 24,
-        "damageTaken": 26,
-        "deaths": 18,
-        "playTime": 550.226806640625
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 27,
-        "damageTaken": 29,
-        "deaths": 19,
-        "playTime": 578.3800048828125
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 30,
-        "damageTaken": 32,
-        "deaths": 20,
-        "playTime": 671.5357055664062
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 30,
-        "damageTaken": 32,
-        "deaths": 21,
-        "playTime": 687.7120361328125
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 31,
-        "damageTaken": 33,
-        "deaths": 22,
-        "playTime": 755.5519409179688
-      },
-      {
-        "sceneName": "Boss",
         "hits": 31,
         "damageTaken": 33,
         "deaths": 22,
@@ -734,20 +475,6 @@
         "damageTaken": 16,
         "deaths": 12,
         "playTime": 224.35888671875
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 19,
-        "damageTaken": 21,
-        "deaths": 13,
-        "playTime": 337.6931457519531
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 21,
-        "damageTaken": 23,
-        "deaths": 14,
-        "playTime": 480.1949768066406
       },
       {
         "sceneName": "Boss",
@@ -801,48 +528,6 @@
         "damageTaken": 13,
         "deaths": 13,
         "playTime": 354.1266784667969
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 16,
-        "damageTaken": 18,
-        "deaths": 14,
-        "playTime": 457.3327941894531
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 19,
-        "damageTaken": 21,
-        "deaths": 15,
-        "playTime": 491.5338134765625
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 22,
-        "damageTaken": 24,
-        "deaths": 16,
-        "playTime": 509.7156982421875
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 25,
-        "damageTaken": 27,
-        "deaths": 17,
-        "playTime": 582.896484375
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 26,
-        "damageTaken": 28,
-        "deaths": 18,
-        "playTime": 589.5777587890625
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 27,
-        "damageTaken": 29,
-        "deaths": 19,
-        "playTime": 617.519287109375
       },
       {
         "sceneName": "Boss",
@@ -900,13 +585,6 @@
         "hits": 17,
         "damageTaken": 19,
         "deaths": 10,
-        "playTime": 339.6627197265625
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 17,
-        "damageTaken": 19,
-        "deaths": 10,
         "playTime": 408.66387939453125
       }
     ]
@@ -954,41 +632,6 @@
         "damageTaken": 11,
         "deaths": 15,
         "playTime": 411.91485595703125
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 12,
-        "damageTaken": 14,
-        "deaths": 16,
-        "playTime": 490.1090393066406
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 15,
-        "damageTaken": 17,
-        "deaths": 17,
-        "playTime": 525.2258911132812
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 19,
-        "damageTaken": 21,
-        "deaths": 18,
-        "playTime": 652.3956909179688
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 22,
-        "damageTaken": 24,
-        "deaths": 19,
-        "playTime": 748.5446166992188
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 22,
-        "damageTaken": 24,
-        "deaths": 20,
-        "playTime": 765.067626953125
       },
       {
         "sceneName": "Boss",
@@ -1040,328 +683,6 @@
         "damageTaken": 32,
         "deaths": 49,
         "playTime": 874.341552734375
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 35,
-        "damageTaken": 37,
-        "deaths": 50,
-        "playTime": 969.5030517578125
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 38,
-        "damageTaken": 40,
-        "deaths": 51,
-        "playTime": 995.6815795898438
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 41,
-        "damageTaken": 43,
-        "deaths": 52,
-        "playTime": 1033.8192138671875
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 44,
-        "damageTaken": 46,
-        "deaths": 53,
-        "playTime": 1107.0115966796875
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 47,
-        "damageTaken": 49,
-        "deaths": 54,
-        "playTime": 1130.870849609375
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 50,
-        "damageTaken": 52,
-        "deaths": 55,
-        "playTime": 1162.7872314453125
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 53,
-        "damageTaken": 55,
-        "deaths": 56,
-        "playTime": 1186.41064453125
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 55,
-        "damageTaken": 57,
-        "deaths": 57,
-        "playTime": 1199.1998291015625
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 58,
-        "damageTaken": 60,
-        "deaths": 58,
-        "playTime": 1230.83056640625
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 61,
-        "damageTaken": 63,
-        "deaths": 59,
-        "playTime": 1251.0179443359375
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 64,
-        "damageTaken": 66,
-        "deaths": 60,
-        "playTime": 1267.3192138671875
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 67,
-        "damageTaken": 69,
-        "deaths": 61,
-        "playTime": 1303.509521484375
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 70,
-        "damageTaken": 72,
-        "deaths": 62,
-        "playTime": 1343.698974609375
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 70,
-        "damageTaken": 72,
-        "deaths": 63,
-        "playTime": 1371.9456787109375
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 73,
-        "damageTaken": 75,
-        "deaths": 64,
-        "playTime": 1395.4532470703125
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 76,
-        "damageTaken": 78,
-        "deaths": 65,
-        "playTime": 1419.7646484375
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 79,
-        "damageTaken": 81,
-        "deaths": 66,
-        "playTime": 1431.1663818359375
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 82,
-        "damageTaken": 84,
-        "deaths": 67,
-        "playTime": 1459.3773193359375
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 82,
-        "damageTaken": 84,
-        "deaths": 68,
-        "playTime": 1472.040283203125
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 82,
-        "damageTaken": 84,
-        "deaths": 69,
-        "playTime": 1480.8037109375
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 85,
-        "damageTaken": 87,
-        "deaths": 70,
-        "playTime": 1533.020263671875
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 85,
-        "damageTaken": 87,
-        "deaths": 71,
-        "playTime": 1541.806396484375
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 86,
-        "damageTaken": 88,
-        "deaths": 72,
-        "playTime": 1558.291748046875
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 88,
-        "damageTaken": 90,
-        "deaths": 73,
-        "playTime": 1590.7547607421875
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 89,
-        "damageTaken": 91,
-        "deaths": 74,
-        "playTime": 1610.3380126953125
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 92,
-        "damageTaken": 94,
-        "deaths": 75,
-        "playTime": 1630.5177001953125
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 92,
-        "damageTaken": 94,
-        "deaths": 76,
-        "playTime": 1643.0322265625
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 95,
-        "damageTaken": 97,
-        "deaths": 77,
-        "playTime": 1670.446044921875
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 98,
-        "damageTaken": 100,
-        "deaths": 78,
-        "playTime": 1698.4942626953125
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 98,
-        "damageTaken": 100,
-        "deaths": 79,
-        "playTime": 1711.22021484375
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 101,
-        "damageTaken": 103,
-        "deaths": 80,
-        "playTime": 1747.501708984375
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 102,
-        "damageTaken": 104,
-        "deaths": 81,
-        "playTime": 1759.9735107421875
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 105,
-        "damageTaken": 107,
-        "deaths": 82,
-        "playTime": 1792.1795654296875
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 108,
-        "damageTaken": 110,
-        "deaths": 83,
-        "playTime": 1808.2225341796875
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 111,
-        "damageTaken": 113,
-        "deaths": 84,
-        "playTime": 1836.28369140625
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 114,
-        "damageTaken": 116,
-        "deaths": 85,
-        "playTime": 1900.51171875
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 115,
-        "damageTaken": 117,
-        "deaths": 86,
-        "playTime": 1916.52001953125
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 116,
-        "damageTaken": 118,
-        "deaths": 87,
-        "playTime": 1948.56982421875
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 119,
-        "damageTaken": 121,
-        "deaths": 88,
-        "playTime": 1984.1334228515625
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 119,
-        "damageTaken": 121,
-        "deaths": 89,
-        "playTime": 2000.21826171875
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 122,
-        "damageTaken": 124,
-        "deaths": 90,
-        "playTime": 2044.3062744140625
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 125,
-        "damageTaken": 127,
-        "deaths": 91,
-        "playTime": 2079.90234375
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 128,
-        "damageTaken": 130,
-        "deaths": 92,
-        "playTime": 2103.1943359375
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 131,
-        "damageTaken": 133,
-        "deaths": 93,
-        "playTime": 2123.370849609375
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 134,
-        "damageTaken": 136,
-        "deaths": 94,
-        "playTime": 2135.668701171875
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 137,
-        "damageTaken": 139,
-        "deaths": 95,
-        "playTime": 2171.768310546875
       },
       {
         "sceneName": "Boss",
@@ -1421,13 +742,6 @@
         "hits": 20,
         "damageTaken": 22,
         "deaths": 24,
-        "playTime": 406.13763427734375
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 20,
-        "damageTaken": 22,
-        "deaths": 24,
         "playTime": 475.1377868652344
       }
     ],
@@ -1473,41 +787,6 @@
         "damageTaken": 14,
         "deaths": 40,
         "playTime": 480.04266357421875
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 15,
-        "damageTaken": 17,
-        "deaths": 41,
-        "playTime": 537.514892578125
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 18,
-        "damageTaken": 20,
-        "deaths": 42,
-        "playTime": 569.697265625
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 21,
-        "damageTaken": 23,
-        "deaths": 43,
-        "playTime": 672.9064331054688
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 22,
-        "damageTaken": 24,
-        "deaths": 44,
-        "playTime": 705.4906005859375
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 25,
-        "damageTaken": 27,
-        "deaths": 45,
-        "playTime": 761.5944213867188
       },
       {
         "sceneName": "Boss",
@@ -1564,13 +843,6 @@
       },
       {
         "sceneName": "Boss",
-        "hits": 6,
-        "damageTaken": 8,
-        "deaths": 19,
-        "playTime": 297.9956359863281
-      },
-      {
-        "sceneName": "Boss",
         "hits": 8,
         "damageTaken": 10,
         "deaths": 19,
@@ -1619,13 +891,6 @@
         "damageTaken": 14,
         "deaths": 15,
         "playTime": 246.04685974121094
-      },
-      {
-        "sceneName": "Boss",
-        "hits": 12,
-        "damageTaken": 14,
-        "deaths": 16,
-        "playTime": 389.4922790527344
       },
       {
         "sceneName": "Boss",
