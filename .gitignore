@@ -112,3 +112,7 @@ InitTestScene*.unity*
 win_build/
 build.app
 build.zip
+
+# ---- Virtual Environments ----
+venv/
+.venv/
