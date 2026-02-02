@@ -1,4 +1,60 @@
 {
+  "053332": {
+    "mit": {
+      "Tutorial": {
+        "totalDeaths": 1,
+        "totalHits": 1,
+        "totalTime": 44.810462951660156
+      },
+      "Lobby": {
+        "totalDeaths": 0,
+        "totalHits": 0,
+        "totalTime": 28.213287353515625
+      },
+      "StorageRoom": {
+        "totalDeaths": 7,
+        "totalHits": 0,
+        "totalTime": 148.41275787353516
+      },
+      "Treppenhaus": {
+        "totalDeaths": 7,
+        "totalHits": 8,
+        "totalTime": 190.4783477783203
+      },
+      "Boss": {
+        "totalDeaths": 5,
+        "totalHits": 15,
+        "totalTime": 421.1488037109375
+      }
+    },
+    "ohne": {
+      "Tutorial": {
+        "totalDeaths": 1,
+        "totalHits": 2,
+        "totalTime": 56.619022369384766
+      },
+      "Lobby": {
+        "totalDeaths": 0,
+        "totalHits": 0,
+        "totalTime": 39.98958206176758
+      },
+      "StorageRoom": {
+        "totalDeaths": 24,
+        "totalHits": 5,
+        "totalTime": 228.72351837158203
+      },
+      "Treppenhaus": {
+        "totalDeaths": 24,
+        "totalHits": 23,
+        "totalTime": 549.0094299316406
+      },
+      "Boss": {
+        "totalDeaths": 47,
+        "totalHits": 110,
+        "totalTime": 1309.60888671875
+      }
+    }
+  },
   "071225": {
     "mit": {
       "Tutorial": {
@@ -52,6 +108,230 @@
         "totalDeaths": 2,
         "totalHits": 8,
         "totalTime": 241.3487548828125
+      }
+    }
+  },
+  "199195": {
+    "mit": {
+      "Tutorial": {
+        "totalDeaths": 1,
+        "totalHits": 2,
+        "totalTime": 79.79789733886719
+      },
+      "Lobby": {
+        "totalDeaths": 0,
+        "totalHits": 0,
+        "totalTime": 24.450164794921875
+      },
+      "StorageRoom": {
+        "totalDeaths": 13,
+        "totalHits": 1,
+        "totalTime": 103.50973510742188
+      },
+      "Treppenhaus": {
+        "totalDeaths": 43,
+        "totalHits": 41,
+        "totalTime": 269.8600311279297
+      },
+      "Boss": {
+        "totalDeaths": 13,
+        "totalHits": 37,
+        "totalTime": 525.5102844238281
+      }
+    },
+    "ohne": {
+      "Tutorial": {
+        "totalDeaths": 1,
+        "totalHits": 1,
+        "totalTime": 66.90876770019531
+      },
+      "Lobby": {
+        "totalDeaths": 0,
+        "totalHits": 0,
+        "totalTime": 31.87610626220703
+      },
+      "StorageRoom": {
+        "totalDeaths": 39,
+        "totalHits": 1,
+        "totalTime": 246.7228775024414
+      },
+      "Treppenhaus": {
+        "totalDeaths": 35,
+        "totalHits": 24,
+        "totalTime": 352.215576171875
+      },
+      "Boss": {
+        "totalDeaths": 29,
+        "totalHits": 82,
+        "totalTime": 1287.8726196289062
+      }
+    }
+  },
+  "232962": {
+    "mit": {
+      "Tutorial": {
+        "totalDeaths": 1,
+        "totalHits": 1,
+        "totalTime": 34.39051818847656
+      },
+      "Lobby": {
+        "totalDeaths": 0,
+        "totalHits": 0,
+        "totalTime": 17.73977279663086
+      },
+      "StorageRoom": {
+        "totalDeaths": 0,
+        "totalHits": 0,
+        "totalTime": 104.99084854125977
+      },
+      "Treppenhaus": {
+        "totalDeaths": 2,
+        "totalHits": 2,
+        "totalTime": 83.42005920410156
+      },
+      "Boss": {
+        "totalDeaths": 1,
+        "totalHits": 3,
+        "totalTime": 255.99801635742188
+      }
+    },
+    "ohne": {
+      "Tutorial": {
+        "totalDeaths": 1,
+        "totalHits": 1,
+        "totalTime": 72.40272521972656
+      },
+      "Lobby": {
+        "totalDeaths": 0,
+        "totalHits": 0,
+        "totalTime": 41.97819519042969
+      },
+      "StorageRoom": {
+        "totalDeaths": 12,
+        "totalHits": 1,
+        "totalTime": 157.59371948242188
+      },
+      "Treppenhaus": {
+        "totalDeaths": 7,
+        "totalHits": 5,
+        "totalTime": 130.397216796875
+      },
+      "Boss": {
+        "totalDeaths": 11,
+        "totalHits": 31,
+        "totalTime": 477.2850646972656
+      }
+    }
+  },
+  "297088": {
+    "mit": {
+      "Tutorial": {
+        "totalDeaths": 1,
+        "totalHits": 2,
+        "totalTime": 49.64475631713867
+      },
+      "Lobby": {
+        "totalDeaths": 0,
+        "totalHits": 0,
+        "totalTime": 25.071186065673828
+      },
+      "StorageRoom": {
+        "totalDeaths": 28,
+        "totalHits": 4,
+        "totalTime": 243.2396240234375
+      },
+      "Treppenhaus": {
+        "totalDeaths": 11,
+        "totalHits": 6,
+        "totalTime": 162.08709716796875
+      },
+      "Boss": {
+        "totalDeaths": 5,
+        "totalHits": 13,
+        "totalTime": 351.5555419921875
+      }
+    },
+    "ohne": {
+      "Tutorial": {
+        "totalDeaths": 1,
+        "totalHits": 2,
+        "totalTime": 47.18963623046875
+      },
+      "Lobby": {
+        "totalDeaths": 0,
+        "totalHits": 0,
+        "totalTime": 17.21160125732422
+      },
+      "StorageRoom": {
+        "totalDeaths": 15,
+        "totalHits": 3,
+        "totalTime": 91.5905990600586
+      },
+      "Treppenhaus": {
+        "totalDeaths": 7,
+        "totalHits": 12,
+        "totalTime": 105.27714538574219
+      },
+      "Boss": {
+        "totalDeaths": 1,
+        "totalHits": 3,
+        "totalTime": 213.86880493164062
+      }
+    }
+  },
+  "356499": {
+    "mit": {
+      "Tutorial": {
+        "totalDeaths": 1,
+        "totalHits": 1,
+        "totalTime": 25.30572509765625
+      },
+      "Lobby": {
+        "totalDeaths": 0,
+        "totalHits": 0,
+        "totalTime": 37.263343811035156
+      },
+      "StorageRoom": {
+        "totalDeaths": 6,
+        "totalHits": 2,
+        "totalTime": 90.37616729736328
+      },
+      "Treppenhaus": {
+        "totalDeaths": 8,
+        "totalHits": 9,
+        "totalTime": 93.10162353515625
+      },
+      "Boss": {
+        "totalDeaths": 1,
+        "totalHits": 1,
+        "totalTime": 232.44606018066406
+      }
+    },
+    "ohne": {
+      "Tutorial": {
+        "totalDeaths": 1,
+        "totalHits": 2,
+        "totalTime": 33.03016662597656
+      },
+      "Lobby": {
+        "totalDeaths": 0,
+        "totalHits": 0,
+        "totalTime": 17.53356170654297
+      },
+      "StorageRoom": {
+        "totalDeaths": 15,
+        "totalHits": 1,
+        "totalTime": 116.7309341430664
+      },
+      "Treppenhaus": {
+        "totalDeaths": 2,
+        "totalHits": 3,
+        "totalTime": 83.79327392578125
+      },
+      "Boss": {
+        "totalDeaths": 1,
+        "totalHits": 2,
+        "totalTime": 206.9098358154297
       }
     }
   },
@@ -111,59 +391,59 @@
       }
     }
   },
-  "975229": {
+  "807289": {
     "mit": {
       "Tutorial": {
         "totalDeaths": 1,
-        "totalHits": 1,
-        "totalTime": 58.56365203857422
+        "totalHits": 2,
+        "totalTime": 24.222497940063477
       },
       "Lobby": {
         "totalDeaths": 0,
         "totalHits": 0,
-        "totalTime": 71.05248260498047
+        "totalTime": 13.262147903442383
       },
       "StorageRoom": {
-        "totalDeaths": 3,
-        "totalHits": 0,
-        "totalTime": 90.43801879882812
+        "totalDeaths": 5,
+        "totalHits": 1,
+        "totalTime": 78.7911262512207
       },
       "Treppenhaus": {
-        "totalDeaths": 6,
-        "totalHits": 12,
-        "totalTime": 195.3195037841797
+        "totalDeaths": 3,
+        "totalHits": 10,
+        "totalTime": 76.916748046875
       },
       "Boss": {
-        "totalDeaths": 4,
-        "totalHits": 9,
-        "totalTime": 311.91766357421875
+        "totalDeaths": 1,
+        "totalHits": 4,
+        "totalTime": 215.4713592529297
       }
     },
     "ohne": {
       "Tutorial": {
         "totalDeaths": 1,
         "totalHits": 2,
-        "totalTime": 36.633270263671875
+        "totalTime": 54.77461624145508
       },
       "Lobby": {
         "totalDeaths": 0,
         "totalHits": 0,
-        "totalTime": 18.3123779296875
+        "totalTime": 23.977657318115234
       },
       "StorageRoom": {
-        "totalDeaths": 2,
-        "totalHits": 0,
-        "totalTime": 80.57392883300781
+        "totalDeaths": 9,
+        "totalHits": 2,
+        "totalTime": 146.23919677734375
       },
       "Treppenhaus": {
-        "totalDeaths": 4,
-        "totalHits": 6,
-        "totalTime": 118.54930114746094
+        "totalDeaths": 3,
+        "totalHits": 7,
+        "totalTime": 129.1352081298828
       },
       "Boss": {
-        "totalDeaths": 3,
-        "totalHits": 4,
-        "totalTime": 378.1897277832031
+        "totalDeaths": 6,
+        "totalHits": 18,
+        "totalTime": 353.3968811035156
       }
     }
   },
@@ -223,339 +503,59 @@
       }
     }
   },
-  "807289": {
-    "ohne": {
+  "975229": {
+    "mit": {
       "Tutorial": {
         "totalDeaths": 1,
-        "totalHits": 2,
-        "totalTime": 54.77461624145508
+        "totalHits": 1,
+        "totalTime": 58.56365203857422
       },
       "Lobby": {
         "totalDeaths": 0,
         "totalHits": 0,
-        "totalTime": 23.977657318115234
+        "totalTime": 71.05248260498047
       },
       "StorageRoom": {
-        "totalDeaths": 9,
-        "totalHits": 2,
-        "totalTime": 146.23919677734375
+        "totalDeaths": 3,
+        "totalHits": 0,
+        "totalTime": 90.43801879882812
       },
       "Treppenhaus": {
-        "totalDeaths": 3,
-        "totalHits": 7,
-        "totalTime": 129.1352081298828
-      },
-      "Boss": {
         "totalDeaths": 6,
-        "totalHits": 18,
-        "totalTime": 353.3968811035156
-      }
-    },
-    "mit": {
-      "Tutorial": {
-        "totalDeaths": 1,
-        "totalHits": 2,
-        "totalTime": 24.222497940063477
-      },
-      "Lobby": {
-        "totalDeaths": 0,
-        "totalHits": 0,
-        "totalTime": 13.262147903442383
-      },
-      "StorageRoom": {
-        "totalDeaths": 5,
-        "totalHits": 1,
-        "totalTime": 78.7911262512207
-      },
-      "Treppenhaus": {
-        "totalDeaths": 3,
-        "totalHits": 10,
-        "totalTime": 76.916748046875
-      },
-      "Boss": {
-        "totalDeaths": 1,
-        "totalHits": 4,
-        "totalTime": 215.4713592529297
-      }
-    }
-  },
-  "199195": {
-    "ohne": {
-      "Tutorial": {
-        "totalDeaths": 1,
-        "totalHits": 1,
-        "totalTime": 66.90876770019531
-      },
-      "Lobby": {
-        "totalDeaths": 0,
-        "totalHits": 0,
-        "totalTime": 31.87610626220703
-      },
-      "StorageRoom": {
-        "totalDeaths": 39,
-        "totalHits": 1,
-        "totalTime": 246.7228775024414
-      },
-      "Treppenhaus": {
-        "totalDeaths": 35,
-        "totalHits": 24,
-        "totalTime": 352.215576171875
-      },
-      "Boss": {
-        "totalDeaths": 29,
-        "totalHits": 82,
-        "totalTime": 1287.8726196289062
-      }
-    },
-    "mit": {
-      "Tutorial": {
-        "totalDeaths": 1,
-        "totalHits": 2,
-        "totalTime": 79.79789733886719
-      },
-      "Lobby": {
-        "totalDeaths": 0,
-        "totalHits": 0,
-        "totalTime": 24.450164794921875
-      },
-      "StorageRoom": {
-        "totalDeaths": 13,
-        "totalHits": 1,
-        "totalTime": 103.50973510742188
-      },
-      "Treppenhaus": {
-        "totalDeaths": 43,
-        "totalHits": 41,
-        "totalTime": 269.8600311279297
-      },
-      "Boss": {
-        "totalDeaths": 13,
-        "totalHits": 37,
-        "totalTime": 525.5102844238281
-      }
-    }
-  },
-  "053332": {
-    "mit": {
-      "Tutorial": {
-        "totalDeaths": 1,
-        "totalHits": 1,
-        "totalTime": 44.810462951660156
-      },
-      "Lobby": {
-        "totalDeaths": 0,
-        "totalHits": 0,
-        "totalTime": 28.213287353515625
-      },
-      "StorageRoom": {
-        "totalDeaths": 7,
-        "totalHits": 0,
-        "totalTime": 148.41275787353516
-      },
-      "Treppenhaus": {
-        "totalDeaths": 7,
-        "totalHits": 8,
-        "totalTime": 190.4783477783203
-      },
-      "Boss": {
-        "totalDeaths": 5,
-        "totalHits": 15,
-        "totalTime": 421.1488037109375
-      }
-    },
-    "ohne": {
-      "Tutorial": {
-        "totalDeaths": 1,
-        "totalHits": 2,
-        "totalTime": 56.619022369384766
-      },
-      "Lobby": {
-        "totalDeaths": 0,
-        "totalHits": 0,
-        "totalTime": 39.98958206176758
-      },
-      "StorageRoom": {
-        "totalDeaths": 24,
-        "totalHits": 5,
-        "totalTime": 228.72351837158203
-      },
-      "Treppenhaus": {
-        "totalDeaths": 24,
-        "totalHits": 23,
-        "totalTime": 549.0094299316406
-      },
-      "Boss": {
-        "totalDeaths": 47,
-        "totalHits": 110,
-        "totalTime": 1309.60888671875
-      }
-    }
-  },
-  "297088": {
-    "ohne": {
-      "Tutorial": {
-        "totalDeaths": 1,
-        "totalHits": 2,
-        "totalTime": 47.18963623046875
-      },
-      "Lobby": {
-        "totalDeaths": 0,
-        "totalHits": 0,
-        "totalTime": 17.21160125732422
-      },
-      "StorageRoom": {
-        "totalDeaths": 15,
-        "totalHits": 3,
-        "totalTime": 91.5905990600586
-      },
-      "Treppenhaus": {
-        "totalDeaths": 7,
         "totalHits": 12,
-        "totalTime": 105.27714538574219
+        "totalTime": 195.3195037841797
       },
       "Boss": {
-        "totalDeaths": 1,
-        "totalHits": 3,
-        "totalTime": 213.86880493164062
-      }
-    },
-    "mit": {
-      "Tutorial": {
-        "totalDeaths": 1,
-        "totalHits": 2,
-        "totalTime": 49.64475631713867
-      },
-      "Lobby": {
-        "totalDeaths": 0,
-        "totalHits": 0,
-        "totalTime": 25.071186065673828
-      },
-      "StorageRoom": {
-        "totalDeaths": 28,
-        "totalHits": 4,
-        "totalTime": 243.2396240234375
-      },
-      "Treppenhaus": {
-        "totalDeaths": 11,
-        "totalHits": 6,
-        "totalTime": 162.08709716796875
-      },
-      "Boss": {
-        "totalDeaths": 5,
-        "totalHits": 13,
-        "totalTime": 351.5555419921875
-      }
-    }
-  },
-  "356499": {
-    "ohne": {
-      "Tutorial": {
-        "totalDeaths": 1,
-        "totalHits": 2,
-        "totalTime": 33.03016662597656
-      },
-      "Lobby": {
-        "totalDeaths": 0,
-        "totalHits": 0,
-        "totalTime": 17.53356170654297
-      },
-      "StorageRoom": {
-        "totalDeaths": 15,
-        "totalHits": 1,
-        "totalTime": 116.7309341430664
-      },
-      "Treppenhaus": {
-        "totalDeaths": 2,
-        "totalHits": 3,
-        "totalTime": 83.79327392578125
-      },
-      "Boss": {
-        "totalDeaths": 1,
-        "totalHits": 2,
-        "totalTime": 206.9098358154297
-      }
-    },
-    "mit": {
-      "Tutorial": {
-        "totalDeaths": 1,
-        "totalHits": 1,
-        "totalTime": 25.30572509765625
-      },
-      "Lobby": {
-        "totalDeaths": 0,
-        "totalHits": 0,
-        "totalTime": 37.263343811035156
-      },
-      "StorageRoom": {
-        "totalDeaths": 6,
-        "totalHits": 2,
-        "totalTime": 90.37616729736328
-      },
-      "Treppenhaus": {
-        "totalDeaths": 8,
+        "totalDeaths": 4,
         "totalHits": 9,
-        "totalTime": 93.10162353515625
-      },
-      "Boss": {
-        "totalDeaths": 1,
-        "totalHits": 1,
-        "totalTime": 232.44606018066406
+        "totalTime": 311.91766357421875
       }
-    }
-  },
-  "232962": {
+    },
     "ohne": {
       "Tutorial": {
         "totalDeaths": 1,
-        "totalHits": 1,
-        "totalTime": 72.40272521972656
-      },
-      "Lobby": {
-        "totalDeaths": 0,
-        "totalHits": 0,
-        "totalTime": 41.97819519042969
-      },
-      "StorageRoom": {
-        "totalDeaths": 12,
-        "totalHits": 1,
-        "totalTime": 157.59371948242188
-      },
-      "Treppenhaus": {
-        "totalDeaths": 7,
-        "totalHits": 5,
-        "totalTime": 130.397216796875
-      },
-      "Boss": {
-        "totalDeaths": 11,
-        "totalHits": 31,
-        "totalTime": 477.2850646972656
-      }
-    },
-    "mit": {
-      "Tutorial": {
-        "totalDeaths": 1,
-        "totalHits": 1,
-        "totalTime": 34.39051818847656
-      },
-      "Lobby": {
-        "totalDeaths": 0,
-        "totalHits": 0,
-        "totalTime": 17.73977279663086
-      },
-      "StorageRoom": {
-        "totalDeaths": 0,
-        "totalHits": 0,
-        "totalTime": 104.99084854125977
-      },
-      "Treppenhaus": {
-        "totalDeaths": 2,
         "totalHits": 2,
-        "totalTime": 83.42005920410156
+        "totalTime": 36.633270263671875
+      },
+      "Lobby": {
+        "totalDeaths": 0,
+        "totalHits": 0,
+        "totalTime": 18.3123779296875
+      },
+      "StorageRoom": {
+        "totalDeaths": 2,
+        "totalHits": 0,
+        "totalTime": 80.57392883300781
+      },
+      "Treppenhaus": {
+        "totalDeaths": 4,
+        "totalHits": 6,
+        "totalTime": 118.54930114746094
       },
       "Boss": {
-        "totalDeaths": 1,
-        "totalHits": 3,
-        "totalTime": 255.99801635742188
+        "totalDeaths": 3,
+        "totalHits": 4,
+        "totalTime": 378.1897277832031
       }
     }
   }
