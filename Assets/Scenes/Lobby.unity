@@ -992,7 +992,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 326368904}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d018b9bdcc2e139489993ef1438614da, type: 3}
   m_Name: 
@@ -2496,7 +2496,6 @@ MonoBehaviour:
   - Das Lagerhaus ist rechts von dir
   dialoguePrefab: {fileID: 3869799346472648246, guid: 1c554ad4a9a3b174bb0ef52f60f3e3c7, type: 3}
   velocityController: {fileID: 1187813054}
-  statTracker: {fileID: 0}
 --- !u!114 &773395988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2591,6 +2590,19 @@ MonoBehaviour:
   afterN: 4
   taskDescription: Finde die Tinte im Lager
   condition: {fileID: 898227481}
+--- !u!114 &773395994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773395983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f76b74691b9b4fa9bcffe659240d883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnableAfterInteraction
+  toEnable: {fileID: 326368907}
 --- !u!1 &786134863
 GameObject:
   m_ObjectHideFlags: 0
@@ -2831,6 +2843,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ac791919426674dfeb11d6108e2221ea, type: 3}
       insertIndex: -1
       addedObject: {fileID: 773395990}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ac791919426674dfeb11d6108e2221ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 773395994}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ac791919426674dfeb11d6108e2221ea, type: 3}
       insertIndex: -1
       addedObject: {fileID: 773395991}
@@ -3196,7 +3211,6 @@ MonoBehaviour:
   - Jetzt aber schnell!
   dialoguePrefab: {fileID: 3869799346472648246, guid: 1c554ad4a9a3b174bb0ef52f60f3e3c7, type: 3}
   velocityController: {fileID: 1187813054}
-  statTracker: {fileID: 0}
 --- !u!114 &897010610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4699,7 +4713,6 @@ MonoBehaviour:
   - "Vielleicht wei\xDF die Sekret\xE4rin etwas"
   dialoguePrefab: {fileID: 3869799346472648246, guid: 1c554ad4a9a3b174bb0ef52f60f3e3c7, type: 3}
   velocityController: {fileID: 1187813054}
-  statTracker: {fileID: 0}
 --- !u!114 &1293994135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4777,7 +4790,6 @@ MonoBehaviour:
   - "*uh\xE4\xE4\xE4h*"
   dialoguePrefab: {fileID: 3869799346472648246, guid: 1c554ad4a9a3b174bb0ef52f60f3e3c7, type: 3}
   velocityController: {fileID: 1187813054}
-  statTracker: {fileID: 0}
 --- !u!114 &1293994140
 MonoBehaviour:
   m_ObjectHideFlags: 0

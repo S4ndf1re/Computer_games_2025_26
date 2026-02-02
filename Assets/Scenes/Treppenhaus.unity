@@ -8881,9 +8881,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1949671195395142, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1320922843}
-    - targetCorrespondingSourceObject: {fileID: 1949671195395142, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1320922847}
   m_SourcePrefab: {fileID: 100100000, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
 --- !u!1 &719392599
 GameObject:
@@ -9509,7 +9506,6 @@ MonoBehaviour:
   - "Daf\xFCr muss ich einfach an der Wand erneut springen"
   dialoguePrefab: {fileID: 3869799346472648246, guid: 1c554ad4a9a3b174bb0ef52f60f3e3c7, type: 3}
   velocityController: {fileID: 1373538647}
-  statTracker: {fileID: 0}
 --- !u!114 &768339776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17182,19 +17178,6 @@ MonoBehaviour:
   setOutline: {fileID: 1320922844}
   interactRange: 1.5
   player: {fileID: 1373538649}
---- !u!114 &1320922847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1320922842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 947e58bd56962482a995419a85d1b669, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  state: {fileID: 11400000, guid: 693ba17327987418c9ba4379171e13ce, type: 2}
 --- !u!1 &1326987650
 GameObject:
   m_ObjectHideFlags: 0

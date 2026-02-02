@@ -36,19 +36,11 @@ public class SceneSetup : MonoBehaviour
 
         switch (state.currentScene)
         {
-            case GameState.Scenes.Tutorial:
-                SetupTutorial(oldScene);
-                break;
             case GameState.Scenes.Lobby:
                 SetupLobby(oldScene, wasElevator);
                 break;
         }
 
-    }
-
-    void SetupTutorial(GameState.Scenes? oldScene)
-    {
-        // Nothing to do here
     }
 
     void SetupLobby(GameState.Scenes? oldScene, bool wasElevator)
@@ -66,7 +58,7 @@ public class SceneSetup : MonoBehaviour
             afterTutorialDialog.enabled = false;
             staircaseDoor.enabled = true;
             storageRoomDoor.enabled = true;
-            printerDialogue.enabled = false;
+            printerDialogue.enabled = state.hasInk && state.hasPaper;
             player.transform.position = afterStorageRoomSpawnpoint.position;
             player.transform.localScale = afterStorageRoomSpawnpoint.localScale;
             player.transform.rotation = afterStorageRoomSpawnpoint.rotation;
@@ -76,7 +68,7 @@ public class SceneSetup : MonoBehaviour
             afterTutorialDialog.enabled = false;
             staircaseDoor.enabled = true;
             storageRoomDoor.enabled = true;
-            printerDialogue.enabled = false;
+            printerDialogue.enabled = state.hasInk && state.hasPaper;
             player.transform.position = afterTreppenhausSpawnpoint.position;
             player.transform.localScale = afterTreppenhausSpawnpoint.localScale;
             player.transform.rotation = afterTreppenhausSpawnpoint.rotation;
@@ -85,7 +77,7 @@ public class SceneSetup : MonoBehaviour
             afterTutorialDialog.enabled = false;
             staircaseDoor.enabled = true;
             storageRoomDoor.enabled = true;
-            printerDialogue.enabled = true;
+            printerDialogue.enabled = state.hasInk && state.hasPaper;
             player.transform.position = afterElevatorSpawnpoint.position;
             player.transform.localScale = afterElevatorSpawnpoint.localScale;
             player.transform.rotation = afterElevatorSpawnpoint.rotation;
