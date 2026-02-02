@@ -77,7 +77,10 @@ public class Player : MonoBehaviour
 
     public void Respawn()
     {
-        statTracker.RegisterDeath();
+        if (statTracker != null) {
+            statTracker.RegisterDeath();
+        }
+        
         this.currentHealth = startHealth;
         playerRespawned?.Invoke();
     }

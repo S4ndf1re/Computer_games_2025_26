@@ -22,9 +22,11 @@ public class EndTitleManager : MonoBehaviour
         if (menuPanel != null && !activeOnStart)
             menuPanel.SetActive(false);
         
-        StatTracker.Instance.RegisterDialogueEnd();
-        time = StatTracker.Instance.playTime;
-        deaths = StatTracker.Instance.deaths;
+        if (StatTracker.Instance != null) {
+            StatTracker.Instance.RegisterDialogueEnd();
+            time = StatTracker.Instance.playTime;
+            deaths = StatTracker.Instance.deaths;
+        }
 
         TimeSpan timeSpan = TimeSpan.FromSeconds(time);
         string formatted = $"{timeSpan.Minutes:D2}:{timeSpan.Seconds:D2}";
