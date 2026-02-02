@@ -1,0 +1,43 @@
+ui: Tasklist UI {
+    manager: TaskList Manager {
+        shape: class
+        +Instance: "static TaskListManager"
+
+        + SpawnTask(description String, condition TaskCondition): "void"
+    }
+
+    condition: TaskCondition {
+        shape: class
+
+        +TaskFinished(): "bool"
+        +FinishTask(): "void"
+        +Reset(): "void"
+        +Activate(): "void"
+        +Deactivate(): "void"
+        +IsActive(): "bool"
+        +SetTask(relatedTask Task): "void"
+        +GetInstance(): "TaskCondition"
+    }
+
+    task: Task {
+        shape: class
+
+        +TriggerDespawn(): "void"
+        +TypeText(): "void"
+        +ShowTextInstant(text String): "void"
+    }
+
+    crossout_animation: Crossout Animation
+
+    task -- condition: +has {
+        source-arrowhead: 1..*
+        target-arrowhead: 1
+    }
+
+    manager -- task: +spawns {
+        source-arrowhead: 1
+        target-arrowhead: 1..*
+    }
+
+    task -> crossout_animation: trigger on despawn
+}

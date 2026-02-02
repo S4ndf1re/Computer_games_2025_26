@@ -1,0 +1,46 @@
+
+player: Player {
+    interactable_controller: InteractableController
+}
+
+game_object: GameObject {
+    interactable: Interactable {
+    }
+
+    actions: InteractableActions {
+        dialog: Dialog {
+            shape: class
+
+            Execute(): "bool"
+            StartInteraction(): "void"
+            EndInteraction(): "void"
+            IsActive(): "bool"
+        }
+        activate_door_1: Activate Door 1 {
+            shape: class
+
+            Execute(): "bool"
+            StartInteraction(): "void"
+            EndInteraction(): "void"
+                IsActive(): "bool"
+        }
+        activate_door_2: Activate Door 2 {
+            shape: class
+
+            Execute(): "bool"
+            StartInteraction(): "void"
+            EndInteraction(): "void"
+            IsActive(): "bool"
+        }
+    }
+
+    interactable <-> actions.dialog: Triggers once, Notifies End
+    interactable <-> actions.activate_door_1: Triggers once, Notifies End
+    interactable <-> actions.activate_door_2: Triggers once, Notifies End
+
+    outline: Outline {
+    }
+    interactable -> outline: Enables outline on Player encounter
+}
+
+player.interactable_controller -> game_object.interactable: Triggers interaction

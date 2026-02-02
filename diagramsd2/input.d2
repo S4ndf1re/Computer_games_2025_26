@@ -1,0 +1,27 @@
+
+player: Player
+player.shape: person
+
+unity_input: Unity PlayerInput
+unity_input.shape: queue
+
+velocity_controller: VelocityPlayerController
+velocity_controller.shape: c4-person
+
+knockback1: Knockback Source 1 {near: center-left}
+knockback1.shape: hexagon
+knockback2: Knockback Source 2 {near: center-right}
+knockback2.shape: hexagon
+
+velocity: VelocitySystem
+velocity.shape: diamond
+
+player_controller: Unity CharacterController
+player_controller.shape: queue
+
+player -> unity_input: Inputs Keys
+unity_input -> velocity_controller: Applies Movement Rules
+velocity_controller -> velocity: Applies velocity
+knockback1 -> velocity: Applies Velocity
+knockback2 -> velocity: Applies Velocity
+velocity -> player_controller: Applies Movement guided by Velocity
